@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://cmw3sadj3ein1"]
+
+[ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="1_2rtom"]
+[ext_resource type="Texture2D" uid="uid://jxg4exvtla73" path="res://assets/UI/ui/Sprite sheets/buttons/Small Square Buttons.png" id="2_wifc8"]
+[ext_resource type="Texture2D" uid="uid://bb7w6qwq7dxfk" path="res://assets/UI/ui/Sprite sheets/Icons/special icons/Special Icons.png" id="4_0do14"]
+[ext_resource type="Script" uid="uid://du583b2vdiq26" path="res://scenes/levels/level_button.gd" id="4_iyi3n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyi3n"]
+atlas = ExtResource("2_wifc8")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8m6lv"]
+texture = SubResource("AtlasTexture_iyi3n")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rtom"]
+atlas = ExtResource("2_wifc8")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wifc8"]
+texture = SubResource("AtlasTexture_2rtom")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_voowx"]
+atlas = ExtResource("2_wifc8")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0do14"]
+texture = SubResource("AtlasTexture_voowx")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wifc8"]
+atlas = ExtResource("2_wifc8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iyi3n"]
+texture = SubResource("AtlasTexture_wifc8")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m6lv"]
+atlas = ExtResource("4_0do14")
+region = Rect2(0, 48, 16, 16)
+
+[node name="LevelNode" type="Control" unique_id=646697608]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=924809495]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -532.0
+offset_top = -223.0
+offset_right = 532.0
+offset_bottom = 223.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 3
+
+[node name="Button" type="Button" parent="GridContainer" unique_id=350472092]
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_outline_color = Color(0.38, 0.38, 0.38, 1)
+theme_override_constants/outline_size = 17
+theme_override_constants/h_separation = 5
+theme_override_constants/icon_max_width = 32
+theme_override_constants/align_to_largest_stylebox = 0
+theme_override_fonts/font = ExtResource("1_2rtom")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxTexture_8m6lv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wifc8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0do14")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_iyi3n")
+icon_alignment = 1
+vertical_icon_alignment = 2
+expand_icon = true
+script = ExtResource("4_iyi3n")
+
+[node name="StarContainer" type="HBoxContainer" parent="GridContainer/Button" unique_id=592383587]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -50.0
+offset_right = 98.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(2, 0)
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Star1" type="TextureRect" parent="GridContainer/Button/StarContainer" unique_id=1822629657]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = SubResource("AtlasTexture_8m6lv")
+stretch_mode = 4
+
+[node name="Star2" type="TextureRect" parent="GridContainer/Button/StarContainer" unique_id=1277812634]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = SubResource("AtlasTexture_8m6lv")
+stretch_mode = 4
+
+[node name="Star3" type="TextureRect" parent="GridContainer/Button/StarContainer" unique_id=1546995770]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = SubResource("AtlasTexture_8m6lv")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="GridContainer/Button" unique_id=414867832]
+custom_minimum_size = Vector2(0, 37)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1764706)
+theme_override_colors/font_outline_color = Color(0.37, 0.37, 0.37, 1)
+theme_override_constants/line_spacing = 1
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_2rtom")
+theme_override_font_sizes/font_size = 67
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1

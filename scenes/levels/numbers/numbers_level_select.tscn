@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cqt8rdwrsqodr"]
+
+[ext_resource type="Script" uid="uid://7ucuvw157xth" path="res://scenes/levels/numbers/numbers_level_select.gd" id="1_yfwvd"]
+
+[node name="NumbersLevelSelect" type="Control" unique_id=40383178]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yfwvd")
+
+[node name="NodeContainer" type="Control" parent="." unique_id=2057437926]
+anchors_preset = 0
+offset_left = 462.0
+offset_top = 221.0
+offset_right = 462.0
+offset_bottom = 221.0

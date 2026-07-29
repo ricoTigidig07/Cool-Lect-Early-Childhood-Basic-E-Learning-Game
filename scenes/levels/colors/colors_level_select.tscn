@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://das0u2krqs7b1"]
+
+[ext_resource type="Script" uid="uid://bdtnw208hh3ku" path="res://scenes/levels/colors/colors_level_select.gd" id="1_5jkm7"]
+
+[node name="ColorsLevelSelect" type="Control" unique_id=40383178]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5jkm7")
+
+[node name="NodeContainer" type="Control" parent="." unique_id=2057437926]
+anchors_preset = 0
+offset_left = 462.0
+offset_top = 221.0
+offset_right = 462.0
+offset_bottom = 221.0

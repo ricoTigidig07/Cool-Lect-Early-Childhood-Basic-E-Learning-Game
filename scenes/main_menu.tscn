@@ -1,9 +1,75 @@
 [gd_scene format=3 uid="uid://dphbrf10qt5fl"]
 
-[node name="MainMenu" type="Control" unique_id=1413568951]
+[ext_resource type="Theme" uid="uid://cpagya6ayhu8v" path="res://resources/main_theme.tres" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://dit3hcrtg7ak1" path="res://scripts/main_menu.gd" id="2_ekxnf"]
+
+[node name="MainMenu" type="Control" unique_id=1001105907]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_l6cm7")
+script = ExtResource("2_ekxnf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1369247410]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.6
+anchor_right = 0.5
+anchor_bottom = 0.6
+offset_left = -227.0
+offset_top = -167.00003
+offset_right = 227.0
+offset_bottom = 166.99997
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=493145956]
+custom_minimum_size = Vector2(243, 76)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.36862746, 0.36862746, 0.36862746, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 24
+text = "PLAY"
+icon_alignment = 1
+
+[node name="CharactersButton" type="Button" parent="VBoxContainer" unique_id=529413678]
+custom_minimum_size = Vector2(243, 76)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.36862746, 0.36862746, 0.36862746, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 24
+text = "CHARACTERS"
+icon_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer" unique_id=2116520137]
+custom_minimum_size = Vector2(243, 76)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.36862746, 0.36862746, 0.36862746, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 24
+text = "SETTINGS"
+icon_alignment = 1
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer" unique_id=23716806]
+custom_minimum_size = Vector2(243, 76)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.36862746, 0.36862746, 0.36862746, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 24
+text = "CREDITS"
+icon_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CharactersButton" to="." method="_on_characters_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]

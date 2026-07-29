@@ -1,5 +1,33 @@
 [gd_scene format=3 uid="uid://bnmnmmams6oyu"]
 
+[ext_resource type="Theme" uid="uid://cpagya6ayhu8v" path="res://resources/main_theme.tres" id="1_hpm77"]
+[ext_resource type="Script" uid="uid://c3gcnv071ojgm" path="res://scenes/grid_container.gd" id="2_a1gty"]
+[ext_resource type="Texture2D" uid="uid://di521tfjfn3c5" path="res://assets/UI/ui/emojis-free/subjects_icon.png" id="2_fdnfu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1gty"]
+atlas = ExtResource("2_fdnfu")
+region = Rect2(8, 2.440567, 176, 165.55943)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yumb1"]
+atlas = ExtResource("2_fdnfu")
+region = Rect2(296, 0, 160, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iduh"]
+atlas = ExtResource("2_fdnfu")
+region = Rect2(576, 0, 176, 168)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kmma"]
+atlas = ExtResource("2_fdnfu")
+region = Rect2(8, 160, 176, 172)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppg7w"]
+atlas = ExtResource("2_fdnfu")
+region = Rect2(296, 160, 168, 172)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4q3q"]
+atlas = ExtResource("2_fdnfu")
+region = Rect2(576, 160, 176, 172)
+
 [node name="SubjectSelector" type="Control" unique_id=262820878]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +35,70 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_hpm77")
+
+[node name="Control" type="GridContainer" parent="." unique_id=580447696]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -323.0
+offset_top = -142.0
+offset_right = 292.0
+offset_bottom = 334.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hpm77")
+columns = 3
+script = ExtResource("2_a1gty")
+
+[node name="FruitsCard" type="Button" parent="Control" unique_id=803122881]
+layout_mode = 2
+text = "FRUITS"
+icon = SubResource("AtlasTexture_a1gty")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="NumbersCard" type="Button" parent="Control" unique_id=1780497262]
+layout_mode = 2
+text = "NUMBERS"
+icon = SubResource("AtlasTexture_yumb1")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="AlphabetsCard" type="Button" parent="Control" unique_id=75054448]
+layout_mode = 2
+text = "ALPHABETS"
+icon = SubResource("AtlasTexture_7iduh")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="AnimalsCard" type="Button" parent="Control" unique_id=1464244954]
+layout_mode = 2
+text = "ANIMALS"
+icon = SubResource("AtlasTexture_3kmma")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="ShapesCard" type="Button" parent="Control" unique_id=1805828125]
+layout_mode = 2
+text = "SHAPES"
+icon = SubResource("AtlasTexture_ppg7w")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="ColorsCard" type="Button" parent="Control" unique_id=1861994618]
+layout_mode = 2
+text = "COLORS"
+icon = SubResource("AtlasTexture_l4q3q")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[connection signal="pressed" from="Control/FruitsCard" to="Control" method="_on_fruits_card_pressed"]
+[connection signal="pressed" from="Control/NumbersCard" to="Control" method="_on_numbers_card_pressed"]
+[connection signal="pressed" from="Control/AlphabetsCard" to="Control" method="_on_alphabets_card_pressed"]
+[connection signal="pressed" from="Control/AnimalsCard" to="Control" method="_on_animals_card_pressed"]
+[connection signal="pressed" from="Control/ShapesCard" to="Control" method="_on_shapes_card_pressed"]
+[connection signal="pressed" from="Control/ColorsCard" to="Control" method="_on_colors_card_pressed"]
