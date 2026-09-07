@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://dqr0lj71i108g"]
+
+[ext_resource type="Texture2D" uid="uid://n6n33s5ylrk6" path="res://assets/UI/ui/Sprite sheets/Setting menu.png" id="1_bb3a2"]
+[ext_resource type="Script" uid="uid://b2rpvkyptymrr" path="res://scenes/ingame_settings.gd" id="1_ggmd1"]
+[ext_resource type="Texture2D" uid="uid://dcpj4r44vdyf2" path="res://assets/UI/ui/Sprite sheets/buttons/Square Buttons 26x19.png" id="2_73ed7"]
+[ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="2_ggmd1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggmd1"]
+atlas = ExtResource("1_bb3a2")
+region = Rect2(11, 12, 106, 122)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k2q2e"]
+texture = SubResource("AtlasTexture_ggmd1")
+texture_margin_left = 6.0
+texture_margin_top = 29.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccyf0"]
+atlas = ExtResource("2_73ed7")
+region = Rect2(11, 70, 26, 19)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1hyy8"]
+texture = SubResource("AtlasTexture_ccyf0")
+texture_margin_left = 5.0
+texture_margin_top = 6.0
+texture_margin_right = 5.0
+texture_margin_bottom = 14.0
+region_rect = Rect2(0, 0, 26, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6wim"]
+atlas = ExtResource("2_73ed7")
+region = Rect2(59, 70, 26, 19)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_umgfc"]
+texture = SubResource("AtlasTexture_d6wim")
+texture_margin_left = 5.0
+texture_margin_top = 6.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6ghd"]
+atlas = ExtResource("2_73ed7")
+region = Rect2(11, 38, 26, 19)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_apjgl"]
+texture = SubResource("AtlasTexture_b6ghd")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2q2e"]
+atlas = ExtResource("2_73ed7")
+region = Rect2(11, 70, 26, 19)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ccyf0"]
+texture = SubResource("AtlasTexture_k2q2e")
+texture_margin_left = 19.0
+texture_margin_top = 5.0
+texture_margin_right = 19.0
+texture_margin_bottom = 13.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73ed7"]
+atlas = ExtResource("2_73ed7")
+region = Rect2(59, 70, 26, 19)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d6wim"]
+texture = SubResource("AtlasTexture_73ed7")
+texture_margin_left = 5.0
+texture_margin_top = 6.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hyy8"]
+atlas = ExtResource("2_73ed7")
+region = Rect2(11, 38, 26, 19)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b6ghd"]
+texture = SubResource("AtlasTexture_1hyy8")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 7.0
+
+[node name="SettingsPanel" type="Control" unique_id=1113848892 groups=["ingame_settings"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ggmd1")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1725011079]
+custom_minimum_size = Vector2(120, 93)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.5
+offset_top = -56.5
+offset_right = 111.5
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_k2q2e")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=608275897]
+custom_minimum_size = Vector2(106, 52)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=3879682]
+layout_mode = 2
+size_flags_vertical = 8
+size_flags_stretch_ratio = 6.5
+
+[node name="ResumeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=288014696]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.95686275, 0.90588236, 1)
+theme_override_colors/font_outline_color = Color(0.36862746, 0.36862746, 0.36862746, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/h_separation = 6
+theme_override_fonts/font = ExtResource("2_ggmd1")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_1hyy8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_umgfc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_apjgl")
+text = "RESUME"
+
+[node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1969547231]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.95686275, 0.90588236, 1)
+theme_override_colors/font_outline_color = Color(0.36862746, 0.36862746, 0.36862746, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_ggmd1")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_ccyf0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_d6wim")
+theme_override_styles/hover = SubResource("StyleBoxTexture_b6ghd")
+text = "MAIN  MENU"

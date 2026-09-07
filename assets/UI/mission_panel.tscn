@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://rr425o6uk27s"]
+
+[ext_resource type="Script" uid="uid://btbou63y4m76r" path="res://mission_panel.gd" id="1_jk2iw"]
+[ext_resource type="Texture2D" uid="uid://be71c03j777y2" path="res://assets/UI/Basic_UI_Sprite.png" id="1_vno4u"]
+[ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="3_t6hsb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6hsb"]
+atlas = ExtResource("1_vno4u")
+region = Rect2(201, 57, 30, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lag8f"]
+texture = SubResource("AtlasTexture_t6hsb")
+texture_margin_left = 9.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 9.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 30, 30)
+
+[node name="MissionPanel" type="PanelContainer" unique_id=648551425]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -94.0
+offset_right = 51.0
+offset_bottom = -53.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_lag8f")
+script = ExtResource("1_jk2iw")
+
+[node name="MissionLabel" type="Label" parent="." unique_id=1165890335]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_t6hsb")

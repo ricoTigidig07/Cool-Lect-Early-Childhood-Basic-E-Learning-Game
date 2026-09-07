@@ -52,6 +52,7 @@ Button/constants/line_spacing = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 20
 Button/fonts/font = ExtResource("1_biaja")
+Button/icons/icon = null
 Button/styles/disabled = SubResource("StyleBoxTexture_x127s")
 Button/styles/focus = SubResource("StyleBoxTexture_qjhx0")
 Button/styles/hover = SubResource("StyleBoxTexture_u427p")

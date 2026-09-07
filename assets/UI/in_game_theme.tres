@@ -1,0 +1,14 @@
+[gd_resource type="Theme" format=3 uid="uid://cru1s4fmm6vy3"]
+
+[ext_resource type="Texture2D" uid="uid://be71c03j777y2" path="res://assets/UI/Basic_UI_Sprite.png" id="1_fjycl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udgn7"]
+atlas = ExtResource("1_fjycl")
+region = Rect2(201, 57, 30, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_48juv"]
+texture = SubResource("AtlasTexture_udgn7")
+
+[resource]
+WoodPanel/base_type = &"PanelContainer"
+WoodPanel/styles/panel = SubResource("StyleBoxTexture_48juv")

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://04bxi0a3qgu8"]
+
+[ext_resource type="Texture2D" uid="uid://drgnckdn21ax2" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Trees, stumps and bushes.png" id="1_pghoi"]
+[ext_resource type="PackedScene" uid="uid://nshpx7n61rk5" path="res://scenes/components/hurt_component.tscn" id="2_h03k8"]
+[ext_resource type="Script" uid="uid://bpxe2b0ay60ag" path="res://scenes/objects/tree/big_tree_orange.gd" id="2_qj75b"]
+[ext_resource type="PackedScene" uid="uid://dqee7fxqcid7d" path="res://scenes/components/damage_component.tscn" id="3_qj75b"]
+[ext_resource type="Shader" uid="uid://c7rwomcjvgyvg" path="res://scenes/objects/tree/tree_sway.tres" id="4_88syv"]
+[ext_resource type="Script" uid="uid://lswjekvcnb35" path="res://scenes/components/damage_component.gd" id="4_u8yrx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_88syv"]
+resource_local_to_scene = true
+shader = ExtResource("4_88syv")
+shader_parameter/sway_amount = 1.5
+shader_parameter/sway_speed = 1.0
+shader_parameter/leaf_start = 0.7
+shader_parameter/falloff_sharpness = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygx4o"]
+atlas = ExtResource("1_pghoi")
+region = Rect2(80, 0, 32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1kd5t"]
+shader = ExtResource("4_88syv")
+shader_parameter/sway_amount = 1.5
+shader_parameter/sway_speed = 1.0
+shader_parameter/leaf_start = 0.7
+shader_parameter/falloff_sharpness = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u8yrx"]
+radius = 9.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88syv"]
+size = Vector2(8, 21)
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1981943568]
+material = SubResource("ShaderMaterial_88syv")
+position = Vector2(0, -11)
+texture = SubResource("AtlasTexture_ygx4o")
+script = ExtResource("2_qj75b")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=900864270]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1384346851]
+material = SubResource("ShaderMaterial_1kd5t")
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_u8yrx")
+
+[node name="HurtComponent" parent="." unique_id=1546479709 instance=ExtResource("2_h03k8")]
+
+[node name="HurtComponentCollisionShape2D" type="CollisionShape2D" parent="HurtComponent" unique_id=127648711]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_88syv")
+debug_color = Color(0.8658675, 0.0005764139, 0.86225, 0.41960785)
+
+[node name="DamageComponent" parent="." unique_id=1852704884 instance=ExtResource("3_qj75b")]
+script = ExtResource("4_u8yrx")
+max_damage = 5

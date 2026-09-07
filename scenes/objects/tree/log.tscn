@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bcwaqln3f6idf"]
+
+[ext_resource type="Texture2D" uid="uid://drgnckdn21ax2" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Trees, stumps and bushes.png" id="1_3sgr7"]
+[ext_resource type="PackedScene" uid="uid://gag33fey81g1" path="res://scenes/components/collectable_component.tscn" id="2_p2mks"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2mks"]
+atlas = ExtResource("1_3sgr7")
+region = Rect2(96, 96, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tiefq"]
+radius = 7.0
+
+[node name="Log" type="Sprite2D" unique_id=1664700930]
+texture = SubResource("AtlasTexture_p2mks")
+
+[node name="CollectableComponent" parent="." unique_id=983615418 instance=ExtResource("2_p2mks")]
+collectable_name = "log"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectableComponent" unique_id=608716192]
+shape = SubResource("CircleShape2D_tiefq")
+debug_color = Color(0.47981715, 0.5879416, 7.70092e-07, 0.41960785)

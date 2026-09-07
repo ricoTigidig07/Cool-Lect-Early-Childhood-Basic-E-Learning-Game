@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dgsf8jkgw3jir"]
+
+[ext_resource type="Texture2D" uid="uid://drgnckdn21ax2" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Trees, stumps and bushes.png" id="1_4axji"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygx4o"]
+atlas = ExtResource("1_4axji")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xmv4s"]
+radius = 7.0
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1981943568]
+texture = SubResource("AtlasTexture_ygx4o")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=900864270]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1868487902]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_xmv4s")

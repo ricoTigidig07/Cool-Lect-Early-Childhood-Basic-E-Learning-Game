@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bk3inu6b5gua"]
+
+[ext_resource type="Shader" uid="uid://c7rwomcjvgyvg" path="res://scenes/objects/tree/tree_sway.tres" id="1_1a0qn"]
+[ext_resource type="Texture2D" uid="uid://drgnckdn21ax2" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Trees, stumps and bushes.png" id="1_1ouo2"]
+[ext_resource type="Script" uid="uid://bmkf1osgyijol" path="res://scenes/objects/tree/big_tree.gd" id="2_mt2w1"]
+[ext_resource type="PackedScene" uid="uid://nshpx7n61rk5" path="res://scenes/components/hurt_component.tscn" id="2_ygx4o"]
+[ext_resource type="PackedScene" uid="uid://dqee7fxqcid7d" path="res://scenes/components/damage_component.tscn" id="3_8kafe"]
+[ext_resource type="Script" uid="uid://lswjekvcnb35" path="res://scenes/components/damage_component.gd" id="4_mt2w1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1a0qn"]
+shader = ExtResource("1_1a0qn")
+shader_parameter/sway_amount = 1.5
+shader_parameter/sway_speed = 1.0
+shader_parameter/leaf_start = 0.7
+shader_parameter/falloff_sharpness = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygx4o"]
+atlas = ExtResource("1_1ouo2")
+region = Rect2(16, 0, 32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1a0qn"]
+radius = 9.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmv4s"]
+size = Vector2(8, 21)
+
+[node name="big_tree" type="Sprite2D" unique_id=1981943568]
+material = SubResource("ShaderMaterial_1a0qn")
+position = Vector2(0, -3)
+texture = SubResource("AtlasTexture_ygx4o")
+script = ExtResource("2_mt2w1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=900864270]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1868487902]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_1a0qn")
+
+[node name="HurtComponent" parent="." unique_id=1546479709 instance=ExtResource("2_ygx4o")]
+
+[node name="HurtComponentCollisionShape2D" type="CollisionShape2D" parent="HurtComponent" unique_id=1623258010]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_xmv4s")
+debug_color = Color(0.8658675, 0.0005764139, 0.86225, 0.41960785)
+
+[node name="DamageComponent" parent="." unique_id=1852704884 instance=ExtResource("3_8kafe")]
+script = ExtResource("4_mt2w1")
+max_damage = 4

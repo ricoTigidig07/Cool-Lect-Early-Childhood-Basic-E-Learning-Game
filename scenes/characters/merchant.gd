@@ -1,0 +1,39 @@
+extends Area2D
+
+var is_dialogue_open = false
+
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Player01:
+		InteractionManager.register(self)
+		var portrait = get_tree().get_first_node_in_group("avatar_icon")
+		if portrait:
+			portrait.set_near_merchant(true)
+			portrait.play("merchant_defaults")
+
+func _on_body_exited(body: Node2D) -> void:
+	if body is Player01:
+		InteractionManager.unregister(self)
+		var portrait = get_tree().get_first_node_in_group("avatar_icon")
+		if portrait:
+			portrait.play("defaults")
+			portrait.set_near_merchant(false)
+		GameUIManager.hide_dialogue()
+		is_dialogue_open = false
+
+func interact() -> void:
+	var portrait = get_tree().get_first_node_in_group("avatar_icon")
+	
+	if is_dialogue_open:
+		GameUIManager.hide_dialogue()
+		if portrait:
+			portrait.play("merchant_defaults")
+		is_dialogue_open = false
+	else:
+		if portrait:
+			portrait.play("merchant_talking")
+		GameUIManager.show_dialogue("Hi there! Can you help me collect some apples?")
+		is_dialogue_open = true

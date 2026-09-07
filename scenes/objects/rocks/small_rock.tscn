@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dp1klvr8b0iyw"]
+
+[ext_resource type="Texture2D" uid="uid://bvmyr1ner08tn" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Mushrooms, Flowers, Stones.png" id="1_s20vi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atd6v"]
+atlas = ExtResource("1_s20vi")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4y611"]
+radius = 5.0
+
+[node name="Sprite2D" type="Sprite2D" unique_id=317395076]
+texture = SubResource("AtlasTexture_atd6v")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1799367582]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=441975515]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_4y611")

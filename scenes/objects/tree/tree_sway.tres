@@ -1,0 +1,18 @@
+[gd_resource type="Shader" format=3 uid="uid://c7rwomcjvgyvg"]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform float sway_amount : hint_range(0.0, 20.0) = 1.5; // pixels
+uniform float sway_speed : hint_range(0.0, 5.0) = 1.0;
+uniform float leaf_start : hint_range(0.0, 1.0) = 0.7; // raise until log is fully covered
+uniform float falloff_sharpness : hint_range(0.5, 5.0) = 2.0; // higher = log stays stiller, canopy top moves more
+
+void vertex() {
+	if (UV.y < leaf_start) {
+		float sway = sin(TIME * sway_speed) * sway_amount;
+		float raw_factor = 1.0 - (UV.y / leaf_start);
+		float factor = pow(raw_factor, falloff_sharpness);
+		VERTEX.x += sway * factor;
+	}
+}"

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ccb5eo2wtkap1"]
+
+[ext_resource type="Script" uid="uid://hdnpduy2uvvx" path="res://scenes/components/collectable_component.gd" id="1_sk0uv"]
+[ext_resource type="Texture2D" uid="uid://dcwgb2huwkrxu" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Items/fruit and berries items.png" id="2_4ml88"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b66ow"]
+radius = 5.0
+
+[node name="Apple" type="Area2D" unique_id=1869666276]
+script = ExtResource("1_sk0uv")
+collectable_name = "Apple"
+item_type = "fruits"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=643001219]
+texture = ExtResource("2_4ml88")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1674801666]
+shape = SubResource("CircleShape2D_b66ow")
+debug_color = Color(0.64166707, 0.5244596, 0, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
