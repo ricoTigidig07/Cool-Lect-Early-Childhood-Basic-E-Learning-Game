@@ -20,7 +20,6 @@
 [ext_resource type="LabelSettings" uid="uid://bimhsompcsba" path="res://assets/UI/label_fonts.tres" id="18_2l0xo"]
 [ext_resource type="Script" uid="uid://11lnif2mlihw" path="res://scenes/world/settings_button.gd" id="19_dhwrh"]
 [ext_resource type="PackedScene" uid="uid://dqr0lj71i108g" path="res://scenes/ingame_settings.tscn" id="20_fl30d"]
-[ext_resource type="PackedScene" uid="uid://rr425o6uk27s" path="res://assets/UI/mission_panel.tscn" id="21_2l0xo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7pnv2"]
 atlas = ExtResource("5_4lqg0")
@@ -435,12 +434,6 @@ script = ExtResource("19_dhwrh")
 
 [node name="SettingsPanel" parent="GameUI" unique_id=1113848892 instance=ExtResource("20_fl30d")]
 visible = false
-
-[node name="MissionPanel" parent="GameUI" unique_id=648551425 instance=ExtResource("21_2l0xo")]
-offset_left = 18.0
-offset_top = -93.0
-offset_right = 64.0
-offset_bottom = -52.0
 
 [node name="DialogueContainer" type="PanelContainer" parent="GameUI" unique_id=1422818953]
 visible = false
