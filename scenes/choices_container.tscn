@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dipx6aduu35yo"]
+
+[node name="ChoicesContainer" type="VBoxContainer" unique_id=1798551961]
+offset_right = 133.0
+offset_bottom = 20.0
+
+[node name="YesButton" type="Button" parent="." unique_id=39426696]
+layout_mode = 2
+
+[node name="NoButton" type="Button" parent="." unique_id=296125974]
+layout_mode = 2

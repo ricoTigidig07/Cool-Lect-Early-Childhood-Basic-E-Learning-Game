@@ -1,0 +1,56 @@
+[gd_resource type="Theme" format=3 uid="uid://cq6yjwxcf3scm"]
+
+[ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="1_fqy4g"]
+[ext_resource type="Texture2D" uid="uid://dcpj4r44vdyf2" path="res://assets/UI/ui/Sprite sheets/buttons/Square Buttons 26x19.png" id="2_fjnb0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds5ue"]
+atlas = ExtResource("2_fjnb0")
+region = Rect2(11, 6, 26, 19)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1t5je"]
+texture = SubResource("AtlasTexture_ds5ue")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvirl"]
+atlas = ExtResource("2_fjnb0")
+region = Rect2(11, 38, 26, 19)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g8hl1"]
+texture = SubResource("AtlasTexture_yvirl")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_462hk"]
+atlas = ExtResource("2_fjnb0")
+region = Rect2(11, 70, 26, 19)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f2mox"]
+texture = SubResource("AtlasTexture_462hk")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldcac"]
+atlas = ExtResource("2_fjnb0")
+region = Rect2(59, 70, 26, 19)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wfu1p"]
+texture = SubResource("AtlasTexture_ldcac")
+texture_margin_left = 4.0
+texture_margin_top = 5.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[resource]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_fqy4g")
+Button/styles/disabled = SubResource("StyleBoxTexture_1t5je")
+Button/styles/hover = SubResource("StyleBoxTexture_g8hl1")
+Button/styles/normal = SubResource("StyleBoxTexture_f2mox")
+Button/styles/pressed = SubResource("StyleBoxTexture_wfu1p")

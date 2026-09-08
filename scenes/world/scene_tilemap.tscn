@@ -13,13 +13,16 @@
 [ext_resource type="Texture2D" uid="uid://c7tbkq1f2260h" path="res://assets/UI/Merchant.png" id="8_qang5"]
 [ext_resource type="PackedScene" uid="uid://dyuicx7sagfg4" path="res://scenes/characters/merchant.tscn" id="9_g671d"]
 [ext_resource type="Texture2D" uid="uid://jxg4exvtla73" path="res://assets/UI/ui/Sprite sheets/buttons/Small Square Buttons.png" id="12_16jrw"]
-[ext_resource type="Texture2D" uid="uid://djthgcx47ltde" path="res://assets/UI/ui/Sprite sheets/Dialouge UI/dialog box big.png" id="13_mgq8m"]
 [ext_resource type="Script" uid="uid://52n6hq8tmr0v" path="res://scenes/world/button.gd" id="14_6ejiy"]
 [ext_resource type="Texture2D" uid="uid://cxgbi1ejfdjdq" path="res://assets/UI/ui/Sprite sheets/Mouse sprites/Catpaw Mouse icon.png" id="14_iw3ag"]
-[ext_resource type="Script" uid="uid://dsksi840j41u6" path="res://scenes/world/panel_container.gd" id="15_vjcgi"]
-[ext_resource type="LabelSettings" uid="uid://bimhsompcsba" path="res://assets/UI/label_fonts.tres" id="18_2l0xo"]
+[ext_resource type="Texture2D" uid="uid://djthgcx47ltde" path="res://assets/UI/ui/Sprite sheets/Dialouge UI/dialog box big.png" id="18_6ejiy"]
+[ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="19_2l0xo"]
 [ext_resource type="Script" uid="uid://11lnif2mlihw" path="res://scenes/world/settings_button.gd" id="19_dhwrh"]
+[ext_resource type="Script" uid="uid://cjhi4gm235mtn" path="res://scenes/world/dialogue_panel.gd" id="19_mksnn"]
 [ext_resource type="PackedScene" uid="uid://dqr0lj71i108g" path="res://scenes/ingame_settings.tscn" id="20_fl30d"]
+[ext_resource type="Theme" uid="uid://cq6yjwxcf3scm" path="res://assets/UI/dialogueButtons.tres" id="21_bl5hp"]
+[ext_resource type="Texture2D" uid="uid://dvsrrybs70wr3" path="res://assets/UI/ui/Sprite sheets/Icons/All Icons.png" id="21_ccjov"]
+[ext_resource type="PackedScene" uid="uid://dipx6aduu35yo" path="res://scenes/choices_container.tscn" id="23_ccjov"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7pnv2"]
 atlas = ExtResource("5_4lqg0")
@@ -229,14 +232,15 @@ Button/styles/normal = SubResource("StyleBoxTexture_q5c8y")
 Button/styles/pressed = SubResource("StyleBoxTexture_yvirl")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ds5ue"]
-atlas = ExtResource("13_mgq8m")
+atlas = ExtResource("18_6ejiy")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1t5je"]
-texture = SubResource("AtlasTexture_ds5ue")
-texture_margin_left = 20.0
-texture_margin_top = 10.0
-texture_margin_right = 10.0
-texture_margin_bottom = 22.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3ycd"]
+atlas = ExtResource("21_ccjov")
+region = Rect2(162, 34, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gpdq"]
+atlas = ExtResource("21_ccjov")
+region = Rect2(146, 35, 13, 10)
 
 [node name="SceneTilemap" type="Node2D" unique_id=1485456726]
 y_sort_enabled = true
@@ -435,21 +439,75 @@ script = ExtResource("19_dhwrh")
 [node name="SettingsPanel" parent="GameUI" unique_id=1113848892 instance=ExtResource("20_fl30d")]
 visible = false
 
-[node name="DialogueContainer" type="PanelContainer" parent="GameUI" unique_id=1422818953]
+[node name="DialoguePanel" type="TextureRect" parent="GameUI" unique_id=407280137]
 visible = false
-offset_left = 167.0
-offset_top = 40.0
-offset_right = 697.0
-offset_bottom = 118.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_1t5je")
-script = ExtResource("15_vjcgi")
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -365.0
+offset_right = -191.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("AtlasTexture_ds5ue")
+flip_h = true
+script = ExtResource("19_mksnn")
 
-[node name="Label" type="Label" parent="GameUI/DialogueContainer" unique_id=1591975683]
-custom_minimum_size = Vector2(500, 0)
+[node name="MarginContainer" type="MarginContainer" parent="GameUI/DialoguePanel" unique_id=1339333368]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.5
+offset_top = -70.5
+offset_right = 459.5
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameUI/DialoguePanel/MarginContainer" unique_id=1911324096]
 layout_mode = 2
-size_flags_horizontal = 0
-text = "Hi! Can you help me get an apple?"
-label_settings = ExtResource("18_2l0xo")
-autowrap_mode = 2
+
+[node name="Label" type="Label" parent="GameUI/DialoguePanel/MarginContainer/VBoxContainer" unique_id=1787025030]
+custom_minimum_size = Vector2(0, 117)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("19_2l0xo")
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="ButtonArea" type="HBoxContainer" parent="GameUI/DialoguePanel/MarginContainer/VBoxContainer" unique_id=1113768934]
+layout_direction = 3
+layout_mode = 2
+
+[node name="SkipButton" type="Button" parent="GameUI/DialoguePanel/MarginContainer/VBoxContainer/ButtonArea" unique_id=1959495000]
+layout_mode = 2
+theme = ExtResource("21_bl5hp")
+text = "SKIP"
+icon = SubResource("AtlasTexture_d3ycd")
+icon_alignment = 2
+
+[node name="NextButton" type="Button" parent="GameUI/DialoguePanel/MarginContainer/VBoxContainer/ButtonArea" unique_id=435414425]
+layout_mode = 2
+theme = ExtResource("21_bl5hp")
+text = "NEXT"
+icon = SubResource("AtlasTexture_0gpdq")
+icon_alignment = 2
+
+[node name="ChoicesContainer" parent="GameUI/DialoguePanel" unique_id=1798551961 instance=ExtResource("23_ccjov")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -0.16900001
+anchor_right = 0.5
+anchor_bottom = -0.16900001
+offset_left = -66.5
+offset_top = 0.109004974
+offset_right = 66.5
+offset_bottom = 20.109005
+grow_horizontal = 2
 
 [connection signal="pressed" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_pressed"]
