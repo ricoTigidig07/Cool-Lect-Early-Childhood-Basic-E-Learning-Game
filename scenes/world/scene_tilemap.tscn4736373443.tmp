@@ -446,15 +446,14 @@ script = ExtResource("19_dhwrh")
 visible = false
 
 [node name="DialoguePanel" type="TextureRect" parent="GameUI" unique_id=407280137]
-visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 46.0
-offset_top = -386.0
-offset_right = -76.0
-offset_bottom = 39.0
+offset_left = 10.0
+offset_top = -511.0
+offset_right = -191.0
+offset_bottom = -104.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = SubResource("AtlasTexture_ds5ue")
@@ -462,17 +461,17 @@ flip_h = true
 script = ExtResource("19_mksnn")
 
 [node name="MarginContainer" type="MarginContainer" parent="GameUI/DialoguePanel" unique_id=1339333368]
-custom_minimum_size = Vector2(1015, 200)
+custom_minimum_size = Vector2(980, 140)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -528.0
-offset_top = -110.5
-offset_right = 487.0
-offset_bottom = 98.5
+offset_left = -504.5
+offset_top = -104.5
+offset_right = 475.5
+offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -480,7 +479,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Label" type="Label" parent="GameUI/DialoguePanel/MarginContainer/VBoxContainer" unique_id=1787025030]
-custom_minimum_size = Vector2(1000, 165)
+custom_minimum_size = Vector2(950, 130)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("19_2l0xo")
 theme_override_font_sizes/font_size = 30
@@ -493,7 +492,6 @@ layout_direction = 3
 layout_mode = 2
 
 [node name="SkipButton" type="Button" parent="GameUI/DialoguePanel/MarginContainer/VBoxContainer/ButtonArea" unique_id=1959495000]
-custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 theme = ExtResource("21_bl5hp")
 text = "SKIP"
@@ -501,7 +499,6 @@ icon = SubResource("AtlasTexture_d3ycd")
 icon_alignment = 2
 
 [node name="NextButton" type="Button" parent="GameUI/DialoguePanel/MarginContainer/VBoxContainer/ButtonArea" unique_id=435414425]
-custom_minimum_size = Vector2(90, 40)
 layout_mode = 2
 theme = ExtResource("21_bl5hp")
 text = "NEXT"

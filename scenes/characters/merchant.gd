@@ -35,5 +35,8 @@ func interact() -> void:
 	else:
 		if portrait:
 			portrait.play("merchant_talking")
-		GameUIManager.show_dialogue("Hi there! Can you help me collect some apples?")
+			GameUIManager.show_dialogue([
+				"Hi there! I'm Momo, the merchant of this little village. I trade fruits, treats, and all sorts of goodies with everyone who visits!",
+				"But oh no — a storm last night knocked apples all over the field, and I can't gather them all by myself! Could you help me collect some apples?"
+			])
 		is_dialogue_open = true

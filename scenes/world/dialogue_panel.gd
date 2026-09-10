@@ -6,12 +6,17 @@ extends TextureRect
 @onready var choices_container = $ChoicesContainer
 
 const CHARS_PER_SECOND = 30.0
+const MIN_FONT_SIZE = 16
+const MAX_FONT_SIZE = 30
 
 var typing_timer: Timer
 var full_text: String = ""
+var pages: Array[String] = []
+var current_page: int = 0
 
 signal skipped
 signal advanced
+signal finished
 signal choice_selected(choice_text: String)
 
 func _ready() -> void:
@@ -25,13 +30,58 @@ func _ready() -> void:
 
 	choices_container.visible = false
 
+	# Label has a LabelSettings resource assigned in the scene. When that's
+	# set, Label always renders using label_settings.font_size and ignores
+	# theme_override_font_sizes — so that's what we need to change at
+	# runtime, not the theme override. Duplicate it so we never mutate a
+	# resource shared with another instance of this scene.
+	if label.label_settings:
+		label.label_settings = label.label_settings.duplicate()
+
 func set_text(text: String) -> void:
+	show_pages([text])
+
+func show_pages(new_pages: Array[String]) -> void:
+	pages = new_pages
+	current_page = 0
+	_show_current_page()
+
+func _show_current_page() -> void:
+	var text = pages[current_page]
 	full_text = text
+	_apply_responsive_font_size(text)
 	label.text = text
 	label.visible_characters = 0
 	choices_container.visible = false
 	_clear_choices()
+	skip_button.text = "SKIP"
 	typing_timer.start()
+
+func _apply_responsive_font_size(text: String) -> void:
+	var font = label.get_theme_font("font")
+	if font == null:
+		font = ThemeDB.fallback_font
+
+	var wrap_width = label.custom_minimum_size.x
+	var available_height = label.custom_minimum_size.y
+
+	if wrap_width <= 0 or available_height <= 0:
+		push_warning("DialoguePanel: Label custom_minimum_size not set — using fallback font size")
+		label.add_theme_font_size_override("font_size", MIN_FONT_SIZE)
+		return
+
+	var best_size = MIN_FONT_SIZE
+	for size in range(MAX_FONT_SIZE, MIN_FONT_SIZE - 1, -1):
+		var wrapped_size = font.get_multiline_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, wrap_width, size)
+		if wrapped_size.y <= available_height:
+			best_size = size
+			break
+
+	if label.label_settings:
+		# label_settings.font_size takes priority over theme overrides when set,
+		# so it's the one that actually needs updating for the change to show.
+		label.label_settings.font_size = best_size
+	label.add_theme_font_size_override("font_size", best_size)
 
 func show_choices(choices: Array[String]) -> void:
 	_clear_choices()
@@ -50,14 +100,35 @@ func _on_typing_tick() -> void:
 	label.visible_characters += 1
 	if label.visible_characters >= full_text.length():
 		typing_timer.stop()
+		skip_button.text = "PREV"
 
 func _on_skip_pressed() -> void:
-	label.visible_characters = -1
-	typing_timer.stop()
-	skipped.emit()
+	if label.visible_characters != -1 and label.visible_characters < full_text.length():
+		label.visible_characters = -1
+		typing_timer.stop()
+		skip_button.text = "PREV"
+		skipped.emit()
+	else:
+		_go_to_previous_page()
+
+func _go_to_previous_page() -> void:
+	if current_page > 0:
+		current_page -= 1
+		_show_current_page()
 
 func _on_next_pressed() -> void:
-	advanced.emit()
+	if label.visible_characters != -1 and label.visible_characters < full_text.length():
+		label.visible_characters = -1
+		typing_timer.stop()
+		skip_button.text = "PREV"
+		return
+
+	if current_page < pages.size() - 1:
+		current_page += 1
+		_show_current_page()
+		advanced.emit()
+	else:
+		finished.emit()
 
 func _on_choice_pressed(choice_text: String) -> void:
 	choices_container.visible = false
