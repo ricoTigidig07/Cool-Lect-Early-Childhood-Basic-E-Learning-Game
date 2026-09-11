@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://1nwlrkk2crhm"]
+
+[ext_resource type="Texture2D" uid="uid://be71c03j777y2" path="res://assets/UI/Basic_UI_Sprite.png" id="1_tmjdv"]
+[ext_resource type="Script" uid="uid://cgl7htc8gdb1u" path="res://scenes/mission_panel.gd" id="2_a1kiv"]
+[ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="3_msu7j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6hdy"]
+atlas = ExtResource("1_tmjdv")
+region = Rect2(201, 57, 30, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a1kiv"]
+texture = SubResource("AtlasTexture_g6hdy")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[node name="MissionPanel" type="PanelContainer" unique_id=1778926301]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -33.0
+offset_right = 300.0
+offset_bottom = 13.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_a1kiv")
+script = ExtResource("2_a1kiv")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=947828528]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1603610738]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_msu7j")
+theme_override_font_sizes/font_size = 18
+text = "ewewqewqe"
+vertical_alignment = 1
+autowrap_mode = 3

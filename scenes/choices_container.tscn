@@ -1,11 +1,30 @@
 [gd_scene format=3 uid="uid://dipx6aduu35yo"]
 
+[ext_resource type="Theme" uid="uid://cq6yjwxcf3scm" path="res://assets/UI/dialogueButtons.tres" id="1_frlm6"]
+[ext_resource type="Texture2D" uid="uid://dvsrrybs70wr3" path="res://assets/UI/ui/Sprite sheets/Icons/All Icons.png" id="2_b2yba"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hl8t6"]
+atlas = ExtResource("2_b2yba")
+region = Rect2(194, 35, 13, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efrh2"]
+atlas = ExtResource("2_b2yba")
+region = Rect2(210, 34, 12, 12)
+
 [node name="ChoicesContainer" type="VBoxContainer" unique_id=1798551961]
 offset_right = 133.0
-offset_bottom = 20.0
+offset_bottom = 24.0
+theme = ExtResource("1_frlm6")
+theme_override_constants/separation = 20
 
 [node name="YesButton" type="Button" parent="." unique_id=39426696]
+custom_minimum_size = Vector2(320, 45)
 layout_mode = 2
+text = "Yes, I want to help!"
+icon = SubResource("AtlasTexture_hl8t6")
 
 [node name="NoButton" type="Button" parent="." unique_id=296125974]
+custom_minimum_size = Vector2(320, 45)
 layout_mode = 2
+text = "No, maybe later."
+icon = SubResource("AtlasTexture_efrh2")

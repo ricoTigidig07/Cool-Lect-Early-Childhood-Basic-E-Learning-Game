@@ -17,3 +17,20 @@ func show_dialogue(text) -> void:
 
 func hide_dialogue() -> void:
 	dialogue_panel.visible = false
+
+func connect_dialogue_finished(callback: Callable) -> void:
+	dialogue_panel.finished.connect(callback, CONNECT_ONE_SHOT)
+
+func connect_choice_selected(callback: Callable) -> void:
+	dialogue_panel.choice_selected.connect(callback, CONNECT_ONE_SHOT)
+
+func show_choices(choices: Array[String]) -> void:
+	dialogue_panel.show_choices(choices)
+
+var mission_panel: PanelContainer
+
+func register_mission_panel(panel: PanelContainer) -> void:
+	mission_panel = panel
+
+func set_mission_text(text: String) -> void:
+	mission_panel.set_mission(text)
