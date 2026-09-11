@@ -4,6 +4,8 @@ extends TextureRect
 @onready var skip_button = $MarginContainer/VBoxContainer/ButtonArea/SkipButton
 @onready var next_button = $MarginContainer/VBoxContainer/ButtonArea/NextButton
 @onready var choices_container = $ChoicesContainer
+@onready var yes_button = $ChoicesContainer/YesButton
+@onready var no_button = $ChoicesContainer/NoButton
 
 const CHARS_PER_SECOND = 30.0
 const MIN_FONT_SIZE = 16
@@ -31,6 +33,8 @@ func _ready() -> void:
 
 	skip_button.pressed.connect(_on_skip_pressed)
 	next_button.pressed.connect(_on_next_pressed)
+	yes_button.pressed.connect(_on_choice_pressed.bind(yes_button))
+	no_button.pressed.connect(_on_choice_pressed.bind(no_button))
 
 	choices_container.visible = false
 
@@ -49,7 +53,6 @@ func _show_current_page() -> void:
 	label.text = text
 	label.visible_characters = 0
 	choices_container.visible = false
-	_clear_choices()
 	skip_button.text = "SKIP"
 	skip_button.visible = true
 	next_button.visible = true
@@ -77,18 +80,11 @@ func _apply_responsive_font_size(text: String) -> void:
 	label.add_theme_font_size_override("font_size", best_size)
 
 func show_choices(choices: Array[String]) -> void:
-	_clear_choices()
-	for choice_text in choices:
-		var btn = Button.new()
-		btn.text = choice_text
-		btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		btn.pressed.connect(_on_choice_pressed.bind(choice_text))
-		choices_container.add_child(btn)
+	if choices.size() >= 1:
+		yes_button.text = choices[0]
+	if choices.size() >= 2:
+		no_button.text = choices[1]
 	choices_container.visible = true
-
-func _clear_choices() -> void:
-	for child in choices_container.get_children():
-		child.queue_free()
 
 func _on_typing_tick() -> void:
 	label.visible_characters += 1
@@ -131,6 +127,6 @@ func _on_next_pressed() -> void:
 		_show_current_page()
 		advanced.emit()
 
-func _on_choice_pressed(choice_text: String) -> void:
+func _on_choice_pressed(button: Button) -> void:
 	choices_container.visible = false
-	choice_selected.emit(choice_text)
+	choice_selected.emit(button.text)

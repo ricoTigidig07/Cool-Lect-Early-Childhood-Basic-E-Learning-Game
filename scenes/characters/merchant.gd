@@ -43,7 +43,7 @@ func interact() -> void:
 		is_dialogue_open = true
 
 func _on_dialogue_finished() -> void:
-	GameUIManager.show_choices(["Yes, I am happy to help!", "No, I don't want to help!"])
+	GameUIManager.show_choices(["Yes, I am happy to help!", "No, but maybe next time!"])
 	GameUIManager.connect_choice_selected(_on_choice_selected)
 
 func _on_choice_selected(choice_text: String) -> void:

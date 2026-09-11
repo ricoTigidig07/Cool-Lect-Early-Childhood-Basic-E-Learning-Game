@@ -20,11 +20,9 @@ theme_override_constants/separation = 20
 [node name="YesButton" type="Button" parent="." unique_id=39426696]
 custom_minimum_size = Vector2(320, 45)
 layout_mode = 2
-text = "Yes, I want to help!"
 icon = SubResource("AtlasTexture_hl8t6")
 
 [node name="NoButton" type="Button" parent="." unique_id=296125974]
 custom_minimum_size = Vector2(320, 45)
 layout_mode = 2
-text = "No, maybe later."
 icon = SubResource("AtlasTexture_efrh2")
