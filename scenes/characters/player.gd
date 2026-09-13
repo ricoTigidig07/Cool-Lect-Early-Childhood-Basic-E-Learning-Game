@@ -6,8 +6,14 @@ const SPEED = 50.0
 @onready var animated_sprite = $AnimatedSprite2D2
 @onready var camera = $Camera2D
 @onready var joystick = get_node("../GameUI/JoystickControl")
+@onready var shadow = $Shadow
+
+const BOB_SPEED = 6.5
+const SHADOW_MIN_SCALE = 0.75
+const SHADOW_MAX_SCALE = 1.0
 
 var last_direction = "down"  # remembers facing direction for idle state
+var bob_time: float = 0.0
 
 func _ready() -> void:
 	camera.zoom = Vector2(3.7, 3.7)
@@ -24,6 +30,7 @@ func _physics_process(delta):
 	velocity = direction * SPEED
 	move_and_slide()
 	update_animation(direction, direction_name)
+	update_shadow(direction, delta)
 
 const DIRECTION_TO_ANIM = {
 	"up": "up",
@@ -60,6 +67,22 @@ func update_animation(direction: Vector2, joystick_name: String = ""):
 	last_direction = DIRECTION_TO_ANIM.get(raw_direction, raw_direction)
 	animated_sprite.play("walk_" + last_direction)
 
+func update_shadow(direction: Vector2, delta: float) -> void:
+	if direction == Vector2.ZERO:
+		bob_time = 0.0
+		if shadow:
+			shadow.scale = Vector2(SHADOW_MAX_SCALE, SHADOW_MAX_SCALE * 0.5)
+		return
+	
+	bob_time += delta * BOB_SPEED
+	var bob = abs(sin(bob_time))
+	
+	if shadow:
+		var shadow_scale = lerp(SHADOW_MAX_SCALE, SHADOW_MIN_SCALE, bob)
+		shadow.scale = Vector2(shadow_scale, shadow_scale * 0.5)
 
-func _on_button_pressed() -> void:
-	InteractionManager.interact()
+func _on_button_button_up() -> void:
+	InteractionManager.button_up()
+
+func _on_button_button_down() -> void:
+	InteractionManager.button_down()

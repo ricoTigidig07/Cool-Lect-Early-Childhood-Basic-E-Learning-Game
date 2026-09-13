@@ -545,4 +545,6 @@ position = Vector2(705, 139)
 [node name="Apple5" parent="." unique_id=1807349737 instance=ExtResource("3_7d5g3")]
 position = Vector2(645, 174)
 
+[connection signal="button_down" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_down"]
+[connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
 [connection signal="pressed" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_pressed"]

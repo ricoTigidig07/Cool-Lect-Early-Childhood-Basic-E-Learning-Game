@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://ccb5eo2wtkap1"]
 
 [ext_resource type="Script" uid="uid://hdnpduy2uvvx" path="res://scenes/components/collectable_component.gd" id="1_sk0uv"]
+[ext_resource type="Texture2D" uid="uid://6u1ux6hfioyp" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Items/item shadow.png" id="2_b66ow"]
 [ext_resource type="Texture2D" uid="uid://d1kpwv034vs0r" path="res://scenes/objects/icons/apple.tres" id="2_sk0uv"]
+[ext_resource type="Script" uid="uid://c54imynlmi8v3" path="res://scenes/components/floating_collectables.gd" id="3_4ml88"]
+[ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="5_otpiw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b66ow"]
 radius = 5.0
@@ -11,13 +14,26 @@ script = ExtResource("1_sk0uv")
 collectable_name = "apple"
 item_type = "fruits"
 
+[node name="Shadow" type="Sprite2D" parent="." unique_id=586348127]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 5)
+texture = ExtResource("2_b66ow")
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=643001219]
 texture = ExtResource("2_sk0uv")
 region_enabled = true
 region_rect = Rect2(0, 0, 13, 14)
+script = ExtResource("3_4ml88")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1674801666]
 shape = SubResource("CircleShape2D_b66ow")
 debug_color = Color(0.64166707, 0.5244596, 0, 0.41960785)
+
+[node name="HoldIndicator" parent="." unique_id=642571033 instance=ExtResource("5_otpiw")]
+z_index = 100
+offset_left = -8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 15.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

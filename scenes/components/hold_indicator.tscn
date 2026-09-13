@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cwmpjscqvef1j"]
+
+[ext_resource type="Script" uid="uid://b3lnk7h635iyb" path="res://scenes/components/hold_indicator.gd" id="1_3gcmc"]
+[ext_resource type="Texture2D" uid="uid://be71c03j777y2" path="res://assets/UI/Basic_UI_Sprite.png" id="2_0dlhq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dlhq"]
+atlas = ExtResource("2_0dlhq")
+region = Rect2(480, 5, 16, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vuh3"]
+atlas = ExtResource("2_0dlhq")
+region = Rect2(496, 37, 16, 7)
+
+[node name="HoldIndicator" type="TextureProgressBar" unique_id=345819692]
+texture_under = SubResource("AtlasTexture_0dlhq")
+texture_progress = SubResource("AtlasTexture_1vuh3")
+script = ExtResource("1_3gcmc")
