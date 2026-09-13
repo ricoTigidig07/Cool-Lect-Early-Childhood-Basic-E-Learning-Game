@@ -1,6 +1,7 @@
 extends Area2D
 
 var is_dialogue_open = false
+var quest_ready_to_deliver = false
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -33,6 +34,15 @@ func interact() -> void:
 		if portrait:
 			portrait.play("merchant_defaults")
 		is_dialogue_open = false
+	elif quest_ready_to_deliver:
+		if portrait:
+			portrait.play("merchant_talking")
+		GameUIManager.show_dialogue([
+			"Wow, you actually found all 5 apples! I can't thank you enough for your help.",
+			"Here, this is for you — enjoy, and thanks again for being such a great helper!"
+		])
+		GameUIManager.connect_dialogue_finished(_on_delivery_dialogue_finished)
+		is_dialogue_open = true
 	else:
 		if portrait:
 			portrait.play("merchant_talking")
@@ -62,3 +72,14 @@ func _on_choice_selected(choice_text: String) -> void:
 
 func _on_collection_complete() -> void:
 	GameUIManager.complete_mission_2()
+	quest_ready_to_deliver = true
+
+func _on_delivery_dialogue_finished() -> void:
+	var portrait = get_tree().get_first_node_in_group("avatar_icon")
+	GameUIManager.complete_mission_3()
+	GameUIManager.hide_items_panel()
+	GameUIManager.hide_dialogue()
+	if portrait:
+		portrait.play("merchant_defaults")
+	is_dialogue_open = false
+	quest_ready_to_deliver = false

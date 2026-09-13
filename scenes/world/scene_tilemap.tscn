@@ -533,4 +533,16 @@ offset_top = -228.0
 offset_right = -10.0
 offset_bottom = -132.0
 
+[node name="Apple2" parent="." unique_id=1698024048 instance=ExtResource("3_7d5g3")]
+position = Vector2(573, 217)
+
+[node name="Apple3" parent="." unique_id=1471081487 instance=ExtResource("3_7d5g3")]
+position = Vector2(489, 128)
+
+[node name="Apple4" parent="." unique_id=828931597 instance=ExtResource("3_7d5g3")]
+position = Vector2(705, 139)
+
+[node name="Apple5" parent="." unique_id=1807349737 instance=ExtResource("3_7d5g3")]
+position = Vector2(645, 174)
+
 [connection signal="pressed" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_pressed"]
