@@ -19,6 +19,7 @@ func _on_body_exited(body: Node2D) -> void:
 		InteractionManager.unregister(self)
 
 func interact() -> void:
+	QuestManager.collect_item(collectable_name)
 	collected.emit(collectable_name, item_type)
 	InteractionManager.unregister(self)
 	queue_free()

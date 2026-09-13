@@ -34,3 +34,14 @@ func register_mission_panel(panel: PanelContainer) -> void:
 
 func set_mission_text(text: String) -> void:
 	mission_panel.set_mission(text)
+	
+var items_panel: PanelContainer
+
+func register_items_panel(panel: PanelContainer) -> void:
+	items_panel = panel
+
+func show_items_panel() -> void:
+	items_panel.show_panel()
+
+func hide_items_panel() -> void:
+	items_panel.hide_panel()

@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dvsrrybs70wr3" path="res://assets/UI/ui/Sprite sheets/Icons/All Icons.png" id="21_ccjov"]
 [ext_resource type="PackedScene" uid="uid://dipx6aduu35yo" path="res://scenes/choices_container.tscn" id="23_ccjov"]
 [ext_resource type="PackedScene" uid="uid://1nwlrkk2crhm" path="res://scenes/mission_panel.tscn" id="24_bl5hp"]
+[ext_resource type="PackedScene" uid="uid://1s82j4wnweos" path="res://scenes/items_panel.tscn" id="25_hltlk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7pnv2"]
 atlas = ExtResource("5_4lqg0")
@@ -522,8 +523,15 @@ offset_bottom = 26.0
 grow_horizontal = 2
 
 [node name="MissionPanel" parent="GameUI" unique_id=1778926301 instance=ExtResource("24_bl5hp")]
+visible = false
 offset_top = -49.0
 offset_right = 305.0
 offset_bottom = -6.0
+
+[node name="ItemsPanel" parent="GameUI" unique_id=1050203473 instance=ExtResource("25_hltlk")]
+offset_left = -106.0
+offset_top = -228.0
+offset_right = -10.0
+offset_bottom = -132.0
 
 [connection signal="pressed" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_pressed"]

@@ -22,6 +22,7 @@ AudioManager="*uid://dmvojp5k7leyx"
 ToolManager="*uid://dhay40xhhr2n2"
 InteractionManager="*uid://0x8titwqp12k"
 GameUIManager="*uid://dwfqojq73nhg1"
+QuestManager="*uid://ccin5r375aup2"
 
 [display]
 

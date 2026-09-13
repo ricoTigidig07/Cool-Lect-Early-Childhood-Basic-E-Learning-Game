@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://d4dsp4xeevdub"]
+
+[ext_resource type="Texture2D" uid="uid://be71c03j777y2" path="res://assets/UI/Basic_UI_Sprite.png" id="1_vgy2j"]
+[ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="2_y5nbp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5nbp"]
+atlas = ExtResource("1_vgy2j")
+region = Rect2(709, 36, 22, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i2jkm"]
+texture = SubResource("AtlasTexture_y5nbp")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 6.0
+
+[node name="SlotContainer" type="PanelContainer" unique_id=1359097217]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 46.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_i2jkm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=710664473]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=1518836352]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=18751856]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_y5nbp")
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+vertical_alignment = 1

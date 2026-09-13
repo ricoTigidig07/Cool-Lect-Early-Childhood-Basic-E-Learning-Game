@@ -49,10 +49,15 @@ func _on_dialogue_finished() -> void:
 func _on_choice_selected(choice_text: String) -> void:
 	var portrait = get_tree().get_first_node_in_group("avatar_icon")
 	if choice_text.begins_with("Yes"):
+		print("YES BRANCH HIT")
+		QuestManager.start_quest({"apple": 5})
 		GameUIManager.set_mission_text("Collect apples for the Merchant!")
+		GameUIManager.show_items_panel()
+		print("show_items_panel called")
 		GameUIManager.hide_dialogue()
 	else:
 		GameUIManager.hide_dialogue()
 	if portrait:
 		portrait.play("merchant_defaults")
 	is_dialogue_open = false
+	
