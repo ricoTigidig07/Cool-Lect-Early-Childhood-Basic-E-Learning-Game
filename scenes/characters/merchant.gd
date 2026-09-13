@@ -83,3 +83,5 @@ func _on_delivery_dialogue_finished() -> void:
 		portrait.play("merchant_defaults")
 	is_dialogue_open = false
 	quest_ready_to_deliver = false
+	await get_tree().create_timer(0.6).timeout
+	GameUIManager.show_mission_complete()

@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://dipx6aduu35yo" path="res://scenes/choices_container.tscn" id="23_ccjov"]
 [ext_resource type="PackedScene" uid="uid://1nwlrkk2crhm" path="res://scenes/mission_panel.tscn" id="24_bl5hp"]
 [ext_resource type="PackedScene" uid="uid://1s82j4wnweos" path="res://scenes/items_panel.tscn" id="25_hltlk"]
+[ext_resource type="PackedScene" uid="uid://u6y7lmeqpvoq" path="res://scenes/world/mission_complete_panel.tscn" id="26_bsik1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7pnv2"]
 atlas = ExtResource("5_4lqg0")
@@ -532,6 +533,9 @@ offset_left = -106.0
 offset_top = -228.0
 offset_right = -10.0
 offset_bottom = -132.0
+
+[node name="MissionCompletePanel" parent="GameUI" unique_id=1645909849 instance=ExtResource("26_bsik1")]
+visible = false
 
 [node name="Apple2" parent="." unique_id=1698024048 instance=ExtResource("3_7d5g3")]
 position = Vector2(573, 217)

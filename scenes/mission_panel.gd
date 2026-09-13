@@ -78,3 +78,12 @@ func _apply_completed_style(label: Label) -> void:
 	label.add_theme_color_override("font_outline_color", Color.BLACK)
 	label.add_theme_color_override("font_color", Color.GREEN)
 	label.modulate = Color(1.0, 1.0, 1.0, 0.573)
+	
+## How many of the 3 missions are complete (0-3). Used to award stars
+## on the Mission Complete screen.
+func get_completed_count() -> int:
+	var count := 0
+	for is_done in completed_missions:
+		if is_done:
+			count += 1
+	return count

@@ -54,3 +54,34 @@ func hide_items_panel() -> void:
 
 func set_missions(text_1: String, text_2: String, text_3: String) -> void:
 	mission_panel.set_missions(text_1, text_2, text_3)
+
+var mission_complete_panel: Control
+
+# TODO: replace with real per-level subject/number once level select actually
+# loads game scenes with that context. Hardcoded since "fruits" level 1 is the
+# only level currently wired up end-to-end.
+const CURRENT_SUBJECT := "fruits"
+const CURRENT_LEVEL := 1
+const LEVEL_SELECT_SCENE := "res://scenes/levels/fruits/fruits_level_select.tscn"
+
+func register_mission_complete_panel(panel: Control) -> void:
+	mission_complete_panel = panel
+	mission_complete_panel.retry_pressed.connect(_on_mission_complete_retry)
+	mission_complete_panel.next_level_pressed.connect(_on_mission_complete_next)
+	mission_complete_panel.level_select_pressed.connect(_on_mission_complete_level_select)
+
+## Shows the Mission Complete screen, awarding a star per completed mission.
+func show_mission_complete() -> void:
+	var stars = mission_panel.get_completed_count()
+	GameManager.set_level_result(CURRENT_SUBJECT, CURRENT_LEVEL, stars)
+	mission_complete_panel.show_result(stars)
+
+func _on_mission_complete_retry() -> void:
+	get_tree().reload_current_scene()
+
+func _on_mission_complete_next() -> void:
+	# TODO: point at the actual next level scene once Level 2 exists.
+	get_tree().change_scene_to_file(LEVEL_SELECT_SCENE)
+
+func _on_mission_complete_level_select() -> void:
+	get_tree().change_scene_to_file(LEVEL_SELECT_SCENE)

@@ -8,4 +8,5 @@ func _ready():
 		"Talk to the Merchant!",
 		"Collect apples for the Merchant!",
 		"Deliver apples to the Merchant!"
-)
+	)
+	GameUIManager.register_mission_complete_panel($MissionCompletePanel)
