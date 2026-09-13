@@ -1,41 +1,68 @@
 [gd_scene format=3 uid="uid://1nwlrkk2crhm"]
 
-[ext_resource type="Texture2D" uid="uid://be71c03j777y2" path="res://assets/UI/Basic_UI_Sprite.png" id="1_tmjdv"]
 [ext_resource type="Script" uid="uid://cgl7htc8gdb1u" path="res://scenes/mission_panel.gd" id="2_a1kiv"]
 [ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="3_msu7j"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g6hdy"]
-atlas = ExtResource("1_tmjdv")
-region = Rect2(201, 57, 30, 30)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a1kiv"]
-texture = SubResource("AtlasTexture_g6hdy")
-texture_margin_left = 8.0
-texture_margin_top = 8.0
-texture_margin_right = 8.0
-texture_margin_bottom = 8.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g6hdy"]
 
 [node name="MissionPanel" type="PanelContainer" unique_id=1778926301]
+layout_direction = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 2.0
-offset_top = -33.0
-offset_right = 300.0
-offset_bottom = 13.0
+offset_top = -111.0
+offset_right = 337.0
+offset_bottom = 173.0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_a1kiv")
+theme_override_styles/panel = SubResource("StyleBoxTexture_g6hdy")
 script = ExtResource("2_a1kiv")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=947828528]
-custom_minimum_size = Vector2(0, 12)
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1452719339]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer" unique_id=1603610738]
-custom_minimum_size = Vector2(250, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1293713690]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Mission1" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1505292716]
+layout_mode = 2
+
+[node name="StarIcon1" type="TextureRect" parent="MarginContainer/VBoxContainer/Mission1" unique_id=534758075]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mission1" unique_id=1452073119]
+custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_msu7j")
-theme_override_font_sizes/font_size = 18
-text = "ewewqewqe"
-vertical_alignment = 1
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 3
+
+[node name="Mission2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=955540274]
+layout_mode = 2
+
+[node name="StarIcon2" type="TextureRect" parent="MarginContainer/VBoxContainer/Mission2" unique_id=1690656081]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mission2" unique_id=548067456]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_msu7j")
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 3
+
+[node name="Mission3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1299088625]
+layout_mode = 2
+
+[node name="StarIcon3" type="TextureRect" parent="MarginContainer/VBoxContainer/Mission3" unique_id=280760959]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mission3" unique_id=233733996]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_msu7j")
+theme_override_font_sizes/font_size = 12
 autowrap_mode = 3

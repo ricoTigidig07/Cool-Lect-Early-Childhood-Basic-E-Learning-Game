@@ -523,10 +523,9 @@ offset_bottom = 26.0
 grow_horizontal = 2
 
 [node name="MissionPanel" parent="GameUI" unique_id=1778926301 instance=ExtResource("24_bl5hp")]
-visible = false
-offset_top = -49.0
+offset_top = -138.5
 offset_right = 305.0
-offset_bottom = -6.0
+offset_bottom = -10.5
 
 [node name="ItemsPanel" parent="GameUI" unique_id=1050203473 instance=ExtResource("25_hltlk")]
 offset_left = -106.0

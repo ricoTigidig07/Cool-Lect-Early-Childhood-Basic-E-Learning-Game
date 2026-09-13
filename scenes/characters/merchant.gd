@@ -5,6 +5,7 @@ var is_dialogue_open = false
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	QuestManager.quest_completed.connect(_on_collection_complete)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player01:
@@ -35,6 +36,7 @@ func interact() -> void:
 	else:
 		if portrait:
 			portrait.play("merchant_talking")
+		GameUIManager.complete_mission_1()
 		GameUIManager.show_dialogue([
 			"Hi there! I'm Momo, the merchant of this little village. I trade fruits, treats, and all sorts of goodies with everyone who visits!",
 			"But oh no — a storm last night knocked apples all over the field, and I can't gather them all by myself! Could you help me collect some apples?"
@@ -49,15 +51,14 @@ func _on_dialogue_finished() -> void:
 func _on_choice_selected(choice_text: String) -> void:
 	var portrait = get_tree().get_first_node_in_group("avatar_icon")
 	if choice_text.begins_with("Yes"):
-		print("YES BRANCH HIT")
 		QuestManager.start_quest({"apple": 5})
-		GameUIManager.set_mission_text("Collect apples for the Merchant!")
 		GameUIManager.show_items_panel()
-		print("show_items_panel called")
 		GameUIManager.hide_dialogue()
 	else:
 		GameUIManager.hide_dialogue()
 	if portrait:
 		portrait.play("merchant_defaults")
 	is_dialogue_open = false
-	
+
+func _on_collection_complete() -> void:
+	GameUIManager.complete_mission_2()

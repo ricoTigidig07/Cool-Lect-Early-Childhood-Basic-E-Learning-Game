@@ -32,8 +32,14 @@ var mission_panel: PanelContainer
 func register_mission_panel(panel: PanelContainer) -> void:
 	mission_panel = panel
 
-func set_mission_text(text: String) -> void:
-	mission_panel.set_mission(text)
+func complete_mission_1() -> void:
+	mission_panel.complete_mission_1()
+
+func complete_mission_2() -> void:
+	mission_panel.complete_mission_2()
+
+func complete_mission_3() -> void:
+	mission_panel.complete_mission_3()
 	
 var items_panel: PanelContainer
 
@@ -45,3 +51,6 @@ func show_items_panel() -> void:
 
 func hide_items_panel() -> void:
 	items_panel.hide_panel()
+
+func set_missions(text_1: String, text_2: String, text_3: String) -> void:
+	mission_panel.set_missions(text_1, text_2, text_3)
