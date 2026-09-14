@@ -43,6 +43,15 @@ func interact() -> void:
 		])
 		GameUIManager.connect_dialogue_finished(_on_delivery_dialogue_finished)
 		is_dialogue_open = true
+	elif QuestManager.active:
+		if portrait:
+			portrait.play("merchant_talking")
+		GameUIManager.show_dialogue([
+			"Hmm, looks like you haven't found all the apples yet!",
+			"Do you still want to keep looking for them?"
+		])
+		GameUIManager.connect_dialogue_finished(_on_incomplete_dialogue_finished)
+		is_dialogue_open = true
 	else:
 		if portrait:
 			portrait.play("merchant_talking")
@@ -85,3 +94,21 @@ func _on_delivery_dialogue_finished() -> void:
 	quest_ready_to_deliver = false
 	await get_tree().create_timer(0.6).timeout
 	GameUIManager.show_mission_complete()
+
+func _on_incomplete_dialogue_finished() -> void:
+	GameUIManager.show_choices(["Yes, I'll keep looking!", "No, maybe later."])
+	GameUIManager.connect_choice_selected(_on_incomplete_choice_selected)
+
+func _on_incomplete_choice_selected(choice_text: String) -> void:
+	var portrait = get_tree().get_first_node_in_group("avatar_icon")
+	GameUIManager.hide_dialogue()
+	if portrait:
+		portrait.play("merchant_defaults")
+	is_dialogue_open = false
+
+	if choice_text.begins_with("Yes"):
+		GameUIManager.show_items_panel()
+	else:
+		GameUIManager.hide_items_panel()
+		await get_tree().create_timer(0.6).timeout
+		GameUIManager.show_mission_complete()

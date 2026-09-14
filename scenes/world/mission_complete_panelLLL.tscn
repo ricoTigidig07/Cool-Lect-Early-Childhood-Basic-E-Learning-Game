@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://u6y7lmeqpvoq"]
+
+[ext_resource type="Script" uid="uid://kriicyyxagag" path="res://scenes/world/mission_complete_panel.gd" id="1_mcp01"]
+[ext_resource type="Texture2D" uid="uid://be71c03j777y2" path="res://assets/UI/Basic_UI_Sprite.png" id="2_mcp02"]
+[ext_resource type="Theme" uid="uid://cq6yjwxcf3scm" path="res://assets/UI/dialogueButtons.tres" id="3_mcp03"]
+[ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="4_mcp04"]
+[ext_resource type="Texture2D" uid="uid://dvsrrybs70wr3" path="res://assets/UI/ui/Sprite sheets/Icons/All Icons.png" id="5_xfgjc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcp05"]
+atlas = ExtResource("2_mcp02")
+region = Rect2(201, 57, 30, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mcp06"]
+texture = SubResource("AtlasTexture_mcp05")
+texture_margin_left = 23.0
+texture_margin_top = 23.0
+texture_margin_right = 23.0
+texture_margin_bottom = 23.0
+region_rect = Rect2(0, 0, 30, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xfgjc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w53o"]
+atlas = ExtResource("5_xfgjc")
+region = Rect2(211, 1, 10, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvuyq"]
+atlas = ExtResource("5_xfgjc")
+region = Rect2(226, 2, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i44ng"]
+atlas = ExtResource("5_xfgjc")
+region = Rect2(242, 4, 12, 9)
+
+[node name="MissionCompletePanel" type="Control" unique_id=1645909849]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_mcp01")
+
+[node name="Dimmer" type="ColorRect" parent="." unique_id=68055071]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Card" type="PanelContainer" parent="." unique_id=113957665]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_mcp06")
+
+[node name="MarginContainer" type="MarginContainer" parent="Card" unique_id=1940345159]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Card/MarginContainer" unique_id=1714781248]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Card/MarginContainer/VBoxContainer" unique_id=898274166]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 6
+theme_override_constants/paragraph_spacing = 1
+theme_override_constants/shadow_offset_x = 28
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/outline_size = 6
+theme_override_constants/shadow_outline_size = 20
+theme_override_fonts/font = ExtResource("4_mcp04")
+theme_override_font_sizes/font_size = 41
+theme_override_styles/normal = SubResource("StyleBoxTexture_xfgjc")
+text = "Mission Complete!"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Card/MarginContainer/VBoxContainer" unique_id=997478376]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="Card/MarginContainer/VBoxContainer/ButtonContainer" unique_id=1939352445]
+custom_minimum_size = Vector2(90, 40)
+layout_mode = 2
+theme = ExtResource("3_mcp03")
+text = "RETRY"
+icon = SubResource("AtlasTexture_7w53o")
+
+[node name="NextButton" type="Button" parent="Card/MarginContainer/VBoxContainer/ButtonContainer" unique_id=1607423870]
+custom_minimum_size = Vector2(90, 40)
+layout_mode = 2
+theme = ExtResource("3_mcp03")
+text = "NEXT"
+icon = SubResource("AtlasTexture_hvuyq")
+
+[node name="LevelSelectButton" type="Button" parent="Card/MarginContainer/VBoxContainer/ButtonContainer" unique_id=454380208]
+custom_minimum_size = Vector2(90, 40)
+layout_mode = 2
+theme = ExtResource("3_mcp03")
+text = "LEVELS"
+icon = SubResource("AtlasTexture_i44ng")
+
+[node name="StarContainer" type="HBoxContainer" parent="." unique_id=1818460947]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 180.5
+offset_right = 820.0
+offset_bottom = 260.5
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Star1" type="TextureRect" parent="StarContainer" unique_id=1918146231]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+stretch_mode = 4
+
+[node name="Star2" type="TextureRect" parent="StarContainer" unique_id=1198743124]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+stretch_mode = 4
+
+[node name="Star3" type="TextureRect" parent="StarContainer" unique_id=1151782178]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+stretch_mode = 4
+
+[connection signal="pressed" from="Card/MarginContainer/VBoxContainer/ButtonContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Card/MarginContainer/VBoxContainer/ButtonContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="Card/MarginContainer/VBoxContainer/ButtonContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
