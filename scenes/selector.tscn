@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c77bjci0hltvd"]
+
+[ext_resource type="Texture2D" uid="uid://d165ebw7jsrvn" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/Selectors/Selectorst.png" id="1_g5dyd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ji5i"]
+atlas = ExtResource("1_g5dyd")
+region = Rect2(68, 4, 24, 25)
+
+[node name="Selector" type="TextureRect" unique_id=949682650]
+custom_minimum_size = Vector2(70, 70)
+offset_right = 70.0
+offset_bottom = 70.0
+texture = SubResource("AtlasTexture_7ji5i")

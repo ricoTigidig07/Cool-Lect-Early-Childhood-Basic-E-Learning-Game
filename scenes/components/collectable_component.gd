@@ -3,6 +3,7 @@ extends Area2D
 
 @export var collectable_name: String = ""
 @export var item_type: String = ""
+@export var required_item: String = ""
 
 signal collected(collectable_name: String, item_type: String)
 

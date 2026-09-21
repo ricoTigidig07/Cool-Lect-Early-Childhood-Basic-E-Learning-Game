@@ -1,0 +1,470 @@
+[gd_scene format=3 uid="uid://dvl77xufpmsgi"]
+
+[ext_resource type="Script" uid="uid://cueohtjfjjlf5" path="res://scenes/world/game_ui.gd" id="1_gj1yn"]
+[ext_resource type="PackedScene" uid="uid://cm4hqsbg240t6" path="res://scenes/world/mission_complete_panel.tscn" id="2_5kjus"]
+[ext_resource type="Texture2D" uid="uid://03ysbjkevxcd" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Dialouge UI/Character Backdrop-frame/backdrops_big2.png" id="3_5kjus"]
+[ext_resource type="Script" uid="uid://dgne8xfq8i7fw" path="res://scenes/world/avatar_panel.gd" id="4_36vcn"]
+[ext_resource type="Texture2D" uid="uid://cw68wmag8m5h3" path="res://assets/UI/Emotes.png" id="5_2yflp"]
+[ext_resource type="Texture2D" uid="uid://c7tbkq1f2260h" path="res://assets/UI/Merchant.png" id="6_n74c5"]
+[ext_resource type="Script" uid="uid://nk7rd473pimh" path="res://scenes/world/animated_sprite_2d.gd" id="7_5v8bm"]
+[ext_resource type="Script" uid="uid://dn86xv7iw6pxy" path="res://scenes/world/joystick_control.gd" id="8_8wu16"]
+[ext_resource type="Texture2D" uid="uid://be71c03j777y2" path="res://assets/UI/Basic_UI_Sprite.png" id="9_sdeak"]
+[ext_resource type="Texture2D" uid="uid://jxg4exvtla73" path="res://assets/UI/ui/Sprite sheets/buttons/Small Square Buttons.png" id="10_32nla"]
+[ext_resource type="Script" uid="uid://52n6hq8tmr0v" path="res://scenes/world/button.gd" id="11_h8a34"]
+[ext_resource type="Texture2D" uid="uid://cxgbi1ejfdjdq" path="res://assets/UI/ui/Sprite sheets/Mouse sprites/Catpaw Mouse icon.png" id="12_wbo4m"]
+[ext_resource type="Script" uid="uid://11lnif2mlihw" path="res://scenes/world/settings_button.gd" id="13_nlan2"]
+[ext_resource type="PackedScene" uid="uid://dqr0lj71i108g" path="res://scenes/ingame_settings.tscn" id="14_sfun4"]
+[ext_resource type="Texture2D" uid="uid://djthgcx47ltde" path="res://assets/UI/ui/Sprite sheets/Dialouge UI/dialog box big.png" id="15_27ch3"]
+[ext_resource type="Script" uid="uid://cjhi4gm235mtn" path="res://scenes/world/dialogue_panel.gd" id="16_bhxtc"]
+[ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="17_qleia"]
+[ext_resource type="Theme" uid="uid://cq6yjwxcf3scm" path="res://assets/UI/dialogueButtons.tres" id="18_vvx0m"]
+[ext_resource type="Texture2D" uid="uid://dvsrrybs70wr3" path="res://assets/UI/ui/Sprite sheets/Icons/All Icons.png" id="19_ptl2c"]
+[ext_resource type="PackedScene" uid="uid://dipx6aduu35yo" path="res://scenes/choices_container.tscn" id="20_lsbho"]
+[ext_resource type="PackedScene" uid="uid://1nwlrkk2crhm" path="res://scenes/mission_panel.tscn" id="21_3458y"]
+[ext_resource type="PackedScene" uid="uid://1s82j4wnweos" path="res://scenes/items_panel.tscn" id="22_ro11t"]
+[ext_resource type="PackedScene" uid="uid://0v3vcqlfdmv5" path="res://scenes/hotbar.tscn" id="23_5kjus"]
+[ext_resource type="PackedScene" uid="uid://c77bjci0hltvd" path="res://scenes/selector.tscn" id="24_bj1rn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bj1rn"]
+texture = ExtResource("3_5kjus")
+texture_margin_left = 38.0
+texture_margin_top = 37.0
+texture_margin_right = 38.0
+texture_margin_bottom = 38.0
+region_rect = Rect2(11, 12, 58, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pnv2"]
+atlas = ExtResource("5_2yflp")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hr35"]
+atlas = ExtResource("5_2yflp")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxb8y"]
+atlas = ExtResource("5_2yflp")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g671d"]
+atlas = ExtResource("5_2yflp")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv2ip"]
+atlas = ExtResource("5_2yflp")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn705"]
+atlas = ExtResource("5_2yflp")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qang5"]
+atlas = ExtResource("5_2yflp")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16jrw"]
+atlas = ExtResource("5_2yflp")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgq8m"]
+atlas = ExtResource("5_2yflp")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjcgi"]
+atlas = ExtResource("5_2yflp")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjqgb"]
+atlas = ExtResource("5_2yflp")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw3ag"]
+atlas = ExtResource("5_2yflp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bl5hp"]
+atlas = ExtResource("6_n74c5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hltlk"]
+atlas = ExtResource("6_n74c5")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsik1"]
+atlas = ExtResource("6_n74c5")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iw3ag"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pnv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hr35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxb8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g671d")
+}],
+"loop": true,
+"name": &"Blinking",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv2ip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xn705")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qang5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16jrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgq8m")
+}],
+"loop": true,
+"name": &"Ears",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjcgi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjqgb")
+}],
+"loop": true,
+"name": &"Talking",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iw3ag")
+}],
+"loop": true,
+"name": &"defaults",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bl5hp")
+}],
+"loop": true,
+"name": &"merchant_defaults",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hltlk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsik1")
+}],
+"loop": true,
+"name": &"merchant_talking",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ejiy"]
+atlas = ExtResource("9_sdeak")
+region = Rect2(375, 72, 18, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhwrh"]
+atlas = ExtResource("9_sdeak")
+region = Rect2(375, 40, 18, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mksnn"]
+atlas = ExtResource("10_32nla")
+region = Rect2(1, 32, 14, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ccjov"]
+texture = SubResource("AtlasTexture_mksnn")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l0xo"]
+atlas = ExtResource("10_32nla")
+region = Rect2(1, 64, 14, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mksnn"]
+texture = SubResource("AtlasTexture_2l0xo")
+region_rect = Rect2(0, 0, 14, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccjov"]
+atlas = ExtResource("10_32nla")
+region = Rect2(17, 65, 14, 15)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bl5hp"]
+texture = SubResource("AtlasTexture_ccjov")
+
+[sub_resource type="Theme" id="Theme_hltlk"]
+Button/styles/hover = SubResource("StyleBoxTexture_ccjov")
+Button/styles/normal = SubResource("StyleBoxTexture_mksnn")
+Button/styles/pressed = SubResource("StyleBoxTexture_bl5hp")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl30d"]
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1t5je"]
+atlas = ExtResource("12_wbo4m")
+
+[sub_resource type="GDScript" id="GDScript_dhwrh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5c8y"]
+atlas = ExtResource("9_sdeak")
+region = Rect2(645, 68, 22, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aewp7"]
+texture = SubResource("AtlasTexture_q5c8y")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjk1x"]
+atlas = ExtResource("9_sdeak")
+region = Rect2(645, 68, 22, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q5c8y"]
+texture = SubResource("AtlasTexture_wjk1x")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aewp7"]
+atlas = ExtResource("9_sdeak")
+region = Rect2(677, 68, 22, 24)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yvirl"]
+texture = SubResource("AtlasTexture_aewp7")
+
+[sub_resource type="Theme" id="Theme_g8hl1"]
+Button/styles/hover = SubResource("StyleBoxTexture_aewp7")
+Button/styles/normal = SubResource("StyleBoxTexture_q5c8y")
+Button/styles/pressed = SubResource("StyleBoxTexture_yvirl")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds5ue"]
+atlas = ExtResource("15_27ch3")
+
+[sub_resource type="LabelSettings" id="LabelSettings_bl5hp"]
+line_spacing = 10.0
+paragraph_spacing = 3.0
+font_size = 30
+outline_size = 5
+outline_color = Color(0.41087762, 0.41087765, 0.4108776, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3ycd"]
+atlas = ExtResource("19_ptl2c")
+region = Rect2(162, 34, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gpdq"]
+atlas = ExtResource("19_ptl2c")
+region = Rect2(146, 35, 13, 10)
+
+[node name="GameUI" type="CanvasLayer" unique_id=408638220]
+script = ExtResource("1_gj1yn")
+
+[node name="MissionCompletePanel" parent="." unique_id=1942682777 instance=ExtResource("2_5kjus")]
+visible = false
+z_index = 10
+
+[node name="AvatarPanel" type="PanelContainer" parent="." unique_id=313150824 groups=["avatar_panel"]]
+offset_right = 134.0
+offset_bottom = 135.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_bj1rn")
+script = ExtResource("4_36vcn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AvatarPanel" unique_id=1207915695 groups=["avatar_icon"]]
+position = Vector2(63.999992, 67)
+scale = Vector2(3.125, 3.15625)
+sprite_frames = SubResource("SpriteFrames_iw3ag")
+animation = &"defaults"
+script = ExtResource("7_5v8bm")
+
+[node name="JoystickControl" type="Control" parent="." unique_id=1552026671]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 62.0
+offset_top = -247.0
+offset_right = 256.0
+offset_bottom = -50.0
+grow_vertical = 0
+script = ExtResource("8_8wu16")
+
+[node name="Base" type="TextureRect" parent="JoystickControl" unique_id=114556856]
+self_modulate = Color(1, 1, 1, 0.42352942)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -121.25
+offset_right = 120.0
+offset_bottom = 121.25
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_6ejiy")
+
+[node name="Knob" type="TextureRect" parent="JoystickControl" unique_id=833980539]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -40.25
+offset_right = 37.5
+offset_bottom = 40.25
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_dhwrh")
+
+[node name="InteractionButton" type="Control" parent="." unique_id=417545912]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -272.0
+offset_top = -272.0
+offset_right = -39.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="InteractionButton" unique_id=1665872355]
+modulate = Color(1, 1, 1, 0.6117647)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.48600003
+anchor_top = 0.5
+anchor_right = 0.48600003
+anchor_bottom = 0.5
+offset_left = -94.23801
+offset_top = -81.5
+offset_right = 94.26199
+offset_bottom = 92.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_hltlk")
+icon = SubResource("AtlasTexture_fl30d")
+script = ExtResource("11_h8a34")
+
+[node name="Sprite2D" type="Sprite2D" parent="InteractionButton" unique_id=1731990669]
+modulate = Color(1, 0.986, 0.72, 1)
+position = Vector2(113.5, 114.49994)
+scale = Vector2(7, 6.213)
+texture = SubResource("AtlasTexture_1t5je")
+script = SubResource("GDScript_dhwrh")
+
+[node name="SettingsButton" type="Button" parent="." unique_id=1028255447]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = -1
+anchor_left = 0.99200004
+anchor_top = 0.011000001
+anchor_right = 0.99200004
+anchor_bottom = 0.011000001
+offset_left = -99.76001
+offset_top = 0.07999945
+offset_right = 0.23999023
+offset_bottom = 100.08
+grow_horizontal = 0
+theme = SubResource("Theme_g8hl1")
+script = ExtResource("13_nlan2")
+
+[node name="SettingsPanel" parent="." unique_id=1113848892 instance=ExtResource("14_sfun4")]
+visible = false
+
+[node name="MissionPanel" parent="." unique_id=1778926301 instance=ExtResource("21_3458y")]
+offset_top = -138.5
+offset_right = 305.0
+offset_bottom = -10.5
+
+[node name="ItemsPanel" parent="." unique_id=1050203473 instance=ExtResource("22_ro11t")]
+anchors_preset = -1
+anchor_top = 0.18300001
+anchor_bottom = 0.18300001
+offset_left = -106.0
+offset_top = 0.23999023
+offset_right = -10.0
+offset_bottom = 96.23999
+
+[node name="Hotbar" parent="." unique_id=1298573925 instance=ExtResource("23_5kjus")]
+
+[node name="Selector" parent="." unique_id=949682650 instance=ExtResource("24_bj1rn")]
+unique_name_in_owner = true
+visible = false
+
+[node name="DialoguePanel" type="TextureRect" parent="." unique_id=1160385918]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -386.0
+offset_right = -76.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("AtlasTexture_ds5ue")
+flip_h = true
+script = ExtResource("16_bhxtc")
+
+[node name="MarginContainer" type="MarginContainer" parent="DialoguePanel" unique_id=280226859]
+custom_minimum_size = Vector2(1015, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -528.0
+offset_top = -110.5
+offset_right = 487.0
+offset_bottom = 98.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialoguePanel/MarginContainer" unique_id=912441372]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DialoguePanel/MarginContainer/VBoxContainer" unique_id=1907493304]
+custom_minimum_size = Vector2(1000, 165)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_qleia")
+theme_override_font_sizes/font_size = 30
+label_settings = SubResource("LabelSettings_bl5hp")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonArea" type="HBoxContainer" parent="DialoguePanel/MarginContainer/VBoxContainer" unique_id=119430804]
+layout_direction = 3
+layout_mode = 2
+
+[node name="SkipButton" type="Button" parent="DialoguePanel/MarginContainer/VBoxContainer/ButtonArea" unique_id=1835899685]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme = ExtResource("18_vvx0m")
+text = "SKIP"
+icon = SubResource("AtlasTexture_d3ycd")
+icon_alignment = 2
+
+[node name="NextButton" type="Button" parent="DialoguePanel/MarginContainer/VBoxContainer/ButtonArea" unique_id=356629176]
+custom_minimum_size = Vector2(90, 40)
+layout_mode = 2
+theme = ExtResource("18_vvx0m")
+text = "NEXT"
+icon = SubResource("AtlasTexture_0gpdq")
+icon_alignment = 2
+
+[node name="ChoicesContainer" parent="DialoguePanel" unique_id=1798551961 instance=ExtResource("20_lsbho")]
+layout_mode = 1
+offset_top = -84.0
+offset_bottom = 26.0
+
+[connection signal="button_down" from="InteractionButton/Button" to="InteractionButton/Button" method="_on_button_down"]
+[connection signal="button_up" from="InteractionButton/Button" to="InteractionButton/Button" method="_on_button_up"]

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://bv7snvmaljfie"]
+
+[ext_resource type="Texture2D" uid="uid://8c0e6aijchfm" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Items/Farming Plants items.png" id="1_3pco5"]
+
+[resource]
+atlas = ExtResource("1_3pco5")
+region = Rect2(1, 16, 14, 15)

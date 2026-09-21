@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://0v3vcqlfdmv5"]
+
+[ext_resource type="Texture2D" uid="uid://03ysbjkevxcd" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Dialouge UI/Character Backdrop-frame/backdrops_big2.png" id="1_4qkdb"]
+[ext_resource type="PackedScene" uid="uid://cjdrtuokhcqc" path="res://scenes/hotbar_slot.tscn" id="1_yj1xu"]
+[ext_resource type="Script" uid="uid://svf8aa6s8nfq" path="res://scenes/hotbar.gd" id="2_xrqkv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrqkv"]
+atlas = ExtResource("1_4qkdb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yj1xu"]
+texture = SubResource("AtlasTexture_xrqkv")
+texture_margin_left = 31.0
+texture_margin_top = 31.0
+texture_margin_right = 31.0
+texture_margin_bottom = 31.0
+region_rect = Rect2(0, 0, 80, 80)
+
+[node name="Hotbar" type="PanelContainer" unique_id=1298573925]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -236.5
+offset_top = -147.0
+offset_right = 236.5
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_yj1xu")
+script = ExtResource("2_xrqkv")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1688382354]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1134597440]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HotbarSlot" parent="MarginContainer/HBoxContainer" unique_id=2102393103 instance=ExtResource("1_yj1xu")]
+layout_mode = 2
+toggle_mode = true
+
+[node name="HotbarSlot2" parent="MarginContainer/HBoxContainer" unique_id=756879045 instance=ExtResource("1_yj1xu")]
+layout_mode = 2
+
+[node name="HotbarSlot3" parent="MarginContainer/HBoxContainer" unique_id=1056236333 instance=ExtResource("1_yj1xu")]
+layout_mode = 2
+
+[node name="HotbarSlot4" parent="MarginContainer/HBoxContainer" unique_id=854116776 instance=ExtResource("1_yj1xu")]
+layout_mode = 2
+
+[node name="HotbarSlot5" parent="MarginContainer/HBoxContainer" unique_id=2004979816 instance=ExtResource("1_yj1xu")]
+layout_mode = 2

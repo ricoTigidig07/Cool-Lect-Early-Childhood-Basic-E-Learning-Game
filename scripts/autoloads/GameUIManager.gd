@@ -85,3 +85,20 @@ func _on_mission_complete_next() -> void:
 
 func _on_mission_complete_level_select() -> void:
 	get_tree().change_scene_to_file(LEVEL_SELECT_SCENE)
+
+var hotbar: PanelContainer
+
+func register_hotbar(bar: PanelContainer) -> void:
+	hotbar = bar
+
+func give_hotbar_item(item_type: String, count: int) -> void:
+	hotbar.give_item(item_type, count)
+
+func get_equipped_item() -> String:
+	if hotbar:
+		return hotbar.equipped_item
+	return ""
+
+func consume_hotbar_item(item_type: String) -> void:
+	if hotbar:
+		hotbar.consume_item(item_type)

@@ -87,12 +87,12 @@ func _on_delivery_dialogue_finished() -> void:
 	var portrait = get_tree().get_first_node_in_group("avatar_icon")
 	GameUIManager.complete_mission_3()
 	GameUIManager.hide_items_panel()
-	GameUIManager.hide_dialogue()
 	if portrait:
 		portrait.play("merchant_defaults")
 	is_dialogue_open = false
 	quest_ready_to_deliver = false
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(1.5).timeout
+	GameUIManager.hide_dialogue()
 	GameUIManager.show_mission_complete()
 
 func _on_incomplete_dialogue_finished() -> void:

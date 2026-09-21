@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://kriicyyxagag" path="res://scenes/world/mission_complete_panel.gd" id="1_mcp01"]
 [ext_resource type="Texture2D" uid="uid://dcpj4r44vdyf2" path="res://assets/UI/ui/Sprite sheets/buttons/Square Buttons 26x19.png" id="3_hvuyq"]
 [ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="4_mcp04"]
-[ext_resource type="Texture2D" uid="uid://djpth6w235vvp" path="res://resources/wood_panel.tres" id="5_i44ng"]
+[ext_resource type="Texture2D" uid="uid://bv1cpe4hae5e3" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Dialouge UI/Character Backdrop-frame/backdrops_big1.png" id="5_hvuyq"]
 [ext_resource type="Texture2D" uid="uid://dvsrrybs70wr3" path="res://assets/UI/ui/Sprite sheets/Icons/All Icons.png" id="5_xfgjc"]
 [ext_resource type="FontFile" uid="uid://c4ts8wrynb7c5" path="res://assets/UI/Fonts/ZX Palm.woff" id="6_mq2wl"]
 [ext_resource type="Texture2D" uid="uid://cahk1n1l61ysd" path="res://resources/filled_star.tres" id="7_ms5t8"]
@@ -73,12 +73,12 @@ atlas = ExtResource("5_xfgjc")
 region = Rect2(242, 4, 12, 9)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1fbj0"]
-texture = ExtResource("5_i44ng")
-texture_margin_left = 12.0
-texture_margin_top = 12.0
-texture_margin_right = 12.0
-texture_margin_bottom = 12.0
-region_rect = Rect2(0, 0, 58, 58)
+texture = ExtResource("5_hvuyq")
+texture_margin_left = 17.0
+texture_margin_top = 16.0
+texture_margin_right = 17.0
+texture_margin_bottom = 17.0
+region_rect = Rect2(11, 12, 58, 57)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hdy2d"]
 paragraph_spacing = 15.0

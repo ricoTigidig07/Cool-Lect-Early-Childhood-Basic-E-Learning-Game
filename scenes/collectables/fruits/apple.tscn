@@ -7,12 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="5_otpiw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b66ow"]
-radius = 5.0
+radius = 8.062258
 
 [node name="Apple" type="Area2D" unique_id=1869666276]
 script = ExtResource("1_sk0uv")
 collectable_name = "apple"
 item_type = "fruits"
+required_item = null
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=586348127]
 modulate = Color(0, 0, 0, 1)

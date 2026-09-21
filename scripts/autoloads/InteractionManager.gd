@@ -24,6 +24,9 @@ func button_down() -> void:
 	if target == null:
 		return
 	if target.has_method("start_hold"):
+		if "required_item" in target and target.required_item != "":
+			if GameUIManager.get_equipped_item() != target.required_item:
+				return
 		target.start_hold()
 	else:
 		pending_tap_target = target

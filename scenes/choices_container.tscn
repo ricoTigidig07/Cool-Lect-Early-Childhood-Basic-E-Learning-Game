@@ -12,8 +12,13 @@ atlas = ExtResource("2_b2yba")
 region = Rect2(210, 34, 12, 12)
 
 [node name="ChoicesContainer" type="VBoxContainer" unique_id=1798551961]
-offset_right = 133.0
-offset_bottom = 24.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 110.0
+grow_horizontal = 2
 theme = ExtResource("1_frlm6")
 theme_override_constants/separation = 20
 

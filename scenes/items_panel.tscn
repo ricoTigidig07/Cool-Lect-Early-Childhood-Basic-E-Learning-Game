@@ -1,19 +1,15 @@
 [gd_scene format=3 uid="uid://1s82j4wnweos"]
 
-[ext_resource type="Texture2D" uid="uid://be71c03j777y2" path="res://assets/UI/Basic_UI_Sprite.png" id="1_8r8kv"]
+[ext_resource type="Texture2D" uid="uid://03ysbjkevxcd" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Dialouge UI/Character Backdrop-frame/backdrops_big2.png" id="1_b2kte"]
 [ext_resource type="Script" uid="uid://c5vb7wyhpfsjv" path="res://scenes/items_panel.gd" id="2_b2kte"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b2kte"]
-atlas = ExtResource("1_8r8kv")
-region = Rect2(201, 57, 30, 30)
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_60v6o"]
-texture = SubResource("AtlasTexture_b2kte")
-texture_margin_left = 23.0
-texture_margin_top = 23.0
-texture_margin_right = 23.0
-texture_margin_bottom = 23.0
-region_rect = Rect2(0, 0, 30, 30)
+texture = ExtResource("1_b2kte")
+texture_margin_left = 20.0
+texture_margin_top = 19.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+region_rect = Rect2(11, 12, 58, 57)
 
 [node name="ItemsPanel" type="PanelContainer" unique_id=1050203473]
 anchors_preset = 6

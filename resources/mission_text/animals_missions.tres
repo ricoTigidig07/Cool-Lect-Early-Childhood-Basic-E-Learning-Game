@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MissionTextData" format=3 uid="uid://cnvyawbf4c84x"]
+
+[ext_resource type="Script" uid="uid://dgny0mq00niwd" path="res://scenes/mission_text_data.gd" id="1_edds2"]
+
+[resource]
+script = ExtResource("1_edds2")
+mission_1_text = "Talk to the Farmer!"
+mission_2_text = "Tame the chickens!"
+mission_3_text = "Bring them back to the Farmer!"

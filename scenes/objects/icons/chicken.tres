@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://bf0x0p48fi835"]
+
+[ext_resource type="Texture2D" uid="uid://cw51jhccn1b80" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Animals/Chicken/chicken brown.png" id="1_5otps"]
+
+[resource]
+atlas = ExtResource("1_5otps")
+region = Rect2(49, 3, 11, 12)

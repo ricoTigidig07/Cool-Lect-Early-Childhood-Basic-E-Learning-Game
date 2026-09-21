@@ -5,7 +5,8 @@ extends PanelContainer
 const SLOT_SCENE = preload("res://scenes/slot_container.tscn")
 
 var item_icons: Dictionary = {
-	"apple": preload("res://scenes/objects/icons/apple.tres")
+	"apple": preload("res://scenes/objects/icons/apple.tres"),
+	"chicken": preload("res://scenes/objects/icons/chicken.tres"),
 }
 
 var slot_instances: Dictionary = {}

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://4v222w0j0okw"]
+
+[ext_resource type="Texture2D" uid="uid://6u1ux6hfioyp" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Items/item shadow.png" id="1_datqq"]
+[ext_resource type="Script" uid="uid://hdnpduy2uvvx" path="res://scenes/components/collectable_component.gd" id="1_vk78x"]
+[ext_resource type="Texture2D" uid="uid://baprm33o4e8b6" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Items/items-spritesheet.png" id="2_vk78x"]
+[ext_resource type="Script" uid="uid://c54imynlmi8v3" path="res://scenes/components/floating_collectables.gd" id="3_31wjc"]
+[ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="4_087mn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmqiv"]
+atlas = ExtResource("2_vk78x")
+region = Rect2(1, 16, 14, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_37mxb"]
+radius = 10.049875
+
+[node name="Seed" type="Area2D" unique_id=1466800171]
+script = ExtResource("1_vk78x")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1957731347]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 5)
+texture = ExtResource("1_datqq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1603662240]
+texture = SubResource("AtlasTexture_bmqiv")
+script = ExtResource("3_31wjc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=366455757]
+shape = SubResource("CircleShape2D_37mxb")
+debug_color = Color(0.64166707, 0.5244596, 0, 0.41960785)
+
+[node name="HoldIndicator" parent="." unique_id=345819692 instance=ExtResource("4_087mn")]
+z_index = 100
+offset_left = -8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 15.0
