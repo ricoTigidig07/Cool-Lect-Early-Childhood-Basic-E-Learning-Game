@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://g0ogni30fkw1"]
+
+[ext_resource type="Texture2D" uid="uid://cm47rxv81jsk7" path="res://scenes/collectables/alphabets/Letters.png" id="1_qmhf4"]
+
+[resource]
+atlas = ExtResource("1_qmhf4")
+region = Rect2(82, 209, 40, 43)

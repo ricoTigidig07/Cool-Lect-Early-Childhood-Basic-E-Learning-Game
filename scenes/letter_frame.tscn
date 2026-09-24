@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://dn7kjybx80crv"]
+
+[ext_resource type="Script" uid="uid://c60iiphx88pco" path="res://scenes/letter_frame.gd" id="1_o5qad"]
+[ext_resource type="Texture2D" uid="uid://cr8c4p3p2wxvn" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/signs.png" id="1_w5eie"]
+[ext_resource type="Texture2D" uid="uid://daatfjfbe2wva" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/ALL UI ASSETS on one sheet.png" id="2_o5qad"]
+[ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="4_71tbq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71tbq"]
+atlas = ExtResource("1_w5eie")
+region = Rect2(1, 0, 14, 15)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_71tbq"]
+radius = 4.333318
+height = 14.664882
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44k6g"]
+atlas = ExtResource("2_o5qad")
+region = Rect2(340, 148, 24, 25)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eog4e"]
+texture = SubResource("AtlasTexture_44k6g")
+texture_margin_left = 5.0
+texture_margin_top = 6.0
+texture_margin_right = 5.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kp7bg"]
+size = Vector2(84, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnga7"]
+
+[node name="LetterFrame" type="Area2D" unique_id=1304167753]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_o5qad")
+
+[node name="SignBoard" type="Sprite2D" parent="." unique_id=1883988735]
+modulate = Color(0.87731063, 0.73793125, 0.6707717, 1)
+position = Vector2(-0.40539074, -14)
+rotation = 6.2831855
+scale = Vector2(4.718088, 3)
+texture = SubResource("AtlasTexture_71tbq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="SignBoard" unique_id=1992293797]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SignBoard/StaticBody2D" unique_id=487269380]
+position = Vector2(1.7484558e-07, 3.0000005)
+rotation = 1.5681931
+shape = SubResource("CapsuleShape2D_71tbq")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1698032418]
+offset_left = -42.0
+offset_top = 11.0
+offset_bottom = 36.0
+scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxTexture_eog4e")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=240724224]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="CapitalLetter" type="ColorRect" parent="PanelContainer/HBoxContainer" unique_id=839903664]
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
+color = Color(0.99, 0.9504, 0.96426, 0.1764706)
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/CapitalLetter" unique_id=365292518]
+layout_mode = 0
+offset_right = 14.0
+offset_bottom = 13.0
+expand_mode = 1
+
+[node name="SmallLetter" type="ColorRect" parent="PanelContainer/HBoxContainer" unique_id=1751786535]
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
+color = Color(0.99, 0.9504, 0.96426, 0.1764706)
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/SmallLetter" unique_id=394497899]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.143
+anchor_top = 0.26900002
+anchor_right = 0.143
+anchor_bottom = 0.26900002
+offset_left = -2.335333
+offset_top = -3.3303351
+offset_right = 12.664666
+offset_bottom = 9.503
+expand_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=515035128]
+position = Vector2(0, 35)
+shape = SubResource("RectangleShape2D_kp7bg")
+debug_color = Color(0.35395694, 0.48278892, 1, 0.41960785)
+
+[node name="HoldIndicator" parent="." unique_id=345819692 instance=ExtResource("4_71tbq")]
+z_index = 100
+offset_left = -22.999992
+offset_top = 60.5
+offset_right = -6.9999924
+offset_bottom = 67.5
+scale = Vector2(3, 3)
+
+[node name="SignLetters" type="HBoxContainer" parent="." unique_id=1851764586]
+offset_left = -28.0
+offset_top = -32.0
+offset_right = 28.0
+offset_bottom = -4.0
+
+[node name="SignCapital" type="TextureRect" parent="SignLetters" unique_id=900016415]
+texture_filter = 1
+custom_minimum_size = Vector2(28, 9)
+layout_mode = 2
+texture = SubResource("AtlasTexture_mnga7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SignSmall" type="TextureRect" parent="SignLetters" unique_id=2049368957]
+custom_minimum_size = Vector2(20, 7)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5

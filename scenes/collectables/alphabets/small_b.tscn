@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://wh5rra3w83lf"]
+
+[ext_resource type="Script" uid="uid://b6q6t4bgd2pyr" path="res://scenes/collectables/alphabets/letter_collectable.gd" id="1_jsg8t"]
+[ext_resource type="Texture2D" uid="uid://6u1ux6hfioyp" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Items/item shadow.png" id="2_k16mo"]
+[ext_resource type="Texture2D" uid="uid://c654okpqewqrw" path="res://scenes/collectables/alphabets/small_b.tres" id="3_1pvqu"]
+[ext_resource type="Script" uid="uid://c54imynlmi8v3" path="res://scenes/components/floating_collectables.gd" id="4_y2gy2"]
+[ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="5_fbfo7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b66ow"]
+radius = 8.062258
+
+[node name="Smallb" type="Area2D" unique_id=1869666276]
+script = ExtResource("1_jsg8t")
+collectable_name = "Small b"
+item_type = "b"
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=586348127]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 5)
+texture = ExtResource("2_k16mo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=643001219]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_1pvqu")
+region_enabled = true
+region_rect = Rect2(0, 0, 24, 50)
+script = ExtResource("4_y2gy2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1674801666]
+shape = SubResource("CircleShape2D_b66ow")
+debug_color = Color(0.64166707, 0.5244596, 0, 0.41960785)
+
+[node name="HoldIndicator" parent="." unique_id=642571033 instance=ExtResource("5_fbfo7")]
+z_index = 100
+offset_left = -8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 15.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

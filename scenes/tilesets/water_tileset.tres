@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://bm20ie6buj80a" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Tilesets/ground tiles/Water.png" id="1_ltpl2"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_68lqe"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ltpl2"]
 texture = ExtResource("1_ltpl2")
-0:0/animation_speed = 5.0
+0:0/animation_speed = 3.0
 0:0/animation_frame_0/duration = 1.0
 0:0/animation_frame_1/duration = 1.0
 0:0/animation_frame_2/duration = 1.0
@@ -12,4 +12,4 @@ texture = ExtResource("1_ltpl2")
 0:0/0 = 0
 
 [resource]
-sources/0 = SubResource("TileSetAtlasSource_68lqe")
+sources/0 = SubResource("TileSetAtlasSource_ltpl2")

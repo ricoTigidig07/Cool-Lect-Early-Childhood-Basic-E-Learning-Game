@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://dubbaqeuluioc"]
+
+[ext_resource type="Script" uid="uid://d0jhi1gdbiq0q" path="res://resources/door.gd" id="1_hbj0n"]
+[ext_resource type="Texture2D" uid="uid://ckvs7mvhb674e" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Tilesets/Building parts/door animation sprites.png" id="1_ho8xb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbj0n"]
+atlas = ExtResource("1_ho8xb")
+region = Rect2(240, 16, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vg23"]
+atlas = ExtResource("1_ho8xb")
+region = Rect2(192, 16, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qysy"]
+atlas = ExtResource("1_ho8xb")
+region = Rect2(144, 16, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tp3eb"]
+atlas = ExtResource("1_ho8xb")
+region = Rect2(96, 16, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf61c"]
+atlas = ExtResource("1_ho8xb")
+region = Rect2(48, 16, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oca7e"]
+atlas = ExtResource("1_ho8xb")
+region = Rect2(0, 16, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p16pl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbj0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vg23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qysy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tp3eb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf61c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oca7e")
+}],
+"loop": false,
+"name": &"open",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ic78j"]
+size = Vector2(48, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbj0n"]
+size = Vector2(48, 16)
+
+[node name="Door" type="Area2D" unique_id=265404745]
+script = ExtResource("1_hbj0n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1149968777]
+sprite_frames = SubResource("SpriteFrames_p16pl")
+animation = &"open"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1868432359]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ic78j")
+
+[node name="DoorBody" type="StaticBody2D" parent="." unique_id=99542497]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorBody" unique_id=215539243]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_hbj0n")
+debug_color = Color(0.971314, 0, 0.45203477, 0.41960785)

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://dvurrcw36du3v"]
+
+[ext_resource type="Texture2D" uid="uid://cgusxivm41rvy" path="res://scenes/collectables/alphabets/Small Letters removed background.png" id="1_nvmnt"]
+
+[resource]
+atlas = ExtResource("1_nvmnt")
+region = Rect2(218, 79, 17, 46)

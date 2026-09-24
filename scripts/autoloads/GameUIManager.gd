@@ -102,3 +102,8 @@ func get_equipped_item() -> String:
 func consume_hotbar_item(item_type: String) -> void:
 	if hotbar:
 		hotbar.consume_item(item_type)
+		
+func get_item_icon(item_type: String) -> Texture2D:
+	if hotbar:
+		return hotbar.get_icon(item_type)
+	return null

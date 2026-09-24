@@ -10,6 +10,23 @@ var item_icons: Dictionary = {
 	"seed": preload("res://scenes/objects/icons/seed_icon.tres"),
 }
 
+const LETTER_ICON_PATH := "res://scenes/collectables/alphabets/"
+
+func get_icon(item_type: String) -> Texture2D:
+	if item_icons.has(item_type):
+		return item_icons[item_type]
+	if item_type.length() == 1 and item_type.is_valid_identifier():
+		var path: String
+		if item_type == item_type.to_upper():
+			path = LETTER_ICON_PATH + "capital_" + item_type + ".tres"
+		else:
+			path = LETTER_ICON_PATH + "small_" + item_type + ".tres"
+		if ResourceLoader.exists(path):
+			var icon = load(path)
+			item_icons[item_type] = icon
+			return icon
+	return null
+
 var slot_by_item: Dictionary = {}
 var equipped_item: String = ""
 
