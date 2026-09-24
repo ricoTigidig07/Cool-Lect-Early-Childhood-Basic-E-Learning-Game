@@ -44,7 +44,7 @@ func give_item(item_type: String, count: int) -> void:
 		if slot == null:
 			return
 		slot_by_item[item_type] = slot
-	slot.get_node("TextureRect").texture = item_icons.get(item_type)
+	slot.get_node("TextureRect").texture = get_icon(item_type)
 	slot.get_node("Label").text = str(count)
 	if slot == selected_slot:
 		_select_slot(slot)
@@ -81,5 +81,7 @@ func consume_item(item_type: String) -> void:
 		slot.get_node("TextureRect").texture = null
 		slot.get_node("Label").text = ""
 		slot_by_item.erase(item_type)
+		if slot == selected_slot:
+			_select_slot(slot)
 	else:
 		slot.get_node("Label").text = str(current_count)

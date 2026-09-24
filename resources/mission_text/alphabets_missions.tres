@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MissionTextData" format=3 uid="uid://casxkos7waxb"]
+
+[ext_resource type="Script" uid="uid://dgny0mq00niwd" path="res://scenes/mission_text_data.gd" id="1_t43ek"]
+
+[resource]
+script = ExtResource("1_t43ek")
+mission_1_text = "Talk to the Teacher!"
+mission_2_text = "Find and match the capital to its small letter!"
+mission_3_text = "Go back to the Teacher!"

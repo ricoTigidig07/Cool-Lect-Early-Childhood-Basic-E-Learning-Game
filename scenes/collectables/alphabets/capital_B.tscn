@@ -16,10 +16,11 @@ item_type = "B"
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=586348127]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(0, 5)
+position = Vector2(0, -1)
 texture = ExtResource("2_sdldm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=643001219]
+position = Vector2(0, -6)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_jbr8k")
 region_enabled = true
