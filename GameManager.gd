@@ -1,5 +1,8 @@
 extends Node
 
+var current_subject: String = ""
+var current_level: int = 1
+
 # Structure: subject_name -> level_number -> star count (0 = not completed)
 var level_progress := {
 	"fruits": {},
@@ -11,7 +14,7 @@ var level_progress := {
 }
 
 func set_level_result(subject: String, level: int, stars: int) -> void:
-	level_progress[subject][level] = stars
+	level_progress[subject][level] = max(stars, level_progress[subject].get(level, 0))
 
 func get_level_stars(subject: String, level: int) -> int:
 	return level_progress[subject].get(level, 0)
@@ -20,3 +23,7 @@ func is_level_unlocked(subject: String, level: int) -> bool:
 	if level == 1:
 		return true
 	return level_progress[subject].get(level - 1, 0) > 0
+
+func set_current_level(subject: String, level: int) -> void:
+	current_subject = subject
+	current_level = level
