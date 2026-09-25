@@ -29,6 +29,7 @@ QuestManager="*uid://ccin5r375aup2"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+window/stretch/scale=0.5
 
 [file_customization]
 
