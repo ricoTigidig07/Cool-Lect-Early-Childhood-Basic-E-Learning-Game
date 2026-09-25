@@ -25,3 +25,14 @@ func setup(num: int, subj: String):
 	for i in range(3):
 		var star_node = star_container.get_child(i)
 		star_node.texture = FILLED_STAR if i < stars else BLANK_STAR
+	
+	if not pressed.is_connected(_on_pressed):
+		pressed.connect(_on_pressed)
+
+func _on_pressed() -> void:
+	GameManager.set_current_level(subject, level_number)
+	var path := "res://scenes/levels/fruits/fruit_level_%d.tscn" % level_number
+	if ResourceLoader.exists(path):
+		get_tree().change_scene_to_file(path)
+	else:
+		push_warning("Level scene not found: " + path)
