@@ -1,0 +1,34 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://xxwddf83fcle" path="res://scenes/hotbar_collectable.gd" id="1_hc"]
+[ext_resource type="Texture2D" uid="uid://6u1ux6hfioyp" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Items/item shadow.png" id="2_shadow"]
+[ext_resource type="Texture2D" path="res://scenes/objects/icons/egg.tres" id="3_egg"]
+[ext_resource type="Script" uid="uid://c54imynlmi8v3" path="res://scenes/components/floating_collectables.gd" id="4_float"]
+[ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="5_hold"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_egg"]
+radius = 8.0
+
+[node name="Egg" type="Area2D"]
+script = ExtResource("1_hc")
+collectable_name = "egg"
+item_type = "egg"
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 5)
+texture = ExtResource("2_shadow")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_egg")
+script = ExtResource("4_float")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_egg")
+
+[node name="HoldIndicator" parent="." instance=ExtResource("5_hold")]
+z_index = 100
+offset_left = -8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 15.0

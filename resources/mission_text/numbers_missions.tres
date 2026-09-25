@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MissionTextData" format=3]
+
+[ext_resource type="Script" path="res://scenes/mission_text_data.gd" id="1_mt"]
+
+[resource]
+script = ExtResource("1_mt")
+mission_1_text = "Talk to Grandma!"
+mission_2_text = "Fill each basket with the right number of eggs!"
+mission_3_text = "Go back to Grandma!"

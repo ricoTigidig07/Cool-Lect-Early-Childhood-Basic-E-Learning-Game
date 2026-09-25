@@ -8,6 +8,7 @@ var selected_slot: Button = null
 
 var item_icons: Dictionary = {
 	"seed": preload("res://scenes/objects/icons/seed_icon.tres"),
+	"egg": preload("res://scenes/objects/icons/egg.tres"),
 }
 
 const LETTER_ICON_PATH := "res://scenes/collectables/alphabets/"
@@ -39,13 +40,16 @@ func _ready() -> void:
 
 func give_item(item_type: String, count: int) -> void:
 	var slot = slot_by_item.get(item_type)
+	var new_count := count
 	if slot == null:
 		slot = _find_empty_slot()
 		if slot == null:
 			return
 		slot_by_item[item_type] = slot
+	else:
+		new_count += int(slot.get_node("Label").text)
 	slot.get_node("TextureRect").texture = get_icon(item_type)
-	slot.get_node("Label").text = str(count)
+	slot.get_node("Label").text = str(new_count)
 	if slot == selected_slot:
 		_select_slot(slot)
 

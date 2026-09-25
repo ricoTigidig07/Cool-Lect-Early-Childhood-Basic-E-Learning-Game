@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://df4jjb85qcxr0"]
+
+[ext_resource type="Script" uid="uid://dxd1706xhbm3o" path="res://scenes/objects/count_basket/count_basket.gd" id="1_cb"]
+[ext_resource type="Texture2D" path="res://scenes/objects/icons/egg.tres" id="2_egg"]
+[ext_resource type="Texture2D" uid="uid://b4vsme8t84r2e" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Piknik basket.png" id="3_basket"]
+[ext_resource type="Texture2D" path="res://scenes/collectables/numbers/number_3.tres" id="4_num"]
+[ext_resource type="FontFile" uid="uid://cth151usmtkbc" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="5_font"]
+[ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="6_hold"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(36, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_area"]
+size = Vector2(56, 48)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pop"]
+font = ExtResource("5_font")
+font_size = 14
+outline_size = 4
+outline_color = Color(0.23, 0.14, 0.09, 1)
+
+[node name="CountBasket" type="Area2D" unique_id=599893428]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_cb")
+item_texture = ExtResource("2_egg")
+
+[node name="NumberIcon" type="Sprite2D" parent="." unique_id=811173724]
+texture_filter = 1
+position = Vector2(0, -30)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("4_num")
+
+[node name="Basket" type="Sprite2D" parent="." unique_id=1511357859]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_basket")
+
+[node name="ItemAnchor" type="Marker2D" parent="." unique_id=1295012731]
+position = Vector2(0, -12)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1083108915]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=915528187]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1825659163]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_area")
+
+[node name="CountPop" type="Label" parent="." unique_id=1808627460]
+z_index = 100
+offset_left = -30.0
+offset_top = -44.0
+offset_right = 30.0
+offset_bottom = -26.0
+text = "1"
+label_settings = SubResource("LabelSettings_pop")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HoldIndicator" parent="." unique_id=322570624 instance=ExtResource("6_hold")]
+z_index = 100
+offset_left = -8.0
+offset_top = 24.0
+offset_right = 8.0
+offset_bottom = 31.0
