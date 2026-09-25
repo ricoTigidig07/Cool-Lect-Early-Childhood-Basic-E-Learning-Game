@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://3hujl8yhh3o5"]
+
+[ext_resource type="Script" uid="uid://cjhi4gm235mtn" path="res://scenes/world/dialogue_panel.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://byee8abb4oroc" path="res://assets/UI/ui/Sprite sheets/Dialouge UI/Premade dialog box  big.png" id="2_box"]
+[ext_resource type="Texture2D" uid="uid://bt07gop56gb4b" path="res://assets/UI/ui/Sprite sheets/Dialouge UI/dialog box character finished talking click to continue indicator - spritesheet .png" id="3_cont"]
+[ext_resource type="FontFile" uid="uid://cth151usmtkbc" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="4_font"]
+[ext_resource type="Theme" uid="uid://cq6yjwxcf3scm" path="res://assets/UI/dialogueButtons.tres" id="5_btn"]
+[ext_resource type="Texture2D" uid="uid://dvsrrybs70wr3" path="res://assets/UI/ui/Sprite sheets/Icons/All Icons.png" id="6_icons"]
+[ext_resource type="FontFile" uid="uid://dvahnwe3pl6sq" path="res://assets/UI/Fonts/Poco.ttf" id="7_poco"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_name"]
+font = ExtResource("4_font")
+font_size = 24
+font_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_text"]
+line_spacing = 6.0
+font = ExtResource("7_poco")
+font_size = 30
+font_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cont"]
+atlas = ExtResource("3_cont")
+region = Rect2(3, 5, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yes"]
+atlas = ExtResource("6_icons")
+region = Rect2(194, 35, 13, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no"]
+atlas = ExtResource("6_icons")
+region = Rect2(210, 34, 12, 12)
+
+[node name="DialoguePanel" type="TextureRect" unique_id=128829468]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -514.0
+offset_top = -216.0
+offset_right = 456.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_script")
+
+[node name="Box" type="TextureRect" parent="." unique_id=1811495740]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_box")
+expand_mode = 1
+
+[node name="Portrait" type="TextureRect" parent="." unique_id=309214112]
+texture_filter = 1
+layout_mode = 0
+offset_left = 48.0
+offset_top = 45.0
+offset_right = 144.0
+offset_bottom = 141.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="." unique_id=130133604]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 14.0
+offset_right = 600.0
+offset_bottom = 54.0
+text = "Grandma"
+label_settings = SubResource("LabelSettings_name")
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=394624369]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 66.0
+offset_right = 830.0
+offset_bottom = 152.0
+text = "Oh hello, dear! My hens laid eggs all over the yard."
+label_settings = SubResource("LabelSettings_text")
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ContinueIcon" type="TextureRect" parent="." unique_id=818269794]
+self_modulate = Color(0.55, 0.33, 0.22, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 830.0
+offset_top = 122.0
+offset_right = 866.0
+offset_bottom = 158.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_cont")
+expand_mode = 1
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="." unique_id=1483190742]
+layout_mode = 0
+offset_left = 552.0
+offset_top = -128.0
+offset_right = 912.0
+offset_bottom = -8.0
+theme = ExtResource("5_btn")
+theme_override_constants/separation = 12
+
+[node name="YesButton" type="Button" parent="ChoicesContainer" unique_id=88713010]
+custom_minimum_size = Vector2(360, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.36, 0.22, 0.15, 1)
+theme_override_colors/font_pressed_color = Color(0.2, 0.45, 0.2, 1)
+theme_override_colors/font_hover_color = Color(0.2, 0.45, 0.2, 1)
+theme_override_colors/icon_normal_color = Color(0.25, 0.55, 0.25, 1)
+theme_override_colors/icon_hover_color = Color(0.25, 0.55, 0.25, 1)
+theme_override_fonts/font = ExtResource("7_poco")
+theme_override_font_sizes/font_size = 28
+text = "Yes!"
+icon = SubResource("AtlasTexture_yes")
+
+[node name="NoButton" type="Button" parent="ChoicesContainer" unique_id=111754256]
+custom_minimum_size = Vector2(360, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.36, 0.22, 0.15, 1)
+theme_override_colors/font_pressed_color = Color(0.6, 0.2, 0.2, 1)
+theme_override_colors/font_hover_color = Color(0.6, 0.2, 0.2, 1)
+theme_override_colors/icon_normal_color = Color(0.75, 0.3, 0.3, 1)
+theme_override_colors/icon_hover_color = Color(0.75, 0.3, 0.3, 1)
+theme_override_fonts/font = ExtResource("7_poco")
+theme_override_font_sizes/font_size = 28
+text = "No"
+icon = SubResource("AtlasTexture_no")

@@ -16,7 +16,7 @@ script = ExtResource("1_rp718")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1616755208]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(0, -1)
+position = Vector2(0, -5)
 texture = ExtResource("2_dyp2m")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=134515603]

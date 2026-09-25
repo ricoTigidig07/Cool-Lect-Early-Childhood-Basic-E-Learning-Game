@@ -1,0 +1,82 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/main_menu/menu_world.gd" id="4_world"]
+[ext_resource type="Texture2D" path="res://scenes/main_menu/menu_ground.png" id="5_ground"]
+[ext_resource type="Texture2D" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Trees, stumps and bushes.png" id="6_trees"]
+
+[sub_resource type="AtlasTexture" id="Tree_Apple"]
+atlas = ExtResource("6_trees")
+region = Rect2(48, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="Tree_Orange"]
+atlas = ExtResource("6_trees")
+region = Rect2(80, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="Tree_Peach"]
+atlas = ExtResource("6_trees")
+region = Rect2(144, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="Tree_Big"]
+atlas = ExtResource("6_trees")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="Bush"]
+atlas = ExtResource("6_trees")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="Bush_Berry"]
+atlas = ExtResource("6_trees")
+region = Rect2(48, 48, 16, 16)
+
+[node name="MenuBackground" type="Node2D"]
+texture_filter = 1
+position = Vector2(-8, 0)
+scale = Vector2(3, 3)
+
+[node name="Ground" type="Sprite2D" parent="."]
+texture = ExtResource("5_ground")
+centered = false
+
+[node name="World" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("4_world")
+
+[node name="AppleTree" type="Sprite2D" parent="World"]
+position = Vector2(24, 64)
+texture = SubResource("Tree_Apple")
+offset = Vector2(0, -14)
+
+[node name="OrangeTree" type="Sprite2D" parent="World"]
+position = Vector2(410, 66)
+texture = SubResource("Tree_Orange")
+offset = Vector2(0, -14)
+
+[node name="PeachTree" type="Sprite2D" parent="World"]
+position = Vector2(18, 238)
+texture = SubResource("Tree_Peach")
+offset = Vector2(0, -14)
+
+[node name="BigTree" type="Sprite2D" parent="World"]
+position = Vector2(414, 244)
+texture = SubResource("Tree_Big")
+offset = Vector2(0, -22)
+
+[node name="Bush1" type="Sprite2D" parent="World"]
+position = Vector2(56, 40)
+texture = SubResource("Bush_Berry")
+offset = Vector2(0, -6)
+
+[node name="Bush2" type="Sprite2D" parent="World"]
+position = Vector2(378, 42)
+texture = SubResource("Bush")
+offset = Vector2(0, -6)
+
+[node name="Bush3" type="Sprite2D" parent="World"]
+position = Vector2(8, 150)
+texture = SubResource("Bush")
+offset = Vector2(0, -6)
+
+[node name="Bush4" type="Sprite2D" parent="World"]
+position = Vector2(426, 158)
+texture = SubResource("Bush_Berry")
+offset = Vector2(0, -6)

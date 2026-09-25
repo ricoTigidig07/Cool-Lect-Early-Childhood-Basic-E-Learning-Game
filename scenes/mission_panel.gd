@@ -11,10 +11,9 @@ extends PanelContainer
 const BLANK_STAR = preload("res://resources/blank_star.tres")
 const FILLED_STAR = preload("res://resources/filled_star.tres")
 
-const FONT_SIZE_ACTIVE = 16
-const FONT_SIZE_DEFAULT = 12
-const OUTLINE_SIZE_ON = 6
-const OUTLINE_SIZE_OFF = 0
+const COLOR_ACTIVE := Color(0.36, 0.22, 0.15, 1.0)     # dark brown, what to do now
+const COLOR_LOCKED := Color(0.36, 0.22, 0.15, 0.4)     # faded brown, comes later
+const COLOR_DONE := Color(0.27, 0.5, 0.2, 1.0)         # green, finished
 
 var labels: Array
 var stars: Array
@@ -47,38 +46,29 @@ func _complete_mission(index: int, star: TextureRect) -> void:
 	completed_missions[index] = true
 	current_mission = index + 2
 	_refresh_styles()
+	_pop(star)
+
+func _pop(node: Control) -> void:
+	node.pivot_offset = node.size / 2.0
+	node.scale = Vector2(0.4, 0.4)
+	var t := create_tween()
+	t.tween_property(node, "scale", Vector2(1.5, 1.5), 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	t.tween_property(node, "scale", Vector2.ONE, 0.15)
 
 func _refresh_styles() -> void:
 	for i in range(labels.size()):
-		var mission_num = i + 1
-		var label = labels[i]
+		var label: Label = labels[i]
+		var star: TextureRect = stars[i]
 		if completed_missions[i]:
-			_apply_completed_style(label)
-		elif mission_num == current_mission:
-			_apply_active_style(label)
+			label.add_theme_color_override("font_color", COLOR_DONE)
+			star.modulate = Color.WHITE
+		elif i + 1 == current_mission:
+			label.add_theme_color_override("font_color", COLOR_ACTIVE)
+			star.modulate = Color.WHITE
 		else:
-			_apply_locked_style(label)
+			label.add_theme_color_override("font_color", COLOR_LOCKED)
+			star.modulate = Color(1, 1, 1, 0.45)
 
-func _apply_active_style(label: Label) -> void:
-	label.add_theme_font_size_override("font_size", FONT_SIZE_ACTIVE)
-	label.add_theme_constant_override("outline_size", OUTLINE_SIZE_ON)
-	label.add_theme_color_override("font_outline_color", Color.BLACK)
-	label.add_theme_color_override("font_color", Color.WHITE)
-	label.modulate = Color(1, 1, 1, 1)
-
-func _apply_locked_style(label: Label) -> void:
-	label.add_theme_font_size_override("font_size", FONT_SIZE_DEFAULT)
-	label.add_theme_constant_override("outline_size", OUTLINE_SIZE_OFF)
-	label.add_theme_color_override("font_color", Color.WHITE)
-	label.modulate = Color(1, 1, 1, 0.3)
-
-func _apply_completed_style(label: Label) -> void:
-	label.add_theme_font_size_override("font_size", FONT_SIZE_ACTIVE)
-	label.add_theme_constant_override("outline_size", OUTLINE_SIZE_ON)
-	label.add_theme_color_override("font_outline_color", Color.BLACK)
-	label.add_theme_color_override("font_color", Color.GREEN)
-	label.modulate = Color(1.0, 1.0, 1.0, 0.573)
-	
 ## How many of the 3 missions are complete (0-3). Used to award stars
 ## on the Mission Complete screen.
 func get_completed_count() -> int:

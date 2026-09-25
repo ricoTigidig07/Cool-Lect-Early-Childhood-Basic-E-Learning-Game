@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ckxnmf1omgkf6"]
+
+[ext_resource type="Shader" uid="uid://voh6ptnadhuj" path="res://scenes/levels/grey.gdshader" id="1_shader"]
+
+[resource]
+shader = ExtResource("1_shader")
+shader_parameter/amount = 1.0

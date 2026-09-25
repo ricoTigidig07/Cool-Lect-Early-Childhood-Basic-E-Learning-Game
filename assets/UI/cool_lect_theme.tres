@@ -1,0 +1,96 @@
+[gd_resource type="Theme" format=3 uid="uid://b1oxrs8tp4hwy"]
+
+[ext_resource type="FontFile" uid="uid://dvahnwe3pl6sq" path="res://assets/UI/Fonts/Poco.ttf" id="1_poco"]
+[ext_resource type="Texture2D" uid="uid://cxcbkfm608fmo" path="res://assets/UI/ui/Sprite sheets/buttons/Square Buttons 26x19 x3.png" id="2_btn"]
+
+[sub_resource type="StyleBoxTexture" id="BtnDisabled"]
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 16.0
+texture = ExtResource("2_btn")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 18.0
+region_rect = Rect2(33, 114, 78, 57)
+modulate_color = Color(1, 1, 1, 0.45)
+
+[sub_resource type="StyleBoxEmpty" id="BtnFocus"]
+
+[sub_resource type="StyleBoxTexture" id="BtnHover"]
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 16.0
+texture = ExtResource("2_btn")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 18.0
+region_rect = Rect2(33, 114, 78, 57)
+modulate_color = Color(1.08, 1.08, 1.02, 1)
+
+[sub_resource type="StyleBoxTexture" id="BtnNormal"]
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 16.0
+texture = ExtResource("2_btn")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 18.0
+region_rect = Rect2(33, 114, 78, 57)
+
+[sub_resource type="StyleBoxTexture" id="BtnPressed"]
+content_margin_left = 18.0
+content_margin_top = 13.0
+content_margin_right = 18.0
+content_margin_bottom = 13.0
+texture = ExtResource("2_btn")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 15.0
+region_rect = Rect2(177, 117, 78, 54)
+
+[sub_resource type="StyleBoxFlat" id="Panel"]
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.91, 0.81, 0.65, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 6
+border_color = Color(0.66, 0.44, 0.31, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 3
+shadow_color = Color(0, 0, 0, 0.18)
+shadow_size = 1
+shadow_offset = Vector2(0, 4)
+
+[resource]
+default_font = ExtResource("1_poco")
+default_font_size = 22
+Button/colors/font_color = Color(0.36, 0.22, 0.15, 1)
+Button/colors/font_disabled_color = Color(0.36, 0.22, 0.15, 0.5)
+Button/colors/font_focus_color = Color(0.36, 0.22, 0.15, 1)
+Button/colors/font_hover_color = Color(0.36, 0.22, 0.15, 1)
+Button/colors/font_pressed_color = Color(0.36, 0.22, 0.15, 1)
+Button/colors/icon_normal_color = Color(0.55, 0.35, 0.24, 1)
+Button/constants/h_separation = 10
+Button/constants/icon_max_width = 26
+Button/font_sizes/font_size = 26
+Button/styles/disabled = SubResource("BtnDisabled")
+Button/styles/focus = SubResource("BtnFocus")
+Button/styles/hover = SubResource("BtnHover")
+Button/styles/normal = SubResource("BtnNormal")
+Button/styles/pressed = SubResource("BtnPressed")
+Label/colors/font_color = Color(0.36, 0.22, 0.15, 1)
+PanelContainer/styles/panel = SubResource("Panel")

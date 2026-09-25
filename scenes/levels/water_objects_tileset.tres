@@ -1,0 +1,21 @@
+[gd_resource type="TileSet" format=3 uid="uid://bv4nug1oukygd"]
+
+[ext_resource type="Texture2D" uid="uid://cj1td3peo1521" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Water Objects.png" id="1_3ucl4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1vli0"]
+texture = ExtResource("1_3ucl4")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+4:0/size_in_atlas = Vector2i(2, 1)
+4:0/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_1vli0")

@@ -1,104 +1,211 @@
 [gd_scene format=3 uid="uid://bnmnmmams6oyu"]
 
-[ext_resource type="Theme" uid="uid://cpagya6ayhu8v" path="res://resources/main_theme.tres" id="1_hpm77"]
-[ext_resource type="Script" uid="uid://c3gcnv071ojgm" path="res://scenes/grid_container.gd" id="2_a1gty"]
-[ext_resource type="Texture2D" uid="uid://di521tfjfn3c5" path="res://assets/UI/ui/emojis-free/subjects_icon.png" id="2_fdnfu"]
+[ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green_pressed.tres" id="gp_green"]
+[ext_resource type="Script" path="res://scenes/subject_selector.gd" id="1_script"]
+[ext_resource type="Script" path="res://scenes/blind_fabric.gd" id="2_blind"]
+[ext_resource type="Theme" path="res://assets/UI/cool_lect_theme.tres" id="3_theme"]
+[ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green.tres" id="4_green"]
+[ext_resource type="PackedScene" path="res://scenes/main_menu/menu_background.tscn" id="5_bg"]
+[ext_resource type="FontFile" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="6_title"]
+[ext_resource type="Texture2D" path="res://scenes/arrow_left.png" id="7_al"]
+[ext_resource type="Texture2D" path="res://scenes/arrow_right.png" id="8_ar"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a1gty"]
-atlas = ExtResource("2_fdnfu")
-region = Rect2(8, 2.440567, 176, 165.55943)
+[sub_resource type="LabelSettings" id="Title"]
+font = ExtResource("6_title")
+font_size = 48
+font_color = Color(1, 0.98, 0.92, 1)
+outline_size = 12
+outline_color = Color(0.36, 0.22, 0.15, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yumb1"]
-atlas = ExtResource("2_fdnfu")
-region = Rect2(296, 0, 160, 168)
+[sub_resource type="Animation" id="Anim_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blind:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7iduh"]
-atlas = ExtResource("2_fdnfu")
-region = Rect2(576, 0, 176, 168)
+[sub_resource type="Animation" id="Anim_drop"]
+resource_name = "drop_down"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blind:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.42, 0.56, 0.68, 0.78, 0.86),
+"transitions": PackedFloat32Array(2, 0.5, 2, 0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0, -760), Vector2(0, 0), Vector2(0, -36), Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3kmma"]
-atlas = ExtResource("2_fdnfu")
-region = Rect2(8, 160, 176, 172)
+[sub_resource type="Animation" id="Anim_roll"]
+resource_name = "roll_up"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blind:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 18), Vector2(0, -760)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ppg7w"]
-atlas = ExtResource("2_fdnfu")
-region = Rect2(296, 160, 168, 172)
+[sub_resource type="AnimationLibrary" id="Lib_blind"]
+_data = {
+&"RESET": SubResource("Anim_reset"),
+&"drop_down": SubResource("Anim_drop"),
+&"roll_up": SubResource("Anim_roll")
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l4q3q"]
-atlas = ExtResource("2_fdnfu")
-region = Rect2(576, 160, 176, 172)
-
-[node name="SubjectSelector" type="Control" unique_id=262820878]
+[node name="SubjectSelector" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_hpm77")
+theme = ExtResource("3_theme")
+script = ExtResource("1_script")
 
-[node name="Control" type="GridContainer" parent="." unique_id=580447696]
+[node name="MenuBackground" parent="." instance=ExtResource("5_bg")]
+
+[node name="Blind" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -323.0
-offset_top = -142.0
-offset_right = 292.0
-offset_bottom = 334.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_hpm77")
-columns = 3
-script = ExtResource("2_a1gty")
 
-[node name="FruitsCard" type="Button" parent="Control" unique_id=803122881]
-layout_mode = 2
-text = "FRUITS"
-icon = SubResource("AtlasTexture_a1gty")
+[node name="Fabric" type="Control" parent="Blind"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_blind")
+
+[node name="Floaters" type="Control" parent="Blind"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Blind"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 22.0
+offset_bottom = 84.0
+grow_horizontal = 2
+text = "PICK A SUBJECT!"
+label_settings = SubResource("Title")
+horizontal_alignment = 1
+
+[node name="Carousel" type="Control" parent="Blind"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 96.0
+offset_bottom = 520.0
+grow_horizontal = 2
+
+[node name="LeftArrow" type="Button" parent="Blind"]
+z_index = 30
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 36.0
+offset_top = -86.0
+offset_right = 116.0
+offset_bottom = -6.0
+grow_vertical = 2
+icon = ExtResource("7_al")
 icon_alignment = 1
-vertical_icon_alignment = 0
+expand_icon = true
 
-[node name="NumbersCard" type="Button" parent="Control" unique_id=1780497262]
-layout_mode = 2
-text = "NUMBERS"
-icon = SubResource("AtlasTexture_yumb1")
+[node name="RightArrow" type="Button" parent="Blind"]
+z_index = 30
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -86.0
+offset_right = -36.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 2
+icon = ExtResource("8_ar")
 icon_alignment = 1
-vertical_icon_alignment = 0
+expand_icon = true
 
-[node name="AlphabetsCard" type="Button" parent="Control" unique_id=75054448]
-layout_mode = 2
-text = "ALPHABETS"
-icon = SubResource("AtlasTexture_7iduh")
-icon_alignment = 1
-vertical_icon_alignment = 0
+[node name="BackButton" type="Button" parent="Blind"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 164.0
+offset_bottom = 76.0
+text = "Back"
+icon = ExtResource("7_al")
+expand_icon = true
 
-[node name="AnimalsCard" type="Button" parent="Control" unique_id=1464244954]
-layout_mode = 2
-text = "ANIMALS"
-icon = SubResource("AtlasTexture_3kmma")
-icon_alignment = 1
-vertical_icon_alignment = 0
+[node name="Dots" type="HBoxContainer" parent="Blind"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 536.0
+offset_right = 120.0
+offset_bottom = 552.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+alignment = 1
 
-[node name="ShapesCard" type="Button" parent="Control" unique_id=1805828125]
-layout_mode = 2
-text = "SHAPES"
-icon = SubResource("AtlasTexture_ppg7w")
-icon_alignment = 1
-vertical_icon_alignment = 0
+[node name="GoButton" type="Button" parent="Blind"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 566.0
+offset_right = 150.0
+offset_bottom = 640.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_hover_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_pressed_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("4_green")
+theme_override_styles/hover = ExtResource("4_green")
+theme_override_styles/pressed = ExtResource("gp_green")
+text = "Let's Go!"
 
-[node name="ColorsCard" type="Button" parent="Control" unique_id=1861994618]
-layout_mode = 2
-text = "COLORS"
-icon = SubResource("AtlasTexture_l4q3q")
-icon_alignment = 1
-vertical_icon_alignment = 0
-
-[connection signal="pressed" from="Control/FruitsCard" to="Control" method="_on_fruits_card_pressed"]
-[connection signal="pressed" from="Control/NumbersCard" to="Control" method="_on_numbers_card_pressed"]
-[connection signal="pressed" from="Control/AlphabetsCard" to="Control" method="_on_alphabets_card_pressed"]
-[connection signal="pressed" from="Control/AnimalsCard" to="Control" method="_on_animals_card_pressed"]
-[connection signal="pressed" from="Control/ShapesCard" to="Control" method="_on_shapes_card_pressed"]
-[connection signal="pressed" from="Control/ColorsCard" to="Control" method="_on_colors_card_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("Lib_blind")

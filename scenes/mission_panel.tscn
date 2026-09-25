@@ -1,68 +1,94 @@
 [gd_scene format=3 uid="uid://1nwlrkk2crhm"]
 
 [ext_resource type="Script" uid="uid://cgl7htc8gdb1u" path="res://scenes/mission_panel.gd" id="2_a1kiv"]
-[ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="3_msu7j"]
+[ext_resource type="Theme" uid="uid://du57hfxkuyje3" path="res://assets/UI/cool_lect_theme.tres" id="3_theme"]
+[ext_resource type="FontFile" uid="uid://cth151usmtkbc" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="4_title"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g6hdy"]
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font = ExtResource("4_title")
+font_size = 20
+font_color = Color(0.55, 0.35, 0.24, 1)
 
-[node name="MissionPanel" type="PanelContainer" unique_id=1778926301]
-layout_direction = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 2.0
-offset_top = -111.0
-offset_right = 337.0
-offset_bottom = 173.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_g6hdy")
+[node name="MissionPanel" type="PanelContainer" unique_id=119301607]
+self_modulate = Color(1, 1, 1, 0.6862745)
+offset_left = 10.0
+offset_top = 142.0
+offset_right = 300.0
+offset_bottom = 330.0
+theme = ExtResource("3_theme")
 script = ExtResource("2_a1kiv")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1452719339]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1107035122]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1293713690]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1573029513]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1041799464]
+layout_mode = 2
+text = "MISSIONS"
+label_settings = SubResource("LabelSettings_title")
+
+[node name="Mission1" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=293337340]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Mission1" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1505292716]
+[node name="StarIcon1" type="TextureRect" parent="MarginContainer/VBoxContainer/Mission1" unique_id=902317995]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+size_flags_vertical = 0
+expand_mode = 1
+stretch_mode = 5
 
-[node name="StarIcon1" type="TextureRect" parent="MarginContainer/VBoxContainer/Mission1" unique_id=534758075]
-custom_minimum_size = Vector2(40, 40)
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mission1" unique_id=1299426121]
+custom_minimum_size = Vector2(210, 0)
 layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mission1" unique_id=1452073119]
-custom_minimum_size = Vector2(230, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_msu7j")
-theme_override_font_sizes/font_size = 12
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+text = "Mission one"
+vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Mission2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=955540274]
+[node name="Mission2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=122766650]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="StarIcon2" type="TextureRect" parent="MarginContainer/VBoxContainer/Mission2" unique_id=1690656081]
-custom_minimum_size = Vector2(40, 40)
+[node name="StarIcon2" type="TextureRect" parent="MarginContainer/VBoxContainer/Mission2" unique_id=1762596980]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+size_flags_vertical = 0
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mission2" unique_id=548067456]
-custom_minimum_size = Vector2(230, 0)
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mission2" unique_id=572596027]
+custom_minimum_size = Vector2(210, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_msu7j")
-theme_override_font_sizes/font_size = 12
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+text = "Mission two"
+vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Mission3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1299088625]
+[node name="Mission3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1048713135]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="StarIcon3" type="TextureRect" parent="MarginContainer/VBoxContainer/Mission3" unique_id=280760959]
-custom_minimum_size = Vector2(40, 40)
+[node name="StarIcon3" type="TextureRect" parent="MarginContainer/VBoxContainer/Mission3" unique_id=873651896]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+size_flags_vertical = 0
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mission3" unique_id=233733996]
-custom_minimum_size = Vector2(230, 0)
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mission3" unique_id=277065857]
+custom_minimum_size = Vector2(210, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_msu7j")
-theme_override_font_sizes/font_size = 12
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+text = "Mission three"
+vertical_alignment = 1
 autowrap_mode = 3

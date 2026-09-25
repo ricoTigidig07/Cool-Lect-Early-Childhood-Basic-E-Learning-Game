@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d4dsp4xeevdub"]
 
 [ext_resource type="Texture2D" uid="uid://c2hfcgfey1mqx" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/buttons/square/Square Buttons 19x26.png" id="1_y5nbp"]
-[ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="2_y5nbp"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/Poco.ttf" id="2_y5nbp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i2jkm"]
 texture = ExtResource("1_y5nbp")
@@ -26,7 +26,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=18751856]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.36, 0.22, 0.15, 1)
 theme_override_fonts/font = ExtResource("2_y5nbp")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1

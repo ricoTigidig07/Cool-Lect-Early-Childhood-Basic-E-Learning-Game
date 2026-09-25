@@ -61,7 +61,7 @@ vertical_alignment = 1
 
 [node name="HoldIndicator" parent="." unique_id=322570624 instance=ExtResource("6_hold")]
 z_index = 100
-offset_left = -8.0
-offset_top = 24.0
-offset_right = 8.0
-offset_bottom = 31.0
+offset_left = -16.0
+offset_top = 18.0
+offset_bottom = 25.0
+scale = Vector2(2, 2)

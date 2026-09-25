@@ -1,326 +1,321 @@
 [gd_scene format=3 uid="uid://cm4hqsbg240t6"]
 
 [ext_resource type="Script" uid="uid://kriicyyxagag" path="res://scenes/world/mission_complete_panel.gd" id="1_mcp01"]
-[ext_resource type="Texture2D" uid="uid://dcpj4r44vdyf2" path="res://assets/UI/ui/Sprite sheets/buttons/Square Buttons 26x19.png" id="3_hvuyq"]
-[ext_resource type="FontVariation" uid="uid://dm2oveo1dewko" path="res://assets/UI/Fonts/zx_palm_font_variation.tres" id="4_mcp04"]
-[ext_resource type="Texture2D" uid="uid://bv1cpe4hae5e3" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Dialouge UI/Character Backdrop-frame/backdrops_big1.png" id="5_hvuyq"]
+[ext_resource type="Theme" uid="uid://b1oxrs8tp4hwy" path="res://assets/UI/cool_lect_theme.tres" id="2_theme"]
+[ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green.tres" id="3_green"]
+[ext_resource type="Texture2D" uid="uid://daatfjfbe2wva" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/ALL UI ASSETS on one sheet.png" id="3_i44ng"]
+[ext_resource type="FontFile" uid="uid://cth151usmtkbc" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="4_title"]
 [ext_resource type="Texture2D" uid="uid://dvsrrybs70wr3" path="res://assets/UI/ui/Sprite sheets/Icons/All Icons.png" id="5_xfgjc"]
-[ext_resource type="FontFile" uid="uid://c4ts8wrynb7c5" path="res://assets/UI/Fonts/ZX Palm.woff" id="6_mq2wl"]
 [ext_resource type="Texture2D" uid="uid://cahk1n1l61ysd" path="res://resources/filled_star.tres" id="7_ms5t8"]
+[ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green_pressed.tres" id="gp_green"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ds5ue"]
-atlas = ExtResource("3_hvuyq")
-region = Rect2(11, 6, 26, 19)
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq2wl"]
+atlas = ExtResource("3_i44ng")
+region = Rect2(587, 92, 58, 57)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1t5je"]
-texture = SubResource("AtlasTexture_ds5ue")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 6.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yvirl"]
-atlas = ExtResource("3_hvuyq")
-region = Rect2(11, 38, 26, 19)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g8hl1"]
-texture = SubResource("AtlasTexture_yvirl")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 6.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_462hk"]
-atlas = ExtResource("3_hvuyq")
-region = Rect2(11, 70, 26, 19)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f2mox"]
-texture = SubResource("AtlasTexture_462hk")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 6.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ldcac"]
-atlas = ExtResource("3_hvuyq")
-region = Rect2(59, 70, 26, 19)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wfu1p"]
-texture = SubResource("AtlasTexture_ldcac")
-texture_margin_left = 4.0
-texture_margin_top = 5.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
-
-[sub_resource type="Theme" id="Theme_486oq"]
-Button/font_sizes/font_size = 20
-Button/fonts/font = ExtResource("4_mcp04")
-Button/styles/disabled = SubResource("StyleBoxTexture_1t5je")
-Button/styles/hover = SubResource("StyleBoxTexture_g8hl1")
-Button/styles/normal = SubResource("StyleBoxTexture_f2mox")
-Button/styles/pressed = SubResource("StyleBoxTexture_wfu1p")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q1xl2"]
-atlas = ExtResource("5_xfgjc")
-region = Rect2(211, 1, 10, 14)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqmdk"]
-atlas = ExtResource("5_xfgjc")
-region = Rect2(226, 2, 12, 12)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5cqx6"]
-atlas = ExtResource("5_xfgjc")
-region = Rect2(242, 4, 12, 9)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1fbj0"]
-texture = ExtResource("5_hvuyq")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ms5t8"]
+texture = SubResource("AtlasTexture_mq2wl")
 texture_margin_left = 17.0
 texture_margin_top = 16.0
 texture_margin_right = 17.0
 texture_margin_bottom = 17.0
-region_rect = Rect2(11, 12, 58, 57)
 
-[sub_resource type="LabelSettings" id="LabelSettings_hdy2d"]
-paragraph_spacing = 15.0
-font = ExtResource("6_mq2wl")
-font_size = 60
-outline_size = 10
-shadow_size = 15
-shadow_color = Color(0, 0, 0, 0.76862746)
-shadow_offset = Vector2(6, 8)
-stacked_outline_count = 1
-stacked_outline_0/size = 7
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font = ExtResource("4_title")
+font_size = 44
+font_color = Color(0.36, 0.22, 0.15, 1)
+shadow_size = 0
+shadow_color = Color(1, 1, 1, 0.35)
+shadow_offset = Vector2(0, 3)
 
-[sub_resource type="Animation" id="Animation_y8h0c"]
-length = 3.7
+[sub_resource type="LabelSettings" id="LabelSettings_sub"]
+font_size = 32
+font_color = Color(0.55, 0.35, 0.24, 1)
 
-[sub_resource type="Animation" id="Animation_ckbdh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_retry"]
+atlas = ExtResource("5_xfgjc")
+region = Rect2(211, 1, 10, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_next"]
+atlas = ExtResource("5_xfgjc")
+region = Rect2(226, 2, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_levels"]
+atlas = ExtResource("5_xfgjc")
+region = Rect2(242, 4, 12, 9)
+
+[sub_resource type="Animation" id="Animation_reset"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_show"]
 resource_name = "mission_complete_anim"
-length = 5.0
+length = 2.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 2
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0058200955, 0.5058201),
-"transitions": PackedFloat32Array(2.0000002, 1),
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.49019608)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.55)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Star1:scale")
-tracks/1/interp = 2
+tracks/1/path = NodePath("Card:scale")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0058200955, 0.5058201, 0.8058201),
-"transitions": PackedFloat32Array(2.1435473, 0.22531268, 1),
+"times": PackedFloat32Array(0, 0.2, 0.35),
+"transitions": PackedFloat32Array(0.5, 1, 1),
 "update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1.8, 1.8), Vector2(1, 1)]
+"values": [Vector2(0.6, 0.6), Vector2(1.06, 1.06), Vector2(1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ButtonContainer:position")
-tracks/2/interp = 2
+tracks/2/path = NodePath("Card:modulate")
+tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.8, 2, 2.2333333),
-"transitions": PackedFloat32Array(2.5491211, 0.43527517, 1),
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(380, 428), Vector2(380, 520), Vector2(380, 500)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Card:modulate")
-tracks/3/interp = 2
+tracks/3/path = NodePath("Star1:scale")
+tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.65, 0.8),
+"transitions": PackedFloat32Array(1, 0.5, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.35, 1.35), Vector2(1, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/path = NodePath("Star2:scale")
-tracks/4/interp = 2
+tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.5, 1, 1.3),
-"transitions": PackedFloat32Array(2.1435473, 0.22531268, 1),
+"times": PackedFloat32Array(0, 0.75, 1, 1.15),
+"transitions": PackedFloat32Array(1, 0.5, 1, 1),
 "update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1.8, 1.8), Vector2(1, 1)]
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.35, 1.35), Vector2(1, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/path = NodePath("Star3:scale")
-tracks/5/interp = 2
+tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(1, 1.5, 1.8),
-"transitions": PackedFloat32Array(2.1435473, 0.22531268, 1),
+"times": PackedFloat32Array(0, 1.1, 1.35, 1.5),
+"transitions": PackedFloat32Array(1, 0.5, 1, 1),
 "update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1.8, 1.8), Vector2(1, 1)]
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.35, 1.35), Vector2(1, 1)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/path = NodePath("ButtonContainer:modulate")
-tracks/6/interp = 2
+tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.0058200955, 0.5058201),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1.5, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ButtonContainer:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.8),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pgcmq"]
 _data = {
-&"RESET": SubResource("Animation_y8h0c"),
-&"mission_complete_anim": SubResource("Animation_ckbdh")
+&"RESET": SubResource("Animation_reset"),
+&"mission_complete_anim": SubResource("Animation_show")
 }
 
-[node name="MissionCompletePanel" type="Control" unique_id=1942682777]
+[node name="MissionCompletePanel" type="Control" unique_id=488070741]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_theme")
 script = ExtResource("1_mcp01")
-metadata/_edit_vertical_guides_ = [640.0]
-metadata/_edit_horizontal_guides_ = [384.0]
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=253359535]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=66546650]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.4901961)
+color = Color(0, 0, 0, 0.55)
 
-[node name="ButtonContainer" type="HBoxContainer" parent="." unique_id=1457204575]
+[node name="Card" type="PanelContainer" parent="." unique_id=297525935]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -260.0
-offset_top = 140.0
-offset_right = 259.0
-offset_bottom = 190.00049
+offset_left = -310.0
+offset_top = -120.0
+offset_right = 310.0
+offset_bottom = 190.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(259.5, 22)
-theme_override_constants/separation = 75
+pivot_offset = Vector2(310, 155)
+theme_override_styles/panel = SubResource("StyleBoxTexture_ms5t8")
+
+[node name="MarginContainer" type="MarginContainer" parent="Card" unique_id=1409126674]
+layout_mode = 2
+theme_override_constants/margin_top = 96
+theme_override_constants/margin_bottom = 88
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Card/MarginContainer" unique_id=1338316811]
+layout_mode = 2
 alignment = 1
 
-[node name="RetryButton" type="Button" parent="ButtonContainer" unique_id=923997023]
-custom_minimum_size = Vector2(120, 50)
+[node name="Label" type="Label" parent="Card/MarginContainer/VBoxContainer" unique_id=815976543]
 layout_mode = 2
-theme = SubResource("Theme_486oq")
-text = "RETRY"
-icon = SubResource("AtlasTexture_q1xl2")
-
-[node name="NextButton" type="Button" parent="ButtonContainer" unique_id=120935684]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-theme = SubResource("Theme_486oq")
-text = "NEXT"
-icon = SubResource("AtlasTexture_rqmdk")
-
-[node name="LevelSelectButton" type="Button" parent="ButtonContainer" unique_id=38557859]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-theme = SubResource("Theme_486oq")
-text = "LEVELS"
-icon = SubResource("AtlasTexture_5cqx6")
-
-[node name="Card" type="PanelContainer" parent="." unique_id=226233370]
-custom_minimum_size = Vector2(600, 200)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -68.0
-offset_right = 300.0
-offset_bottom = 132.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_1fbj0")
-
-[node name="MarginContainer" type="MarginContainer" parent="Card" unique_id=1650572644]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Card/MarginContainer" unique_id=2092666452]
-z_index = 10
-layout_mode = 2
-text = "MISSION
-COMPLETE!"
-label_settings = SubResource("LabelSettings_hdy2d")
+text = "Mission Complete!"
+label_settings = SubResource("LabelSettings_title")
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Star1" type="TextureRect" parent="." unique_id=51732018]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 393.0
-offset_top = -189.00002
-offset_right = 583.0
-offset_bottom = 11.0
-grow_vertical = 2
-rotation = -0.4712389
-pivot_offset = Vector2(96, 104)
-texture = ExtResource("7_ms5t8")
+[node name="SubLabel" type="Label" parent="Card/MarginContainer/VBoxContainer" unique_id=820719078]
+layout_mode = 2
+text = "Great job!"
+label_settings = SubResource("LabelSettings_sub")
+horizontal_alignment = 1
 
-[node name="Star2" type="TextureRect" parent="." unique_id=1727480289]
+[node name="ButtonContainer" type="HBoxContainer" parent="." unique_id=1098352294]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -151.0
-offset_top = 44.0
-offset_right = 149.0
-offset_bottom = 334.0
-grow_horizontal = 2
-pivot_offset = Vector2(151, 148)
-texture = ExtResource("7_ms5t8")
-
-[node name="Star3" type="TextureRect" parent="." unique_id=353214899]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -583.99994
-offset_top = -188.99998
-offset_right = -393.99994
-offset_bottom = 11.0
-grow_horizontal = 0
+offset_left = -280.0
+offset_top = 106.0
+offset_right = 280.0
+offset_bottom = 170.0
+grow_horizontal = 2
 grow_vertical = 2
-rotation = 0.4712389
-pivot_offset = Vector2(96, 104)
-texture = ExtResource("7_ms5t8")
+pivot_offset = Vector2(280, 32)
+theme_override_constants/separation = 16
+alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1371669502]
+[node name="RetryButton" type="Button" parent="ButtonContainer" unique_id=724715356]
+custom_minimum_size = Vector2(170, 60)
+layout_mode = 2
+text = "Retry"
+icon = SubResource("AtlasTexture_retry")
+expand_icon = true
+
+[node name="NextButton" type="Button" parent="ButtonContainer" unique_id=1662008115]
+custom_minimum_size = Vector2(170, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_pressed_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_hover_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/icon_normal_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_styles/normal = ExtResource("3_green")
+theme_override_styles/pressed = ExtResource("gp_green")
+theme_override_styles/hover = ExtResource("3_green")
+text = "Next"
+icon = SubResource("AtlasTexture_next")
+expand_icon = true
+
+[node name="LevelSelectButton" type="Button" parent="ButtonContainer" unique_id=621943413]
+custom_minimum_size = Vector2(170, 60)
+layout_mode = 2
+text = "Levels"
+icon = SubResource("AtlasTexture_levels")
+expand_icon = true
+
+[node name="Star1" type="TextureRect" parent="." unique_id=1832083116]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -168.0
+offset_right = -112.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.3
+scale = Vector2(2, 2)
+pivot_offset = Vector2(60, 60)
+texture = ExtResource("7_ms5t8")
+expand_mode = 1
+
+[node name="Star2" type="TextureRect" parent="." unique_id=298671925]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -278.0
+offset_right = 80.0
+offset_bottom = -118.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("7_ms5t8")
+expand_mode = 1
+
+[node name="Star3" type="TextureRect" parent="." unique_id=2143889098]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 112.0
+offset_top = -168.0
+offset_right = 232.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.3
+scale = Vector2(2, 2)
+pivot_offset = Vector2(60, 60)
+texture = ExtResource("7_ms5t8")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1460491543]
 libraries/ = SubResource("AnimationLibrary_pgcmq")
-autoplay = &"mission_complete_anim"
 
 [connection signal="pressed" from="ButtonContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="ButtonContainer/NextButton" to="." method="_on_next_button_pressed"]

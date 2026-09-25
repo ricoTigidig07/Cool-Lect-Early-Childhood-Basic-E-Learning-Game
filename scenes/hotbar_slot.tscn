@@ -51,12 +51,13 @@ offset_bottom = 59.0
 
 [node name="Label" type="Label" parent="." unique_id=1528107975]
 layout_mode = 1
-offset_left = 31.0
-offset_top = 38.0
-offset_right = 62.0
-offset_bottom = 61.0
-theme_override_colors/font_outline_color = Color(0.28118682, 0.28118688, 0.28118682, 1)
-theme_override_constants/outline_size = 2
+offset_left = 26.0
+offset_top = 34.0
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1, 0.98, 0.92, 1)
+theme_override_colors/font_outline_color = Color(0.36, 0.22, 0.15, 1)
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_xfbr6")
 theme_override_font_sizes/font_size = 25
 horizontal_alignment = 2
