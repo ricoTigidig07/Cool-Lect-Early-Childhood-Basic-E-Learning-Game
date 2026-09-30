@@ -239,7 +239,6 @@ Button/styles/pressed = SubResource("StyleBoxTexture_yvirl")
 script = ExtResource("1_gj1yn")
 
 [node name="MissionCompletePanel" parent="." unique_id=1942682777 instance=ExtResource("2_5kjus")]
-visible = false
 z_index = 10
 
 [node name="AvatarPanel" type="PanelContainer" parent="." unique_id=313150824 groups=["avatar_panel"]]

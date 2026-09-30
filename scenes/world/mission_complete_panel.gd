@@ -36,8 +36,9 @@ func show_result(star_count: int) -> void:
 	for i in range(stars.size()):
 		stars[i].texture = FILLED_STAR if i < star_count else BLANK_STAR
 
+	$AnimationPlayer.play("mission_complete_anim")
+	$AnimationPlayer.seek(0, true)
 	visible = true
-	$AnimationPlayer.play("mission_complete_anim")  # use your actual animation name
 
 func hide_panel() -> void:
 	visible = false

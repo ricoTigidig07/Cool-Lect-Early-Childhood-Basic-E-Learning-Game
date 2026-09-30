@@ -8,6 +8,12 @@ var active := false
 var target_counts: Dictionary = {}
 var current_counts: Dictionary = {}
 
+## Clears any quest left over from the previous level.
+func reset() -> void:
+	active = false
+	target_counts.clear()
+	current_counts.clear()
+	
 func start_quest(targets: Dictionary) -> void:
 	target_counts = targets.duplicate()
 	current_counts.clear()

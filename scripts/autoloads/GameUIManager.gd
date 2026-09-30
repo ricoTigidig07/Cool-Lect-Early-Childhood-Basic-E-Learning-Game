@@ -73,15 +73,19 @@ func register_mission_complete_panel(panel: Control) -> void:
 ## Shows the Mission Complete screen, awarding a star per completed mission.
 func show_mission_complete() -> void:
 	var stars = mission_panel.get_completed_count()
-	GameManager.set_level_result(CURRENT_SUBJECT, CURRENT_LEVEL, stars)
+	GameManager.set_level_result(GameManager.current_subject, GameManager.current_level, stars)
 	mission_complete_panel.show_result(stars)
 
 func _on_mission_complete_retry() -> void:
 	get_tree().reload_current_scene()
 
 func _on_mission_complete_next() -> void:
-	# TODO: point at the actual next level scene once Level 2 exists.
-	get_tree().change_scene_to_file(LEVEL_SELECT_SCENE)
+	var level_map = load("res://scenes/levels/level_map.gd")
+	var next_path: String = level_map.LEVEL_SCENES.get(GameManager.current_subject, {}).get(GameManager.current_level + 1, "")
+	if next_path != "" and ResourceLoader.exists(next_path):
+		get_tree().change_scene_to_file(next_path)
+	else:
+		_on_mission_complete_level_select()
 
 func _on_mission_complete_level_select() -> void:
 	get_tree().change_scene_to_file(LEVEL_SELECT_SCENE)
