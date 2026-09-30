@@ -2,6 +2,7 @@ extends Node
 
 signal quest_updated(item_type: String, current: int, target: int)
 signal quest_completed()
+signal quest_started()
 
 var active := false
 var target_counts: Dictionary = {}
@@ -14,6 +15,7 @@ func start_quest(targets: Dictionary) -> void:
 	for item_type in target_counts.keys():
 		current_counts[item_type] = 0
 		quest_updated.emit(item_type, 0, target_counts[item_type])
+	quest_started.emit()
 
 func collect_item(item_type: String) -> void:
 	if not active or not target_counts.has(item_type):

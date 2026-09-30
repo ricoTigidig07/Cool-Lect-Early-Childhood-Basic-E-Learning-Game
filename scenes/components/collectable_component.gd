@@ -10,6 +10,7 @@ signal collected(collectable_name: String, item_type: String)
 const HOLD_DURATION := 1.0
 
 @onready var hold_indicator: TextureProgressBar = $HoldIndicator
+@onready var name_label: Label = get_node_or_null("NameLabel")
 
 var player_ref: Node2D = null
 var is_collecting: bool = false
@@ -20,16 +21,38 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	hold_indicator.visible = false
+	if name_label:
+		name_label.visible = false
+	if item_type == "fruits":
+		_hide_until_quest()
+
+## Fruits stay hidden until the player says "Yes" to Momo.
+func _hide_until_quest() -> void:
+	visible = false
+	set_deferred("monitoring", false)
+	QuestManager.quest_started.connect(_on_quest_started, CONNECT_ONE_SHOT)
+
+func _on_quest_started() -> void:
+	visible = true
+	monitoring = true
+	scale = Vector2.ZERO
+	var t := create_tween()
+	t.tween_interval(randf_range(0.0, 0.4))
+	t.tween_property(self, "scale", Vector2.ONE, 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player01:
 		InteractionManager.register(self)
 		player_ref = body
+	if name_label:
+		name_label.visible = true
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player01:
 		InteractionManager.unregister(self)
 		player_ref = null
+	if name_label:
+		name_label.visible = false
 
 func start_hold() -> void:
 	if is_collecting:
@@ -68,6 +91,9 @@ func interact() -> void:
 	var shadow = get_node_or_null("Shadow")
 	if shadow:
 		shadow.visible = false
+
+	if name_label:
+		name_label.visible = false
 
 	_play_pickup_animation()
 

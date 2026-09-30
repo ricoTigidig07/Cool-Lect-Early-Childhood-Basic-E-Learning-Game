@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://bct5qn3qv8m3v"]
+
+[ext_resource type="Texture2D" uid="uid://lqpmci3rjkne" path="res://assets/fruits/Fruits_with_watermelon.png" id="1_sheet"]
+
+[resource]
+atlas = ExtResource("1_sheet")
+region = Rect2(0, 48, 24, 24)

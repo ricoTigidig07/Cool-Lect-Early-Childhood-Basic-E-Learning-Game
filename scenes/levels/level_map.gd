@@ -11,10 +11,26 @@ extends Control
 
 ## Scene to open for each level. Missing ones show "Coming soon!".
 const LEVEL_SCENES := {
-	"fruits": {1: "res://scenes/levels/fruits/fruit_level_1.tscn"},
-	"animals": {1: "res://scenes/levels/animals/animal_level_1.tscn"},
+	"fruits": {
+		1: "res://scenes/levels/fruits/Lvl1Apple/Lvl1AppleMap.tscn",
+		2: "res://scenes/levels/fruits/Lvl2Banana/Lvl2BananaMap.tscn",
+		3: "res://scenes/levels/fruits/Lvl3Orange/Lvl3OrangeMap.tscn",
+		4: "res://scenes/levels/fruits/Lvl4Grapes/Lvl4GrapesMap.tscn",
+		5: "res://scenes/levels/fruits/Lvl5Strawberry/Lvl5StrawberryMap.tscn",
+		6: "res://scenes/levels/fruits/Lvl6Mango/Lvl6MangoMap.tscn",
+		7: "res://scenes/levels/fruits/Lvl7Cherry/Lvl7CherryMap.tscn",
+		8: "res://scenes/levels/fruits/Lvl8Pineapple/Lvl8PineappleMap.tscn",
+		9: "res://scenes/levels/fruits/Lvl9Watermelon/Lvl9WatermelonMap.tscn",
+		10: "res://scenes/levels/fruits/Lvl10Papaya/Lvl10PapayaMap.tscn",
+		11: "res://scenes/levels/fruits/Lvl11Coconut/Lvl11CoconutMap.tscn",
+		12: "res://scenes/levels/fruits/Lvl12Guava/Lvl12GuavaMap.tscn",
+		13: "res://scenes/levels/fruits/Lvl13Avocado/Lvl13AvocadoMap.tscn",
+		14: "res://scenes/levels/fruits/Lvl14Rambutan/Lvl14RambutanMap.tscn",
+		15: "res://scenes/levels/fruits/Lvl15Durian/Lvl15DurianMap.tscn",
+	},
+	"animals": {1: "res://scenes/levels/animals/Lvl1Chicken/Animals_Tilemap.tscn"},
 	"alphabets": {1: "res://scenes/levels/alphabets/alphabet_map.tscn"},
-	"numbers": {1: "res://scenes/levels/numbers/numbers_map.tscn"},
+	"numbers": {1: "res://scenes/levels/numbers/number_map.tscn"},
 }
 
 @onready var map: Node2D = $Map

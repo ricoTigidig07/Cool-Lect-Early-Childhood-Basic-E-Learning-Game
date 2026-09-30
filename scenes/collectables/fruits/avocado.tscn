@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://m2827skn7hox"]
+
+[ext_resource type="Script" uid="uid://hdnpduy2uvvx" path="res://scenes/components/collectable_component.gd" id="1_comp"]
+[ext_resource type="Texture2D" uid="uid://6u1ux6hfioyp" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Items/item shadow.png" id="2_shadow"]
+[ext_resource type="Texture2D" uid="uid://1025f5nvleer" path="res://scenes/objects/icons/fruits/avocado.tres" id="3_icon"]
+[ext_resource type="Script" uid="uid://c54imynlmi8v3" path="res://scenes/components/floating_collectables.gd" id="4_float"]
+[ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="5_hold"]
+[ext_resource type="LabelSettings" uid="uid://bklonu8a97y5u" path="res://scenes/collectables/fruits/fruit_name_label.tres" id="6_label"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fruit"]
+radius = 8.0
+
+[node name="Avocado" type="Area2D"]
+script = ExtResource("1_comp")
+collectable_name = "avocado"
+item_type = "fruits"
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 6)
+texture = ExtResource("2_shadow")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_icon")
+script = ExtResource("4_float")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fruit")
+debug_color = Color(0.64, 0.52, 0, 0.42)
+
+[node name="HoldIndicator" parent="." instance=ExtResource("5_hold")]
+z_index = 100
+offset_left = -8.0
+offset_top = 9.0
+offset_right = 8.0
+offset_bottom = 16.0
+
+[node name="NameLabel" type="Label" parent="."]
+z_index = 100
+offset_left = -30.0
+offset_top = -22.0
+offset_right = 90.0
+offset_bottom = -4.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+text = "Avocado"
+label_settings = ExtResource("6_label")
+horizontal_alignment = 1
+vertical_alignment = 1

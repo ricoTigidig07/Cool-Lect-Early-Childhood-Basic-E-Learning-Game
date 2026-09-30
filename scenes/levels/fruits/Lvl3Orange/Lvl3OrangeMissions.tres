@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MissionTextData" format=3 uid="uid://blvaxb41r1dst"]
+
+[ext_resource type="Script" uid="uid://dgny0mq00niwd" path="res://scenes/mission_text_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+mission_1_text = "Talk to the Merchant!"
+mission_2_text = "Collect 5 oranges for the Merchant!"
+mission_3_text = "Deliver the oranges to the Merchant!"

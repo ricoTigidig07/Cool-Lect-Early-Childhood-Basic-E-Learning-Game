@@ -989,7 +989,7 @@ radius = 14.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_7rnkl"]
 radius = 4.0
 
-[node name="Merchant" type="Area2D" unique_id=1968544597]
+[node name="Merchant" type="StaticBody2D" unique_id=1108219415]
 script = ExtResource("1_a6w1k")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1961393749]
@@ -1001,16 +1001,14 @@ autoplay = "idle_front"
 frame_progress = 0.2821168
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=1559784875]
-script = ExtResource("1_a6w1k")
+position = Vector2(0, 15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=199716898]
-position = Vector2(0, -6)
+position = Vector2(0, -19)
 shape = SubResource("CircleShape2D_a6w1k")
 debug_color = Color(1, 1, 1, 0.33333334)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1302444523]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=141336955]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=141336955]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_7rnkl")
 
