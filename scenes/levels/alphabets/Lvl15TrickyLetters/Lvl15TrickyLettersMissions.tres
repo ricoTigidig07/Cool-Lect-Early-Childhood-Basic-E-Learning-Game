@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MissionTextData" format=3 uid="uid://r5ax497tlgku"]
+
+[ext_resource type="Script" uid="uid://dgny0mq00niwd" path="res://scenes/mission_text_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+mission_1_text = "Talk to the Teacher!"
+mission_2_text = "Find and match the tricky letters B, D, P and Q!"
+mission_3_text = "Go back to the Teacher!"

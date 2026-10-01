@@ -57,13 +57,6 @@ func set_missions(text_1: String, text_2: String, text_3: String) -> void:
 
 var mission_complete_panel: Control
 
-# TODO: replace with real per-level subject/number once level select actually
-# loads game scenes with that context. Hardcoded since "fruits" level 1 is the
-# only level currently wired up end-to-end.
-const CURRENT_SUBJECT := "fruits"
-const CURRENT_LEVEL := 1
-const LEVEL_SELECT_SCENE := "res://scenes/levels/fruits/fruits_level_select.tscn"
-
 func register_mission_complete_panel(panel: Control) -> void:
 	mission_complete_panel = panel
 	mission_complete_panel.retry_pressed.connect(_on_mission_complete_retry)
@@ -71,6 +64,7 @@ func register_mission_complete_panel(panel: Control) -> void:
 	mission_complete_panel.level_select_pressed.connect(_on_mission_complete_level_select)
 
 ## Shows the Mission Complete screen, awarding a star per completed mission.
+## Stars are saved to the subject and level the player is in (set by level_missions.gd).
 func show_mission_complete() -> void:
 	var stars = mission_panel.get_completed_count()
 	GameManager.set_level_result(GameManager.current_subject, GameManager.current_level, stars)
@@ -79,6 +73,7 @@ func show_mission_complete() -> void:
 func _on_mission_complete_retry() -> void:
 	get_tree().reload_current_scene()
 
+## Opens the next level of the same subject, or the level map if this was the last one.
 func _on_mission_complete_next() -> void:
 	var level_map = load("res://scenes/levels/level_map.gd")
 	var next_path: String = level_map.LEVEL_SCENES.get(GameManager.current_subject, {}).get(GameManager.current_level + 1, "")
@@ -87,8 +82,13 @@ func _on_mission_complete_next() -> void:
 	else:
 		_on_mission_complete_level_select()
 
+## Goes back to the level map of the subject you were playing
+## (e.g. alphabets -> scenes/levels/alphabets/alphabets_level_select.tscn).
 func _on_mission_complete_level_select() -> void:
-	get_tree().change_scene_to_file(LEVEL_SELECT_SCENE)
+	var subject := GameManager.current_subject
+	if subject == "":
+		subject = "fruits"
+	get_tree().change_scene_to_file("res://scenes/levels/%s/%s_level_select.tscn" % [subject, subject])
 
 var hotbar: PanelContainer
 

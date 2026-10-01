@@ -120,6 +120,9 @@ collision_layer = 33
 
 [node name="GameUI" parent="." unique_id=408638220 instance=ExtResource("6_gc4rx")]
 
+[node name="MissionCompletePanel" parent="GameUI" index="0" unique_id=1942682777]
+visible = false
+
 [node name="Teacher" parent="." unique_id=100591895 instance=ExtResource("9_sns2y")]
 position = Vector2(653, 239)
 

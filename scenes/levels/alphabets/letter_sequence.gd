@@ -1,11 +1,21 @@
 extends Node
 
+## Emitted when the Teacher starts the lesson (the player said "Yes").
+signal started
+
 @export var letter_order: Array[String] = []
 
 var current_index: int = 0
+var is_started: bool = false
+
+func start() -> void:
+	if is_started:
+		return
+	is_started = true
+	started.emit()
 
 func is_collectible(letter: String) -> bool:
-	if current_index >= letter_order.size():
+	if not is_started or current_index >= letter_order.size():
 		return false
 	return letter.to_upper() == letter_order[current_index]
 

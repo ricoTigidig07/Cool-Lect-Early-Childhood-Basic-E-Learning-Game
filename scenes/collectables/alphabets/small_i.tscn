@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://hcdy4xbunj53"]
+
+[ext_resource type="Script" uid="uid://b6q6t4bgd2pyr" path="res://scenes/collectables/alphabets/letter_collectable.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://6u1ux6hfioyp" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Items/item shadow.png" id="2_shadow"]
+[ext_resource type="Texture2D" uid="uid://cd2ahke8jd4y0" path="res://scenes/collectables/alphabets/small_i.tres" id="3_letter"]
+[ext_resource type="Script" uid="uid://c54imynlmi8v3" path="res://scenes/components/floating_collectables.gd" id="4_float"]
+[ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="5_hold"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_letter"]
+radius = 8.0
+
+[node name="Smalli" type="Area2D"]
+script = ExtResource("1_script")
+collectable_name = "Small i"
+item_type = "i"
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, -1)
+texture = ExtResource("2_shadow")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_letter")
+script = ExtResource("4_float")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_letter")
+debug_color = Color(0.64, 0.52, 0, 0.42)
+
+[node name="HoldIndicator" parent="." instance=ExtResource("5_hold")]
+z_index = 100
+offset_left = -8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 15.0

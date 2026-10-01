@@ -90,6 +90,12 @@ texture = ExtResource("3_dum3p")
 17:1/0 = 0
 17:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -4.3076925, -8, -4.3076925, -6.769231, 8, -6.769231, 8, -6.769231)
 17:1/0/physics_layer_0/polygon_1/points = PackedVector2Array(-3.0769234, -6.769231, -4.3076925, -6.769231, -4.3076925, 8, 8, 8, 8, 6.769232, -3.0769234, 6.769232)
+0:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 1
