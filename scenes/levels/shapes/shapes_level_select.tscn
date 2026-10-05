@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bh3ymy3vp8xa5"]
 
-[ext_resource type="PackedScene" path="res://scenes/levels/level_map.tscn" id="1_map"]
+[ext_resource type="PackedScene" uid="uid://cnasyski68lu6" path="res://scenes/levels/level_map.tscn" id="1_map"]
 
-[node name="ShapesLevelSelect" instance=ExtResource("1_map")]
+[node name="ShapesLevelSelect" unique_id=2124090482 instance=ExtResource("1_map")]
 subject = "shapes"
 title = "SHAPES"

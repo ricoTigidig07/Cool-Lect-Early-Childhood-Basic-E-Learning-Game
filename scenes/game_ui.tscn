@@ -4,8 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cm4hqsbg240t6" path="res://scenes/world/mission_complete_panel.tscn" id="2_5kjus"]
 [ext_resource type="Texture2D" uid="uid://03ysbjkevxcd" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Dialouge UI/Character Backdrop-frame/backdrops_big2.png" id="3_5kjus"]
 [ext_resource type="Script" uid="uid://dgne8xfq8i7fw" path="res://scenes/world/avatar_panel.gd" id="4_36vcn"]
-[ext_resource type="Texture2D" uid="uid://cw68wmag8m5h3" path="res://assets/UI/Emotes.png" id="5_2yflp"]
-[ext_resource type="Texture2D" uid="uid://c7tbkq1f2260h" path="res://assets/UI/Merchant.png" id="6_n74c5"]
+[ext_resource type="SpriteFrames" uid="uid://mdg0i8hf5s5p" path="res://resources/avatar_animations.tres" id="5_x8pta"]
 [ext_resource type="Script" uid="uid://nk7rd473pimh" path="res://scenes/world/animated_sprite_2d.gd" id="7_5v8bm"]
 [ext_resource type="Script" uid="uid://dn86xv7iw6pxy" path="res://scenes/world/joystick_control.gd" id="8_8wu16"]
 [ext_resource type="Texture2D" uid="uid://be71c03j777y2" path="res://assets/UI/Basic_UI_Sprite.png" id="9_sdeak"]
@@ -27,144 +26,6 @@ texture_margin_top = 37.0
 texture_margin_right = 38.0
 texture_margin_bottom = 38.0
 region_rect = Rect2(11, 12, 58, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7pnv2"]
-atlas = ExtResource("5_2yflp")
-region = Rect2(0, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6hr35"]
-atlas = ExtResource("5_2yflp")
-region = Rect2(32, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kxb8y"]
-atlas = ExtResource("5_2yflp")
-region = Rect2(64, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g671d"]
-atlas = ExtResource("5_2yflp")
-region = Rect2(96, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vv2ip"]
-atlas = ExtResource("5_2yflp")
-region = Rect2(0, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xn705"]
-atlas = ExtResource("5_2yflp")
-region = Rect2(32, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qang5"]
-atlas = ExtResource("5_2yflp")
-region = Rect2(64, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_16jrw"]
-atlas = ExtResource("5_2yflp")
-region = Rect2(96, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mgq8m"]
-atlas = ExtResource("5_2yflp")
-region = Rect2(128, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vjcgi"]
-atlas = ExtResource("5_2yflp")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mjqgb"]
-atlas = ExtResource("5_2yflp")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iw3ag"]
-atlas = ExtResource("5_2yflp")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bl5hp"]
-atlas = ExtResource("6_n74c5")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hltlk"]
-atlas = ExtResource("6_n74c5")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bsik1"]
-atlas = ExtResource("6_n74c5")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_iw3ag"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7pnv2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6hr35")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kxb8y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g671d")
-}],
-"loop": true,
-"name": &"Blinking",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vv2ip")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xn705")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qang5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_16jrw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mgq8m")
-}],
-"loop": true,
-"name": &"Ears",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vjcgi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mjqgb")
-}],
-"loop": true,
-"name": &"Talking",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iw3ag")
-}],
-"loop": true,
-"name": &"defaults",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bl5hp")
-}],
-"loop": true,
-"name": &"merchant_defaults",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hltlk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bsik1")
-}],
-"loop": true,
-"name": &"merchant_talking",
-"speed": 5.0
-}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ejiy"]
 atlas = ExtResource("9_sdeak")
@@ -251,7 +112,7 @@ script = ExtResource("4_36vcn")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AvatarPanel" unique_id=1207915695 groups=["avatar_icon"]]
 position = Vector2(63.999992, 67)
 scale = Vector2(3.125, 3.15625)
-sprite_frames = SubResource("SpriteFrames_iw3ag")
+sprite_frames = ExtResource("5_x8pta")
 animation = &"defaults"
 script = ExtResource("7_5v8bm")
 

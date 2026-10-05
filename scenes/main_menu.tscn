@@ -1084,11 +1084,11 @@ grow_horizontal = 2
 theme_override_constants/separation = 18
 alignment = 1
 
-[node name="CharactersButton" type="Button" parent="ButtonRow" unique_id=1486364973]
+[node name="ProfileButton" type="Button" parent="ButtonRow" unique_id=1486364973]
 custom_minimum_size = Vector2(208, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Characters"
+text = "Profile"
 
 [node name="SettingsButton" type="Button" parent="ButtonRow" unique_id=1802618128]
 custom_minimum_size = Vector2(208, 64)
@@ -1114,7 +1114,7 @@ libraries/ = SubResource("Lib_idle")
 autoplay = &"idle_loop"
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="ButtonRow/CharactersButton" to="." method="_on_characters_button_pressed"]
+[connection signal="pressed" from="ButtonRow/ProfileButton" to="." method="_on_profile_button_pressed"]
 [connection signal="pressed" from="ButtonRow/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ButtonRow/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="closed" from="SubjectSelector" to="." method="_on_subject_selector_closed"]

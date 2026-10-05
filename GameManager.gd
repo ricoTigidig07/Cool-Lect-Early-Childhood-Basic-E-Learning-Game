@@ -15,6 +15,7 @@ var level_progress := {
 
 func set_level_result(subject: String, level: int, stars: int) -> void:
 	level_progress[subject][level] = max(stars, level_progress[subject].get(level, 0))
+	PlayerProfile.save_profile()
 
 func get_level_stars(subject: String, level: int) -> int:
 	return level_progress[subject].get(level, 0)

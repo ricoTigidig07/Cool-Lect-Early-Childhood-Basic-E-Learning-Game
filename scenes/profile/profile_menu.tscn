@@ -1,0 +1,984 @@
+[gd_scene format=3 uid="uid://cprof1lemenu7"]
+
+[ext_resource type="Script" path="res://scenes/profile/profile_menu.gd" id="1_script"]
+[ext_resource type="Theme" uid="uid://b1oxrs8tp4hwy" path="res://assets/UI/cool_lect_theme.tres" id="2_theme"]
+[ext_resource type="PackedScene" path="res://scenes/main_menu/menu_background.tscn" id="3_bg"]
+[ext_resource type="Texture2D" uid="uid://daatfjfbe2wva" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/ALL UI ASSETS on one sheet.png" id="4_ui"]
+[ext_resource type="FontFile" uid="uid://cth151usmtkbc" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="5_font"]
+[ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green.tres" id="6_green"]
+[ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green_pressed.tres" id="7_green_pressed"]
+[ext_resource type="Texture2D" uid="uid://cahk1n1l61ysd" path="res://resources/filled_star.tres" id="8_star"]
+[ext_resource type="Texture2D" uid="uid://cng1500ljd7il" path="res://scenes/arrow_left.png" id="9_arrow"]
+[ext_resource type="SpriteFrames" uid="uid://b8v6g45voltm6" path="res://resources/character_animation.tres" id="10_player"]
+
+[sub_resource type="AtlasTexture" id="Minus"]
+atlas = ExtResource("4_ui")
+region = Rect2(514, 486, 12, 4)
+
+[sub_resource type="AtlasTexture" id="Plus"]
+atlas = ExtResource("4_ui")
+region = Rect2(498, 482, 12, 12)
+
+[sub_resource type="LabelSettings" id="Title"]
+font = ExtResource("5_font")
+font_size = 44
+font_color = Color(1, 0.98, 0.92, 1)
+outline_size = 12
+outline_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="LabelSettings" id="Header"]
+font = ExtResource("5_font")
+font_size = 30
+font_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="LabelSettings" id="Name"]
+font = ExtResource("5_font")
+font_size = 30
+font_color = Color(1, 0.98, 0.92, 1)
+outline_size = 8
+outline_color = Color(0.2, 0.36, 0.12, 1)
+
+[sub_resource type="LabelSettings" id="BigStars"]
+font = ExtResource("5_font")
+font_size = 44
+font_color = Color(0.93, 0.62, 0.12, 1)
+outline_size = 8
+outline_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="LabelSettings" id="BigNumber"]
+font = ExtResource("5_font")
+font_size = 60
+font_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="StyleBoxFlat" id="Card"]
+bg_color = Color(0.98, 0.93, 0.82, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 10
+border_color = Color(0.55, 0.36, 0.22, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0.2, 0.12, 0.08, 0.3)
+shadow_size = 10
+shadow_offset = Vector2(0, 6)
+
+[sub_resource type="StyleBoxFlat" id="Ribbon"]
+bg_color = Color(0.85, 0.42, 0.32, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 6
+border_color = Color(0.5, 0.22, 0.17, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="Nameplate"]
+bg_color = Color(0.45, 0.72, 0.33, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 8
+border_color = Color(0.25, 0.45, 0.17, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 12.0
+content_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="Spot"]
+bg_color = Color(0.93, 0.84, 0.66, 1)
+corner_radius_top_left = 70
+corner_radius_top_right = 70
+corner_radius_bottom_right = 70
+corner_radius_bottom_left = 70
+
+[sub_resource type="StyleBoxFlat" id="AgeBadge"]
+bg_color = Color(1, 0.98, 0.92, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 7
+border_color = Color(0.93, 0.69, 0.25, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="TotalsBox"]
+bg_color = Color(1, 0.97, 0.88, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.93, 0.69, 0.25, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="BarBack"]
+bg_color = Color(0.87, 0.78, 0.62, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.36, 0.22, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="BarFill"]
+bg_color = Color(0.45, 0.72, 0.33, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.36, 0.22, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="Dot_Fruits"]
+bg_color = Color(0.86, 0.3, 0.3, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="Dot_Animals"]
+bg_color = Color(0.62, 0.42, 0.24, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="Dot_Alphabets"]
+bg_color = Color(0.3, 0.5, 0.85, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="Dot_Numbers"]
+bg_color = Color(0.93, 0.6, 0.18, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="Dot_Shapes"]
+bg_color = Color(0.38, 0.66, 0.32, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="Dot_Colors"]
+bg_color = Color(0.62, 0.38, 0.78, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="Animation" id="Anim_RESET"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InfoCard:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(70, 130)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Achievements:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(480, 130)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EditWindow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EditWindow/Panel:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EditWindow:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Anim_intro"]
+resource_name = "intro"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InfoCard:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.55),
+"transitions": PackedFloat32Array(2, 0.5, 1),
+"update": 0,
+"values": [Vector2(-420, 130), Vector2(84, 130), Vector2(70, 130)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Achievements:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.55, 0.7),
+"transitions": PackedFloat32Array(1, 2, 0.5, 1),
+"update": 0,
+"values": [Vector2(1300, 130), Vector2(1300, 130), Vector2(466, 130), Vector2(480, 130)]
+}
+
+[sub_resource type="Animation" id="Anim_open_editor"]
+resource_name = "open_editor"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EditWindow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EditWindow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EditWindow/Panel:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.5, 1, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Anim_close_editor"]
+resource_name = "close_editor"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EditWindow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EditWindow/Panel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EditWindow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib"]
+_data = {
+&"RESET": SubResource("Anim_RESET"),
+&"close_editor": SubResource("Anim_close_editor"),
+&"intro": SubResource("Anim_intro"),
+&"open_editor": SubResource("Anim_open_editor")
+}
+
+[node name="ProfileMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
+
+[node name="MenuBackground" parent="." instance=ExtResource("3_bg")]
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.12, 0.08, 0.05, 0.35)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 22.0
+offset_right = 880.0
+offset_bottom = 100.0
+theme_override_styles/normal = SubResource("Ribbon")
+text = "My Profile"
+label_settings = SubResource("Title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 26.0
+offset_right = 164.0
+offset_bottom = 82.0
+text = "Back"
+icon = ExtResource("9_arrow")
+expand_icon = true
+
+[node name="InfoCard" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 130.0
+offset_right = 450.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("Card")
+
+[node name="AvatarSpot" type="Panel" parent="InfoCard"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 40.0
+offset_right = 260.0
+offset_bottom = 180.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Spot")
+
+[node name="Avatar" type="AnimatedSprite2D" parent="InfoCard/AvatarSpot"]
+texture_filter = 1
+position = Vector2(70, 62)
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("10_player")
+animation = &"idle_front"
+autoplay = "idle_front"
+
+[node name="Username" type="Label" parent="InfoCard"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 210.0
+offset_right = 350.0
+offset_bottom = 280.0
+theme_override_styles/normal = SubResource("Nameplate")
+text = "SunnyPanda27"
+label_settings = SubResource("Name")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="AgeLabel" type="Label" parent="InfoCard"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 295.0
+offset_right = 350.0
+offset_bottom = 340.0
+theme_override_font_sizes/font_size = 30
+text = "4 years old"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EditButton" type="Button" parent="InfoCard"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 400.0
+offset_right = 310.0
+offset_bottom = 470.0
+theme_override_font_sizes/font_size = 30
+text = "Edit Profile"
+
+[node name="Achievements" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 130.0
+offset_right = 1210.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("Card")
+
+[node name="Header" type="Label" parent="Achievements"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 22.0
+offset_right = 730.0
+offset_bottom = 62.0
+text = "My Achievements"
+label_settings = SubResource("Header")
+horizontal_alignment = 1
+
+[node name="Totals" type="Panel" parent="Achievements"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 76.0
+offset_right = 690.0
+offset_bottom = 156.0
+theme_override_styles/panel = SubResource("TotalsBox")
+
+[node name="StarIcon" type="TextureRect" parent="Achievements/Totals"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 14.0
+offset_right = 74.0
+offset_bottom = 66.0
+texture = ExtResource("8_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StarsTotal" type="Label" parent="Achievements/Totals"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 8.0
+offset_right = 330.0
+offset_bottom = 72.0
+text = "0 / 90"
+label_settings = SubResource("BigStars")
+vertical_alignment = 1
+
+[node name="LevelsTotal" type="Label" parent="Achievements/Totals"]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 8.0
+offset_right = 630.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 26
+text = "0 / 90 levels done"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Rows" type="VBoxContainer" parent="Achievements"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 176.0
+offset_right = 690.0
+offset_bottom = 490.0
+theme_override_constants/separation = 6
+
+[node name="Fruits" type="HBoxContainer" parent="Achievements/Rows"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Dot" type="Panel" parent="Achievements/Rows/Fruits"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("Dot_Fruits")
+
+[node name="Name" type="Label" parent="Achievements/Rows/Fruits"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Fruits"
+vertical_alignment = 1
+
+[node name="Bar" type="ProgressBar" parent="Achievements/Rows/Fruits"]
+custom_minimum_size = Vector2(250, 22)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("BarBack")
+theme_override_styles/fill = SubResource("BarFill")
+max_value = 15.0
+step = 1.0
+show_percentage = false
+
+[node name="Levels" type="Label" parent="Achievements/Rows/Fruits"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0/15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarIcon" type="TextureRect" parent="Achievements/Rows/Fruits"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stars" type="Label" parent="Achievements/Rows/Fruits"]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Animals" type="HBoxContainer" parent="Achievements/Rows"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Dot" type="Panel" parent="Achievements/Rows/Animals"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("Dot_Animals")
+
+[node name="Name" type="Label" parent="Achievements/Rows/Animals"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Animals"
+vertical_alignment = 1
+
+[node name="Bar" type="ProgressBar" parent="Achievements/Rows/Animals"]
+custom_minimum_size = Vector2(250, 22)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("BarBack")
+theme_override_styles/fill = SubResource("BarFill")
+max_value = 15.0
+step = 1.0
+show_percentage = false
+
+[node name="Levels" type="Label" parent="Achievements/Rows/Animals"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0/15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarIcon" type="TextureRect" parent="Achievements/Rows/Animals"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stars" type="Label" parent="Achievements/Rows/Animals"]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Alphabets" type="HBoxContainer" parent="Achievements/Rows"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Dot" type="Panel" parent="Achievements/Rows/Alphabets"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("Dot_Alphabets")
+
+[node name="Name" type="Label" parent="Achievements/Rows/Alphabets"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Alphabets"
+vertical_alignment = 1
+
+[node name="Bar" type="ProgressBar" parent="Achievements/Rows/Alphabets"]
+custom_minimum_size = Vector2(250, 22)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("BarBack")
+theme_override_styles/fill = SubResource("BarFill")
+max_value = 15.0
+step = 1.0
+show_percentage = false
+
+[node name="Levels" type="Label" parent="Achievements/Rows/Alphabets"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0/15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarIcon" type="TextureRect" parent="Achievements/Rows/Alphabets"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stars" type="Label" parent="Achievements/Rows/Alphabets"]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Numbers" type="HBoxContainer" parent="Achievements/Rows"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Dot" type="Panel" parent="Achievements/Rows/Numbers"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("Dot_Numbers")
+
+[node name="Name" type="Label" parent="Achievements/Rows/Numbers"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Numbers"
+vertical_alignment = 1
+
+[node name="Bar" type="ProgressBar" parent="Achievements/Rows/Numbers"]
+custom_minimum_size = Vector2(250, 22)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("BarBack")
+theme_override_styles/fill = SubResource("BarFill")
+max_value = 15.0
+step = 1.0
+show_percentage = false
+
+[node name="Levels" type="Label" parent="Achievements/Rows/Numbers"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0/15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarIcon" type="TextureRect" parent="Achievements/Rows/Numbers"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stars" type="Label" parent="Achievements/Rows/Numbers"]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Shapes" type="HBoxContainer" parent="Achievements/Rows"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Dot" type="Panel" parent="Achievements/Rows/Shapes"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("Dot_Shapes")
+
+[node name="Name" type="Label" parent="Achievements/Rows/Shapes"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Shapes"
+vertical_alignment = 1
+
+[node name="Bar" type="ProgressBar" parent="Achievements/Rows/Shapes"]
+custom_minimum_size = Vector2(250, 22)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("BarBack")
+theme_override_styles/fill = SubResource("BarFill")
+max_value = 15.0
+step = 1.0
+show_percentage = false
+
+[node name="Levels" type="Label" parent="Achievements/Rows/Shapes"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0/15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarIcon" type="TextureRect" parent="Achievements/Rows/Shapes"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stars" type="Label" parent="Achievements/Rows/Shapes"]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Colors" type="HBoxContainer" parent="Achievements/Rows"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Dot" type="Panel" parent="Achievements/Rows/Colors"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("Dot_Colors")
+
+[node name="Name" type="Label" parent="Achievements/Rows/Colors"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Colors"
+vertical_alignment = 1
+
+[node name="Bar" type="ProgressBar" parent="Achievements/Rows/Colors"]
+custom_minimum_size = Vector2(250, 22)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("BarBack")
+theme_override_styles/fill = SubResource("BarFill")
+max_value = 15.0
+step = 1.0
+show_percentage = false
+
+[node name="Levels" type="Label" parent="Achievements/Rows/Colors"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0/15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarIcon" type="TextureRect" parent="Achievements/Rows/Colors"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stars" type="Label" parent="Achievements/Rows/Colors"]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="EditWindow" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shade" type="ColorRect" parent="EditWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.06, 0.04, 0.55)
+
+[node name="Panel" type="Panel" parent="EditWindow"]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 110.0
+offset_right = 900.0
+offset_bottom = 640.0
+pivot_offset = Vector2(260, 265)
+theme_override_styles/panel = SubResource("Card")
+
+[node name="Title" type="Label" parent="EditWindow/Panel"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = -36.0
+offset_right = 460.0
+offset_bottom = 40.0
+theme_override_styles/normal = SubResource("Ribbon")
+text = "Edit Profile"
+label_settings = SubResource("Title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameHeader" type="Label" parent="EditWindow/Panel"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 60.0
+offset_right = 520.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 28
+text = "Your name"
+horizontal_alignment = 1
+
+[node name="Username" type="Label" parent="EditWindow/Panel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 100.0
+offset_right = 340.0
+offset_bottom = 166.0
+theme_override_styles/normal = SubResource("Nameplate")
+text = "SunnyPanda27"
+label_settings = SubResource("Name")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="ShuffleButton" type="Button" parent="EditWindow/Panel"]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 100.0
+offset_right = 484.0
+offset_bottom = 166.0
+theme_override_font_sizes/font_size = 26
+text = "Shuffle"
+
+[node name="AgeHeader" type="Label" parent="EditWindow/Panel"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 192.0
+offset_right = 520.0
+offset_bottom = 228.0
+theme_override_font_sizes/font_size = 28
+text = "Your age"
+horizontal_alignment = 1
+
+[node name="AgePicker" type="HBoxContainer" parent="EditWindow/Panel"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 236.0
+offset_right = 460.0
+offset_bottom = 346.0
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="MinusButton" type="Button" parent="EditWindow/Panel/AgePicker"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+size_flags_vertical = 4
+icon = SubResource("Minus")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AgeLabel" type="Label" parent="EditWindow/Panel/AgePicker"]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+theme_override_styles/normal = SubResource("AgeBadge")
+text = "4"
+label_settings = SubResource("BigNumber")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlusButton" type="Button" parent="EditWindow/Panel/AgePicker"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+size_flags_vertical = 4
+icon = SubResource("Plus")
+icon_alignment = 1
+expand_icon = true
+
+[node name="CancelButton" type="Button" parent="EditWindow/Panel"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 400.0
+offset_right = 250.0
+offset_bottom = 470.0
+theme_override_font_sizes/font_size = 30
+text = "Cancel"
+
+[node name="SaveButton" type="Button" parent="EditWindow/Panel"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 400.0
+offset_right = 470.0
+offset_bottom = 470.0
+theme_override_colors/font_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_hover_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_pressed_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_styles/normal = ExtResource("6_green")
+theme_override_styles/hover = ExtResource("6_green")
+theme_override_styles/pressed = ExtResource("7_green_pressed")
+theme_override_font_sizes/font_size = 32
+text = "Save"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("Lib")
+autoplay = &"intro"

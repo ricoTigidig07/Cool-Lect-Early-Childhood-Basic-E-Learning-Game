@@ -1,0 +1,504 @@
+[gd_scene format=3 uid="uid://10tlhpgc8t6"]
+
+[ext_resource type="Script" uid="uid://c8oe43lwssphh" path="res://scenes/welcome/new_player.gd" id="1_script"]
+[ext_resource type="Theme" uid="uid://b1oxrs8tp4hwy" path="res://assets/UI/cool_lect_theme.tres" id="2_theme"]
+[ext_resource type="PackedScene" path="res://scenes/main_menu/menu_background.tscn" id="3_bg"]
+[ext_resource type="Texture2D" uid="uid://daatfjfbe2wva" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/ALL UI ASSETS on one sheet.png" id="4_ui"]
+[ext_resource type="FontFile" uid="uid://cth151usmtkbc" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="5_font"]
+[ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green.tres" id="6_green"]
+[ext_resource type="FontFile" uid="uid://cxwtohkgbp0xh" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/fonts/Font files TTF/pixelFont-2-5x5-sproutLands.ttf" id="6_tj8yj"]
+[ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green_pressed.tres" id="7_green_pressed"]
+[ext_resource type="Texture2D" uid="uid://cng1500ljd7il" path="res://scenes/arrow_left.png" id="8_arrow"]
+[ext_resource type="SpriteFrames" uid="uid://mdg0i8hf5s5p" path="res://resources/avatar_animations.tres" id="9_tj8yj"]
+[ext_resource type="FontFile" uid="uid://cly4uckxteoah" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/fonts/Font files TTF/pixelFont-7-8x14-sproutLands.ttf" id="10_lyen1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyen1"]
+atlas = ExtResource("4_ui")
+region = Rect2(587, 92, 58, 57)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0uqbd"]
+texture = SubResource("AtlasTexture_lyen1")
+texture_margin_left = 20.0
+texture_margin_top = 19.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+region_rect = Rect2(0, 0, 58, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rnhg"]
+atlas = ExtResource("4_ui")
+region = Rect2(443, 59, 26, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wuhys"]
+texture = SubResource("AtlasTexture_1rnhg")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="LabelSettings" id="Title"]
+font = ExtResource("6_tj8yj")
+font_size = 48
+font_color = Color(1, 0.98, 0.92, 1)
+outline_size = 12
+outline_color = Color(0.36, 0.22, 0.15, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="Hint"]
+font = ExtResource("5_font")
+font_size = 22
+font_color = Color(0.36, 0.22, 0.15, 0.8)
+
+[sub_resource type="AtlasTexture" id="Minus"]
+atlas = ExtResource("4_ui")
+region = Rect2(514, 486, 12, 4)
+
+[sub_resource type="StyleBoxFlat" id="AgeBadge"]
+bg_color = Color(1, 0.98, 0.92, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 8
+border_color = Color(0.93, 0.69, 0.25, 1)
+corner_radius_top_left = 70
+corner_radius_top_right = 70
+corner_radius_bottom_right = 70
+corner_radius_bottom_left = 70
+
+[sub_resource type="LabelSettings" id="BigNumber"]
+font = ExtResource("6_tj8yj")
+font_size = 84
+font_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="AtlasTexture" id="Plus"]
+atlas = ExtResource("4_ui")
+region = Rect2(498, 482, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uqbd"]
+atlas = ExtResource("4_ui")
+region = Rect2(587, 92, 58, 57)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1rnhg"]
+texture = SubResource("AtlasTexture_0uqbd")
+texture_margin_left = 20.0
+texture_margin_top = 19.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuhys"]
+atlas = ExtResource("4_ui")
+region = Rect2(443, 59, 26, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vskgi"]
+texture = SubResource("AtlasTexture_wuhys")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="Spot"]
+bg_color = Color(0.93, 0.84, 0.66, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="Nameplate"]
+content_margin_left = 24.0
+content_margin_right = 24.0
+bg_color = Color(0.803714, 0.973021, 0.7369151, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 8
+border_color = Color(0.35840267, 0.6329987, 0.24469045, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="LabelSettings" id="Name"]
+font = ExtResource("10_lyen1")
+font_size = 40
+font_color = Color(1, 0.98, 0.92, 1)
+outline_size = 8
+outline_color = Color(0.2, 0.36, 0.12, 1)
+
+[sub_resource type="Animation" id="Anim_RESET"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AgePage:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AgePage:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Dim:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.12, 0.08, 0.05, 0.35)]
+}
+
+[sub_resource type="Animation" id="Anim_intro"]
+resource_name = "intro"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AgePage:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AgePage:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.6, 0.72),
+"transitions": PackedFloat32Array(2, 0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0, -720), Vector2(0, 0), Vector2(0, -24), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Dim:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.12, 0.08, 0.05, 0), Color(0.12, 0.08, 0.05, 0.35)]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_intro"]
+_data = {
+&"RESET": SubResource("Anim_RESET"),
+&"intro": SubResource("Anim_intro")
+}
+
+[sub_resource type="Animation" id="Anim_idle_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AgePage/Title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(340, 70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NamePage/Title:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(340, 70)]
+}
+
+[sub_resource type="Animation" id="Anim_idle"]
+resource_name = "idle_loop"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AgePage/Title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(340, 70), Vector2(340, 62), Vector2(340, 70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NamePage/Title:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(340, 70), Vector2(340, 62), Vector2(340, 70)]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_idle"]
+_data = {
+&"RESET": SubResource("Anim_idle_reset"),
+&"idle_loop": SubResource("Anim_idle")
+}
+
+[node name="NewPlayer" type="Control" unique_id=1566827473]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
+
+[node name="MenuBackground" parent="." unique_id=363009076 instance=ExtResource("3_bg")]
+
+[node name="Dim" type="ColorRect" parent="." unique_id=314945034]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.12, 0.08, 0.05, 0.35)
+
+[node name="AgePage" type="Control" parent="." unique_id=1780950599]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="Panel" parent="AgePage" unique_id=2053361761]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 110.0
+offset_right = 940.0
+offset_bottom = 620.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0uqbd")
+
+[node name="Title" type="Label" parent="AgePage" unique_id=1912537287]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 70.0
+offset_right = 940.0
+offset_bottom = 150.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_wuhys")
+text = "How old are you?"
+label_settings = SubResource("Title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="Label" parent="AgePage" unique_id=807905282]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 170.0
+offset_right = 940.0
+offset_bottom = 205.0
+text = "Tap + or - to pick your age"
+label_settings = SubResource("Hint")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AgePicker" type="HBoxContainer" parent="AgePage" unique_id=1605376293]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 225.0
+offset_right = 900.0
+offset_bottom = 385.0
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="MinusButton" type="Button" parent="AgePage/AgePicker" unique_id=37250077]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+size_flags_vertical = 4
+icon = SubResource("Minus")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AgeLabel" type="Label" parent="AgePage/AgePicker" unique_id=699849210]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_tj8yj")
+theme_override_styles/normal = SubResource("AgeBadge")
+text = "4"
+label_settings = SubResource("BigNumber")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlusButton" type="Button" parent="AgePage/AgePicker" unique_id=452585096]
+custom_minimum_size = Vector2(110, 110)
+layout_mode = 2
+size_flags_vertical = 4
+icon = SubResource("Plus")
+icon_alignment = 1
+expand_icon = true
+
+[node name="YearsOld" type="Label" parent="AgePage" unique_id=538467272]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 395.0
+offset_right = 940.0
+offset_bottom = 440.0
+theme_override_font_sizes/font_size = 30
+text = "years old"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextButton" type="Button" parent="AgePage" unique_id=1677807447]
+layout_mode = 0
+offset_left = 490.0
+offset_top = 490.0
+offset_right = 790.0
+offset_bottom = 570.0
+theme_override_colors/font_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_pressed_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_hover_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("6_green")
+theme_override_styles/pressed = ExtResource("7_green_pressed")
+theme_override_styles/hover = ExtResource("6_green")
+text = "Next"
+
+[node name="NamePage" type="Control" parent="." unique_id=2051132227]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="Panel" parent="NamePage" unique_id=1800086470]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 110.0
+offset_right = 940.0
+offset_bottom = 620.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1rnhg")
+
+[node name="Title" type="Label" parent="NamePage" unique_id=1090225310]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 70.0
+offset_right = 971.0
+offset_bottom = 170.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_vskgi")
+text = "Hi, new friend!"
+label_settings = SubResource("Title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AvatarSpot" type="Panel" parent="NamePage" unique_id=84144259]
+layout_mode = 0
+offset_left = 580.0
+offset_top = 168.0
+offset_right = 700.0
+offset_bottom = 288.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Spot")
+
+[node name="Avatar" type="AnimatedSprite2D" parent="NamePage/AvatarSpot" unique_id=483385856]
+texture_filter = 1
+position = Vector2(60, 65.99999)
+scale = Vector2(2.9999998, 3.1562502)
+sprite_frames = ExtResource("9_tj8yj")
+animation = &"Blinking"
+
+[node name="YourName" type="Label" parent="NamePage" unique_id=1724972179]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 300.0
+offset_right = 940.0
+offset_bottom = 340.0
+theme_override_font_sizes/font_size = 30
+text = "Your name is"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Username" type="Label" parent="NamePage" unique_id=106395938]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 348.0
+offset_right = 880.0
+offset_bottom = 428.0
+theme_override_styles/normal = SubResource("Nameplate")
+text = "SunnyPanda27"
+label_settings = SubResource("Name")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShuffleButton" type="Button" parent="NamePage" unique_id=2010923019]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 490.0
+offset_right = 620.0
+offset_bottom = 570.0
+theme_override_font_sizes/font_size = 32
+text = "Shuffle"
+
+[node name="PlayButton" type="Button" parent="NamePage" unique_id=1056587646]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 490.0
+offset_right = 890.0
+offset_bottom = 570.0
+theme_override_colors/font_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_pressed_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_hover_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("6_green")
+theme_override_styles/pressed = ExtResource("7_green_pressed")
+theme_override_styles/hover = ExtResource("6_green")
+text = "Let's Play!"
+
+[node name="BackButton" type="Button" parent="NamePage" unique_id=719280949]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 164.0
+offset_bottom = 76.0
+text = "Back"
+icon = ExtResource("8_arrow")
+expand_icon = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=493327241]
+libraries/ = SubResource("Lib_intro")
+autoplay = &"intro"
+
+[node name="IdleAnimation" type="AnimationPlayer" parent="." unique_id=1015214164]
+libraries/ = SubResource("Lib_idle")
+autoplay = &"idle_loop"
