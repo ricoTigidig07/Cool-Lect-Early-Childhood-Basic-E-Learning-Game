@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MissionTextData" format=3 uid="uid://337grg14kohh"]
+
+[ext_resource type="Script" uid="uid://dgny0mq00niwd" path="res://scenes/mission_text_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+mission_1_text = "Talk to the Painter!"
+mission_2_text = "Find the paint and color the apple!"
+mission_3_text = "Show the Painter your painting!"
