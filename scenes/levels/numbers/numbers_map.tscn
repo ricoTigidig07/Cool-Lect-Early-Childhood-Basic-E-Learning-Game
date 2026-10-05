@@ -178,14 +178,14 @@ region = Rect2(375, 40, 18, 17)
 atlas = ExtResource("13_ae43b")
 region = Rect2(1, 32, 14, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yas5d"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r6wio"]
 texture = SubResource("AtlasTexture_pphfc")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0obn"]
 atlas = ExtResource("13_ae43b")
 region = Rect2(1, 64, 14, 16)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cw0l7"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hk73m"]
 texture = SubResource("AtlasTexture_m0obn")
 region_rect = Rect2(0, 0, 14, 16)
 
@@ -193,13 +193,13 @@ region_rect = Rect2(0, 0, 14, 16)
 atlas = ExtResource("13_ae43b")
 region = Rect2(17, 65, 14, 15)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5c241"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0oygc"]
 texture = SubResource("AtlasTexture_qy2q1")
 
 [sub_resource type="Theme" id="Theme_tqft7"]
-Button/styles/hover = SubResource("StyleBoxTexture_yas5d")
-Button/styles/normal = SubResource("StyleBoxTexture_cw0l7")
-Button/styles/pressed = SubResource("StyleBoxTexture_5c241")
+Button/styles/hover = SubResource("StyleBoxTexture_r6wio")
+Button/styles/normal = SubResource("StyleBoxTexture_hk73m")
+Button/styles/pressed = SubResource("StyleBoxTexture_0oygc")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qcy4x"]
 region = Rect2(0, 64, 16, 16)
@@ -213,27 +213,27 @@ atlas = ExtResource("15_pe8ja")
 atlas = ExtResource("12_b8st7")
 region = Rect2(645, 68, 22, 24)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dte6w"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ua7i3"]
 texture = SubResource("AtlasTexture_gd8ol")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_75504"]
 atlas = ExtResource("12_b8st7")
 region = Rect2(645, 68, 22, 24)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tbwvr"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xexv0"]
 texture = SubResource("AtlasTexture_75504")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2i7an"]
 atlas = ExtResource("12_b8st7")
 region = Rect2(677, 68, 22, 24)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0yqxr"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6acjl"]
 texture = SubResource("AtlasTexture_2i7an")
 
 [sub_resource type="Theme" id="Theme_yg0b5"]
-Button/styles/hover = SubResource("StyleBoxTexture_dte6w")
-Button/styles/normal = SubResource("StyleBoxTexture_tbwvr")
-Button/styles/pressed = SubResource("StyleBoxTexture_0yqxr")
+Button/styles/hover = SubResource("StyleBoxTexture_ua7i3")
+Button/styles/normal = SubResource("StyleBoxTexture_xexv0")
+Button/styles/pressed = SubResource("StyleBoxTexture_6acjl")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ip0xv"]
 atlas = ExtResource("18_3ivb8")
