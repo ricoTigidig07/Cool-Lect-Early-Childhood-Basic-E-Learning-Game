@@ -17,6 +17,8 @@ const NAME_LABEL_SCENE := preload("res://scenes/components/name_label.tscn")
 @onready var name_label: Label = get_node_or_null("NameLabel")
 
 var player_ref: Node2D = null
+## The player who picked this up (player_ref is cleared when the area stops monitoring).
+var collector: Node2D = null
 var is_collecting: bool = false
 var is_holding: bool = false
 var hold_progress: float = 0.0
@@ -65,6 +67,8 @@ func _on_body_exited(body: Node2D) -> void:
 func start_hold() -> void:
 	if is_collecting:
 		return
+	if player_ref and player_ref.has_method("face_toward"):
+		player_ref.face_toward(global_position)
 	is_holding = true
 	hold_progress = 0.0
 	hold_indicator.visible = true
@@ -93,6 +97,7 @@ func interact() -> void:
 	if is_collecting:
 		return
 	is_collecting = true
+	collector = player_ref
 	set_deferred("monitoring", false)
 	InteractionManager.unregister(self)
 	name_label.visible = false
@@ -106,29 +111,59 @@ func interact() -> void:
 
 	_play_pickup_animation()
 
+const COLLECT_FX := preload("res://scenes/components/collect_fx.tscn")
+
+## Pickup animation (same feel as the main menu): the item squashes, hops in an
+## arc over the player's head while spinning, bursts into a star + sparkles,
+## then drops into the player, who does a happy little hop.
 func _play_pickup_animation() -> void:
-	var above_player = global_position
-	if player_ref:
-		above_player = player_ref.global_position + Vector2(0, -20)
+	var start := global_position
+	var target := start + Vector2(0, -20)
+	if collector:
+		target = collector.global_position + Vector2(0, -24)
+	var peak := (start + target) / 2.0 + Vector2(0, -28)
+	z_index = 50
+	_player_hop()    
+	var t := create_tween()
+	# 1. squash and stretch, getting ready to jump
+	t.tween_property(self, "scale", Vector2(1.3, 0.7), 0.07)
+	t.tween_property(self, "scale", Vector2(0.8, 1.25), 0.07)
+	# 2. hop along an arc to above the player's head, spinning
+	t.tween_method(_move_on_arc.bind(start, peak, target), 0.0, 1.0, 0.38).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	t.parallel().tween_property(self, "rotation_degrees", 360.0, 0.38)
+	t.parallel().tween_property(self, "scale", Vector2.ONE * 1.35, 0.38)
+	# 3. star + sparkles, a little bounce in the air
+	t.tween_callback(_burst.bind(target))
+	t.tween_property(self, "scale", Vector2.ONE, 0.07)
+	t.tween_property(self, "scale", Vector2.ONE * 1.2, 0.07)
+	t.tween_interval(0.12)
+	# 4. drop into the player
+	t.tween_property(self, "global_position", target + Vector2(0, 18), 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	t.parallel().tween_property(self, "scale", Vector2.ZERO, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	t.tween_callback(_finish_collect)
 
-	var tween = create_tween()
-	tween.tween_property(self, "global_position", above_player, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.tween_callback(_play_shake)
+## Moves along a curve from a to c, bending towards b (a smooth jump arc).
+func _move_on_arc(progress: float, a: Vector2, b: Vector2, c: Vector2) -> void:
+	global_position = a.lerp(b, progress).lerp(b.lerp(c, progress), progress)
 
-func _play_shake() -> void:
-	var shake_tween = create_tween()
-	shake_tween.tween_property(self, "rotation_degrees", 15.0, 0.06)
-	shake_tween.tween_property(self, "rotation_degrees", -15.0, 0.06)
-	shake_tween.tween_property(self, "rotation_degrees", 10.0, 0.06)
-	shake_tween.tween_property(self, "rotation_degrees", -10.0, 0.06)
-	shake_tween.tween_property(self, "rotation_degrees", 0.0, 0.06)
-	shake_tween.tween_callback(_play_shrink_down)
+func _burst(at: Vector2) -> void:
+	var fx := COLLECT_FX.instantiate()
+	var holder: Node = get_tree().current_scene if get_tree().current_scene else get_parent()
+	holder.add_child(fx)
+	fx.global_position = at
 
-func _play_shrink_down() -> void:
-	var shrink_tween = create_tween()
-	shrink_tween.tween_property(self, "global_position:y", global_position.y + 20.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	shrink_tween.parallel().tween_property(self, "scale", Vector2.ZERO, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	shrink_tween.tween_callback(_finish_collect)
+func _player_hop() -> void:
+	if collector == null or not is_instance_valid(collector):
+		return
+	if collector.has_method("celebrate"):
+		collector.celebrate()
+		return
+	var body = collector.get_node_or_null("AnimatedSprite2D2")
+	if body == null:
+		return
+	var t := body.create_tween()
+	t.tween_property(body, "position:y", -11.0, 0.08).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	t.tween_property(body, "position:y", -6.0, 0.12).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 
 func _finish_collect() -> void:
 	QuestManager.collect_item(collectable_name)

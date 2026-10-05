@@ -11,6 +11,66 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_jk2m4"]
 radius = 3.0
 
+[sub_resource type="Animation" id="Anim_reaction_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Anim_collect"]
+resource_name = "collect"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.24, 0.32),
+"transitions": PackedFloat32Array(-2, -2, 1, 1),
+"update": 0,
+"values": [Vector2(0, -6), Vector2(0, -11), Vector2(0, -6), Vector2(0, -6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.24, 0.3, 0.36),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.15, 0.85), Vector2(0.9, 1.1), Vector2(1, 1), Vector2(1.1, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_reactions"]
+_data = {
+&"RESET": SubResource("Anim_reaction_reset"),
+&"collect": SubResource("Anim_collect")
+}
+
 [node name="Player" type="CharacterBody2D" unique_id=629997432]
 script = ExtResource("1_rp718")
 
@@ -38,3 +98,6 @@ current_tool = 0
 [node name="HitComponentCollisionShape2D" type="CollisionShape2D" parent="HitComponent" unique_id=2084789063]
 shape = SubResource("CircleShape2D_jk2m4")
 debug_color = Color(0.99552125, 0, 0.21178854, 0.41960785)
+
+[node name="Reactions" type="AnimationPlayer" parent="." unique_id=2068782874]
+libraries/ = SubResource("Lib_reactions")
