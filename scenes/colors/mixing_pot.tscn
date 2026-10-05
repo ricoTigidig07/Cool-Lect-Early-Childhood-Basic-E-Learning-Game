@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://ed9u5ujhlcs5"]
+
+[ext_resource type="Script" uid="uid://ykcug9q4vb7w" path="res://scenes/colors/mixing_pot.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bjcyjcq0481lr" path="res://assets/colors/pot.png" id="2_pot"]
+[ext_resource type="Texture2D" uid="uid://dmlr64b9di9w" path="res://assets/colors/pot_paint.png" id="3_paint"]
+[ext_resource type="LabelSettings" uid="uid://bklonu8a97y5u" path="res://scenes/collectables/fruits/fruit_name_label.tres" id="4_label"]
+[ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="hold"]
+
+[sub_resource type="CircleShape2D" id="Body"]
+radius = 10.0
+
+[sub_resource type="CircleShape2D" id="Area"]
+radius = 22.0
+
+[node name="MixingPot" type="Area2D"]
+script = ExtResource("1_script")
+
+[node name="Pot" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("2_pot")
+
+[node name="Paint" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("3_paint")
+
+[node name="Bubble" type="Label" parent="."]
+z_index = 100
+offset_left = -50.0
+offset_top = -36.0
+offset_right = 150.0
+offset_bottom = -18.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+text = "Mix two colors!"
+label_settings = ExtResource("4_label")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -4)
+shape = SubResource("Body")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("Area")
+
+[node name="HoldIndicator" parent="." instance=ExtResource("hold")]
+z_index = 100
+offset_left = -10.0
+offset_top = 4.0
+offset_right = 10.0
+offset_bottom = 11.0

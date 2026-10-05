@@ -10,6 +10,10 @@ signal collected(collectable_name: String, item_type: String)
 const HOLD_DURATION := 1.0
 
 @onready var hold_indicator: TextureProgressBar = $HoldIndicator
+const NAME_LABEL_SCENE := preload("res://scenes/components/name_label.tscn")
+## Name shown above the item when the player is near. Empty = use Collectable Name.
+@export var display_name: String = ""
+
 @onready var name_label: Label = get_node_or_null("NameLabel")
 
 var player_ref: Node2D = null
@@ -21,8 +25,14 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	hold_indicator.visible = false
-	if name_label:
-		name_label.visible = false
+	if name_label == null:
+		name_label = NAME_LABEL_SCENE.instantiate()
+		add_child(name_label)
+	if display_name != "":
+		name_label.text = display_name
+	elif name_label.text == "" or name_label.text == "Name":
+		name_label.text = collectable_name.substr(0, 1).to_upper() + collectable_name.substr(1)
+	name_label.visible = false
 	if item_type == "fruits":
 		_hide_until_quest()
 
@@ -44,14 +54,12 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player01:
 		InteractionManager.register(self)
 		player_ref = body
-	if name_label:
 		name_label.visible = true
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player01:
 		InteractionManager.unregister(self)
 		player_ref = null
-	if name_label:
 		name_label.visible = false
 
 func start_hold() -> void:
@@ -87,7 +95,8 @@ func interact() -> void:
 	is_collecting = true
 	set_deferred("monitoring", false)
 	InteractionManager.unregister(self)
-
+	name_label.visible = false
+	
 	var shadow = get_node_or_null("Shadow")
 	if shadow:
 		shadow.visible = false
