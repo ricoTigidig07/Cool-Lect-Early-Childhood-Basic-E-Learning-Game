@@ -17,7 +17,7 @@ const MIN_AGE := 4
 @onready var back_button: Button = $BackButton
 
 @onready var edit_window: Control = $EditWindow
-@onready var edit_username: Label = $EditWindow/Panel/Username
+@onready var edit_username: LineEdit = $EditWindow/Panel/Username
 @onready var shuffle_button: Button = $EditWindow/Panel/ShuffleButton
 @onready var edit_age: Label = $EditWindow/Panel/AgePicker/AgeLabel
 @onready var minus_button: Button = $EditWindow/Panel/AgePicker/MinusButton
@@ -37,6 +37,8 @@ func _ready() -> void:
 	plus_button.pressed.connect(_change_age.bind(1))
 	save_button.pressed.connect(_save)
 	cancel_button.pressed.connect(_close_editor)
+	edit_username.text_changed.connect(_on_name_typed)
+	edit_username.text_submitted.connect(func(_t): _save())
 	edit_window.visible = false
 	_refresh()
 
@@ -78,14 +80,32 @@ func _open_editor() -> void:
 	_update_age()
 	edit_window.visible = true
 	anim.play("open_editor")
+	await anim.animation_finished
+	# start typing right away: this pops up the virtual keyboard on phones/tablets
+	edit_username.grab_focus()
+	edit_username.edit()
 
 func _close_editor() -> void:
+	edit_username.unedit()          # hides the virtual keyboard
+	edit_username.release_focus()
 	anim.play("close_editor")
 
 func _shuffle() -> void:
 	draft_name = PlayerProfile.make_username()
 	edit_username.text = draft_name
 	_pop(edit_username)
+
+## Only letters and numbers in a username.
+func _on_name_typed(new_text: String) -> void:
+	var clean := ""
+	for c in new_text:
+		if c.is_valid_identifier() or c.is_valid_int():
+			clean += c
+	if clean != new_text:
+		var caret := edit_username.caret_column
+		edit_username.text = clean
+		edit_username.caret_column = min(caret, clean.length())
+	draft_name = clean
 
 func _change_age(step: int) -> void:
 	draft_age = max(MIN_AGE, draft_age + step)
@@ -97,6 +117,10 @@ func _update_age() -> void:
 	minus_button.disabled = draft_age <= MIN_AGE
 
 func _save() -> void:
+	draft_name = edit_username.text.strip_edges()
+	if draft_name == "":
+		_pop(edit_username)        # nothing typed yet
+		return
 	PlayerProfile.create_profile(draft_age, draft_name)
 	_refresh()
 	_pop(username_label)

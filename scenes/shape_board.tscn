@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ntk4b13jol09"]
+[gd_scene format=3 uid="uid://ntk4b13jol1a"]
 
 [ext_resource type="Script" uid="uid://j7ir5q51yqum" path="res://scenes/shape_board.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="2_hold"]
