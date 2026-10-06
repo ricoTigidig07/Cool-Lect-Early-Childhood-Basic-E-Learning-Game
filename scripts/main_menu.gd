@@ -10,11 +10,7 @@ extends Control
 @onready var subject_selector: Control = $SubjectSelector
 
 func _ready() -> void:
-	# first time playing: ask the age and give a username first
-	if not PlayerProfile.has_profile():
-		get_tree().change_scene_to_file.call_deferred("res://scenes/welcome/NewPlayer.tscn")
-		return
-	for b in [$ButtonRow/ProfileButton, $ButtonRow/SettingsButton, $ButtonRow/CreditsButton]:
+	for b in [$ButtonRow/CharactersButton, $ButtonRow/SettingsButton, $ButtonRow/CreditsButton]:
 		b.pivot_offset = b.size / 2.0
 		b.mouse_entered.connect(_squish.bind(b, 1.06))
 		b.mouse_exited.connect(_squish.bind(b, 1.0))
@@ -31,8 +27,8 @@ func _on_play_button_pressed() -> void:
 func _on_subject_selector_closed() -> void:
 	anim.play("close_subjects")
 
-func _on_profile_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/profile/profile_menu.tscn")
+func _on_characters_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/character_selector.tscn")
 
 func _on_settings_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/settings.tscn")
