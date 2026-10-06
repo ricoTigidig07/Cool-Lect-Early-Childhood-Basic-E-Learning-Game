@@ -7,6 +7,7 @@ const SPEED = 50.0
 @onready var camera = $Camera2D
 @onready var joystick = get_node("../GameUI/JoystickControl")
 @onready var shadow = $Shadow
+@onready var reactions: AnimationPlayer = get_node_or_null("Reactions")
 
 const BOB_SPEED = 6.5
 const SHADOW_MIN_SCALE = 0.75
@@ -80,6 +81,25 @@ func update_shadow(direction: Vector2, delta: float) -> void:
 	if shadow:
 		var shadow_scale = lerp(SHADOW_MAX_SCALE, SHADOW_MIN_SCALE, bob)
 		shadow.scale = Vector2(shadow_scale, shadow_scale * 0.5)
+
+# ---------- reactions (same feel as the main menu player) ----------
+
+## Turns the player to look at something (e.g. the item being picked up).
+func face_toward(target_position: Vector2) -> void:
+	var dir := target_position - global_position
+	if dir.length() < 1.0:
+		return
+	if abs(dir.x) > abs(dir.y):
+		last_direction = "right" if dir.x > 0 else "left"
+	else:
+		last_direction = "down" if dir.y > 0 else "up"
+
+## Happy hop + a star floating up when something is collected.
+## Edit it in player.tscn → Reactions → "collect".
+func celebrate() -> void:
+	if reactions:
+		reactions.stop()
+		reactions.play("collect")
 
 func _on_button_button_up() -> void:
 	InteractionManager.button_up()

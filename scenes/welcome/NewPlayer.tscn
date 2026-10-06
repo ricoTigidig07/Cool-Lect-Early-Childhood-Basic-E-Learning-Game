@@ -10,7 +10,6 @@
 [ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green_pressed.tres" id="7_green_pressed"]
 [ext_resource type="Texture2D" uid="uid://cng1500ljd7il" path="res://scenes/arrow_left.png" id="8_arrow"]
 [ext_resource type="SpriteFrames" uid="uid://mdg0i8hf5s5p" path="res://resources/avatar_animations.tres" id="9_tj8yj"]
-[ext_resource type="FontFile" uid="uid://cly4uckxteoah" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/fonts/Font files TTF/pixelFont-7-8x14-sproutLands.ttf" id="10_lyen1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lyen1"]
 atlas = ExtResource("4_ui")
@@ -115,13 +114,6 @@ corner_radius_top_left = 14
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
-
-[sub_resource type="LabelSettings" id="Name"]
-font = ExtResource("10_lyen1")
-font_size = 40
-font_color = Color(1, 0.98, 0.92, 1)
-outline_size = 8
-outline_color = Color(0.2, 0.36, 0.12, 1)
 
 [sub_resource type="Animation" id="Anim_RESET"]
 length = 0.001
@@ -261,7 +253,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(-2, -2, -2),
 "update": 0,
-"values": [Vector2(340, 70), Vector2(340, 62), Vector2(340, 70)]
+"values": [Vector2(327, 70), Vector2(327, 62), Vector2(327, 70)]
 }
 
 [sub_resource type="AnimationLibrary" id="Lib_idle"]
@@ -314,7 +306,7 @@ layout_mode = 0
 offset_left = 340.0
 offset_top = 70.0
 offset_right = 940.0
-offset_bottom = 150.0
+offset_bottom = 150.00232
 theme_override_styles/normal = SubResource("StyleBoxTexture_wuhys")
 text = "How old are you?"
 label_settings = SubResource("Title")
@@ -415,7 +407,7 @@ layout_mode = 0
 offset_left = 340.0
 offset_top = 70.0
 offset_right = 971.0
-offset_bottom = 170.0
+offset_bottom = 170.00146
 theme_override_styles/normal = SubResource("StyleBoxTexture_vskgi")
 text = "Hi, new friend!"
 label_settings = SubResource("Title")
@@ -449,17 +441,21 @@ text = "Your name is"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Username" type="Label" parent="NamePage" unique_id=106395938]
+[node name="Username" type="LineEdit" parent="NamePage" unique_id=322254135]
 layout_mode = 0
 offset_left = 400.0
 offset_top = 348.0
 offset_right = 880.0
 offset_bottom = 428.0
+theme_override_colors/font_color = Color(1, 0.98, 0.92, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.36, 0.12, 1)
+theme_override_constants/outline_size = 8
 theme_override_styles/normal = SubResource("Nameplate")
-text = "SunnyPanda27"
-label_settings = SubResource("Name")
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "S"
+placeholder_text = "Type a name (16 char)"
+alignment = 1
+max_length = 16
+select_all_on_focus = true
 
 [node name="ShuffleButton" type="Button" parent="NamePage" unique_id=2010923019]
 layout_mode = 0
