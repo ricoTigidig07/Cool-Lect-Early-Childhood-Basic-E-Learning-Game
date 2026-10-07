@@ -31,6 +31,23 @@ const LEVEL_SCENES := {
 	"animals": {1: "res://scenes/levels/animals/Lvl1Chicken/Animals_Tilemap.tscn"},
 	"alphabets": {1: "res://scenes/levels/alphabets/alphabet_map.tscn"},
 	"numbers": {1: "res://scenes/levels/numbers/number_map.tscn"},
+	"shapes": {
+		1: "res://scenes/levels/shapes/Lvl1House/Lvl1HouseMap.tscn",
+		2: "res://scenes/levels/shapes/Lvl2Train/Lvl2TrainMap.tscn",
+		3: "res://scenes/levels/shapes/Lvl3NightSky/Lvl3NightSkyMap.tscn",
+		4: "res://scenes/levels/shapes/Lvl4GiftBox/Lvl4GiftBoxMap.tscn",
+		5: "res://scenes/levels/shapes/Lvl5Snowman/Lvl5SnowmanMap.tscn",
+		6: "res://scenes/levels/shapes/Lvl6Kite/Lvl6KiteMap.tscn",
+		7: "res://scenes/levels/shapes/Lvl7Car/Lvl7CarMap.tscn",
+		8: "res://scenes/levels/shapes/Lvl8Rocket/Lvl8RocketMap.tscn",
+		9: "res://scenes/levels/shapes/Lvl9Castle/Lvl9CastleMap.tscn",
+		10: "res://scenes/levels/shapes/Lvl10Flower/Lvl10FlowerMap.tscn",
+		11: "res://scenes/levels/shapes/Lvl11Boat/Lvl11BoatMap.tscn",
+		12: "res://scenes/levels/shapes/Lvl12Robot/Lvl12RobotMap.tscn",
+		13: "res://scenes/levels/shapes/Lvl13IceCream/Lvl13IceCreamMap.tscn",
+		14: "res://scenes/levels/shapes/Lvl14Butterfly/Lvl14ButterflyMap.tscn",
+		15: "res://scenes/levels/shapes/Lvl15ShapeTown/Lvl15ShapeTownMap.tscn",
+	},
 }
 
 @onready var map: Node2D = $Map
