@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://ccenuh5iqv2ci" path="res://scenes/tilesets/land_tileset.tres" id="2_gg5sf"]
 [ext_resource type="TileSet" uid="uid://cjh1t8bl1l8lf" path="res://scenes/tilesets/House_tile_set.tres" id="3_ccw5t"]
 [ext_resource type="PackedScene" uid="uid://ddijrpvpg81cp" path="res://scenes/characters/player.tscn" id="4_gg5sf"]
-[ext_resource type="TileSet" uid="uid://c2xdnmsksqqit" path="res://scenes/tilesets/furniture_tileset.tres" id="4_sqpdo"]
+[ext_resource type="TileSet" uid="uid://b547n11tgq3oo" path="res://scenes/tilesets/furniture_tileset.tres" id="4_sqpdo"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="5_ccw5t"]
 [ext_resource type="TileSet" uid="uid://umk8vkn0aa3g" path="res://scenes/tilesets/new_tile_set.tres" id="5_i4d3o"]
 [ext_resource type="TileSet" uid="uid://cu8m7lbxqc53j" path="res://scenes/tilesets/structures.tres" id="7_t1qvm"]

@@ -32,6 +32,11 @@ func start_hold() -> void:
 	if board and not board.needs(item_type):
 		_shake_no()
 		return
+	# hotbar full (5 slots): place some shapes first, so this one isn't lost
+	var bar = GameUIManager.hotbar
+	if bar and not bar.slot_by_item.has(item_type) and bar._find_empty_slot() == null:
+		_shake_no()
+		return
 	super.start_hold()
 
 func _shake_no() -> void:
