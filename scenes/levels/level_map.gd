@@ -131,6 +131,7 @@ func _on_level_pressed(level: int) -> void:
 	var path: String = LEVEL_SCENES.get(subject, {}).get(level, "")
 	if path == "" or not ResourceLoader.exists(path):
 		_show_toast("Coming soon!")
+		AudioManager.play_sfx("wrong")
 		return
 	get_tree().change_scene_to_file(path)
 

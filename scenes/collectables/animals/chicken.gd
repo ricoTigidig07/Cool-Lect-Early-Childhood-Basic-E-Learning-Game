@@ -105,6 +105,7 @@ func interact() -> void:
 	_finish_collect()
 
 func _finish_collect() -> void:
+	AudioManager.play_sfx("collect")
 	QuestManager.collect_item(item_type)
 	collected.emit(collectable_name, item_type)
 	scale = Vector2.ONE

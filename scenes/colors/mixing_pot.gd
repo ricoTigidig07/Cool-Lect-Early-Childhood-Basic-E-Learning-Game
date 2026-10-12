@@ -67,6 +67,7 @@ func _process(delta: float) -> void:
 			_pour(pending_color)
 
 func _pour(color: String) -> void:
+	AudioManager.play_sfx("mix")
 	GameUIManager.consume_hotbar_item(color)
 	contents.append(color)
 	paint.visible = true
@@ -94,6 +95,7 @@ func _set_bubble(text: String) -> void:
 		bubble.text = text
 
 func _wrong_feedback() -> void:
+	AudioManager.play_sfx("wrong")
 	var t := create_tween()
 	var base_x := paint.position.x
 	for dx in [2.0, -2.0, 1.0, -1.0, 0.0]:

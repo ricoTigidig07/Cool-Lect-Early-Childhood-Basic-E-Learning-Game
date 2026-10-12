@@ -42,6 +42,7 @@ func complete_mission_3() -> void:
 	_complete_mission(2, star_3)
 
 func _complete_mission(index: int, star: TextureRect) -> void:
+	AudioManager.play_sfx("mission")
 	star.texture = FILLED_STAR
 	completed_missions[index] = true
 	current_mission = index + 2

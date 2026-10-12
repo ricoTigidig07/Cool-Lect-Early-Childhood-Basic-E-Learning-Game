@@ -67,6 +67,7 @@ func start_hold() -> void:
 		return
 	if is_full:
 		_show_pop("Too many!", Color(0.9, 0.3, 0.3))
+		AudioManager.play_sfx("wrong")
 		_shake_basket()
 		return
 	is_holding = true
@@ -90,6 +91,7 @@ func _complete_hold() -> void:
 	cancel_hold()
 	GameUIManager.consume_hotbar_item(accepted_item)
 	current_count += 1
+	AudioManager.play_sfx("place", 1.0 + 0.06 * current_count)   # a little higher for each one: counting up!
 	_add_item_sprite(current_count - 1)
 	_show_pop(str(current_count), Color(1, 1, 1))
 	if current_count >= target_count:

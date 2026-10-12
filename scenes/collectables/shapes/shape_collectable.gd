@@ -40,6 +40,7 @@ func start_hold() -> void:
 	super.start_hold()
 
 func _shake_no() -> void:
+	AudioManager.play_sfx("wrong")
 	var sprite = get_node_or_null("Sprite2D")
 	if sprite == null:
 		return

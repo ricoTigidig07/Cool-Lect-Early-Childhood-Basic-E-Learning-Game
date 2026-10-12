@@ -149,6 +149,7 @@ func _update_glow(delta: float) -> void:
 			hole.modulate = EMPTY_COLOR
 
 func _place(hole: Sprite2D) -> void:
+	AudioManager.play_sfx("place")
 	var shape := shape_of(hole)
 	GameUIManager.consume_hotbar_item(shape)
 	var tints: Array = picked_tints.get(shape, [])
@@ -180,6 +181,7 @@ func _celebrate() -> void:
 		w.tween_property(hole, "modulate", Color.WHITE, 0.3)
 
 func _wrong_shape_feedback() -> void:
+	AudioManager.play_sfx("wrong")
 	var t := create_tween()
 	var base_x := holes.position.x
 	for dx in [2.0, -2.0, 1.0, -1.0, 0.0]:

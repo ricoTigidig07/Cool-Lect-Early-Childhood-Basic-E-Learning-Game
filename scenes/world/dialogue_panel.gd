@@ -94,6 +94,10 @@ func _apply_responsive_font_size(text: String) -> void:
 
 func _on_typing_tick() -> void:
 	label.visible_characters += 1
+	# soft talking blips (every 3rd letter, not on spaces)
+	var i: int = label.visible_characters - 1
+	if i % 3 == 0 and i < full_text.length() and full_text[i] != " ":
+		AudioManager.play_sfx("blip", randf_range(0.92, 1.12))
 	if label.visible_characters >= full_text.length():
 		typing_timer.stop()
 		_on_page_typing_finished()

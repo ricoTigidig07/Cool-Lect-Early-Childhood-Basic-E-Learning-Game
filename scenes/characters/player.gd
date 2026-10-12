@@ -97,6 +97,7 @@ func face_toward(target_position: Vector2) -> void:
 ## Happy hop + a star floating up when something is collected.
 ## Edit it in player.tscn → Reactions → "collect".
 func celebrate() -> void:
+	AudioManager.play_sfx("hop")
 	if reactions:
 		reactions.stop()
 		reactions.play("collect")

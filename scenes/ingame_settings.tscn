@@ -75,6 +75,18 @@ theme_override_styles/hover = ExtResource("3_green")
 theme_override_styles/pressed = ExtResource("gp_green")
 text = "Resume"
 
+[node name="MusicButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Music: ON"
+
+[node name="SoundButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Sounds: ON"
+
 [node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2

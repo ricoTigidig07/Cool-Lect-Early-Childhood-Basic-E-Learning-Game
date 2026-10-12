@@ -123,6 +123,7 @@ func _play_pickup_animation() -> void:
 		target = collector.global_position + Vector2(0, -24)
 	var peak := (start + target) / 2.0 + Vector2(0, -28)
 	z_index = 50
+	AudioManager.play_sfx("pop")
 	_player_hop()    
 	var t := create_tween()
 	# 1. squash and stretch, getting ready to jump
@@ -147,6 +148,7 @@ func _move_on_arc(progress: float, a: Vector2, b: Vector2, c: Vector2) -> void:
 	global_position = a.lerp(b, progress).lerp(b.lerp(c, progress), progress)
 
 func _burst(at: Vector2) -> void:
+	AudioManager.play_sfx("collect")
 	var fx := COLLECT_FX.instantiate()
 	var holder: Node = get_tree().current_scene if get_tree().current_scene else get_parent()
 	holder.add_child(fx)

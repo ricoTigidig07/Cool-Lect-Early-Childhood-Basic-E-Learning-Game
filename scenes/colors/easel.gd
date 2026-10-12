@@ -156,6 +156,7 @@ func _update_glow(delta: float) -> void:
 			part.modulate = UNPAINTED
 
 func _paint(color: String) -> void:
+	AudioManager.play_sfx("paint")
 	GameUIManager.consume_hotbar_item(color)
 	for part in parts():
 		if part.get_meta("painted") or color_of(part) != color:
@@ -179,6 +180,7 @@ func _celebrate() -> void:
 	t.tween_property(picture, "scale", Vector2.ONE, 0.15)
 
 func _wrong_paint_feedback() -> void:
+	AudioManager.play_sfx("wrong")
 	var t := create_tween()
 	var base_x := picture.position.x
 	for dx in [2.0, -2.0, 1.0, -1.0, 0.0]:

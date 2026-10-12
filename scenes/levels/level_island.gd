@@ -50,4 +50,5 @@ func setup(subject: String, is_current: bool) -> void:
 		anim.play("pulse")
 
 func wiggle() -> void:
+	AudioManager.play_sfx("wrong")
 	anim.play("wiggle")

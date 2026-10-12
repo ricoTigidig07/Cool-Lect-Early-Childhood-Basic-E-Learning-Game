@@ -37,6 +37,10 @@ func show_result(star_count: int) -> void:
 		stars[i].texture = FILLED_STAR if i < star_count else BLANK_STAR
 
 	$AnimationPlayer.play("mission_complete_anim")
+	AudioManager.play_level_complete()
+	# a twinkle as each earned star pops in (matches the star keys in mission_complete_anim)
+	for i in star_count:
+		get_tree().create_timer(0.5 + 0.4 * i).timeout.connect(AudioManager.play_sfx.bind("star", 1.0 + 0.12 * i))
 	$AnimationPlayer.seek(0, true)
 	visible = true
 

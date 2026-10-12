@@ -120,6 +120,7 @@ func _update_glow(delta: float) -> void:
 	small_socket.self_modulate = Color.WHITE.lerp(GLOW, pulse) if small_hint else Color.WHITE
 
 func _wrong_letter_feedback() -> void:
+	AudioManager.play_sfx("wrong")
 	var t := create_tween()
 	var base_x := board.position.x
 	for dx in [2.0, -2.0, 1.0, -1.0, 0.0]:
@@ -132,6 +133,7 @@ func _wrong_letter_feedback() -> void:
 # ---------- placing ----------
 
 func _place_letter(letter: String) -> void:
+	AudioManager.play_sfx("place")
 	GameUIManager.consume_hotbar_item(letter)
 	var is_capital := letter == target_letter
 	var socket: Panel = capital_socket if is_capital else small_socket
