@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://6u1ux6hfioyp" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Items/item shadow.png" id="2_dyp2m"]
 [ext_resource type="SpriteFrames" uid="uid://b8v6g45voltm6" path="res://resources/character_animation.tres" id="3_dyp2m"]
 [ext_resource type="PackedScene" uid="uid://bl3t42ub1gqxg" path="res://scenes/components/hit_component.tscn" id="6_qgnko"]
+[ext_resource type="Shader" path="res://scenes/objects/nature/lively_light.gdshader" id="20_lively"]
+[ext_resource type="Texture2D" path="res://assets/fx/sparkle.png" id="21_spark"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2l4js"]
 radius = 4.0
@@ -71,6 +73,85 @@ _data = {
 &"collect": SubResource("Anim_collect")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lively"]
+resource_local_to_scene = true
+shader = ExtResource("20_lively")
+shader_parameter/saturation = 1.25
+shader_parameter/brightness = 1.03
+shader_parameter/contrast = 1.06
+shader_parameter/warmth = Vector3(1.02, 1, 0.98)
+shader_parameter/ray_color = Color(1, 0.96, 0.75, 1)
+shader_parameter/ray_strength = 0.11
+shader_parameter/cloud_strength = 0.1
+shader_parameter/cloud_scale = 0.006
+shader_parameter/cloud_speed = Vector2(7, 2.5)
+shader_parameter/view_origin = Vector2(0, 0)
+shader_parameter/view_size = Vector2(346, 195)
+shader_parameter/edge_color = Color(0.45, 0.25, 0.15, 1)
+shader_parameter/edge_strength = 0.14
+
+[sub_resource type="Curve" id="Curve_twinkle"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.12, 1), 0.0, 0.0, 0, 0, Vector2(0.27, 0.55), 0.0, 0.0, 0, 0, Vector2(0.42, 1), 0.0, 0.0, 0, 0, Vector2(0.57, 0.55), 0.0, 0.0, 0, 0, Vector2(0.72, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[sub_resource type="Gradient" id="Gradient_fade"]
+offsets = PackedFloat32Array(0, 0.15, 0.8, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.9, 1, 1, 1, 0.9, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_pastel"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
+colors = PackedColorArray(1, 0.95, 0.55, 1, 1, 0.75, 0.85, 1, 0.7, 1, 0.8, 1, 0.7, 0.88, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Anim_sun_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LightFilter/Lively:material:shader_parameter/ray_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.11]
+}
+
+[sub_resource type="Animation" id="Anim_sun_breathe"]
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LightFilter/Lively:material:shader_parameter/ray_strength")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.08, 0.15, 0.08]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LightFilter/Lively:material:shader_parameter/brightness")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.02, 1.05, 1.02]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_sun"]
+_data = {
+&"RESET": SubResource("Anim_sun_reset"),
+&"sun_breathe": SubResource("Anim_sun_breathe")
+}
+
 [node name="Player" type="CharacterBody2D" unique_id=629997432]
 script = ExtResource("1_rp718")
 
@@ -101,3 +182,42 @@ debug_color = Color(0.99552125, 0, 0.21178854, 0.41960785)
 
 [node name="Reactions" type="AnimationPlayer" parent="." unique_id=2068782874]
 libraries/ = SubResource("Lib_reactions")
+
+[node name="LightFilter" type="CanvasLayer" parent="."]
+
+[node name="Lively" type="ColorRect" parent="LightFilter"]
+material = SubResource("ShaderMaterial_lively")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Sparkles" type="CPUParticles2D" parent="."]
+z_index = 20
+z_as_relative = false
+position = Vector2(0, -6)
+amount = 30
+lifetime = 7.0
+preprocess = 7.0
+local_coords = false
+texture = ExtResource("21_spark")
+emission_shape = 3
+emission_rect_extents = Vector2(200, 115)
+direction = Vector2(0.3, -1)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 7.0
+angular_velocity_min = -40.0
+angular_velocity_max = 40.0
+scale_amount_min = 0.7
+scale_amount_max = 1.1
+scale_amount_curve = SubResource("Curve_twinkle")
+color_ramp = SubResource("Gradient_fade")
+color_initial_ramp = SubResource("Gradient_pastel")
+
+[node name="SunLight" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("Lib_sun")
+autoplay = &"sun_breathe"

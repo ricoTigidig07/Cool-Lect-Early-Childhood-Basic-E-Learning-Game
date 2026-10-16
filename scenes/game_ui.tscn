@@ -97,6 +97,7 @@ Button/styles/normal = SubResource("StyleBoxTexture_q5c8y")
 Button/styles/pressed = SubResource("StyleBoxTexture_yvirl")
 
 [node name="GameUI" type="CanvasLayer" unique_id=408638220]
+layer = 5
 script = ExtResource("1_gj1yn")
 
 [node name="MissionCompletePanel" parent="." unique_id=1942682777 instance=ExtResource("2_5kjus")]

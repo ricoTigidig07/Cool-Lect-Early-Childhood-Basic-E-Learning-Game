@@ -133,7 +133,7 @@ position = Vector2(548, 262)
 position = Vector2(638, 190)
 
 [node name="Egg8" parent="Eggs" instance=ExtResource("13_egg")]
-position = Vector2(578, 100)
+position = Vector2(608, 136)
 
 [node name="Egg9" parent="Eggs" instance=ExtResource("13_egg")]
 position = Vector2(440, 280)

@@ -8,6 +8,7 @@ const SPEED = 50.0
 @onready var joystick = get_node("../GameUI/JoystickControl")
 @onready var shadow = $Shadow
 @onready var reactions: AnimationPlayer = get_node_or_null("Reactions")
+@onready var lively_light: ColorRect = get_node_or_null("LightFilter/Lively")
 
 const BOB_SPEED = 6.5
 const SHADOW_MIN_SCALE = 0.75
@@ -18,6 +19,17 @@ var bob_time: float = 0.0
 
 func _ready() -> void:
 	camera.zoom = Vector2(3.7, 3.7)
+	# Colors levels teach real colors: keep the bright, happy light but no warm color shift.
+	if lively_light and GameManager.current_subject == "colors":
+		lively_light.material.set_shader_parameter("warmth", Vector3.ONE)
+		lively_light.material.set_shader_parameter("saturation", 1.1)
+
+## Tells the light which part of the world is on screen, so cloud shadows stay on the ground.
+func _process(_delta: float) -> void:
+	if lively_light:
+		var to_world := get_viewport().get_canvas_transform().affine_inverse()
+		lively_light.material.set_shader_parameter("view_origin", to_world.origin)
+		lively_light.material.set_shader_parameter("view_size", get_viewport().get_visible_rect().size * to_world.get_scale())
 
 func _physics_process(delta):
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")

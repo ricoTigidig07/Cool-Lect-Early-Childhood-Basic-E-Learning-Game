@@ -222,7 +222,7 @@ position = Vector2(1050, 646)
 shape_board = NodePath("../../ShapeBoard")
 
 [node name="Heart2" parent="WrongShapes" instance=ExtResource("block_heart")]
-position = Vector2(780, 322)
+position = Vector2(820, 284)
 shape_board = NodePath("../../ShapeBoard")
 
 [node name="Triangle" parent="WrongShapes" instance=ExtResource("block_triangle")]

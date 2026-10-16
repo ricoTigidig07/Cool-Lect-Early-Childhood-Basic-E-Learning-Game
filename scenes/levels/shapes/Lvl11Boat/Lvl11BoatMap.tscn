@@ -219,7 +219,7 @@ position = Vector2(1056, 220)
 shape_board = NodePath("../../ShapeBoard")
 
 [node name="Oval3" parent="WrongShapes" instance=ExtResource("block_oval")]
-position = Vector2(780, 316)
+position = Vector2(820, 284)
 shape_board = NodePath("../../ShapeBoard")
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
