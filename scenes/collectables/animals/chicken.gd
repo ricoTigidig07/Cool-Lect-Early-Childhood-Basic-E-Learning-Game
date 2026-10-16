@@ -1,6 +1,17 @@
 extends CollectableComponent
 class_name Chicken
 
+## A farm animal that wanders around. Hold the button next to it with the
+## right food equipped (required_item) and it becomes your friend and follows you.
+## Works for every animal: set anim_prefix to the animation names in its
+## SpriteFrames ("duck" -> duck_idle, duck_walk, duck_look_around).
+
+## Animation names: <anim_prefix>_idle, <anim_prefix>_walk, <anim_prefix>_look_around
+@export var anim_prefix: String = "chicken"
+## Picture of the animal (Items panel) and of its food (hotbar + thought bubble).
+@export var icon: Texture2D
+@export var food_icon: Texture2D
+
 @export var wander_radius: float = 40.0
 @export var wander_pause_min: float = 1.0
 @export var wander_pause_max: float = 2.5
@@ -14,11 +25,15 @@ enum State { WANDER_IDLE, WANDER_MOVE, FOLLOW }
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var tamed_fx: AnimatedSprite2D = $TamedAnimation
 @onready var separation_area: Area2D = $SeparationArea
+## Optional thought bubble with the food this animal wants (shown when the player is near).
+@onready var want_bubble: Node2D = get_node_or_null("WantBubble")
+
+var tamed := false
 
 const SEPARATION_PUSH := 40.0
 
 var state: State = State.WANDER_IDLE
-var current_idle_anim: String = "chicken_idle"
+var current_idle_anim: String = ""
 var is_actively_following: bool = false
 var spawn_point: Vector2
 var wander_target: Vector2
@@ -27,6 +42,10 @@ var follow_target: Node2D = null
 
 func _ready() -> void:
 	super._ready()
+	add_to_group("farm_animals")
+	current_idle_anim = anim_prefix + "_idle"
+	if want_bubble:
+		want_bubble.visible = false
 	spawn_point = global_position
 	_pick_new_wander_target()
 	_start_idle_pause()
@@ -35,7 +54,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_holding or is_collecting:
-		sprite.play("chicken_idle")
+		sprite.play(anim_prefix + "_idle")
 		return
 
 	_apply_separation(delta)
@@ -64,7 +83,7 @@ func _physics_process(delta: float) -> void:
 			if is_actively_following:
 				_move_toward(target_pos, follow_speed, delta)
 			else:
-				sprite.play("chicken_idle")
+				sprite.play(anim_prefix + "_idle")
 
 func _apply_separation(delta: float) -> void:
 	var push = Vector2.ZERO
@@ -83,7 +102,7 @@ func _apply_separation(delta: float) -> void:
 func _move_toward(target: Vector2, speed: float, delta: float) -> void:
 	var dir = (target - global_position).normalized()
 	global_position += dir * speed * delta
-	sprite.play("chicken_walk")
+	sprite.play(anim_prefix + "_walk")
 	sprite.flip_h = dir.x < 0
 
 func _pick_new_wander_target() -> void:
@@ -92,7 +111,7 @@ func _pick_new_wander_target() -> void:
 
 func _start_idle_pause() -> void:
 	wander_timer = randf_range(wander_pause_min, wander_pause_max)
-	current_idle_anim = "chicken_look_around" if randf() < 0.3 else "chicken_idle"
+	current_idle_anim = anim_prefix + ("_look_around" if randf() < 0.3 else "_idle")
 
 ## Skips the fly-up/shake/shrink pickup animation entirely — taming should
 ## feel instant, not like the item is vanishing into an inventory.
@@ -104,7 +123,38 @@ func interact() -> void:
 	InteractionManager.unregister(self)
 	_finish_collect()
 
+# ---------- player near: show which food this animal wants ----------
+
+func _on_body_entered(body: Node2D) -> void:
+	if tamed:
+		return   # already your friend
+	super._on_body_entered(body)
+	if body is Player01 and want_bubble:
+		want_bubble.visible = true
+
+func _on_body_exited(body: Node2D) -> void:
+	super._on_body_exited(body)
+	if body is Player01 and want_bubble:
+		want_bubble.visible = false
+
+## Called by InteractionManager when the player holds the button with the wrong food.
+func wrong_item_feedback() -> void:
+	AudioManager.play_sfx("wrong")
+	var t := create_tween()
+	for dx in [2.0, -2.0, 1.0, -1.0, 0.0]:
+		t.tween_property(sprite, "position:x", dx, 0.04)
+	if want_bubble:
+		want_bubble.visible = true
+		var b := create_tween()
+		b.tween_property(want_bubble, "scale", Vector2.ONE * 1.3, 0.1)
+		b.tween_property(want_bubble, "scale", Vector2.ONE, 0.15)
+
 func _finish_collect() -> void:
+	tamed = true
+	if want_bubble:
+		want_bubble.visible = false
+	if name_label:
+		name_label.visible = false
 	AudioManager.play_sfx("collect")
 	QuestManager.collect_item(item_type)
 	collected.emit(collectable_name, item_type)

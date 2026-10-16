@@ -1,0 +1,187 @@
+[gd_scene format=3 uid="uid://bdtc18an6gajg"]
+
+[ext_resource type="Script" uid="uid://b0x50vvlmesan" path="res://scenes/collectables/animals/chicken.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dp1o3fi5gyeub" path="res://assets/sprites/animals/sheep.png" id="2_sheet"]
+[ext_resource type="Texture2D" uid="uid://dat8eutfoa7gs" path="res://assets/sprites/animals/food/hearts.png" id="3_hearts"]
+[ext_resource type="Texture2D" uid="uid://c8xjirxpluggx" path="res://assets/sprites/animals/sheep_icon.png" id="4_icon"]
+[ext_resource type="Texture2D" uid="uid://dnus6w3w4crgv" path="res://assets/sprites/animals/food/hay.png" id="5_food"]
+[ext_resource type="Texture2D" uid="uid://behxxclcmy8u4" path="res://assets/sprites/animals/food/bubble.png" id="6_bubble"]
+[ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="7_hold"]
+[ext_resource type="PackedScene" uid="uid://c7nmlbl0cl4b1" path="res://scenes/components/name_label.tscn" id="8_label"]
+
+[sub_resource type="AtlasTexture" id="heart_0"]
+atlas = ExtResource("3_hearts")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="heart_1"]
+atlas = ExtResource("3_hearts")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="heart_2"]
+atlas = ExtResource("3_hearts")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="heart_3"]
+atlas = ExtResource("3_hearts")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="heart_4"]
+atlas = ExtResource("3_hearts")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="hearts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("heart_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("heart_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("heart_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("heart_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("heart_4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="AtlasTexture" id="idle_0"]
+atlas = ExtResource("2_sheet")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="idle_1"]
+atlas = ExtResource("2_sheet")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="look_around_0"]
+atlas = ExtResource("2_sheet")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="look_around_1"]
+atlas = ExtResource("2_sheet")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="walk_0"]
+atlas = ExtResource("2_sheet")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="walk_1"]
+atlas = ExtResource("2_sheet")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="walk_2"]
+atlas = ExtResource("2_sheet")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="walk_3"]
+atlas = ExtResource("2_sheet")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="frames"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("idle_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("idle_1")
+}],
+"loop": true,
+"name": &"sheep_idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("look_around_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("look_around_1")
+}],
+"loop": true,
+"name": &"sheep_look_around",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("walk_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("walk_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("walk_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("walk_3")
+}],
+"loop": true,
+"name": &"sheep_walk",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="body"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="sep"]
+
+[node name="Sheep" type="Area2D" unique_id=954186844 groups=["farm_animals"]]
+script = ExtResource("1_script")
+anim_prefix = "sheep"
+icon = ExtResource("4_icon")
+food_icon = ExtResource("5_food")
+follow_speed = 46.0
+follow_distance = 26.0
+collectable_name = "Sheep"
+item_type = "sheep"
+required_item = "hay"
+
+[node name="TamedAnimation" type="AnimatedSprite2D" parent="." unique_id=964450454]
+z_index = 20
+position = Vector2(0, -26)
+sprite_frames = SubResource("hearts")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1928251834]
+position = Vector2(0, -4)
+sprite_frames = SubResource("frames")
+animation = &"sheep_walk"
+autoplay = "sheep_idle"
+frame_progress = 0.10263581
+
+[node name="WantBubble" type="Node2D" parent="." unique_id=1245992654]
+z_index = 30
+position = Vector2(0, -50)
+
+[node name="Bubble" type="Sprite2D" parent="WantBubble" unique_id=1484437704]
+texture = ExtResource("6_bubble")
+
+[node name="Food" type="Sprite2D" parent="WantBubble" unique_id=1594597458]
+position = Vector2(0, -2)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_food")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1100449621]
+shape = SubResource("body")
+
+[node name="NameLabel" parent="." unique_id=665790684 instance=ExtResource("8_label")]
+visible = true
+offset_top = -40.0
+offset_bottom = -22.0
+
+[node name="HoldIndicator" parent="." unique_id=562382056 instance=ExtResource("7_hold")]
+z_index = 100
+offset_left = -8.0
+offset_top = 13.0
+offset_right = 8.0
+offset_bottom = 20.0
+
+[node name="SeparationArea" type="Area2D" parent="." unique_id=318193794]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeparationArea" unique_id=1475171559]
+shape = SubResource("sep")

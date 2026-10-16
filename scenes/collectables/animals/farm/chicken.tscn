@@ -1,0 +1,264 @@
+[gd_scene format=3 uid="uid://bkovjhv9sqke1"]
+
+[ext_resource type="Script" uid="uid://b0x50vvlmesan" path="res://scenes/collectables/animals/chicken.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Animals/Chicken/chicken default.png" id="2_sheet"]
+[ext_resource type="Texture2D" path="res://assets/sprites/animals/food/hearts.png" id="3_hearts"]
+[ext_resource type="Texture2D" path="res://scenes/objects/icons/chicken.tres" id="4_icon"]
+[ext_resource type="Texture2D" path="res://scenes/objects/icons/seed_icon.tres" id="5_food"]
+[ext_resource type="Texture2D" path="res://assets/sprites/animals/food/bubble.png" id="6_bubble"]
+[ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="7_hold"]
+[ext_resource type="PackedScene" uid="uid://c7nmlbl0cl4b1" path="res://scenes/components/name_label.tscn" id="8_label"]
+
+[sub_resource type="AtlasTexture" id="idle_0"]
+atlas = ExtResource("2_sheet")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="idle_1"]
+atlas = ExtResource("2_sheet")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="idle_2"]
+atlas = ExtResource("2_sheet")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="idle_3"]
+atlas = ExtResource("2_sheet")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="walk_0"]
+atlas = ExtResource("2_sheet")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="walk_1"]
+atlas = ExtResource("2_sheet")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="walk_2"]
+atlas = ExtResource("2_sheet")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="walk_3"]
+atlas = ExtResource("2_sheet")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="walk_4"]
+atlas = ExtResource("2_sheet")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="walk_5"]
+atlas = ExtResource("2_sheet")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="walk_6"]
+atlas = ExtResource("2_sheet")
+region = Rect2(96, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="walk_7"]
+atlas = ExtResource("2_sheet")
+region = Rect2(112, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="look_around_0"]
+atlas = ExtResource("2_sheet")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="look_around_1"]
+atlas = ExtResource("2_sheet")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="look_around_2"]
+atlas = ExtResource("2_sheet")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="look_around_3"]
+atlas = ExtResource("2_sheet")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="look_around_4"]
+atlas = ExtResource("2_sheet")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="look_around_5"]
+atlas = ExtResource("2_sheet")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="look_around_6"]
+atlas = ExtResource("2_sheet")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="heart_0"]
+atlas = ExtResource("3_hearts")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="heart_1"]
+atlas = ExtResource("3_hearts")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="heart_2"]
+atlas = ExtResource("3_hearts")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="heart_3"]
+atlas = ExtResource("3_hearts")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="heart_4"]
+atlas = ExtResource("3_hearts")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="frames"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("idle_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("idle_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("idle_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("idle_3")
+}],
+"loop": true,
+"name": &"chicken_idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("walk_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("walk_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("walk_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("walk_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("walk_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("walk_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("walk_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("walk_7")
+}],
+"loop": true,
+"name": &"chicken_walk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("look_around_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("look_around_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("look_around_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("look_around_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("look_around_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("look_around_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("look_around_6")
+}],
+"loop": true,
+"name": &"chicken_look_around",
+"speed": 3.0
+}]
+
+[sub_resource type="SpriteFrames" id="hearts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("heart_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("heart_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("heart_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("heart_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("heart_4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="CircleShape2D" id="body"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="sep"]
+radius = 6.0
+
+[node name="Chicken" type="Area2D" groups=["farm_animals"]]
+script = ExtResource("1_script")
+collectable_name = "Chicken"
+item_type = "chicken"
+required_item = "seed"
+anim_prefix = "chicken"
+follow_speed = 46.0
+follow_distance = 26.0
+icon = ExtResource("4_icon")
+food_icon = ExtResource("5_food")
+
+[node name="TamedAnimation" type="AnimatedSprite2D" parent="."]
+z_index = 20
+position = Vector2(0, -16)
+sprite_frames = SubResource("hearts")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 0)
+sprite_frames = SubResource("frames")
+animation = &"chicken_idle"
+autoplay = "chicken_idle"
+
+[node name="WantBubble" type="Node2D" parent="."]
+visible = false
+z_index = 30
+position = Vector2(0, -33)
+
+[node name="Bubble" type="Sprite2D" parent="WantBubble"]
+texture = ExtResource("6_bubble")
+
+[node name="Food" type="Sprite2D" parent="WantBubble"]
+position = Vector2(0, -2)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_food")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("body")
+
+[node name="NameLabel" parent="." instance=ExtResource("8_label")]
+offset_top = -24.0
+offset_bottom = -6.0
+
+[node name="HoldIndicator" parent="." instance=ExtResource("7_hold")]
+z_index = 100
+offset_left = -8.0
+offset_top = 9.0
+offset_right = 8.0
+offset_bottom = 16.0
+
+[node name="SeparationArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeparationArea"]
+shape = SubResource("sep")

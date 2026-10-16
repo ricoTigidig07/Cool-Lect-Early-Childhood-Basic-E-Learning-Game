@@ -26,6 +26,8 @@ func button_down() -> void:
 	if target.has_method("start_hold"):
 		if "required_item" in target and target.required_item != "":
 			if GameUIManager.get_equipped_item() != target.required_item:
+				if target.has_method("wrong_item_feedback"):
+					target.wrong_item_feedback()   # e.g. an animal that wants a different food
 				return
 		target.start_hold()
 	else:

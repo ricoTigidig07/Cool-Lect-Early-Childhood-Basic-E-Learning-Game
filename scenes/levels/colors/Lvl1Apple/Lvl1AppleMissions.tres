@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="MissionTextData" format=3 uid="uid://337grg14kohh"]
+[gd_resource type="Resource" script_class="MissionTextData" format=3 uid="uid://bkws4hlj1bj5r"]
 
 [ext_resource type="Script" uid="uid://dgny0mq00niwd" path="res://scenes/mission_text_data.gd" id="1_data"]
 

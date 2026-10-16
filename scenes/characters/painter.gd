@@ -39,7 +39,7 @@ func _a_picture() -> String:
 	var p := _picture()
 	if p != "" and p[0] == p[0].to_upper():
 		return p
-	if p.ends_with("s") and not p.ends_with("ss"):
+	if p.ends_with("s") and not p.ends_with("ss") and not p.contains(" "):
 		return p                      # "grapes", "cherries"
 	return ("an " if "aeiou".contains(p.substr(0, 1)) else "a ") + p
 
