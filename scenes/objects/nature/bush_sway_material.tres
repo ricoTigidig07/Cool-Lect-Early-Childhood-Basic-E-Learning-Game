@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://scenes/objects/nature/bush_sway.gdshader" id="1_bush"]
+
+[resource]
+shader = ExtResource("1_bush")
+shader_parameter/sway_amount = 0.7
+shader_parameter/sway_speed = 1.3
+shader_parameter/half_height = 8.0

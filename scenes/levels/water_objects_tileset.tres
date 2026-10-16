@@ -1,6 +1,20 @@
 [gd_resource type="TileSet" format=3 uid="uid://bv4nug1oukygd"]
 
 [ext_resource type="Texture2D" uid="uid://cj1td3peo1521" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Water Objects.png" id="1_3ucl4"]
+[ext_resource type="Shader" path="res://scenes/objects/nature/plant_sway.gdshader" id="90_plant"]
+[ext_resource type="Shader" path="res://scenes/objects/nature/lily_bob.gdshader" id="91_lily"]
+
+[sub_resource type="ShaderMaterial" id="SM_w_reed"]
+shader = ExtResource("90_plant")
+shader_parameter/sway_amount = 0.8
+shader_parameter/sway_speed = 1.6
+shader_parameter/wave_scale = 0.025
+
+[sub_resource type="ShaderMaterial" id="SM_w_lily"]
+shader = ExtResource("91_lily")
+shader_parameter/bob_amount = 0.6
+shader_parameter/drift_amount = 0.35
+shader_parameter/bob_speed = 1.1
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1vli0"]
 texture = ExtResource("1_3ucl4")
@@ -9,11 +23,17 @@ texture = ExtResource("1_3ucl4")
 2:0/0 = 0
 3:0/0 = 0
 6:0/0 = 0
+6:0/0/material = SubResource("SM_w_reed")
 7:0/0 = 0
+7:0/0/material = SubResource("SM_w_reed")
 8:0/0 = 0
+8:0/0/material = SubResource("SM_w_lily")
 9:0/0 = 0
+9:0/0/material = SubResource("SM_w_lily")
 10:0/0 = 0
+10:0/0/material = SubResource("SM_w_lily")
 11:0/0 = 0
+11:0/0/material = SubResource("SM_w_lily")
 4:0/size_in_atlas = Vector2i(2, 1)
 4:0/0 = 0
 0:1/0 = 0
@@ -22,6 +42,5 @@ texture = ExtResource("1_3ucl4")
 3:1/0 = 0
 4:1/0 = 0
 5:1/0 = 0
-
 [resource]
 sources/0 = SubResource("TileSetAtlasSource_1vli0")

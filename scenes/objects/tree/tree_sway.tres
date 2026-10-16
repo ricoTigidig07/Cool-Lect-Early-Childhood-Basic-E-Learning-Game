@@ -10,7 +10,7 @@ uniform float falloff_sharpness : hint_range(0.5, 5.0) = 2.0; // higher = log st
 
 void vertex() {
 	if (UV.y < leaf_start) {
-		float sway = sin(TIME * sway_speed) * sway_amount;
+		float sway = sin(TIME * sway_speed + MODEL_MATRIX[3].x * 0.025 + MODEL_MATRIX[3].y * 0.21) * sway_amount;
 		float raw_factor = 1.0 - (UV.y / leaf_start);
 		float factor = pow(raw_factor, falloff_sharpness);
 		VERTEX.x += sway * factor;
