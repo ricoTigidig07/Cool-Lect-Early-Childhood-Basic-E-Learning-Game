@@ -13,4 +13,5 @@ data_*/
 
 # System/tool-specific ignores
 .DS_Store
-Thumbs.db
+Thumbs.db*.apk
+*.keystore
