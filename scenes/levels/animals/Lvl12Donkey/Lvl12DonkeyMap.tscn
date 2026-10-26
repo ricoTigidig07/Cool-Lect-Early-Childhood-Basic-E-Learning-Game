@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bkl5qa661suvx" path="res://scenes/characters/farmer.tscn" id="11_farmer"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
 [ext_resource type="PackedScene" uid="uid://m6h2tgufcfs3" path="res://scenes/collectables/animals/farm/donkey.tscn" id="a_donkey"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl12DonkeyMap" type="Node2D"]
 y_sort_enabled = true
@@ -166,6 +167,14 @@ position = Vector2(540, 760)
 
 [node name="Donkey5" parent="Animals" instance=ExtResource("a_donkey")]
 position = Vector2(900, 16)
+
+[node name="HelperTeacher" parent="." instance=ExtResource("90_helper")]
+position = Vector2(845, 406)
+character = 1
+
+[node name="HelperPainter" parent="." instance=ExtResource("90_helper")]
+position = Vector2(637, 14)
+character = 3
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

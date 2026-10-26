@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://6n1495rjivoa" path="res://assets/colors/pictures/orange_orange.png" id="part_orange"]
 [ext_resource type="Texture2D" uid="uid://g2kol05b9l1s" path="res://assets/colors/pictures/orange_green.png" id="part_green"]
 [ext_resource type="Texture2D" uid="uid://bfqcp3hwh67po" path="res://assets/colors/pictures/orange_base.png" id="part_outline"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl4OrangeMap" type="Node2D"]
 y_sort_enabled = true
@@ -132,6 +133,14 @@ y_sort_enabled = true
 position = Vector2(702, 276)
 easel = NodePath("../../Easel")
 paint_color = "blue"
+
+[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
+position = Vector2(668, 518)
+character = 4
+
+[node name="HelperMerchant" parent="." instance=ExtResource("90_helper")]
+position = Vector2(680, 70)
+character = 0
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

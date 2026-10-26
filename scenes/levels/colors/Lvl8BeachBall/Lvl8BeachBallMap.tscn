@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://goy9hqnml2gu" path="res://assets/colors/pictures/ball_yellow.png" id="part_yellow"]
 [ext_resource type="Texture2D" uid="uid://bikybfmajjpal" path="res://assets/colors/pictures/ball_blue.png" id="part_blue"]
 [ext_resource type="Texture2D" uid="uid://mqiq9cte2uw0" path="res://assets/colors/pictures/ball_base.png" id="part_outline"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl8BeachBallMap" type="Node2D"]
 y_sort_enabled = true
@@ -157,6 +158,14 @@ paint_color = "green"
 position = Vector2(192, 180)
 easel = NodePath("../../Easel")
 paint_color = "purple"
+
+[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
+position = Vector2(788, 502)
+character = 2
+
+[node name="HelperFarmer" parent="." instance=ExtResource("90_helper")]
+position = Vector2(480, 138)
+character = 5
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

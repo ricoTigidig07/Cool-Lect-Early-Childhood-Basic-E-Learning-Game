@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bkl5qa661suvx" path="res://scenes/characters/farmer.tscn" id="11_farmer"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
 [ext_resource type="PackedScene" uid="uid://s5vnkvs1fi2b" path="res://scenes/collectables/animals/farm/turkey.tscn" id="a_turkey"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl11TurkeyMap" type="Node2D"]
 y_sort_enabled = true
@@ -166,6 +167,14 @@ position = Vector2(508, 752)
 
 [node name="Turkey5" parent="Animals" instance=ExtResource("a_turkey")]
 position = Vector2(820, 672)
+
+[node name="HelperMerchant" parent="." instance=ExtResource("90_helper")]
+position = Vector2(845, 406)
+character = 0
+
+[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
+position = Vector2(277, 430)
+character = 2
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

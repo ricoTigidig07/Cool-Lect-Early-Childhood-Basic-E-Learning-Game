@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://w1rap0n0uq9h" path="res://scenes/collectables/fruits/pineapple.tscn" id="f_pineapple"]
 [ext_resource type="PackedScene" uid="uid://4adgr9bbmk3o" path="res://scenes/collectables/fruits/rambutan.tscn" id="f_rambutan"]
 [ext_resource type="PackedScene" uid="uid://5b7qmlb4xcf6" path="res://scenes/collectables/fruits/watermelon.tscn" id="f_watermelon"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl14RambutanMap" type="Node2D"]
 y_sort_enabled = true
@@ -180,6 +181,14 @@ position = Vector2(1000, 520)
 
 [node name="Avocado" parent="WrongFruits" instance=ExtResource("f_avocado")]
 position = Vector2(168, 392)
+
+[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
+position = Vector2(828, 492)
+character = 4
+
+[node name="HelperTeacher" parent="." instance=ExtResource("90_helper")]
+position = Vector2(412, 144)
+character = 1
 
 [node name="GameUI" parent="." instance=ExtResource("12_ui")]
 

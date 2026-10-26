@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://0jc3inm29yia" path="res://assets/colors/pictures/pumpkin_orange.png" id="part_orange"]
 [ext_resource type="Texture2D" uid="uid://bdc1btp8ux0ll" path="res://assets/colors/pictures/pumpkin_green.png" id="part_green"]
 [ext_resource type="Texture2D" uid="uid://x3k3tcyncdq9" path="res://assets/colors/pictures/pumpkin_base.png" id="part_outline"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl9PumpkinMap" type="Node2D"]
 y_sort_enabled = true
@@ -142,6 +143,14 @@ y_sort_enabled = true
 position = Vector2(786, 0)
 easel = NodePath("../../Easel")
 paint_color = "purple"
+
+[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
+position = Vector2(788, 486)
+character = 4
+
+[node name="HelperMerchant" parent="." instance=ExtResource("90_helper")]
+position = Vector2(516, 102)
+character = 0
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

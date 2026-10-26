@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dyuicx7sagfg4" path="res://scenes/characters/merchant.tscn" id="11_merchant"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="12_ui"]
 [ext_resource type="PackedScene" uid="uid://hpr9671950qw" path="res://scenes/collectables/fruits/banana.tscn" id="f_banana"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl2BananaMap" type="Node2D"]
 y_sort_enabled = true
@@ -144,6 +145,14 @@ position = Vector2(640, 640)
 
 [node name="Banana5" parent="Fruits" instance=ExtResource("f_banana")]
 position = Vector2(888, 328)
+
+[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
+position = Vector2(828, 492)
+character = 2
+
+[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
+position = Vector2(412, 144)
+character = 4
 
 [node name="GameUI" parent="." instance=ExtResource("12_ui")]
 

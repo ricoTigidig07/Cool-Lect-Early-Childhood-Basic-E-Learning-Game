@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bhgs6lvgicdaq" path="res://assets/colors/pictures/banana_yellow.png" id="part_yellow"]
 [ext_resource type="Texture2D" uid="uid://07jl881aflrq" path="res://assets/colors/pictures/banana_brown.png" id="part_brown"]
 [ext_resource type="Texture2D" uid="uid://bdkwysdv8pxfc" path="res://assets/colors/pictures/banana_base.png" id="part_outline"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl2BananaMap" type="Node2D"]
 y_sort_enabled = true
@@ -124,6 +125,14 @@ paint_color = "yellow"
 position = Vector2(486, 426)
 easel = NodePath("../../Easel")
 paint_color = "brown"
+
+[node name="HelperTeacher" parent="." instance=ExtResource("90_helper")]
+position = Vector2(668, 430)
+character = 1
+
+[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
+position = Vector2(912, 86)
+character = 4
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

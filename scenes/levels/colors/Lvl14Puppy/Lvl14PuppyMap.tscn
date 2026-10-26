@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bca35g8u6o95d" path="res://assets/colors/pictures/puppy_brown.png" id="part_brown"]
 [ext_resource type="Texture2D" uid="uid://8n9k9552j6bv" path="res://assets/colors/pictures/puppy_black.png" id="part_black"]
 [ext_resource type="Texture2D" uid="uid://mlrw2c7w598h" path="res://assets/colors/pictures/puppy_base.png" id="part_outline"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl14PuppyMap" type="Node2D"]
 y_sort_enabled = true
@@ -142,6 +143,14 @@ y_sort_enabled = true
 position = Vector2(-36, 102)
 easel = NodePath("../../Easel")
 paint_color = "yellow"
+
+[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
+position = Vector2(644, 470)
+character = 4
+
+[node name="HelperMerchant" parent="." instance=ExtResource("90_helper")]
+position = Vector2(460, 66)
+character = 0
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

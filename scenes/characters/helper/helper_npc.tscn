@@ -1,0 +1,207 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/characters/helper/helper_npc.gd" id="1_script"]
+[ext_resource type="SpriteFrames" path="res://scenes/characters/helper/npc_placeholder_frames.tres" id="2_frames"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Icons/All Icons.png" id="3_icons"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/buttons/round/small colored round buttons.png" id="4_round"]
+
+[sub_resource type="AtlasTexture" id="Atlas_talk"]
+atlas = ExtResource("3_icons")
+region = Rect2(64, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="Atlas_ask"]
+atlas = ExtResource("3_icons")
+region = Rect2(80, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="Atlas_arrow"]
+atlas = ExtResource("3_icons")
+region = Rect2(80, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="Atlas_bubble"]
+atlas = ExtResource("4_round")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="CircleShape2D" id="Circle_body"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="Circle_talk"]
+radius = 14.0
+
+[sub_resource type="Animation" id="Anim_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HintBubble:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HintBubble:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Anim_pop_in"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HintBubble:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.3),
+"transitions": PackedFloat32Array(0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HintBubble:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Anim_pop_out"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HintBubble:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HintBubble:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_bubble"]
+_data = {
+&"RESET": SubResource("Anim_reset"),
+&"pop_in": SubResource("Anim_pop_in"),
+&"pop_out": SubResource("Anim_pop_out")
+}
+
+[sub_resource type="Animation" id="Anim_float"]
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AskMark:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -24), Vector2(0, -27), Vector2(0, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HintBubble/ArrowPivot/Arrow:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(17, 0), Vector2(20, 0), Vector2(17, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_loop"]
+_data = {
+&"float": SubResource("Anim_float")
+}
+
+[node name="HelperNPC" type="StaticBody2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_script")
+talk_icon = SubResource("Atlas_talk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.4, 0.8, 0, 1)
+position = Vector2(0, -6)
+sprite_frames = ExtResource("2_frames")
+animation = &"idle_front"
+autoplay = "idle_front"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("Circle_body")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(0, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, -19)
+shape = SubResource("Circle_talk")
+debug_color = Color(1, 1, 1, 0.33333334)
+
+[node name="AskMark" type="Sprite2D" parent="."]
+z_index = 30
+position = Vector2(0, -24)
+scale = Vector2(0.7, 0.7)
+texture = SubResource("Atlas_ask")
+
+[node name="HintBubble" type="Node2D" parent="."]
+visible = false
+z_index = 30
+position = Vector2(0, -32)
+scale = Vector2(0, 0)
+
+[node name="Background" type="Sprite2D" parent="HintBubble"]
+scale = Vector2(1.75, 1.75)
+texture = SubResource("Atlas_bubble")
+
+[node name="ItemIcon" type="Sprite2D" parent="HintBubble"]
+texture = SubResource("Atlas_talk")
+
+[node name="ArrowPivot" type="Node2D" parent="HintBubble"]
+
+[node name="Arrow" type="Sprite2D" parent="HintBubble/ArrowPivot"]
+position = Vector2(17, 0)
+scale = Vector2(0.8, 0.8)
+texture = SubResource("Atlas_arrow")
+
+[node name="BubbleAnim" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("Lib_bubble")
+
+[node name="LoopAnim" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("Lib_loop")
+autoplay = &"float"

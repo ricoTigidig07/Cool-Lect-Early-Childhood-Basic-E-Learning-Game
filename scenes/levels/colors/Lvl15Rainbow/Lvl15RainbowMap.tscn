@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://2jw619s67oqa" path="res://assets/colors/pictures/rainbow_blue.png" id="part_blue"]
 [ext_resource type="Texture2D" uid="uid://55ye5eqhdfo3" path="res://assets/colors/pictures/rainbow_purple.png" id="part_purple"]
 [ext_resource type="Texture2D" uid="uid://baos0j93qgyuw" path="res://assets/colors/pictures/rainbow_base.png" id="part_outline"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl15RainbowMap" type="Node2D"]
 y_sort_enabled = true
@@ -197,6 +198,14 @@ paint_color = "black"
 position = Vector2(918, 84)
 easel = NodePath("../../Easel")
 paint_color = "white"
+
+[node name="HelperFarmer" parent="." instance=ExtResource("90_helper")]
+position = Vector2(385, 194)
+character = 5
+
+[node name="HelperTeacher" parent="." instance=ExtResource("90_helper")]
+position = Vector2(797, 278)
+character = 1
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

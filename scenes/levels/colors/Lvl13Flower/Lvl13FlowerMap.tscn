@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://8k8hc8x7ndnv" path="res://assets/colors/pictures/flower_yellow.png" id="part_yellow"]
 [ext_resource type="Texture2D" uid="uid://336646g2w9b1" path="res://assets/colors/pictures/flower_green.png" id="part_green"]
 [ext_resource type="Texture2D" uid="uid://wik73y57lbqr" path="res://assets/colors/pictures/flower_base.png" id="part_outline"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl13FlowerMap" type="Node2D"]
 y_sort_enabled = true
@@ -152,6 +153,14 @@ y_sort_enabled = true
 position = Vector2(708, 270)
 easel = NodePath("../../Easel")
 paint_color = "black"
+
+[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
+position = Vector2(345, 194)
+character = 2
+
+[node name="HelperFarmer" parent="." instance=ExtResource("90_helper")]
+position = Vector2(741, 54)
+character = 5
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

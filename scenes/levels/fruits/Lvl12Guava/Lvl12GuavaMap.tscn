@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bgi3s1j7r2b6e" path="res://scenes/collectables/fruits/orange.tscn" id="f_orange"]
 [ext_resource type="PackedScene" uid="uid://c7bq074tl0q2" path="res://scenes/collectables/fruits/papaya.tscn" id="f_papaya"]
 [ext_resource type="PackedScene" uid="uid://w1rap0n0uq9h" path="res://scenes/collectables/fruits/pineapple.tscn" id="f_pineapple"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl12GuavaMap" type="Node2D"]
 y_sort_enabled = true
@@ -174,6 +175,14 @@ position = Vector2(288, 232)
 [node name="Apple" parent="WrongFruits" instance=ExtResource("f_apple")]
 position = Vector2(112, 544)
 required_item = ""
+
+[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
+position = Vector2(828, 492)
+character = 2
+
+[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
+position = Vector2(408, 148)
+character = 4
 
 [node name="GameUI" parent="." instance=ExtResource("12_ui")]
 

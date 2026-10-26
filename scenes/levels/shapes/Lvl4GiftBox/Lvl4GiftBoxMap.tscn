@@ -22,6 +22,7 @@
 [ext_resource type="TileSet" uid="uid://b547n11tgq3oo" path="res://scenes/tilesets/furniture_tileset.tres" id="4_sqpdo"]
 [ext_resource type="TileSet" uid="uid://umk8vkn0aa3g" path="res://scenes/tilesets/new_tile_set.tres" id="5_i4d3o"]
 [ext_resource type="TileSet" uid="uid://cu8m7lbxqc53j" path="res://scenes/tilesets/structures.tres" id="7_t1qvm"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl4GiftBoxMap" type="Node2D"]
 y_sort_enabled = true
@@ -186,6 +187,14 @@ y_sort_enabled = true
 [node name="Circle" parent="WrongShapes" instance=ExtResource("block_circle")]
 position = Vector2(822, 532)
 shape_board = NodePath("../../ShapeBoard")
+
+[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
+position = Vector2(484, 304)
+character = 4
+
+[node name="HelperMerchant" parent="." instance=ExtResource("90_helper")]
+position = Vector2(968, 580)
+character = 0
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

@@ -23,6 +23,7 @@
 [ext_resource type="TileSet" uid="uid://cu8m7lbxqc53j" path="res://scenes/tilesets/structures.tres" id="6_5r865"]
 [ext_resource type="TileSet" uid="uid://c2xdnmsksqqit" path="res://scenes/tilesets/furniture_tileset.tres" id="7_uyugg"]
 [ext_resource type="PackedScene" uid="uid://dubbaqeuluioc" path="res://resources/door.tscn" id="8_8ibng"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl9QRMap" type="Node2D"]
 y_sort_enabled = true
@@ -144,6 +145,14 @@ letter_sequence = NodePath("../../LetterSequence")
 [node name="Smalld" parent="WrongLetters" instance=ExtResource("L_small_d")]
 position = Vector2(233, 567)
 letter_sequence = NodePath("../../LetterSequence")
+
+[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
+position = Vector2(633, 623)
+character = 4
+
+[node name="HelperMerchant" parent="." instance=ExtResource("90_helper")]
+position = Vector2(189, 471)
+character = 0
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

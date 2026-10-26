@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dyuicx7sagfg4" path="res://scenes/characters/merchant.tscn" id="11_merchant"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="12_ui"]
 [ext_resource type="PackedScene" uid="uid://bfa20bgg7jnc" path="res://scenes/collectables/fruits/grapes.tscn" id="f_grapes"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl4GrapesMap" type="Node2D"]
 y_sort_enabled = true
@@ -147,6 +148,14 @@ position = Vector2(288, 488)
 
 [node name="Grapes6" parent="Fruits" instance=ExtResource("f_grapes")]
 position = Vector2(496, 608)
+
+[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
+position = Vector2(828, 492)
+character = 4
+
+[node name="HelperTeacher" parent="." instance=ExtResource("90_helper")]
+position = Vector2(408, 148)
+character = 1
 
 [node name="GameUI" parent="." instance=ExtResource("12_ui")]
 

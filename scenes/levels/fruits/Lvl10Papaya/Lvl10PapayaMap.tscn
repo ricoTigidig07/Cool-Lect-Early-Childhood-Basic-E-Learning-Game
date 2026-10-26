@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c7bq074tl0q2" path="res://scenes/collectables/fruits/papaya.tscn" id="f_papaya"]
 [ext_resource type="PackedScene" uid="uid://w1rap0n0uq9h" path="res://scenes/collectables/fruits/pineapple.tscn" id="f_pineapple"]
 [ext_resource type="PackedScene" uid="uid://5b7qmlb4xcf6" path="res://scenes/collectables/fruits/watermelon.tscn" id="f_watermelon"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl10PapayaMap" type="Node2D"]
 y_sort_enabled = true
@@ -180,6 +181,14 @@ position = Vector2(56, 408)
 
 [node name="Banana" parent="WrongFruits" instance=ExtResource("f_banana")]
 position = Vector2(768, 200)
+
+[node name="HelperFarmer" parent="." instance=ExtResource("90_helper")]
+position = Vector2(828, 492)
+character = 5
+
+[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
+position = Vector2(408, 148)
+character = 2
 
 [node name="GameUI" parent="." instance=ExtResource("12_ui")]
 

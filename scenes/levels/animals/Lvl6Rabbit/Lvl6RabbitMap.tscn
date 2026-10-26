@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bkl5qa661suvx" path="res://scenes/characters/farmer.tscn" id="11_farmer"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
 [ext_resource type="PackedScene" uid="uid://calc3yhurihw" path="res://scenes/collectables/animals/farm/rabbit.tscn" id="a_rabbit"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl6RabbitMap" type="Node2D"]
 y_sort_enabled = true
@@ -163,6 +164,14 @@ position = Vector2(540, -16)
 
 [node name="Rabbit4" parent="Animals" instance=ExtResource("a_rabbit")]
 position = Vector2(764, 752)
+
+[node name="HelperMerchant" parent="." instance=ExtResource("90_helper")]
+position = Vector2(845, 406)
+character = 0
+
+[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
+position = Vector2(637, 14)
+character = 2
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

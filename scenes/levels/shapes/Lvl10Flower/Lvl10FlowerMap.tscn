@@ -23,6 +23,7 @@
 [ext_resource type="TileSet" uid="uid://b547n11tgq3oo" path="res://scenes/tilesets/furniture_tileset.tres" id="4_sqpdo"]
 [ext_resource type="TileSet" uid="uid://umk8vkn0aa3g" path="res://scenes/tilesets/new_tile_set.tres" id="5_i4d3o"]
 [ext_resource type="TileSet" uid="uid://cu8m7lbxqc53j" path="res://scenes/tilesets/structures.tres" id="7_t1qvm"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl10FlowerMap" type="Node2D"]
 y_sort_enabled = true
@@ -218,6 +219,14 @@ shape_board = NodePath("../../ShapeBoard")
 [node name="Diamond2" parent="WrongShapes" instance=ExtResource("block_diamond")]
 position = Vector2(1002, 388)
 shape_board = NodePath("../../ShapeBoard")
+
+[node name="HelperFarmer" parent="." instance=ExtResource("90_helper")]
+position = Vector2(940, 302)
+character = 5
+
+[node name="HelperTeacher" parent="." instance=ExtResource("90_helper")]
+position = Vector2(600, 562)
+character = 1
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

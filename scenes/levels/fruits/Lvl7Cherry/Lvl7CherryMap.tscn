@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://yftr6gd65vfp" path="res://scenes/collectables/fruits/cherry.tscn" id="f_cherry"]
 [ext_resource type="PackedScene" uid="uid://bfa20bgg7jnc" path="res://scenes/collectables/fruits/grapes.tscn" id="f_grapes"]
 [ext_resource type="PackedScene" uid="uid://bgi3s1j7r2b6e" path="res://scenes/collectables/fruits/orange.tscn" id="f_orange"]
+[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl7CherryMap" type="Node2D"]
 y_sort_enabled = true
@@ -165,6 +166,14 @@ position = Vector2(608, 296)
 
 [node name="Banana" parent="WrongFruits" instance=ExtResource("f_banana")]
 position = Vector2(576, 624)
+
+[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
+position = Vector2(828, 492)
+character = 2
+
+[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
+position = Vector2(412, 144)
+character = 4
 
 [node name="GameUI" parent="." instance=ExtResource("12_ui")]
 
