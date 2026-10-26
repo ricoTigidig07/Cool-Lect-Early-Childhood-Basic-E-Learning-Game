@@ -13,6 +13,9 @@ extends Node
 ## Every Button in the game makes a click sound automatically.
 ## Volumes: open the Audio panel at the bottom of the editor (Music and SFX buses).
 
+## Sent every time a sound effect is asked for (the in-game UI reacts to it).
+signal sfx_played(sfx_name: String)
+
 const MUSIC := {
 	"menu": preload("res://assets/audio/bgm/menu.ogg"),
 	"level_map": preload("res://assets/audio/bgm/level_map.ogg"),
@@ -117,6 +120,7 @@ func play_level_complete() -> void:
 # ---------- sound effects ----------
 
 func play_sfx(sfx_name: String, pitch: float = 1.0) -> void:
+	sfx_played.emit(sfx_name)
 	if not sfx_on or not SFX.has(sfx_name):
 		return
 	var p := _sfx_players[_next_voice]

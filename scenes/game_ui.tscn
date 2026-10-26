@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://1s82j4wnweos" path="res://scenes/items_panel.tscn" id="22_ro11t"]
 [ext_resource type="PackedScene" uid="uid://0v3vcqlfdmv5" path="res://scenes/hotbar.tscn" id="23_5kjus"]
 [ext_resource type="PackedScene" uid="uid://c77bjci0hltvd" path="res://scenes/selector.tscn" id="24_bj1rn"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ui_extras.tscn" id="40_extras"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bj1rn"]
 texture = ExtResource("3_5kjus")
@@ -232,6 +233,8 @@ offset_right = -10.0
 offset_bottom = 96.23999
 
 [node name="Hotbar" parent="." unique_id=1298573925 instance=ExtResource("23_5kjus")]
+
+[node name="UIExtras" parent="." instance=ExtResource("40_extras")]
 
 [node name="Selector" parent="." unique_id=949682650 instance=ExtResource("24_bj1rn")]
 unique_name_in_owner = true

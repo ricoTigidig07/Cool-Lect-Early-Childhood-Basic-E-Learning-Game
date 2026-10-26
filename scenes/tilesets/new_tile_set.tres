@@ -35,39 +35,9 @@
 [ext_resource type="Texture2D" uid="uid://duccvqe0e77lx" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Tilesets/Building parts/Animal Structures/Barn structures.png" id="28_yh4be"]
 [ext_resource type="Texture2D" uid="uid://dav15w7dbww00" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Farming Plants.png" id="29_e6lvu"]
 [ext_resource type="Texture2D" uid="uid://dto0t74wd0vkq" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Tilesets/Building parts/Fence gates animation sprites .png" id="30_e6lvu"]
-[ext_resource type="Shader" path="res://scenes/objects/nature/plant_sway.gdshader" id="90_plant"]
+[ext_resource type="Shader" uid="uid://dlnu5y8kg0b6f" path="res://scenes/objects/nature/plant_sway.gdshader" id="90_plant"]
+[ext_resource type="Shader" uid="uid://p78hjfysg4go" path="res://scenes/objects/nature/lily_bob.gdshader" id="91_lily"]
 [ext_resource type="Material" path="res://scenes/objects/nature/bush_sway_material.tres" id="92_bush"]
-[ext_resource type="Shader" path="res://scenes/objects/nature/lily_bob.gdshader" id="91_lily"]
-
-[sub_resource type="ShaderMaterial" id="SM_mush"]
-shader = ExtResource("90_plant")
-shader_parameter/sway_amount = 0.35
-shader_parameter/sway_speed = 1.2
-shader_parameter/wave_scale = 0.025
-
-[sub_resource type="ShaderMaterial" id="SM_plant"]
-shader = ExtResource("90_plant")
-shader_parameter/sway_amount = 0.85
-shader_parameter/sway_speed = 1.5
-shader_parameter/wave_scale = 0.025
-
-[sub_resource type="ShaderMaterial" id="SM_w_reed"]
-shader = ExtResource("90_plant")
-shader_parameter/sway_amount = 0.8
-shader_parameter/sway_speed = 1.6
-shader_parameter/wave_scale = 0.025
-
-[sub_resource type="ShaderMaterial" id="SM_w_lily"]
-shader = ExtResource("91_lily")
-shader_parameter/bob_amount = 0.6
-shader_parameter/drift_amount = 0.35
-shader_parameter/bob_speed = 1.1
-
-[sub_resource type="ShaderMaterial" id="SM_farm"]
-shader = ExtResource("90_plant")
-shader_parameter/sway_amount = 0.6
-shader_parameter/sway_speed = 1.4
-shader_parameter/wave_scale = 0.025
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_02ied"]
 texture = ExtResource("1_xy6nx")
@@ -1124,6 +1094,13 @@ texture = ExtResource("28_yh4be")
 0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.1175158, -4.9571867, -1.0602074, -3.868325, 0.028654575, -4.2121763, 0.08596277, -4.84257, 1.9198356, -4.9571867, 2.0344524, -4.040251, 3.925634, -3.868325, 3.925634, -3.180623, 2.8940802, -3.0660057, 2.8940802, -2.3783035, 3.925634, -1.8625269, 4.0402503, -0.14327145, 4.8998785, 0.14327121, 4.8998785, 0.9455905, 4.040251, 1.0602076, 3.868325, 1.9771438, 4.9571867, 1.9771438, 4.84257, 2.8940802, 3.9256332, 3.008697, 3.9256332, 3.9256334, 1.0602076, 4.0402503, 0.94559056, 4.957187, 0.48712254, 4.785261, 0.14327145, 4.899878, -0.14327097, 4.040251, -1.2321332, 4.0402503, -1.0602076, 4.84257, -3.8683248, 4.8425694, -3.9256334, 4.040251, -4.899878, 3.868325, -4.8425694, 2.8367717, -4.154867, 2.89408, -3.8683248, 2.0344524, -4.9571867, 2.0344522, -4.9571867, 0.028654099, -6.1033573, 0.028654099, -5.874123, -1.0602074, -4.9571867, -1.0602074, -4.9571867, -2.0344524, -5.931432, -2.091761, -5.874123, -3.008697, -4.9571867, -3.008697, -4.9571867, -4.097559, -2.0344524, -4.097559, -1.8625269, -5.0144954)
 1:3/0 = 0
 
+[sub_resource type="ShaderMaterial" id="SM_farm"]
+shader = ExtResource("90_plant")
+shader_parameter/sway_amount = 0.6
+shader_parameter/sway_speed = 1.4
+shader_parameter/wave_scale = 0.025
+shader_parameter/padded_tile = 18.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vi2p1"]
 texture = ExtResource("29_e6lvu")
 3:0/0 = 0
@@ -1244,6 +1221,7 @@ texture = ExtResource("29_e6lvu")
 2:14/0/material = SubResource("SM_farm")
 3:14/0 = 0
 3:14/0/material = SubResource("SM_farm")
+
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_gu57c"]
 scenes/1/scene = ExtResource("8_3fw8q")
 
@@ -1880,6 +1858,20 @@ texture = ExtResource("7_02ied")
 9:5/0 = 0
 9:6/0 = 0
 
+[sub_resource type="ShaderMaterial" id="SM_mush"]
+shader = ExtResource("90_plant")
+shader_parameter/sway_amount = 0.35
+shader_parameter/sway_speed = 1.2
+shader_parameter/wave_scale = 0.025
+shader_parameter/padded_tile = 18.0
+
+[sub_resource type="ShaderMaterial" id="SM_plant"]
+shader = ExtResource("90_plant")
+shader_parameter/sway_amount = 0.85
+shader_parameter/sway_speed = 1.5
+shader_parameter/wave_scale = 0.025
+shader_parameter/padded_tile = 18.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kneqj"]
 texture = ExtResource("6_qfb6t")
 0:0/0 = 0
@@ -1963,6 +1955,20 @@ texture = ExtResource("6_qfb6t")
 3:3/size_in_atlas = Vector2i(1, 2)
 3:3/0 = 0
 3:3/0/material = SubResource("SM_plant")
+
+[sub_resource type="ShaderMaterial" id="SM_w_lily"]
+shader = ExtResource("91_lily")
+shader_parameter/bob_amount = 0.6
+shader_parameter/drift_amount = 0.35
+shader_parameter/bob_speed = 1.1
+
+[sub_resource type="ShaderMaterial" id="SM_w_reed"]
+shader = ExtResource("90_plant")
+shader_parameter/sway_amount = 0.8
+shader_parameter/sway_speed = 1.6
+shader_parameter/wave_scale = 0.025
+shader_parameter/padded_tile = 18.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tqutu"]
 texture = ExtResource("13_t7uff")
 0:0/0 = 0
@@ -1989,6 +1995,7 @@ texture = ExtResource("13_t7uff")
 5:1/0 = 0
 4:0/size_in_atlas = Vector2i(2, 1)
 4:0/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0s4c5"]
 texture = ExtResource("14_knpdt")
 0:0/0 = 0

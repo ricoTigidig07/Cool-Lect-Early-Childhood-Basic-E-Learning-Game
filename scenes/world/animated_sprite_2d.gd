@@ -1,6 +1,6 @@
 extends AnimatedSprite2D
 
-var animations = ["defaults", "Blinking", "Edadars"]
+var animations = ["defaults", "Blinking", "Ears"]
 var is_near_merchant = false
 
 func _ready():

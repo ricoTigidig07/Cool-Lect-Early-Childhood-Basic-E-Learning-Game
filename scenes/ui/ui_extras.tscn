@@ -1,0 +1,482 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/ui_extras.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/UI Big Play Button.png" id="2_panel"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/Stamina circle with white outline sprite sheet .png" id="3_ring"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Dialouge UI/dialog box medium.png" id="4_bubble"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Icons/All Icons.png" id="5_icons"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/buttons/round/small colored round buttons.png" id="6_round"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Mouse sprites/Catpaw pointing Mouse icon.png" id="7_cursor"]
+[ext_resource type="FontFile" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="8_font"]
+
+[sub_resource type="AtlasTexture" id="A_panel"]
+atlas = ExtResource("2_panel")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="A_ring"]
+atlas = ExtResource("3_ring")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_star"]
+atlas = ExtResource("5_icons")
+region = Rect2(224, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_talk"]
+atlas = ExtResource("5_icons")
+region = Rect2(208, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_paw"]
+atlas = ExtResource("5_icons")
+region = Rect2(224, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_use"]
+atlas = ExtResource("5_icons")
+region = Rect2(224, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_round"]
+atlas = ExtResource("6_round")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="LabelSettings" id="LS_title"]
+font = ExtResource("8_font")
+font_size = 22
+font_color = Color(0.55, 0.36, 0.24, 1)
+
+[sub_resource type="LabelSettings" id="LS_name"]
+font = ExtResource("8_font")
+font_size = 40
+font_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="LabelSettings" id="LS_count"]
+font = ExtResource("8_font")
+font_size = 28
+font_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="LabelSettings" id="LS_bubble"]
+font = ExtResource("8_font")
+font_size = 22
+font_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="Animation" id="An_b_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelBanner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-230, -140)]
+}
+
+[sub_resource type="Animation" id="An_b_show"]
+length = 3.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelBanner:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 2.7, 3.1),
+"transitions": PackedFloat32Array(0.5, 1, 2, 1),
+"update": 0,
+"values": [Vector2(-230, -140), Vector2(-230, 16), Vector2(-230, 16), Vector2(-230, -140)]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_banner"]
+_data = {
+&"RESET": SubResource("An_b_reset"),
+&"show": SubResource("An_b_show")
+}
+
+[sub_resource type="Animation" id="An_p_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TaskProgress:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="An_p_appear"]
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TaskProgress:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.35),
+"transitions": PackedFloat32Array(0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="An_p_bump"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TaskProgress:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.3),
+"transitions": PackedFloat32Array(0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_progress"]
+_data = {
+&"RESET": SubResource("An_p_reset"),
+&"appear": SubResource("An_p_appear"),
+&"bump": SubResource("An_p_bump")
+}
+
+[sub_resource type="Animation" id="An_i_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IdleBubble:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IdleBubble:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="An_i_show"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IdleBubble:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.3),
+"transitions": PackedFloat32Array(0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IdleBubble:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="An_i_hide"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IdleBubble:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IdleBubble:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_bubble"]
+_data = {
+&"RESET": SubResource("An_i_reset"),
+&"show": SubResource("An_i_show"),
+&"hide": SubResource("An_i_hide")
+}
+
+[sub_resource type="Animation" id="An_g_pop"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InteractBadge:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.3),
+"transitions": PackedFloat32Array(0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.25, 1.25), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_badge"]
+_data = {
+&"pop": SubResource("An_g_pop")
+}
+
+[node name="UIExtras" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+badge_talk = SubResource("A_talk")
+badge_paw = SubResource("A_paw")
+badge_use = SubResource("A_use")
+cursor_texture = ExtResource("7_cursor")
+
+[node name="TopCenter" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="TaskProgress" type="Control" parent="TopCenter"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -130.0
+offset_top = 12.0
+offset_right = 130.0
+offset_bottom = 76.0
+pivot_offset = Vector2(130, 32)
+mouse_filter = 2
+
+[node name="Panel" type="NinePatchRect" parent="TopCenter/TaskProgress"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = SubResource("A_panel")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 8
+
+[node name="ItemIcon" type="TextureRect" parent="TopCenter/TaskProgress"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 60.0
+offset_bottom = 54.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Count" type="Label" parent="TopCenter/TaskProgress"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 6.0
+offset_right = 192.0
+offset_bottom = 58.0
+text = "0 / 0"
+label_settings = SubResource("LS_count")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ring" type="TextureRect" parent="TopCenter/TaskProgress"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 10.0
+offset_right = 240.0
+offset_bottom = 54.0
+mouse_filter = 2
+texture = SubResource("A_ring")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelBanner" type="Control" parent="TopCenter"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -230.0
+offset_top = -140.0
+offset_right = 230.0
+offset_bottom = -36.0
+mouse_filter = 2
+
+[node name="Panel" type="NinePatchRect" parent="TopCenter/LevelBanner"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = SubResource("A_panel")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 8
+
+[node name="StarLeft" type="TextureRect" parent="TopCenter/LevelBanner"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 34.0
+offset_right = 58.0
+offset_bottom = 70.0
+mouse_filter = 2
+texture = SubResource("A_star")
+expand_mode = 1
+
+[node name="StarRight" type="TextureRect" parent="TopCenter/LevelBanner"]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 34.0
+offset_right = 438.0
+offset_bottom = 70.0
+mouse_filter = 2
+texture = SubResource("A_star")
+expand_mode = 1
+
+[node name="Title" type="Label" parent="TopCenter/LevelBanner"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 10.0
+offset_right = 400.0
+offset_bottom = 38.0
+text = "Fruits - Level 1"
+label_settings = SubResource("LS_title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelName" type="Label" parent="TopCenter/LevelBanner"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 36.0
+offset_right = 400.0
+offset_bottom = 92.0
+text = "Apple"
+label_settings = SubResource("LS_name")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IdleBubble" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 138.0
+offset_top = 22.0
+offset_right = 420.0
+offset_bottom = 128.0
+scale = Vector2(0, 0)
+pivot_offset = Vector2(0, 53)
+mouse_filter = 2
+
+[node name="Box" type="TextureRect" parent="IdleBubble"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("4_bubble")
+expand_mode = 1
+
+[node name="Text" type="Label" parent="IdleBubble"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 14.0
+offset_right = 266.0
+offset_bottom = 90.0
+text = "Lost? Ask a helper!"
+label_settings = SubResource("LS_bubble")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="BottomRight" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="InteractBadge" type="Control" parent="BottomRight"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -112.0
+offset_top = -244.0
+offset_right = -46.0
+offset_bottom = -178.0
+pivot_offset = Vector2(33, 33)
+mouse_filter = 2
+
+[node name="Back" type="TextureRect" parent="BottomRight/InteractBadge"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = SubResource("A_round")
+expand_mode = 1
+
+[node name="Icon" type="TextureRect" parent="BottomRight/InteractBadge"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 53.0
+offset_bottom = 52.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BannerAnim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../TopCenter")
+libraries/ = SubResource("Lib_banner")
+
+[node name="ProgressAnim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../TopCenter")
+libraries/ = SubResource("Lib_progress")
+
+[node name="BubbleAnim" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("Lib_bubble")
+
+[node name="BadgeAnim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../BottomRight")
+libraries/ = SubResource("Lib_badge")
