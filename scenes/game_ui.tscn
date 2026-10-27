@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://0v3vcqlfdmv5" path="res://scenes/hotbar.tscn" id="23_5kjus"]
 [ext_resource type="PackedScene" uid="uid://c77bjci0hltvd" path="res://scenes/selector.tscn" id="24_bj1rn"]
 [ext_resource type="PackedScene" path="res://scenes/ui/ui_extras.tscn" id="40_extras"]
+[ext_resource type="PackedScene" path="res://scenes/ui/tutorial.tscn" id="41_tutorial"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bj1rn"]
 texture = ExtResource("3_5kjus")
@@ -249,3 +250,5 @@ offset_bottom = -14.0
 
 [connection signal="button_down" from="InteractionButton/Button" to="InteractionButton/Button" method="_on_button_down"]
 [connection signal="button_up" from="InteractionButton/Button" to="InteractionButton/Button" method="_on_button_up"]
+
+[node name="Tutorial" parent="." instance=ExtResource("41_tutorial")]

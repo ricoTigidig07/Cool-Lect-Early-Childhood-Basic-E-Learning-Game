@@ -135,8 +135,9 @@ func interact() -> void:
 		return
 	var hint := find_hint()
 	target = hint["node"]
-	_show_bubble(hint["icon"], hint["tint"])
-	_guide_player(hint)
+	if GameManager.helper_hints:      # Settings > Helper hints
+		_show_bubble(hint["icon"], hint["tint"])
+		_guide_player(hint)
 	if portrait:
 		portrait.play("merchant_talking")
 	var lines: Array[String] = [LOOKS[character]["hello"]]

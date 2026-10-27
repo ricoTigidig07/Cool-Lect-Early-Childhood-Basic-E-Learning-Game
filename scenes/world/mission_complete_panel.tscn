@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cm4hqsbg240t6"]
 
-[ext_resource type="Script" uid="uid://kriicyyxagag" path="res://scenes/world/mission_complete_panel.gd" id="1_mcp01"]
+[ext_resource type="Script" uid="uid://l5y39iqqmu2jq" path="res://scenes/world/mission_complete_panel.gd" id="1_mcp01"]
 [ext_resource type="Theme" uid="uid://b1oxrs8tp4hwy" path="res://assets/UI/cool_lect_theme.tres" id="2_theme"]
 [ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green.tres" id="3_green"]
 [ext_resource type="Texture2D" uid="uid://daatfjfbe2wva" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/ALL UI ASSETS on one sheet.png" id="3_i44ng"]

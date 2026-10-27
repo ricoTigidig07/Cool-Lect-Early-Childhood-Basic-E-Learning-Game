@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bmkf1osgyijol" path="res://scenes/objects/tree/big_tree.gd" id="2_mt2w1"]
 [ext_resource type="PackedScene" uid="uid://nshpx7n61rk5" path="res://scenes/components/hurt_component.tscn" id="2_ygx4o"]
 [ext_resource type="PackedScene" uid="uid://dqee7fxqcid7d" path="res://scenes/components/damage_component.tscn" id="3_8kafe"]
-[ext_resource type="Script" uid="uid://lswjekvcnb35" path="res://scenes/components/damage_component.gd" id="4_mt2w1"]
+[ext_resource type="Script" uid="uid://clag008gw8phb" path="res://scenes/components/damage_component.gd" id="4_mt2w1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1a0qn"]
 shader = ExtResource("1_1a0qn")

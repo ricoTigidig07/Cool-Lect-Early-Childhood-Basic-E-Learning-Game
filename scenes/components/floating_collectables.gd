@@ -14,7 +14,7 @@ func _ready() -> void:
 	base_y = position.y
 	time_offset = randf() * TAU  # desyncs multiple apples so they don't bob in unison
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var t = (Time.get_ticks_msec() / 1000.0) * float_speed + time_offset
 	var bob = sin(t)
 

@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://dn7kjybx80crv" path="res://scenes/letter_frame.tscn" id="12_frame"]
 [ext_resource type="Script" uid="uid://b038rndcy1god" path="res://scenes/levels/alphabets/letter_sequence.gd" id="13_seq"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
-[ext_resource type="PackedScene" uid="uid://2remq22jt9ce" path="res://scenes/collectables/alphabets/capital_E.tscn" id="L_cap_E"]
+[ext_resource type="PackedScene" uid="uid://2remq22juace" path="res://scenes/collectables/alphabets/capital_E.tscn" id="L_cap_E"]
 [ext_resource type="PackedScene" uid="uid://bey5lb42wartb" path="res://scenes/collectables/alphabets/capital_F.tscn" id="L_cap_F"]
-[ext_resource type="PackedScene" uid="uid://bd1ijmopetqs9" path="res://scenes/collectables/alphabets/small_e.tscn" id="L_small_e"]
+[ext_resource type="PackedScene" uid="uid://bd1ijmopetqta" path="res://scenes/collectables/alphabets/small_e.tscn" id="L_small_e"]
 [ext_resource type="PackedScene" uid="uid://t33d1yd50tje" path="res://scenes/collectables/alphabets/small_f.tscn" id="L_small_f"]
 [ext_resource type="TileSet" uid="uid://bvukl1jpqiuwh" path="res://scenes/tilesets/water_tileset.tres" id="1_0oynx"]
 [ext_resource type="TileSet" uid="uid://cnh0v8fe3tebm" path="res://scenes/tilesets/ground_tiles.tres" id="2_kiuhp"]
@@ -18,7 +18,7 @@
 [ext_resource type="TileSet" uid="uid://cjh1t8bl1l8lf" path="res://scenes/tilesets/House_tile_set.tres" id="4_kiuhp"]
 [ext_resource type="TileSet" uid="uid://umk8vkn0aa3g" path="res://scenes/tilesets/new_tile_set.tres" id="4_tpwii"]
 [ext_resource type="TileSet" uid="uid://cu8m7lbxqc53j" path="res://scenes/tilesets/structures.tres" id="6_5r865"]
-[ext_resource type="TileSet" uid="uid://c2xdnmsksqqit" path="res://scenes/tilesets/furniture_tileset.tres" id="7_uyugg"]
+[ext_resource type="TileSet" uid="uid://b547n11tgq3oo" path="res://scenes/tilesets/furniture_tileset.tres" id="7_uyugg"]
 [ext_resource type="PackedScene" uid="uid://dubbaqeuluioc" path="res://resources/door.tscn" id="8_8ibng"]
 [ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
@@ -140,3 +140,5 @@ character = 5
 
 [connection signal="button_down" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_down"]
 [connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
+
+[editable path="GameUI"]

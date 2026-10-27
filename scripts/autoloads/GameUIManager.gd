@@ -71,10 +71,12 @@ func show_mission_complete() -> void:
 	mission_complete_panel.show_result(stars)
 
 func _on_mission_complete_retry() -> void:
+	await _let_touch_finish()
 	get_tree().reload_current_scene()
 
 ## Opens the next level of the same subject, or the level map if this was the last one.
 func _on_mission_complete_next() -> void:
+	await _let_touch_finish()
 	var level_map = load("res://scenes/levels/level_map.gd")
 	var next_path: String = level_map.LEVEL_SCENES.get(GameManager.current_subject, {}).get(GameManager.current_level + 1, "")
 	if next_path != "" and ResourceLoader.exists(next_path):
@@ -85,10 +87,16 @@ func _on_mission_complete_next() -> void:
 ## Goes back to the level map of the subject you were playing
 ## (e.g. alphabets -> scenes/levels/alphabets/alphabets_level_select.tscn).
 func _on_mission_complete_level_select() -> void:
+	await _let_touch_finish()
 	var subject := GameManager.current_subject
 	if subject == "":
 		subject = "fruits"
 	get_tree().change_scene_to_file("res://scenes/levels/%s/%s_level_select.tscn" % [subject, subject])
+
+## On phones the finger is still on the button for a moment after the tap:
+## change the scene a little later so the button isn't removed while it is being touched.
+func _let_touch_finish() -> void:
+	await get_tree().create_timer(0.12).timeout
 
 var hotbar: PanelContainer
 

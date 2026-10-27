@@ -1,0 +1,430 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/tutorial.gd" id="1_script"]
+[ext_resource type="Theme" path="res://assets/UI/cool_lect_theme.tres" id="2_theme"]
+[ext_resource type="FontFile" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="3_font"]
+[ext_resource type="SpriteFrames" path="res://resources/character_animation.tres" id="4_player"]
+[ext_resource type="SpriteFrames" path="res://scenes/characters/helper/npc_placeholder_frames.tres" id="5_npc"]
+[ext_resource type="Texture2D" path="res://scenes/arrow_left.png" id="6_left"]
+[ext_resource type="Texture2D" path="res://scenes/arrow_right.png" id="7_right"]
+[ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green.tres" id="8_green"]
+[ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green_pressed.tres" id="9_green_p"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Icons/All Icons.png" id="10_icons"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/UI Big Play Button.png" id="11_panel"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/buttons/square/Small Square Buttons.png" id="12_square"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/Xs and check marks/1s/big check mark.png" id="13_check"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/buttons/round/small colored round buttons.png" id="14_round"]
+[ext_resource type="Texture2D" path="res://resources/filled_star.tres" id="15_star"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Dialouge UI/Character Backdrop-frame/backdrops_a1.png" id="16_frame"]
+
+[sub_resource type="AtlasTexture" id="A_talk"]
+atlas = ExtResource("10_icons")
+region = Rect2(208, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_paw"]
+atlas = ExtResource("10_icons")
+region = Rect2(224, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_ask"]
+atlas = ExtResource("10_icons")
+region = Rect2(208, 160, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_arrow"]
+atlas = ExtResource("10_icons")
+region = Rect2(208, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_panel"]
+atlas = ExtResource("11_panel")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="A_box"]
+atlas = ExtResource("14_round")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_dot_on"]
+atlas = ExtResource("14_round")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_dot_off"]
+atlas = ExtResource("14_round")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="LabelSettings" id="LS_title"]
+font = ExtResource("3_font")
+font_size = 38
+font_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="LabelSettings" id="LS_text"]
+font = ExtResource("3_font")
+font_size = 24
+font_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="Animation" id="An_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Card:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Card/Picture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="An_open"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Card:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.3),
+"transitions": PackedFloat32Array(0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="An_page"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Card/Picture:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_main"]
+_data = {
+&"RESET": SubResource("An_reset"),
+&"open": SubResource("An_open"),
+&"page": SubResource("An_page")
+}
+
+[sub_resource type="Animation" id="An_float"]
+length = 1.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Card/Picture/Action:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.0),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(276, 6), Vector2(276, -2), Vector2(276, 6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Card/Picture/Arrow:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.0),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(196, 100), Vector2(206, 100), Vector2(196, 100)]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_loop"]
+_data = {
+&"float": SubResource("An_float")
+}
+
+[node name="Tutorial" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
+talk_icon = SubResource("A_talk")
+paw_icon = SubResource("A_paw")
+ask_icon = SubResource("A_ask")
+star_icon = ExtResource("15_star")
+board_texture = ExtResource("16_frame")
+box_off = SubResource("A_box")
+box_on = ExtResource("13_check")
+dot_on = SubResource("A_dot_on")
+dot_off = SubResource("A_dot_off")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="Card" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -275.0
+offset_right = 360.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(360, 275)
+
+[node name="Bg" type="PanelContainer" parent="Card"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Card"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 700.0
+offset_bottom = 70.0
+text = "How to play"
+label_settings = SubResource("LS_title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Picture" type="Control" parent="Card"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 76.0
+offset_right = 660.0
+offset_bottom = 306.0
+
+[node name="Frame" type="NinePatchRect" parent="Card/Picture"]
+modulate = Color(1, 1, 1, 0.85)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("A_panel")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 8
+
+[node name="LeftChar" type="AnimatedSprite2D" parent="Card/Picture"]
+position = Vector2(110, 128)
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("4_player")
+animation = &"idle_front"
+
+[node name="Arrow" type="TextureRect" parent="Card/Picture"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 100.0
+offset_right = 236.0
+offset_bottom = 140.0
+texture = SubResource("A_arrow")
+expand_mode = 1
+
+[node name="Items" type="HBoxContainer" parent="Card/Picture"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 88.0
+offset_right = 420.0
+offset_bottom = 152.0
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Item1" type="TextureRect" parent="Card/Picture/Items"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Item2" type="TextureRect" parent="Card/Picture/Items"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Item3" type="TextureRect" parent="Card/Picture/Items"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RightChar" type="AnimatedSprite2D" parent="Card/Picture"]
+position = Vector2(500, 128)
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("5_npc")
+animation = &"idle_front"
+
+[node name="RightPic" type="TextureRect" parent="Card/Picture"]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 50.0
+offset_right = 566.0
+offset_bottom = 180.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Badge" type="TextureRect" parent="Card/Picture/RightPic"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = -12.0
+offset_right = 140.0
+offset_bottom = 36.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Action" type="TextureRect" parent="Card/Picture"]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 6.0
+offset_right = 324.0
+offset_bottom = 54.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="Card"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 316.0
+offset_right = 690.0
+offset_bottom = 410.0
+text = "..."
+label_settings = SubResource("LS_text")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Dots" type="HBoxContainer" parent="Card"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 414.0
+offset_right = 720.0
+offset_bottom = 434.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Dot1" type="TextureRect" parent="Card/Dots"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+texture = SubResource("A_dot_off")
+expand_mode = 1
+
+[node name="Dot2" type="TextureRect" parent="Card/Dots"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+texture = SubResource("A_dot_off")
+expand_mode = 1
+
+[node name="Dot3" type="TextureRect" parent="Card/Dots"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+texture = SubResource("A_dot_off")
+expand_mode = 1
+
+[node name="Dot4" type="TextureRect" parent="Card/Dots"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+texture = SubResource("A_dot_off")
+expand_mode = 1
+
+[node name="Dot5" type="TextureRect" parent="Card/Dots"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+texture = SubResource("A_dot_off")
+expand_mode = 1
+
+[node name="Dot6" type="TextureRect" parent="Card/Dots"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+texture = SubResource("A_dot_off")
+expand_mode = 1
+
+[node name="DontShow" type="Button" parent="Card"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 456.0
+offset_right = 380.0
+offset_bottom = 514.0
+theme_override_font_sizes/font_size = 18
+theme_override_constants/icon_max_width = 30
+text = "Don't show again (until I play again)"
+icon = SubResource("A_box")
+autowrap_mode = 3
+
+[node name="Buttons" type="HBoxContainer" parent="Card"]
+layout_mode = 0
+offset_left = 396.0
+offset_top = 456.0
+offset_right = 690.0
+offset_bottom = 514.0
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Back" type="Button" parent="Card/Buttons"]
+custom_minimum_size = Vector2(80, 58)
+layout_mode = 2
+icon = ExtResource("6_left")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Next" type="Button" parent="Card/Buttons"]
+custom_minimum_size = Vector2(150, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Next"
+icon = ExtResource("7_right")
+icon_alignment = 2
+expand_icon = true
+
+[node name="Go" type="Button" parent="Card/Buttons"]
+custom_minimum_size = Vector2(170, 58)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_hover_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_pressed_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = ExtResource("8_green")
+theme_override_styles/hover = ExtResource("8_green")
+theme_override_styles/pressed = ExtResource("9_green_p")
+text = "Let's go!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("Lib_main")
+
+[node name="LoopAnim" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("Lib_loop")
+autoplay = &"float"

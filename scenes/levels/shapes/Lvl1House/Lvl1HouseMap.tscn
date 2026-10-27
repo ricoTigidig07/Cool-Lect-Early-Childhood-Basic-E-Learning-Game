@@ -7,11 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://ntk4b13jol1a" path="res://scenes/shape_board.tscn" id="12_board"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
 [ext_resource type="Texture2D" uid="uid://bluq1a87ety2u" path="res://scenes/objects/icons/shapes/square.tres" id="icon_square"]
-[ext_resource type="PackedScene" uid="uid://bckytakh7cg87" path="res://scenes/collectables/shapes/square.tscn" id="block_square"]
+[ext_resource type="PackedScene" uid="uid://bckys9kh7cg87" path="res://scenes/collectables/shapes/square.tscn" id="block_square"]
 [ext_resource type="Texture2D" uid="uid://bfg41tdcfp1op" path="res://scenes/objects/icons/shapes/triangle.tres" id="icon_triangle"]
 [ext_resource type="PackedScene" uid="uid://bgddxys8ysx7d" path="res://scenes/collectables/shapes/triangle.tscn" id="block_triangle"]
 [ext_resource type="Texture2D" uid="uid://bhsemic4mblct" path="res://scenes/objects/icons/shapes/circle.tres" id="icon_circle"]
-[ext_resource type="PackedScene" uid="uid://fj6kadqt1pus" path="res://scenes/collectables/shapes/circle.tscn" id="block_circle"]
+[ext_resource type="PackedScene" uid="uid://fj6j9dqt1pus" path="res://scenes/collectables/shapes/circle.tscn" id="block_circle"]
 [ext_resource type="TileSet" uid="uid://bvukl1jpqiuwh" path="res://scenes/tilesets/water_tileset.tres" id="1_2ujln"]
 [ext_resource type="TileSet" uid="uid://bv4nug1oukygd" path="res://scenes/levels/water_objects_tileset.tres" id="2_7b60a"]
 [ext_resource type="TileSet" uid="uid://ccenuh5iqv2ci" path="res://scenes/tilesets/land_tileset.tres" id="2_gg5sf"]
@@ -163,3 +163,7 @@ character = 3
 
 [connection signal="button_down" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_down"]
 [connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
+
+[editable path="ShapeBoard"]
+
+[editable path="GameUI"]

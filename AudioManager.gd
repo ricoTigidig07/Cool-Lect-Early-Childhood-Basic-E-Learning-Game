@@ -45,6 +45,9 @@ const SFX_VOICES := 8
 
 var music_on := true
 var sfx_on := true
+## 0.0 - 1.0, set in Settings (5 steps).
+var music_volume := 1.0
+var sfx_volume := 1.0
 
 var _music_players: Array[AudioStreamPlayer] = []
 var _active := 0
@@ -149,11 +152,29 @@ func set_sfx_on(on: bool) -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), not on)
 	_save_settings()
 
+## Volume of the Music / SFX bus (0.0 - 1.0).
+func set_music_volume(v: float) -> void:
+	music_volume = clamp(v, 0.0, 1.0)
+	_apply_volume("Music", music_volume)
+	_save_settings()
+
+func set_sfx_volume(v: float) -> void:
+	sfx_volume = clamp(v, 0.0, 1.0)
+	_apply_volume("SFX", sfx_volume)
+	_save_settings()
+
+func _apply_volume(bus: String, v: float) -> void:
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus), linear_to_db(max(v, 0.001)))
+
 func _load_settings() -> void:
 	var cfg := ConfigFile.new()
 	if cfg.load(SETTINGS_PATH) == OK:
 		music_on = cfg.get_value("audio", "music_on", true)
 		sfx_on = cfg.get_value("audio", "sfx_on", true)
+		music_volume = cfg.get_value("audio", "music_volume", 1.0)
+		sfx_volume = cfg.get_value("audio", "sfx_volume", 1.0)
+	_apply_volume("Music", music_volume)
+	_apply_volume("SFX", sfx_volume)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), not music_on)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), not sfx_on)
 
@@ -161,6 +182,8 @@ func _save_settings() -> void:
 	var cfg := ConfigFile.new()
 	cfg.set_value("audio", "music_on", music_on)
 	cfg.set_value("audio", "sfx_on", sfx_on)
+	cfg.set_value("audio", "music_volume", music_volume)
+	cfg.set_value("audio", "sfx_volume", sfx_volume)
 	cfg.save(SETTINGS_PATH)
 
 ## Makes the Music / SFX bus if default_bus_layout.tres doesn't have it.

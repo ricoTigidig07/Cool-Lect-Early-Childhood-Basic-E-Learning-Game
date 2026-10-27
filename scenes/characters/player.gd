@@ -5,7 +5,7 @@ const SPEED = 50.0
 
 @onready var animated_sprite = $AnimatedSprite2D2
 @onready var camera = $Camera2D
-@onready var joystick = get_node("../GameUI/JoystickControl")
+@onready var joystick = get_node_or_null("../GameUI/JoystickControl")
 @onready var shadow = $Shadow
 @onready var reactions: AnimationPlayer = get_node_or_null("Reactions")
 @onready var lively_light: ColorRect = get_node_or_null("LightFilter/Lively")
@@ -36,7 +36,7 @@ func _physics_process(delta):
 	var direction = input_direction
 	var direction_name = ""
 	
-	if joystick.direction != Vector2.ZERO:
+	if joystick and joystick.direction != Vector2.ZERO:
 		direction = joystick.direction
 		direction_name = joystick.direction_name
 	

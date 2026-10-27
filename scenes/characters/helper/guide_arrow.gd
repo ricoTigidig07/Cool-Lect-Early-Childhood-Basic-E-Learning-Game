@@ -35,7 +35,7 @@ func point_to(new_target: Node2D, done_check: Callable) -> void:
 func _process(_delta: float) -> void:
 	if leaving:
 		return
-	if target == null or not is_instance_valid(target) or (is_done.is_valid() and is_done.call()):
+	if not GameManager.helper_hints or target == null or not is_instance_valid(target) or (is_done.is_valid() and is_done.call()):
 		_leave()
 		return
 	_update_rotation()

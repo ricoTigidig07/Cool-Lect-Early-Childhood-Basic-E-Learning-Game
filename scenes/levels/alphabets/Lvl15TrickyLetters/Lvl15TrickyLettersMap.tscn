@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bmn6v6deftjv6" path="res://scenes/collectables/alphabets/capital_S.tscn" id="L_cap_S"]
 [ext_resource type="PackedScene" uid="uid://5ephobybd57q" path="res://scenes/collectables/alphabets/capital_Y.tscn" id="L_cap_Y"]
 [ext_resource type="PackedScene" uid="uid://wh5rra3w83lf" path="res://scenes/collectables/alphabets/small_b.tscn" id="L_small_b"]
-[ext_resource type="PackedScene" uid="uid://f99vy6u5dk2j" path="res://scenes/collectables/alphabets/small_d.tscn" id="L_small_d"]
+[ext_resource type="PackedScene" uid="uid://gbavy6u5dk2j" path="res://scenes/collectables/alphabets/small_d.tscn" id="L_small_d"]
 [ext_resource type="PackedScene" uid="uid://bdml0ncjxnydw" path="res://scenes/collectables/alphabets/small_g.tscn" id="L_small_g"]
 [ext_resource type="PackedScene" uid="uid://1d3qphh3o7dm" path="res://scenes/collectables/alphabets/small_k.tscn" id="L_small_k"]
 [ext_resource type="PackedScene" uid="uid://vr2wt460la13" path="res://scenes/collectables/alphabets/small_p.tscn" id="L_small_p"]
@@ -26,7 +26,7 @@
 [ext_resource type="TileSet" uid="uid://cjh1t8bl1l8lf" path="res://scenes/tilesets/House_tile_set.tres" id="4_kiuhp"]
 [ext_resource type="TileSet" uid="uid://umk8vkn0aa3g" path="res://scenes/tilesets/new_tile_set.tres" id="4_tpwii"]
 [ext_resource type="TileSet" uid="uid://cu8m7lbxqc53j" path="res://scenes/tilesets/structures.tres" id="6_5r865"]
-[ext_resource type="TileSet" uid="uid://c2xdnmsksqqit" path="res://scenes/tilesets/furniture_tileset.tres" id="7_uyugg"]
+[ext_resource type="TileSet" uid="uid://b547n11tgq3oo" path="res://scenes/tilesets/furniture_tileset.tres" id="7_uyugg"]
 [ext_resource type="PackedScene" uid="uid://dubbaqeuluioc" path="res://resources/door.tscn" id="8_8ibng"]
 [ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
@@ -184,3 +184,5 @@ character = 2
 
 [connection signal="button_down" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_down"]
 [connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
+
+[editable path="GameUI"]

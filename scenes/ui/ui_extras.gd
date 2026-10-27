@@ -188,9 +188,9 @@ func _progress() -> Dictionary:
 					if part.get_meta("painted"):
 						painted += 1
 				var next: String = n.next_needed_color()
-				if next == "":
+				if next == "" and not n.needed_colors().is_empty():
 					next = n.needed_colors()[0]
-				return {"done": painted, "total": parts.size(), "icon": PaintColors.bucket_icon(next)}
+				return {"done": painted, "total": parts.size(), "icon": PaintColors.bucket_icon(next) if next != "" else null}
 	# baskets (numbers)
 	var baskets := get_tree().get_nodes_in_group("count_baskets")
 	if baskets.size() > 0:
@@ -274,7 +274,7 @@ func _update_idle(delta: float) -> void:
 	idle_time += delta
 	if idle_time >= IDLE_TIME and not bubble_shown:
 		bubble_shown = true
-		idle_text.text = "Lost? Ask a helper!" if _has_helpers() else "Look around!"
+		idle_text.text = "Lost? Ask a helper!" if _has_helpers() and GameManager.helper_hints else "Look around!"
 		bubble_anim.play("show")
 		var a := _avatar()
 		if a and not a.is_near_merchant and not reacting:

@@ -8,7 +8,7 @@
 [ext_resource type="TileSet" uid="uid://in7c5ejml0jt" path="res://scenes/tilesets/grass_tilesets.tres" id="4_iwhsr"]
 [ext_resource type="TileSet" uid="uid://cjh1t8bl1l8lf" path="res://scenes/tilesets/House_tile_set.tres" id="5_q3qmr"]
 [ext_resource type="TileSet" uid="uid://cu8m7lbxqc53j" path="res://scenes/tilesets/structures.tres" id="6_iwhsr"]
-[ext_resource type="TileSet" uid="uid://c2xdnmsksqqit" path="res://scenes/tilesets/furniture_tileset.tres" id="6_oo67w"]
+[ext_resource type="TileSet" uid="uid://b547n11tgq3oo" path="res://scenes/tilesets/furniture_tileset.tres" id="6_oo67w"]
 [ext_resource type="TileSet" uid="uid://f7lkmlub3p8q" path="res://scenes/tilesets/bridges_ports_tileset.tres" id="7_cmrvu"]
 [ext_resource type="PackedScene" uid="uid://ddijrpvpg81cp" path="res://scenes/characters/player.tscn" id="10_player"]
 [ext_resource type="PackedScene" uid="uid://e23ap4uaaaa0" path="res://scenes/characters/painter.tscn" id="11_painter"]
@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
 [ext_resource type="PackedScene" uid="uid://ed9u5ujhlcs5" path="res://scenes/colors/mixing_pot.tscn" id="15_pot"]
 [ext_resource type="Texture2D" uid="uid://bgcnrc6pyxhym" path="res://assets/colors/pictures/elephant_grey.png" id="part_grey"]
-[ext_resource type="Texture2D" uid="uid://bl97gxk78lfja" path="res://assets/colors/pictures/elephant_pink.png" id="part_pink"]
+[ext_resource type="Texture2D" uid="uid://bma7gxk78lfja" path="res://assets/colors/pictures/elephant_pink.png" id="part_pink"]
 [ext_resource type="Texture2D" uid="uid://u2l70cp3orqi" path="res://assets/colors/pictures/elephant_base.png" id="part_outline"]
 [ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
@@ -156,3 +156,7 @@ character = 4
 
 [connection signal="button_down" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_down"]
 [connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
+
+[editable path="Easel"]
+
+[editable path="GameUI"]

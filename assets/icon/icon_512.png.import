@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxjytxvq8ywiq"
-path="res://.godot/imported/lively_before_after.png-0cbf308b92d91a215c0655e4abaf51e4.ctex"
+uid="uid://c3xxmk15yfqy5"
+path="res://.godot/imported/icon_512.png-8d928db787757792c19cfedf7ac2bc52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Claude outputs/lively_before_after.png"
-dest_files=["res://.godot/imported/lively_before_after.png-0cbf308b92d91a215c0655e4abaf51e4.ctex"]
+source_file="res://assets/icon/icon_512.png"
+dest_files=["res://.godot/imported/icon_512.png-8d928db787757792c19cfedf7ac2bc52.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dap8r7rwtsljt"
-path="res://.godot/imported/guide_arrow_preview.png-923d7bf0b7f10da9a00d6d8d6541a9ec.ctex"
+uid="uid://c3w8wwt10uj6p"
+path="res://.godot/imported/icon_256.png-809ed4614fb7084d1bdb9754637f6176.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Claude outputs/guide_arrow_preview.png"
-dest_files=["res://.godot/imported/guide_arrow_preview.png-923d7bf0b7f10da9a00d6d8d6541a9ec.ctex"]
+source_file="res://assets/icon/icon_256.png"
+dest_files=["res://.godot/imported/icon_256.png-809ed4614fb7084d1bdb9754637f6176.ctex"]
 
 [params]
 

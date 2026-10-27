@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boocai8kvg7o1"
-path="res://.godot/imported/game_ui_preview_fruits.png-dec4e74e9b028de6a84a4894fa1ea84f.ctex"
+uid="uid://b4f4j40sodxu1"
+path="res://.godot/imported/adaptive_foreground_432.png-421020a48b2e93b6371d1620e4b72174.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Claude outputs/game_ui_preview_fruits.png"
-dest_files=["res://.godot/imported/game_ui_preview_fruits.png-dec4e74e9b028de6a84a4894fa1ea84f.ctex"]
+source_file="res://assets/icon/adaptive_foreground_432.png"
+dest_files=["res://.godot/imported/adaptive_foreground_432.png-421020a48b2e93b6371d1620e4b72174.ctex"]
 
 [params]
 

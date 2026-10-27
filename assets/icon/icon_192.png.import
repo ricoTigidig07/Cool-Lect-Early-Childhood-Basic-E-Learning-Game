@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c84271vbmj7o8"
-path="res://.godot/imported/game_ui_preview_colors.png-94bb9365d828c76721cd65fac76d0b57.ctex"
+uid="uid://bj322thfvxjht"
+path="res://.godot/imported/icon_192.png-73f98512178722a2179cb97a8341ee92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Claude outputs/game_ui_preview_colors.png"
-dest_files=["res://.godot/imported/game_ui_preview_colors.png-94bb9365d828c76721cd65fac76d0b57.ctex"]
+source_file="res://assets/icon/icon_192.png"
+dest_files=["res://.godot/imported/icon_192.png-73f98512178722a2179cb97a8341ee92.ctex"]
 
 [params]
 

@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://660d2ewkgai1" path="res://scenes/collectables/alphabets/capital_J.tscn" id="L_cap_J"]
 [ext_resource type="PackedScene" uid="uid://p68mngg445r5" path="res://scenes/collectables/alphabets/capital_Q.tscn" id="L_cap_Q"]
 [ext_resource type="PackedScene" uid="uid://bf7ouew0ieayo" path="res://scenes/collectables/alphabets/capital_R.tscn" id="L_cap_R"]
-[ext_resource type="PackedScene" uid="uid://f99vy6u5dk2j" path="res://scenes/collectables/alphabets/small_d.tscn" id="L_small_d"]
-[ext_resource type="PackedScene" uid="uid://erul495fswo9" path="res://scenes/collectables/alphabets/small_o.tscn" id="L_small_o"]
+[ext_resource type="PackedScene" uid="uid://gbavy6u5dk2j" path="res://scenes/collectables/alphabets/small_d.tscn" id="L_small_d"]
+[ext_resource type="PackedScene" uid="uid://erul5a5fswpa" path="res://scenes/collectables/alphabets/small_o.tscn" id="L_small_o"]
 [ext_resource type="PackedScene" uid="uid://siu64xosqrg" path="res://scenes/collectables/alphabets/small_q.tscn" id="L_small_q"]
 [ext_resource type="PackedScene" uid="uid://mi1y56ch0mxi" path="res://scenes/collectables/alphabets/small_r.tscn" id="L_small_r"]
 [ext_resource type="TileSet" uid="uid://bvukl1jpqiuwh" path="res://scenes/tilesets/water_tileset.tres" id="1_0oynx"]
@@ -21,7 +21,7 @@
 [ext_resource type="TileSet" uid="uid://cjh1t8bl1l8lf" path="res://scenes/tilesets/House_tile_set.tres" id="4_kiuhp"]
 [ext_resource type="TileSet" uid="uid://umk8vkn0aa3g" path="res://scenes/tilesets/new_tile_set.tres" id="4_tpwii"]
 [ext_resource type="TileSet" uid="uid://cu8m7lbxqc53j" path="res://scenes/tilesets/structures.tres" id="6_5r865"]
-[ext_resource type="TileSet" uid="uid://c2xdnmsksqqit" path="res://scenes/tilesets/furniture_tileset.tres" id="7_uyugg"]
+[ext_resource type="TileSet" uid="uid://b547n11tgq3oo" path="res://scenes/tilesets/furniture_tileset.tres" id="7_uyugg"]
 [ext_resource type="PackedScene" uid="uid://dubbaqeuluioc" path="res://resources/door.tscn" id="8_8ibng"]
 [ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
@@ -158,3 +158,5 @@ character = 0
 
 [connection signal="button_down" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_down"]
 [connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
+
+[editable path="GameUI"]

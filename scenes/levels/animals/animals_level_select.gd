@@ -27,7 +27,7 @@ func _ready():
 		button.setup(i, SUBJECT)
 		
 		var col = (i - 1) % COLUMNS
-		var row = (i - 1) / COLUMNS
+		var row: int = floori((i - 1) / float(COLUMNS))
 		var x = start_x + col * H_SPACING
 		var y = start_y + row * V_SPACING  # removed the random offset
 		node.position = Vector2(x, y)

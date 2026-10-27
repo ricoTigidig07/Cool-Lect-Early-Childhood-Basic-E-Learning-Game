@@ -1,7 +1,7 @@
 extends PanelContainer
 
 @onready var slots_container: HBoxContainer = $MarginContainer/HBoxContainer
-@onready var selector: TextureRect = %Selector
+@onready var selector: TextureRect = get_node_or_null("%Selector")
 
 const SELECTOR_SIZE := Vector2(70, 70)
 var selected_slot: Button = null
@@ -32,7 +32,8 @@ var slot_by_item: Dictionary = {}
 var equipped_item: String = ""
 
 func _ready() -> void:
-	selector.size = SELECTOR_SIZE
+	if selector:
+		selector.size = SELECTOR_SIZE
 	for slot in slots_container.get_children():
 		slot.pressed.connect(_on_slot_pressed.bind(slot))
 	await get_tree().process_frame
@@ -71,6 +72,8 @@ func _select_slot(slot: Button) -> void:
 			break
 	equipped_item = item_type
 
+	if selector == null:
+		return
 	selector.visible = true
 	var slot_center = slot.global_position + slot.size / 2.0
 	selector.global_position = slot_center - SELECTOR_SIZE / 2.0

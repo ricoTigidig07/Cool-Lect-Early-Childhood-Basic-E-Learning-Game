@@ -75,10 +75,10 @@ func _add_row(frames: SpriteFrames, anim: StringName, sheet: Texture2D, row: int
 		at.region = Rect2(i * 32, row * 32, 32, 32)
 		frames.add_frame(anim, at)
 
-func _anim(name: String) -> StringName:
+func _anim(anim_name: String) -> StringName:
 	if kind == Kind.CHICKEN:
-		return &"chicken_walk" if name == "walk" else &"chicken_idle"
-	return StringName(name)
+		return &"chicken_walk" if anim_name == "walk" else &"chicken_idle"
+	return StringName(anim_name)
 
 func _pick_idle() -> void:
 	state = "idle"

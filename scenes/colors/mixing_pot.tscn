@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ykcug9q4vb7w" path="res://scenes/colors/mixing_pot.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://bjcyjcq0481lr" path="res://assets/colors/pot.png" id="2_pot"]
-[ext_resource type="Texture2D" uid="uid://dmlr64b9di9w" path="res://assets/colors/pot_paint.png" id="3_paint"]
+[ext_resource type="Texture2D" uid="uid://dmlr64cadjaw" path="res://assets/colors/pot_paint.png" id="3_paint"]
 [ext_resource type="LabelSettings" uid="uid://bklonu8a97y5u" path="res://scenes/collectables/fruits/fruit_name_label.tres" id="4_label"]
 [ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="hold"]
 

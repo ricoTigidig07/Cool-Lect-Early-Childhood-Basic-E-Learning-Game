@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://c3cojyxkynppx" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Characters/Premium Charakter Spritesheet.png" id="1_26vqe"]
 [ext_resource type="Script" uid="uid://e64446df9u5m" path="res://scenes/characters/painter.gd" id="1_a6w1k"]
-[ext_resource type="Script" uid="uid://dri6nn5lcqvxw" path="res://scenes/characters/status_indicator.gd" id="3_i2m5s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_08wni"]
 atlas = ExtResource("1_26vqe")
@@ -1012,5 +1011,3 @@ debug_color = Color(1, 1, 1, 0.33333334)
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_7rnkl")
 
-[node name="StatusIndicator" type="Node2D" parent="." unique_id=555439668]
-script = ExtResource("3_i2m5s")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lrsug80ijlbx"
-path="res://.godot/imported/lighting_before_after.png-86bdd3bb098e51af53a8abdfa2095de6.ctex"
+uid="uid://dnoukpkj0d7m1"
+path="res://.godot/imported/adaptive_background_432.png-17229c85448a7e00044ae92a3fd70f71.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Claude outputs/lighting_before_after.png"
-dest_files=["res://.godot/imported/lighting_before_after.png-86bdd3bb098e51af53a8abdfa2095de6.ctex"]
+source_file="res://assets/icon/adaptive_background_432.png"
+dest_files=["res://.godot/imported/adaptive_background_432.png-17229c85448a7e00044ae92a3fd70f71.ctex"]
 
 [params]
 

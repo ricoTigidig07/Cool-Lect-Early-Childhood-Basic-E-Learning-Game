@@ -1,15 +1,136 @@
 [gd_scene format=3 uid="uid://dqr0lj71i108g"]
 
 [ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green_pressed.tres" id="gp_green"]
-[ext_resource type="Script" uid="uid://b2rpvkyptymrr" path="res://scenes/ingame_settings.gd" id="1_ggmd1"]
+[ext_resource type="Script" path="res://scenes/ingame_settings.gd" id="1_ggmd1"]
 [ext_resource type="Theme" path="res://assets/UI/cool_lect_theme.tres" id="2_theme"]
 [ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green.tres" id="3_green"]
 [ext_resource type="FontFile" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="4_title"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Icons/All Icons.png" id="5_icons"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/Sliders/Sliders.png" id="6_sliders"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/Xs and check marks/1s/big check mark.png" id="7_check"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/Xs and check marks/1s/big X.png" id="8_x"]
+
+[sub_resource type="AtlasTexture" id="A_pip_on"]
+atlas = ExtResource("6_sliders")
+region = Rect2(6, 1, 20, 12)
+
+[sub_resource type="AtlasTexture" id="A_pip_off"]
+atlas = ExtResource("6_sliders")
+region = Rect2(6, 33, 20, 12)
+
+[sub_resource type="AtlasTexture" id="A_music"]
+atlas = ExtResource("5_icons")
+region = Rect2(240, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_music_off"]
+atlas = ExtResource("5_icons")
+region = Rect2(240, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_sound"]
+atlas = ExtResource("5_icons")
+region = Rect2(240, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_sound_off"]
+atlas = ExtResource("5_icons")
+region = Rect2(240, 112, 16, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_title"]
 font = ExtResource("4_title")
 font_size = 36
 font_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="LabelSettings" id="LS_row"]
+font = ExtResource("4_title")
+font_size = 24
+font_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="Animation" id="An_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Confirm/Box:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="An_open"]
+length = 0.18
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="An_confirm"]
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Confirm/Box:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.25),
+"transitions": PackedFloat32Array(0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(1.08, 1.08), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_settings"]
+_data = {
+&"RESET": SubResource("An_reset"),
+&"confirm": SubResource("An_confirm"),
+&"open": SubResource("An_open")
+}
 
 [node name="SettingsPanel" type="Control" groups=["ingame_settings"]]
 layout_mode = 3
@@ -20,6 +141,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_theme")
 script = ExtResource("1_ggmd1")
+pip_on = SubResource("A_pip_on")
+pip_off = SubResource("A_pip_off")
+music_icon = SubResource("A_music")
+music_off_icon = SubResource("A_music_off")
+sound_icon = SubResource("A_sound")
+sound_off_icon = SubResource("A_sound_off")
+check_icon = ExtResource("7_check")
+x_icon = ExtResource("8_x")
 
 [node name="Dim" type="ColorRect" parent="."]
 layout_mode = 1
@@ -37,24 +166,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -170.0
-offset_top = -130.0
-offset_right = 170.0
-offset_bottom = 130.0
+offset_left = -260.0
+offset_top = -322.0
+offset_right = 260.0
+offset_bottom = 322.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(170, 130)
+pivot_offset = Vector2(260, 322)
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -64,7 +193,7 @@ label_settings = SubResource("LabelSettings_title")
 horizontal_alignment = 1
 
 [node name="ResumeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.16, 0.33, 0.1, 1)
 theme_override_colors/font_hover_color = Color(0.16, 0.33, 0.1, 1)
@@ -75,20 +204,272 @@ theme_override_styles/hover = ExtResource("3_green")
 theme_override_styles/pressed = ExtResource("gp_green")
 text = "Resume"
 
-[node name="MusicButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
+[node name="MusicRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Music: ON"
+theme_override_constants/separation = 8
 
-[node name="SoundButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
+[node name="Mute" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MusicRow"]
+custom_minimum_size = Vector2(56, 56)
 layout_mode = 2
+icon = SubResource("A_music")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/MusicRow"]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+text = "Music"
+label_settings = SubResource("LS_row")
+vertical_alignment = 1
+
+[node name="Minus" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MusicRow"]
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 30
-text = "Sounds: ON"
+text = "-"
+
+[node name="Pips" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MusicRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="Pip1" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/MusicRow/Pips"]
+custom_minimum_size = Vector2(30, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("A_pip_on")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Pip2" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/MusicRow/Pips"]
+custom_minimum_size = Vector2(30, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("A_pip_on")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Pip3" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/MusicRow/Pips"]
+custom_minimum_size = Vector2(30, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("A_pip_on")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Pip4" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/MusicRow/Pips"]
+custom_minimum_size = Vector2(30, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("A_pip_on")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Pip5" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/MusicRow/Pips"]
+custom_minimum_size = Vector2(30, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("A_pip_on")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Plus" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MusicRow"]
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+text = "+"
+
+[node name="SoundRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Mute" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/SoundRow"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+icon = SubResource("A_sound")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/SoundRow"]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+text = "Sounds"
+label_settings = SubResource("LS_row")
+vertical_alignment = 1
+
+[node name="Minus" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/SoundRow"]
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+text = "-"
+
+[node name="Pips" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/SoundRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="Pip1" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/SoundRow/Pips"]
+custom_minimum_size = Vector2(30, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("A_pip_on")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Pip2" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/SoundRow/Pips"]
+custom_minimum_size = Vector2(30, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("A_pip_on")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Pip3" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/SoundRow/Pips"]
+custom_minimum_size = Vector2(30, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("A_pip_on")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Pip4" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/SoundRow/Pips"]
+custom_minimum_size = Vector2(30, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("A_pip_on")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Pip5" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/SoundRow/Pips"]
+custom_minimum_size = Vector2(30, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("A_pip_on")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Plus" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/SoundRow"]
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+text = "+"
+
+[node name="HintsRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HintsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Helper hints"
+label_settings = SubResource("LS_row")
+vertical_alignment = 1
+
+[node name="Toggle" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HintsRow"]
+custom_minimum_size = Vector2(150, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "On"
+icon = ExtResource("7_check")
+expand_icon = true
+
+[node name="HowToButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "How to Play"
+
+[node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Restart Level"
 
 [node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 28
 text = "Main Menu"
+
+[node name="Confirm" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="Confirm"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.35)
+
+[node name="Box" type="PanelContainer" parent="Confirm"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -120.0
+offset_right = 220.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(220, 120)
+
+[node name="MarginContainer" type="MarginContainer" parent="Confirm/Box"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Confirm/Box/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Text" type="Label" parent="Confirm/Box/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+text = "Are you sure?"
+label_settings = SubResource("LS_row")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Buttons" type="HBoxContainer" parent="Confirm/Box/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Yes" type="Button" parent="Confirm/Box/MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(100, 76)
+layout_mode = 2
+icon = ExtResource("7_check")
+icon_alignment = 1
+expand_icon = true
+
+[node name="No" type="Button" parent="Confirm/Box/MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(100, 76)
+layout_mode = 2
+icon = ExtResource("8_x")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("Lib_settings")

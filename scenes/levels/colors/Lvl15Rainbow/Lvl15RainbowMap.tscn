@@ -8,7 +8,7 @@
 [ext_resource type="TileSet" uid="uid://in7c5ejml0jt" path="res://scenes/tilesets/grass_tilesets.tres" id="4_iwhsr"]
 [ext_resource type="TileSet" uid="uid://cjh1t8bl1l8lf" path="res://scenes/tilesets/House_tile_set.tres" id="5_q3qmr"]
 [ext_resource type="TileSet" uid="uid://cu8m7lbxqc53j" path="res://scenes/tilesets/structures.tres" id="6_iwhsr"]
-[ext_resource type="TileSet" uid="uid://c2xdnmsksqqit" path="res://scenes/tilesets/furniture_tileset.tres" id="6_oo67w"]
+[ext_resource type="TileSet" uid="uid://b547n11tgq3oo" path="res://scenes/tilesets/furniture_tileset.tres" id="6_oo67w"]
 [ext_resource type="TileSet" uid="uid://f7lkmlub3p8q" path="res://scenes/tilesets/bridges_ports_tileset.tres" id="7_cmrvu"]
 [ext_resource type="PackedScene" uid="uid://ddijrpvpg81cp" path="res://scenes/characters/player.tscn" id="10_player"]
 [ext_resource type="PackedScene" uid="uid://e23ap4uaaaa0" path="res://scenes/characters/painter.tscn" id="11_painter"]
@@ -18,11 +18,11 @@
 [ext_resource type="PackedScene" uid="uid://ed9u5ujhlcs5" path="res://scenes/colors/mixing_pot.tscn" id="15_pot"]
 [ext_resource type="Texture2D" uid="uid://badwtgkoxb2c0" path="res://assets/colors/pictures/rainbow_red.png" id="part_red"]
 [ext_resource type="Texture2D" uid="uid://ba5edwh3u1xw6" path="res://assets/colors/pictures/rainbow_orange.png" id="part_orange"]
-[ext_resource type="Texture2D" uid="uid://2u3csu885y9c" path="res://assets/colors/pictures/rainbow_yellow.png" id="part_yellow"]
+[ext_resource type="Texture2D" uid="uid://2u3csu8850ac" path="res://assets/colors/pictures/rainbow_yellow.png" id="part_yellow"]
 [ext_resource type="Texture2D" uid="uid://bno7fn1fxrhi" path="res://assets/colors/pictures/rainbow_green.png" id="part_green"]
-[ext_resource type="Texture2D" uid="uid://2jw619s67oqa" path="res://assets/colors/pictures/rainbow_blue.png" id="part_blue"]
+[ext_resource type="Texture2D" uid="uid://2jw62as67oqa" path="res://assets/colors/pictures/rainbow_blue.png" id="part_blue"]
 [ext_resource type="Texture2D" uid="uid://55ye5eqhdfo3" path="res://assets/colors/pictures/rainbow_purple.png" id="part_purple"]
-[ext_resource type="Texture2D" uid="uid://baos0j93qgyuw" path="res://assets/colors/pictures/rainbow_base.png" id="part_outline"]
+[ext_resource type="Texture2D" uid="uid://baos0ka3qgyuw" path="res://assets/colors/pictures/rainbow_base.png" id="part_outline"]
 [ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl15RainbowMap" type="Node2D"]
@@ -211,3 +211,7 @@ character = 1
 
 [connection signal="button_down" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_down"]
 [connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
+
+[editable path="Easel"]
+
+[editable path="GameUI"]

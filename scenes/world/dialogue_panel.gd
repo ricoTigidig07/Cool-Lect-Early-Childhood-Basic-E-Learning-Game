@@ -82,10 +82,10 @@ func _apply_responsive_font_size(text: String) -> void:
 	if font == null:
 		font = ThemeDB.fallback_font
 	var best_size = MIN_FONT_SIZE
-	for size in range(MAX_FONT_SIZE, MIN_FONT_SIZE - 1, -2):
-		var wrapped = font.get_multiline_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, label.size.x, size)
+	for font_size in range(MAX_FONT_SIZE, MIN_FONT_SIZE - 1, -2):
+		var wrapped = font.get_multiline_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, label.size.x, font_size)
 		if wrapped.y <= label.size.y:
-			best_size = size
+			best_size = font_size
 			break
 	if label.label_settings:
 		label.label_settings.font_size = best_size

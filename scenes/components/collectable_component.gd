@@ -9,7 +9,7 @@ signal collected(collectable_name: String, item_type: String)
 
 const HOLD_DURATION := 1.0
 
-@onready var hold_indicator: TextureProgressBar = $HoldIndicator
+@onready var hold_indicator: TextureProgressBar = get_node_or_null("HoldIndicator")
 const NAME_LABEL_SCENE := preload("res://scenes/components/name_label.tscn")
 ## Name shown above the item when the player is near. Empty = use Collectable Name.
 @export var display_name: String = ""
@@ -24,9 +24,13 @@ var is_holding: bool = false
 var hold_progress: float = 0.0
 
 func _ready() -> void:
-	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
-	hold_indicator.visible = false
+	# some item scenes already connect these in the editor: only connect once
+	if not body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
+	if not body_exited.is_connected(_on_body_exited):
+		body_exited.connect(_on_body_exited)
+	if hold_indicator:
+		hold_indicator.visible = false
 	if name_label == null:
 		name_label = NAME_LABEL_SCENE.instantiate()
 		add_child(name_label)
@@ -71,8 +75,9 @@ func start_hold() -> void:
 		player_ref.face_toward(global_position)
 	is_holding = true
 	hold_progress = 0.0
-	hold_indicator.visible = true
-	hold_indicator.value = 0
+	if hold_indicator:
+		hold_indicator.visible = true
+		hold_indicator.value = 0
 
 func cancel_hold() -> void:
 	is_holding = false
@@ -83,7 +88,8 @@ func cancel_hold() -> void:
 func _process(delta: float) -> void:
 	if is_holding:
 		hold_progress += delta / HOLD_DURATION
-		hold_indicator.value = hold_progress * 100
+		if hold_indicator:
+			hold_indicator.value = hold_progress * 100
 		if hold_progress >= 1.0:
 			_complete_hold()
 

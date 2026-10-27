@@ -11,10 +11,11 @@ var base_position: Vector2
 func _ready() -> void:
 	base_scale = sprite.scale
 	base_position = sprite.position
-	mouse_entered.connect(_on_mouse_entered)
-	mouse_exited.connect(_on_mouse_exited)
-	button_down.connect(_on_button_down)
-	button_up.connect(_on_button_up)
+	# some scenes already connect these in the editor: only connect once
+	for pair in [[mouse_entered, _on_mouse_entered], [mouse_exited, _on_mouse_exited],
+			[button_down, _on_button_down], [button_up, _on_button_up]]:
+		if not pair[0].is_connected(pair[1]):
+			pair[0].connect(pair[1])
 
 func _on_mouse_entered() -> void:
 	sprite.scale = base_scale * HOVER_MULT

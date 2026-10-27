@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://1nwlrkk2crhm"]
 
 [ext_resource type="Script" uid="uid://cgl7htc8gdb1u" path="res://scenes/mission_panel.gd" id="2_a1kiv"]
-[ext_resource type="Theme" uid="uid://du57hfxkuyje3" path="res://assets/UI/cool_lect_theme.tres" id="3_theme"]
+[ext_resource type="Theme" uid="uid://b1oxrs8tp4hwy" path="res://assets/UI/cool_lect_theme.tres" id="3_theme"]
 [ext_resource type="FontFile" uid="uid://cth151usmtkbc" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="4_title"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_title"]

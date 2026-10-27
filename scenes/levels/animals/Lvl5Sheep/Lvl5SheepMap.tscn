@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ddijrpvpg81cp" path="res://scenes/characters/player.tscn" id="10_player"]
 [ext_resource type="PackedScene" uid="uid://bkl5qa661suvx" path="res://scenes/characters/farmer.tscn" id="11_farmer"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
-[ext_resource type="PackedScene" uid="uid://bdtc179n6gajg" path="res://scenes/collectables/animals/farm/sheep.tscn" id="a_sheep"]
+[ext_resource type="PackedScene" uid="uid://bdtc18an6gajg" path="res://scenes/collectables/animals/farm/sheep.tscn" id="a_sheep"]
 [ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl5SheepMap" type="Node2D"]
@@ -177,3 +177,5 @@ character = 1
 
 [connection signal="button_down" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_down"]
 [connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
+
+[editable path="GameUI"]

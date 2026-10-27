@@ -102,7 +102,7 @@ func _add_item_sprite(index: int) -> void:
 	s.texture = item_texture
 	s.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	var col := index % items_per_row
-	var row := index / items_per_row
+	var row := floori(index / float(items_per_row))
 	var in_row: int = mini(target_count - row * items_per_row, items_per_row)
 	var row_width: float = (in_row - 1) * item_spacing.x
 	s.position = Vector2(col * item_spacing.x - row_width / 2.0, row * item_spacing.y)

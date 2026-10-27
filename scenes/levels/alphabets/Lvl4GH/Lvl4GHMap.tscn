@@ -7,12 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://dn7kjybx80crv" path="res://scenes/letter_frame.tscn" id="12_frame"]
 [ext_resource type="Script" uid="uid://b038rndcy1god" path="res://scenes/levels/alphabets/letter_sequence.gd" id="13_seq"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
-[ext_resource type="PackedScene" uid="uid://0x6gadgh29o0" path="res://scenes/collectables/alphabets/capital_G.tscn" id="L_cap_G"]
+[ext_resource type="PackedScene" uid="uid://0x6gadgh3ao0" path="res://scenes/collectables/alphabets/capital_G.tscn" id="L_cap_G"]
 [ext_resource type="PackedScene" uid="uid://b64f6homd0he" path="res://scenes/collectables/alphabets/capital_H.tscn" id="L_cap_H"]
-[ext_resource type="PackedScene" uid="uid://f99vy6u5dk2j" path="res://scenes/collectables/alphabets/small_d.tscn" id="L_small_d"]
+[ext_resource type="PackedScene" uid="uid://gbavy6u5dk2j" path="res://scenes/collectables/alphabets/small_d.tscn" id="L_small_d"]
 [ext_resource type="PackedScene" uid="uid://t33d1yd50tje" path="res://scenes/collectables/alphabets/small_f.tscn" id="L_small_f"]
 [ext_resource type="PackedScene" uid="uid://bdml0ncjxnydw" path="res://scenes/collectables/alphabets/small_g.tscn" id="L_small_g"]
-[ext_resource type="PackedScene" uid="uid://qv9pxyrtm4b6" path="res://scenes/collectables/alphabets/small_h.tscn" id="L_small_h"]
+[ext_resource type="PackedScene" uid="uid://qwapxyrtm4b6" path="res://scenes/collectables/alphabets/small_h.tscn" id="L_small_h"]
 [ext_resource type="TileSet" uid="uid://bvukl1jpqiuwh" path="res://scenes/tilesets/water_tileset.tres" id="1_0oynx"]
 [ext_resource type="TileSet" uid="uid://cnh0v8fe3tebm" path="res://scenes/tilesets/ground_tiles.tres" id="2_kiuhp"]
 [ext_resource type="TileSet" uid="uid://f7lkmlub3p8q" path="res://scenes/tilesets/bridges_ports_tileset.tres" id="3_3mne0"]
@@ -20,7 +20,7 @@
 [ext_resource type="TileSet" uid="uid://cjh1t8bl1l8lf" path="res://scenes/tilesets/House_tile_set.tres" id="4_kiuhp"]
 [ext_resource type="TileSet" uid="uid://umk8vkn0aa3g" path="res://scenes/tilesets/new_tile_set.tres" id="4_tpwii"]
 [ext_resource type="TileSet" uid="uid://cu8m7lbxqc53j" path="res://scenes/tilesets/structures.tres" id="6_5r865"]
-[ext_resource type="TileSet" uid="uid://c2xdnmsksqqit" path="res://scenes/tilesets/furniture_tileset.tres" id="7_uyugg"]
+[ext_resource type="TileSet" uid="uid://b547n11tgq3oo" path="res://scenes/tilesets/furniture_tileset.tres" id="7_uyugg"]
 [ext_resource type="PackedScene" uid="uid://dubbaqeuluioc" path="res://resources/door.tscn" id="8_8ibng"]
 [ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
@@ -153,3 +153,5 @@ character = 0
 
 [connection signal="button_down" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_down"]
 [connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
+
+[editable path="GameUI"]

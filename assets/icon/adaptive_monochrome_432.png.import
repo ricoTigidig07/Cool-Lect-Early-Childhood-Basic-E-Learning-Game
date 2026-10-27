@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ble567o30xt16"
-path="res://.godot/imported/helper_npcs_preview.png-0b80eeacca39f45ab65bb8aeea8b7641.ctex"
+uid="uid://bi24sy64txofl"
+path="res://.godot/imported/adaptive_monochrome_432.png-fa126c08d4695ef98ff6e8a9cd0e6169.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Claude outputs/helper_npcs_preview.png"
-dest_files=["res://.godot/imported/helper_npcs_preview.png-0b80eeacca39f45ab65bb8aeea8b7641.ctex"]
+source_file="res://assets/icon/adaptive_monochrome_432.png"
+dest_files=["res://.godot/imported/adaptive_monochrome_432.png-fa126c08d4695ef98ff6e8a9cd0e6169.ctex"]
 
 [params]
 

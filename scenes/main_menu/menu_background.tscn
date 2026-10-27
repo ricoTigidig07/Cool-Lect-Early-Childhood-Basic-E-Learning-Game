@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/main_menu/menu_world.gd" id="4_world"]
 [ext_resource type="Texture2D" path="res://scenes/main_menu/menu_ground.png" id="5_ground"]
 [ext_resource type="Texture2D" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Trees, stumps and bushes.png" id="6_trees"]
+[ext_resource type="Script" path="res://scenes/main_menu/menu_background_fit.gd" id="9_fit"]
 
 [sub_resource type="AtlasTexture" id="Tree_Apple"]
 atlas = ExtResource("6_trees")
@@ -29,6 +30,7 @@ atlas = ExtResource("6_trees")
 region = Rect2(48, 48, 16, 16)
 
 [node name="MenuBackground" type="Node2D"]
+script = ExtResource("9_fit")
 texture_filter = 1
 position = Vector2(-8, 0)
 scale = Vector2(3, 3)

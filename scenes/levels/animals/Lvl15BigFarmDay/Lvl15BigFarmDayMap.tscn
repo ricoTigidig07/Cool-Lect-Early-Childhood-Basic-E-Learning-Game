@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bkovjhv9sqke1" path="res://scenes/collectables/animals/farm/chicken.tscn" id="a_chicken"]
 [ext_resource type="PackedScene" uid="uid://r0hu23rkv0h6" path="res://scenes/collectables/animals/farm/duck.tscn" id="a_duck"]
 [ext_resource type="PackedScene" uid="uid://bb9kgumkss82j" path="res://scenes/collectables/animals/farm/pig.tscn" id="a_pig"]
-[ext_resource type="PackedScene" uid="uid://bdtc179n6gajg" path="res://scenes/collectables/animals/farm/sheep.tscn" id="a_sheep"]
+[ext_resource type="PackedScene" uid="uid://bdtc18an6gajg" path="res://scenes/collectables/animals/farm/sheep.tscn" id="a_sheep"]
 [ext_resource type="PackedScene" uid="uid://4ffsq0mdcm8b" path="res://scenes/collectables/animals/farm/cow.tscn" id="a_cow"]
 [ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
@@ -199,3 +199,5 @@ character = 1
 
 [connection signal="button_down" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_down"]
 [connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
+
+[editable path="GameUI"]

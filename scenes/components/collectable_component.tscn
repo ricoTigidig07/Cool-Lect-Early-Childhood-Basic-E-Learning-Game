@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://gag33fey81g1"]
 
-[ext_resource type="Script" uid="res://scenes/components/collectable_component.gd" path="res://scenes/components/collectable_component.gd" id="1_14mdg"]
+[ext_resource type="Script" uid="uid://hdnpduy2uvvx" path="res://scenes/components/collectable_component.gd" id="1_14mdg"]
 
 [node name="CollectableComponent" type="Area2D" unique_id=983615418]
 collision_layer = 32

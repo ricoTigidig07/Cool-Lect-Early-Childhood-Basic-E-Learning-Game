@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://qcqqbogcbkmd" path="res://scenes/levels/shapes/Lvl2Train/Lvl2TrainMissions.tres" id="2_text"]
 [ext_resource type="PackedScene" uid="uid://ddijrpvpg81cp" path="res://scenes/characters/player.tscn" id="10_player"]
 [ext_resource type="PackedScene" uid="uid://vpgxug5rrk11" path="res://scenes/characters/builder.tscn" id="11_builder"]
-[ext_resource type="PackedScene" uid="uid://ntk4b13jol09" path="res://scenes/shape_board.tscn" id="12_board"]
+[ext_resource type="PackedScene" uid="uid://ntk4b13jol1a" path="res://scenes/shape_board.tscn" id="12_board"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
 [ext_resource type="Texture2D" uid="uid://bhsemic4mblct" path="res://scenes/objects/icons/shapes/circle.tres" id="icon_circle"]
 [ext_resource type="Texture2D" uid="uid://bh5gbg4a9jufu" path="res://scenes/objects/icons/shapes/rectangle.tres" id="icon_rectangle"]
@@ -190,3 +190,7 @@ character = 4
 
 [connection signal="button_down" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_down"]
 [connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
+
+[editable path="ShapeBoard"]
+
+[editable path="GameUI"]

@@ -13,7 +13,7 @@ config_version=5
 config/name="Cool-LecT E-Learning Game --->"
 run/main_scene="uid://dphbrf10qt5fl"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://c3xxmk15yfqy5"
 
 [autoload]
 
