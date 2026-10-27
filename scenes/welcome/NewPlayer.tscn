@@ -205,7 +205,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AgePage/Title:position")
+tracks/0/path = NodePath("AgePage/Center/Title:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -217,7 +217,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("NamePage/Title:position")
+tracks/1/path = NodePath("NamePage/Center/Title:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -234,7 +234,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AgePage/Title:position")
+tracks/0/path = NodePath("AgePage/Center/Title:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -246,7 +246,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("NamePage/Title:position")
+tracks/1/path = NodePath("NamePage/Center/Title:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -292,7 +292,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Card" type="Panel" parent="AgePage" unique_id=2053361761]
+[node name="Center" type="Control" parent="AgePage" unique_id=1846203751]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Card" type="Panel" parent="AgePage/Center" unique_id=2053361761]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 110.0
@@ -301,7 +316,7 @@ offset_bottom = 620.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0uqbd")
 
-[node name="Title" type="Label" parent="AgePage" unique_id=1912537287]
+[node name="Title" type="Label" parent="AgePage/Center" unique_id=1912537287]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 70.0
@@ -313,7 +328,7 @@ label_settings = SubResource("Title")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Hint" type="Label" parent="AgePage" unique_id=807905282]
+[node name="Hint" type="Label" parent="AgePage/Center" unique_id=807905282]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 170.0
@@ -324,7 +339,7 @@ label_settings = SubResource("Hint")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AgePicker" type="HBoxContainer" parent="AgePage" unique_id=1605376293]
+[node name="AgePicker" type="HBoxContainer" parent="AgePage/Center" unique_id=1605376293]
 layout_mode = 0
 offset_left = 380.0
 offset_top = 225.0
@@ -333,7 +348,7 @@ offset_bottom = 385.0
 theme_override_constants/separation = 36
 alignment = 1
 
-[node name="MinusButton" type="Button" parent="AgePage/AgePicker" unique_id=37250077]
+[node name="MinusButton" type="Button" parent="AgePage/Center/AgePicker" unique_id=37250077]
 custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
 size_flags_vertical = 4
@@ -341,7 +356,7 @@ icon = SubResource("Minus")
 icon_alignment = 1
 expand_icon = true
 
-[node name="AgeLabel" type="Label" parent="AgePage/AgePicker" unique_id=699849210]
+[node name="AgeLabel" type="Label" parent="AgePage/Center/AgePicker" unique_id=699849210]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_tj8yj")
@@ -351,7 +366,7 @@ label_settings = SubResource("BigNumber")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlusButton" type="Button" parent="AgePage/AgePicker" unique_id=452585096]
+[node name="PlusButton" type="Button" parent="AgePage/Center/AgePicker" unique_id=452585096]
 custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
 size_flags_vertical = 4
@@ -359,7 +374,7 @@ icon = SubResource("Plus")
 icon_alignment = 1
 expand_icon = true
 
-[node name="YearsOld" type="Label" parent="AgePage" unique_id=538467272]
+[node name="YearsOld" type="Label" parent="AgePage/Center" unique_id=538467272]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 395.0
@@ -370,7 +385,7 @@ text = "years old"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NextButton" type="Button" parent="AgePage" unique_id=1677807447]
+[node name="NextButton" type="Button" parent="AgePage/Center" unique_id=1677807447]
 layout_mode = 0
 offset_left = 490.0
 offset_top = 490.0
@@ -393,7 +408,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Card" type="Panel" parent="NamePage" unique_id=1800086470]
+[node name="Center" type="Control" parent="NamePage" unique_id=1846203752]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Card" type="Panel" parent="NamePage/Center" unique_id=1800086470]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 110.0
@@ -402,7 +432,7 @@ offset_bottom = 620.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_1rnhg")
 
-[node name="Title" type="Label" parent="NamePage" unique_id=1090225310]
+[node name="Title" type="Label" parent="NamePage/Center" unique_id=1090225310]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 70.0
@@ -414,7 +444,7 @@ label_settings = SubResource("Title")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AvatarSpot" type="Panel" parent="NamePage" unique_id=84144259]
+[node name="AvatarSpot" type="Panel" parent="NamePage/Center" unique_id=84144259]
 layout_mode = 0
 offset_left = 580.0
 offset_top = 168.0
@@ -423,14 +453,14 @@ offset_bottom = 288.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("Spot")
 
-[node name="Avatar" type="AnimatedSprite2D" parent="NamePage/AvatarSpot" unique_id=483385856]
+[node name="Avatar" type="AnimatedSprite2D" parent="NamePage/Center/AvatarSpot" unique_id=483385856]
 texture_filter = 1
 position = Vector2(60, 65.99999)
 scale = Vector2(2.9999998, 3.1562502)
 sprite_frames = ExtResource("9_tj8yj")
 animation = &"Blinking"
 
-[node name="YourName" type="Label" parent="NamePage" unique_id=1724972179]
+[node name="YourName" type="Label" parent="NamePage/Center" unique_id=1724972179]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 300.0
@@ -441,7 +471,7 @@ text = "Your name is"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Username" type="LineEdit" parent="NamePage" unique_id=322254135]
+[node name="Username" type="LineEdit" parent="NamePage/Center" unique_id=322254135]
 layout_mode = 0
 offset_left = 400.0
 offset_top = 348.0
@@ -457,7 +487,7 @@ alignment = 1
 max_length = 16
 select_all_on_focus = true
 
-[node name="ShuffleButton" type="Button" parent="NamePage" unique_id=2010923019]
+[node name="ShuffleButton" type="Button" parent="NamePage/Center" unique_id=2010923019]
 layout_mode = 0
 offset_left = 390.0
 offset_top = 490.0
@@ -466,7 +496,7 @@ offset_bottom = 570.0
 theme_override_font_sizes/font_size = 32
 text = "Shuffle"
 
-[node name="PlayButton" type="Button" parent="NamePage" unique_id=1056587646]
+[node name="PlayButton" type="Button" parent="NamePage/Center" unique_id=1056587646]
 layout_mode = 0
 offset_left = 640.0
 offset_top = 490.0
