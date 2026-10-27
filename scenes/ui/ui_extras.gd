@@ -51,6 +51,11 @@ var sleepy := false
 var reacting := false
 var badge_target: Object = null
 var poll := 0.0
+## The level's work station (letter board, shape board or easel), found once.
+## Looking through every node of the level 5 times a second made phones stutter.
+var station: Node = null
+var station_searched := false
+var quest_icon: Texture2D = null
 
 func _ready() -> void:
 	# own copy, so changing the ring frame never touches the scene file
@@ -156,10 +161,19 @@ func _script_name(n: Node) -> String:
 	var s = n.get_script()
 	return s.resource_path.get_file() if s else ""
 
+func _find_station() -> void:
+	station_searched = true
+	for n in _level_nodes():
+		if _script_name(n) in ["letter_frame.gd", "shape_board.gd", "easel.gd"]:
+			station = n
+			return
+
 ## {done, total, icon, tint} for whatever this level asks for.
 func _progress() -> Dictionary:
-	var nodes := _level_nodes()
-	for n in nodes:
+	if not station_searched:
+		_find_station()
+	if station and is_instance_valid(station):
+		var n = station
 		match _script_name(n):
 			"letter_frame.gd":
 				var seq = n.get_node_or_null(n.letter_sequence)
@@ -207,7 +221,9 @@ func _progress() -> Dictionary:
 		for k in QuestManager.target_counts:
 			tot2 += QuestManager.target_counts[k]
 			cur2 += QuestManager.current_counts.get(k, 0)
-		return {"done": cur2, "total": tot2, "icon": _quest_icon(nodes)}
+		if quest_icon == null:
+			quest_icon = _quest_icon(_level_nodes())
+		return {"done": cur2, "total": tot2, "icon": quest_icon}
 	return {}
 
 func _quest_icon(nodes: Array) -> Texture2D:
