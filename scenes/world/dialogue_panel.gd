@@ -19,6 +19,7 @@ const MIN_FONT_SIZE = 20
 const MAX_FONT_SIZE = 30
 const CONTINUE_FRAMES = 7
 const CONTINUE_FPS = 10.0
+const TAP_GUARD_MS = 250
 
 var typing_timer: Timer
 var full_text: String = ""
@@ -27,6 +28,7 @@ var current_page: int = 0
 var base_position: Vector2
 var continue_time: float = 0.0
 var continue_atlas: AtlasTexture
+var last_tap_ms: int = 0
 
 signal skipped
 signal advanced
@@ -71,6 +73,7 @@ func _show_current_page() -> void:
 	_apply_responsive_font_size(full_text)
 	label.text = full_text
 	label.visible_characters = 0
+	last_tap_ms = Time.get_ticks_msec()   # a new page ignores the tap that opened it
 	choices_container.visible = false
 	continue_icon.visible = false
 	typing_timer.start()
@@ -155,6 +158,12 @@ func _on_gui_input(event: InputEvent) -> void:
 		or (event is InputEventScreenTouch and event.pressed)
 	if tapped and not choices_container.visible:
 		accept_event()
+		# On phones one tap arrives twice (touch + the copied mouse click),
+		# and the tap that opened the box can land on it too: ignore repeats.
+		var now := Time.get_ticks_msec()
+		if now - last_tap_ms < TAP_GUARD_MS:
+			return
+		last_tap_ms = now
 		_advance()
 
 func _advance() -> void:
