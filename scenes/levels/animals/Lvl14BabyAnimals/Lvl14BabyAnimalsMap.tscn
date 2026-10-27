@@ -25,6 +25,7 @@ subject = "animals"
 level = 14
 
 [node name="Lvl14BabyAnimalsTilemap" type="Node2D" parent="."]
+z_index = -1
 
 [node name="BaseMap" type="Node2D" parent="Lvl14BabyAnimalsTilemap"]
 

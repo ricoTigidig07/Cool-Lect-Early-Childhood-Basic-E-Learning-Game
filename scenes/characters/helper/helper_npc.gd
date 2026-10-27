@@ -323,7 +323,7 @@ func find_hint() -> Dictionary:
 		if not (n is CollectableComponent) or not n.is_visible_in_tree() or n.is_collecting:
 			continue
 		var info := _item_info(n, stations)
-		if info.is_empty():
+		if info.is_empty() or not _bag_has_room(n):
 			continue
 		var dist: float = global_position.distance_to(n.global_position)
 		if dist < best_d:
@@ -352,6 +352,14 @@ func _mission_started(giver: Node) -> bool:
 	if "quest_ready_to_deliver" in giver and giver.quest_ready_to_deliver:
 		return true
 	return QuestManager.active
+
+## Can this item still go in the bag? (5 slots: when they are all full of other things,
+## the helper should send you to use them first instead of to an item you can't pick up.)
+func _bag_has_room(n: Node) -> bool:
+	var bar = GameUIManager.hotbar
+	if bar == null or not (n is ShapeCollectible or n is PaintBucket or n is LetterCollectible or n.item_type == "egg"):
+		return true
+	return bar.slot_by_item.has(n.item_type) or bar._find_empty_slot() != null
 
 ## Is this item still needed? Returns {name, icon, tint} or {} if not.
 func _item_info(n: Node, stations: Array) -> Dictionary:

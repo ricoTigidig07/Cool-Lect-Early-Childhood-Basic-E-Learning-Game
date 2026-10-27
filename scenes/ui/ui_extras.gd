@@ -335,7 +335,7 @@ func _set_cursor() -> void:
 	if cursor_texture == null or OS.has_feature("mobile"):
 		return
 	var img := cursor_texture.get_image()
-	if img == null:
+	if img == null or img.is_empty():
 		return
 	img.convert(Image.FORMAT_RGBA8)
 	img.resize(img.get_width() * 2, img.get_height() * 2, Image.INTERPOLATE_NEAREST)

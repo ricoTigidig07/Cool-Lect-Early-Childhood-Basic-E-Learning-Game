@@ -8,6 +8,9 @@ class_name ShapeCollectible
 ## The shape's color (the shapes picture is white so it can be any color).
 @export var tint: Color = Color.WHITE
 
+func _init() -> void:
+	uses_hotbar = true      # goes into the bag
+
 func _ready() -> void:
 	super._ready()
 	var sprite = get_node_or_null("Sprite2D")

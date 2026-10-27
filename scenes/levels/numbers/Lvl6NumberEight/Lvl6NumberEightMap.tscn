@@ -25,6 +25,7 @@ subject = "numbers"
 level = 6
 
 [node name="Lvl6NumberEightTilemap" type="Node2D" parent="."]
+z_index = -1
 
 [node name="water" type="Node2D" parent="Lvl6NumberEightTilemap"]
 

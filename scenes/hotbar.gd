@@ -54,6 +54,18 @@ func give_item(item_type: String, count: int) -> void:
 	if slot == selected_slot:
 		_select_slot(slot)
 
+## Room for one more of this item? (it stacks on its own slot, or needs an empty one)
+func has_room(item_type: String) -> bool:
+	return slot_by_item.has(item_type) or _find_empty_slot() != null
+
+## Keeps a slot for an item that is on its way into the bag (pick-up animation).
+func reserve(item_type: String) -> void:
+	if slot_by_item.has(item_type):
+		return
+	var slot = _find_empty_slot()
+	if slot:
+		slot_by_item[item_type] = slot
+
 func _find_empty_slot() -> Node:
 	for child in slots_container.get_children():
 		if child is Button and not slot_by_item.values().has(child):
@@ -67,7 +79,7 @@ func _select_slot(slot: Button) -> void:
 	selected_slot = slot
 	var item_type = ""
 	for key in slot_by_item.keys():
-		if slot_by_item[key] == slot:
+		if slot_by_item[key] == slot and slot.get_node("Label").text != "":   # not a slot still waiting for its item
 			item_type = key
 			break
 	equipped_item = item_type

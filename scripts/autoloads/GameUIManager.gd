@@ -127,6 +127,13 @@ func register_hotbar(bar: PanelContainer) -> void:
 func give_hotbar_item(item_type: String, count: int) -> void:
 	hotbar.give_item(item_type, count)
 
+func hotbar_has_room(item_type: String) -> bool:
+	return hotbar == null or hotbar.has_room(item_type)
+
+func reserve_hotbar_item(item_type: String) -> void:
+	if hotbar:
+		hotbar.reserve(item_type)
+
 func get_equipped_item() -> String:
 	if hotbar:
 		return hotbar.equipped_item

@@ -33,6 +33,7 @@ subject = "alphabets"
 level = 7
 
 [node name="Lvl7MNTilemap" type="Node2D" parent="."]
+z_index = -1
 
 [node name="water" type="TileMapLayer" parent="Lvl7MNTilemap"]
 position = Vector2(81, -65)

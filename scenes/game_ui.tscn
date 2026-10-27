@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c77bjci0hltvd" path="res://scenes/selector.tscn" id="24_bj1rn"]
 [ext_resource type="PackedScene" path="res://scenes/ui/ui_extras.tscn" id="40_extras"]
 [ext_resource type="PackedScene" path="res://scenes/ui/tutorial.tscn" id="41_tutorial"]
+[ext_resource type="PackedScene" path="res://scenes/ui/player_sign.tscn" id="42_sign"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bj1rn"]
 texture = ExtResource("3_5kjus")
@@ -118,6 +119,12 @@ scale = Vector2(3.125, 3.15625)
 sprite_frames = ExtResource("5_x8pta")
 animation = &"defaults"
 script = ExtResource("7_5v8bm")
+
+[node name="PlayerSign" parent="." instance=ExtResource("42_sign")]
+offset_left = 144.0
+offset_top = 6.0
+offset_right = 384.0
+offset_bottom = 129.0
 
 [node name="JoystickControl" type="Control" parent="." unique_id=1552026671]
 layout_mode = 3

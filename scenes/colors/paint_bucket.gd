@@ -7,6 +7,9 @@ class_name PaintBucket
 @export var easel: NodePath
 @export_enum("red", "orange", "yellow", "green", "blue", "purple", "pink", "brown", "black", "white", "grey") var paint_color: String = "red"
 
+func _init() -> void:
+	uses_hotbar = true      # goes into the bag
+
 func _ready() -> void:
 	item_type = paint_color
 	collectable_name = paint_color.capitalize() + " paint"

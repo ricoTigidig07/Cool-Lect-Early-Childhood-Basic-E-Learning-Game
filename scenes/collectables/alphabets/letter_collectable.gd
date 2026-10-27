@@ -3,6 +3,9 @@ class_name LetterCollectible
 
 @export var letter_sequence: NodePath
 
+func _init() -> void:
+	uses_hotbar = true      # goes into the bag
+
 func _ready() -> void:
 	super._ready()
 	var seq = get_node_or_null(letter_sequence)

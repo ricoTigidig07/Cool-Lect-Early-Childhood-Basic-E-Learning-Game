@@ -1,5 +1,8 @@
 extends Node
 
+## Stars changed (a level was finished, or Reset all stars). The star sign listens to this.
+signal progress_changed
+
 var current_subject: String = ""
 var current_level: int = 1
 
@@ -24,6 +27,7 @@ var level_progress := {
 func set_level_result(subject: String, level: int, stars: int) -> void:
 	level_progress[subject][level] = max(stars, level_progress[subject].get(level, 0))
 	PlayerProfile.save_profile()
+	progress_changed.emit()
 
 func get_level_stars(subject: String, level: int) -> int:
 	return level_progress[subject].get(level, 0)
@@ -54,3 +58,4 @@ func reset_progress() -> void:
 	for subject in level_progress.keys():
 		level_progress[subject] = {}
 	PlayerProfile.save_profile()
+	progress_changed.emit()

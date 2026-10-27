@@ -22,6 +22,8 @@ var collector: Node2D = null
 var is_collecting: bool = false
 var is_holding: bool = false
 var hold_progress: float = 0.0
+## True for items that go into the bag (hotbar): letters, shapes, paint, eggs.
+var uses_hotbar := false
 
 func _ready() -> void:
 	# some item scenes already connect these in the editor: only connect once
@@ -71,6 +73,9 @@ func _on_body_exited(body: Node2D) -> void:
 func start_hold() -> void:
 	if is_collecting:
 		return
+	if uses_hotbar and not GameUIManager.hotbar_has_room(item_type):
+		_bag_full_feedback()      # all 5 bag slots hold other things: use some first
+		return
 	if player_ref and player_ref.has_method("face_toward"):
 		player_ref.face_toward(global_position)
 	is_holding = true
@@ -104,6 +109,8 @@ func interact() -> void:
 		return
 	is_collecting = true
 	collector = player_ref
+	if uses_hotbar:
+		GameUIManager.reserve_hotbar_item(item_type)   # keep a bag slot while it flies in
 	set_deferred("monitoring", false)
 	InteractionManager.unregister(self)
 	name_label.visible = false
@@ -118,6 +125,21 @@ func interact() -> void:
 	_play_pickup_animation()
 
 const COLLECT_FX := preload("res://scenes/components/collect_fx.tscn")
+
+## "My bag is full": the item wiggles, a soft "no" sound, and the bag shakes.
+func _bag_full_feedback() -> void:
+	AudioManager.play_sfx("wrong")
+	var sprite = get_node_or_null("Sprite2D")
+	if sprite:
+		var t := create_tween()
+		for angle in [14.0, -14.0, 9.0, -9.0, 0.0]:
+			t.tween_property(sprite, "rotation_degrees", angle, 0.05)
+	var bar = GameUIManager.hotbar
+	if bar:
+		var base_x: float = bar.position.x
+		var bt := bar.create_tween()
+		for dx in [6.0, -6.0, 4.0, -4.0, 0.0]:
+			bt.tween_property(bar, "position:x", base_x + dx, 0.05)
 
 ## Pickup animation (same feel as the main menu): the item squashes, hops in an
 ## arc over the player's head while spinning, bursts into a star + sparkles,
