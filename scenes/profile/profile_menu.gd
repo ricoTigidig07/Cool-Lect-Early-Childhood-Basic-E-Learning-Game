@@ -7,27 +7,30 @@ extends Control
 const MAIN_MENU := "res://scenes/main_menu.tscn"
 const LEVELS_PER_SUBJECT := 15
 const MIN_AGE := 4
+const KEYBOARD_GAP := 16.0      # space between the name box and the phone keyboard
 
-@onready var username_label: Label = $InfoCard/Username
-@onready var age_label: Label = $InfoCard/AgeLabel
-@onready var edit_button: Button = $InfoCard/EditButton
-@onready var total_stars_label: Label = $Achievements/Totals/StarsTotal
-@onready var total_levels_label: Label = $Achievements/Totals/LevelsTotal
-@onready var rows: Container = $Achievements/Rows
+@onready var username_label: Label = $Center/InfoCard/Username
+@onready var age_label: Label = $Center/InfoCard/AgeLabel
+@onready var edit_button: Button = $Center/InfoCard/EditButton
+@onready var total_stars_label: Label = $Center/Achievements/Totals/StarsTotal
+@onready var total_levels_label: Label = $Center/Achievements/Totals/LevelsTotal
+@onready var rows: Container = $Center/Achievements/Rows
 @onready var back_button: Button = $BackButton
 
 @onready var edit_window: Control = $EditWindow
-@onready var edit_username: LineEdit = $EditWindow/Panel/Username
-@onready var shuffle_button: Button = $EditWindow/Panel/ShuffleButton
-@onready var edit_age: Label = $EditWindow/Panel/AgePicker/AgeLabel
-@onready var minus_button: Button = $EditWindow/Panel/AgePicker/MinusButton
-@onready var plus_button: Button = $EditWindow/Panel/AgePicker/PlusButton
-@onready var save_button: Button = $EditWindow/Panel/SaveButton
-@onready var cancel_button: Button = $EditWindow/Panel/CancelButton
+@onready var edit_username: LineEdit = $EditWindow/Center/Panel/Username
+@onready var shuffle_button: Button = $EditWindow/Center/Panel/ShuffleButton
+@onready var edit_age: Label = $EditWindow/Center/Panel/AgePicker/AgeLabel
+@onready var minus_button: Button = $EditWindow/Center/Panel/AgePicker/MinusButton
+@onready var plus_button: Button = $EditWindow/Center/Panel/AgePicker/PlusButton
+@onready var save_button: Button = $EditWindow/Center/Panel/SaveButton
+@onready var cancel_button: Button = $EditWindow/Center/Panel/CancelButton
 @onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var edit_box: Control = $EditWindow/Center
 
 var draft_name := ""
 var draft_age := MIN_AGE
+var keyboard_lift := 0.0        # how far the edit window is moved up for the keyboard
 
 func _ready() -> void:
 	back_button.pressed.connect(func(): get_tree().change_scene_to_file(MAIN_MENU))
@@ -41,6 +44,20 @@ func _ready() -> void:
 	edit_username.text_submitted.connect(func(_t): _save())
 	edit_window.visible = false
 	_refresh()
+
+## Phones: the on-screen keyboard covers the bottom of the screen,
+## so slide the edit window up until the name box sits just above it.
+func _process(delta: float) -> void:
+	var target := 0.0
+	if edit_window.visible and edit_username.has_focus():
+		var kb_px := float(DisplayServer.virtual_keyboard_get_height())
+		if kb_px > 0.0:
+			var view_h := get_viewport_rect().size.y
+			var kb_h := kb_px * view_h / float(DisplayServer.window_get_size().y)
+			var box_bottom := edit_username.get_global_rect().end.y + keyboard_lift
+			target = max(0.0, box_bottom + KEYBOARD_GAP - (view_h - kb_h))
+	keyboard_lift = lerp(keyboard_lift, target, min(1.0, delta * 12.0))
+	edit_box.position.y = -360.0 + (edit_box.get_parent_area_size().y / 2.0) - keyboard_lift
 
 # ---------- profile + achievements ----------
 

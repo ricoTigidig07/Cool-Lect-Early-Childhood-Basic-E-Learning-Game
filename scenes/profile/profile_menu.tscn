@@ -207,7 +207,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("InfoCard:position")
+tracks/0/path = NodePath("Center/InfoCard:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -219,7 +219,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Achievements:position")
+tracks/1/path = NodePath("Center/Achievements:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -243,7 +243,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("EditWindow/Panel:scale")
+tracks/3/path = NodePath("EditWindow/Center/Panel:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -283,7 +283,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("EditWindow/Panel:scale")
+tracks/1/path = NodePath("EditWindow/Center/Panel:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -311,26 +311,26 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("InfoCard:position")
+tracks/0/path = NodePath("Center/InfoCard:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.55),
 "transitions": PackedFloat32Array(2, 0.5, 1),
 "update": 0,
-"values": [Vector2(-420, 130), Vector2(84, 130), Vector2(70, 130)]
+"values": [Vector2(-900, 130), Vector2(84, 130), Vector2(70, 130)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Achievements:position")
+tracks/1/path = NodePath("Center/Achievements:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.55, 0.7),
 "transitions": PackedFloat32Array(1, 2, 0.5, 1),
 "update": 0,
-"values": [Vector2(1300, 130), Vector2(1300, 130), Vector2(466, 130), Vector2(480, 130)]
+"values": [Vector2(1800, 130), Vector2(1800, 130), Vector2(466, 130), Vector2(480, 130)]
 }
 
 [sub_resource type="Animation" id="Anim_open_editor"]
@@ -363,7 +363,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("EditWindow/Panel:scale")
+tracks/2/path = NodePath("EditWindow/Center/Panel:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -403,7 +403,22 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.12, 0.08, 0.05, 0.35)
 
-[node name="Title" type="Label" parent="." unique_id=1466104883]
+[node name="Center" type="Control" parent="." unique_id=1846203761]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Center" unique_id=1466104883]
 layout_mode = 0
 offset_left = 400.0
 offset_top = 22.0
@@ -425,7 +440,7 @@ text = "Back"
 icon = ExtResource("9_arrow")
 expand_icon = true
 
-[node name="InfoCard" type="Panel" parent="." unique_id=333994486]
+[node name="InfoCard" type="Panel" parent="Center" unique_id=333994486]
 layout_mode = 0
 offset_left = 70.0
 offset_top = 130.0
@@ -433,7 +448,7 @@ offset_right = 450.0
 offset_bottom = 650.0
 theme_override_styles/panel = SubResource("Card")
 
-[node name="AvatarSpot" type="Panel" parent="InfoCard" unique_id=1364803310]
+[node name="AvatarSpot" type="Panel" parent="Center/InfoCard" unique_id=1364803310]
 layout_mode = 0
 offset_left = 120.0
 offset_top = 40.0
@@ -442,7 +457,7 @@ offset_bottom = 180.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("Spot")
 
-[node name="Avatar" type="AnimatedSprite2D" parent="InfoCard/AvatarSpot" unique_id=1106815857]
+[node name="Avatar" type="AnimatedSprite2D" parent="Center/InfoCard/AvatarSpot" unique_id=1106815857]
 texture_filter = 1
 position = Vector2(70, 62)
 scale = Vector2(5, 5)
@@ -450,7 +465,7 @@ sprite_frames = ExtResource("10_player")
 animation = &"idle_front"
 autoplay = "idle_front"
 
-[node name="Username" type="Label" parent="InfoCard" unique_id=358717254]
+[node name="Username" type="Label" parent="Center/InfoCard" unique_id=358717254]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 210.0
@@ -463,7 +478,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
-[node name="AgeLabel" type="Label" parent="InfoCard" unique_id=1303114738]
+[node name="AgeLabel" type="Label" parent="Center/InfoCard" unique_id=1303114738]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 295.0
@@ -474,7 +489,7 @@ text = "4 years old"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EditButton" type="Button" parent="InfoCard" unique_id=74635497]
+[node name="EditButton" type="Button" parent="Center/InfoCard" unique_id=74635497]
 layout_mode = 0
 offset_left = 70.0
 offset_top = 400.0
@@ -483,7 +498,7 @@ offset_bottom = 470.0
 theme_override_font_sizes/font_size = 30
 text = "Edit Profile"
 
-[node name="Achievements" type="Panel" parent="." unique_id=330630197]
+[node name="Achievements" type="Panel" parent="Center" unique_id=330630197]
 layout_mode = 0
 offset_left = 480.0
 offset_top = 130.0
@@ -491,7 +506,7 @@ offset_right = 1210.0
 offset_bottom = 650.0
 theme_override_styles/panel = SubResource("Card")
 
-[node name="Header" type="Label" parent="Achievements" unique_id=1606878229]
+[node name="Header" type="Label" parent="Center/Achievements" unique_id=1606878229]
 layout_mode = 0
 offset_top = 22.0
 offset_right = 730.0
@@ -500,7 +515,7 @@ text = "My Achievements"
 label_settings = SubResource("Header")
 horizontal_alignment = 1
 
-[node name="Totals" type="Panel" parent="Achievements" unique_id=762673100]
+[node name="Totals" type="Panel" parent="Center/Achievements" unique_id=762673100]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 76.0
@@ -508,7 +523,7 @@ offset_right = 690.0
 offset_bottom = 156.0
 theme_override_styles/panel = SubResource("TotalsBox")
 
-[node name="StarIcon" type="TextureRect" parent="Achievements/Totals" unique_id=1741487534]
+[node name="StarIcon" type="TextureRect" parent="Center/Achievements/Totals" unique_id=1741487534]
 layout_mode = 0
 offset_left = 22.0
 offset_top = 14.0
@@ -518,7 +533,7 @@ texture = ExtResource("8_star")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="StarsTotal" type="Label" parent="Achievements/Totals" unique_id=1403047874]
+[node name="StarsTotal" type="Label" parent="Center/Achievements/Totals" unique_id=1403047874]
 layout_mode = 0
 offset_left = 86.0
 offset_top = 8.0
@@ -528,7 +543,7 @@ text = "0 / 90"
 label_settings = SubResource("BigStars")
 vertical_alignment = 1
 
-[node name="LevelsTotal" type="Label" parent="Achievements/Totals" unique_id=2093220117]
+[node name="LevelsTotal" type="Label" parent="Center/Achievements/Totals" unique_id=2093220117]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 8.0
@@ -539,7 +554,7 @@ text = "0 / 90 levels done"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Rows" type="VBoxContainer" parent="Achievements" unique_id=978317221]
+[node name="Rows" type="VBoxContainer" parent="Center/Achievements" unique_id=978317221]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 176.0
@@ -547,25 +562,25 @@ offset_right = 690.0
 offset_bottom = 490.0
 theme_override_constants/separation = 6
 
-[node name="Fruits" type="HBoxContainer" parent="Achievements/Rows" unique_id=1931780661]
+[node name="Fruits" type="HBoxContainer" parent="Center/Achievements/Rows" unique_id=1931780661]
 custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="Dot" type="Panel" parent="Achievements/Rows/Fruits" unique_id=1006969681]
+[node name="Dot" type="Panel" parent="Center/Achievements/Rows/Fruits" unique_id=1006969681]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("Dot_Fruits")
 
-[node name="Name" type="Label" parent="Achievements/Rows/Fruits" unique_id=239992272]
+[node name="Name" type="Label" parent="Center/Achievements/Rows/Fruits" unique_id=239992272]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "Fruits"
 vertical_alignment = 1
 
-[node name="Bar" type="ProgressBar" parent="Achievements/Rows/Fruits" unique_id=1188400809]
+[node name="Bar" type="ProgressBar" parent="Center/Achievements/Rows/Fruits" unique_id=1188400809]
 custom_minimum_size = Vector2(250, 22)
 layout_mode = 2
 size_flags_vertical = 4
@@ -575,7 +590,7 @@ max_value = 15.0
 step = 1.0
 show_percentage = false
 
-[node name="Levels" type="Label" parent="Achievements/Rows/Fruits" unique_id=1503726361]
+[node name="Levels" type="Label" parent="Center/Achievements/Rows/Fruits" unique_id=1503726361]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -583,7 +598,7 @@ text = "0/15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StarIcon" type="TextureRect" parent="Achievements/Rows/Fruits" unique_id=676539855]
+[node name="StarIcon" type="TextureRect" parent="Center/Achievements/Rows/Fruits" unique_id=676539855]
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
 size_flags_vertical = 4
@@ -591,32 +606,32 @@ texture = ExtResource("8_star")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Stars" type="Label" parent="Achievements/Rows/Fruits" unique_id=1319200148]
+[node name="Stars" type="Label" parent="Center/Achievements/Rows/Fruits" unique_id=1319200148]
 custom_minimum_size = Vector2(44, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "0"
 vertical_alignment = 1
 
-[node name="Animals" type="HBoxContainer" parent="Achievements/Rows" unique_id=117302246]
+[node name="Animals" type="HBoxContainer" parent="Center/Achievements/Rows" unique_id=117302246]
 custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="Dot" type="Panel" parent="Achievements/Rows/Animals" unique_id=149782430]
+[node name="Dot" type="Panel" parent="Center/Achievements/Rows/Animals" unique_id=149782430]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("Dot_Animals")
 
-[node name="Name" type="Label" parent="Achievements/Rows/Animals" unique_id=1067385970]
+[node name="Name" type="Label" parent="Center/Achievements/Rows/Animals" unique_id=1067385970]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "Animals"
 vertical_alignment = 1
 
-[node name="Bar" type="ProgressBar" parent="Achievements/Rows/Animals" unique_id=1232236841]
+[node name="Bar" type="ProgressBar" parent="Center/Achievements/Rows/Animals" unique_id=1232236841]
 custom_minimum_size = Vector2(250, 22)
 layout_mode = 2
 size_flags_vertical = 4
@@ -626,7 +641,7 @@ max_value = 15.0
 step = 1.0
 show_percentage = false
 
-[node name="Levels" type="Label" parent="Achievements/Rows/Animals" unique_id=1962247102]
+[node name="Levels" type="Label" parent="Center/Achievements/Rows/Animals" unique_id=1962247102]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -634,7 +649,7 @@ text = "0/15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StarIcon" type="TextureRect" parent="Achievements/Rows/Animals" unique_id=1421633178]
+[node name="StarIcon" type="TextureRect" parent="Center/Achievements/Rows/Animals" unique_id=1421633178]
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
 size_flags_vertical = 4
@@ -642,32 +657,32 @@ texture = ExtResource("8_star")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Stars" type="Label" parent="Achievements/Rows/Animals" unique_id=1139523971]
+[node name="Stars" type="Label" parent="Center/Achievements/Rows/Animals" unique_id=1139523971]
 custom_minimum_size = Vector2(44, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "0"
 vertical_alignment = 1
 
-[node name="Alphabets" type="HBoxContainer" parent="Achievements/Rows" unique_id=84038473]
+[node name="Alphabets" type="HBoxContainer" parent="Center/Achievements/Rows" unique_id=84038473]
 custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="Dot" type="Panel" parent="Achievements/Rows/Alphabets" unique_id=1655385509]
+[node name="Dot" type="Panel" parent="Center/Achievements/Rows/Alphabets" unique_id=1655385509]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("Dot_Alphabets")
 
-[node name="Name" type="Label" parent="Achievements/Rows/Alphabets" unique_id=1955916097]
+[node name="Name" type="Label" parent="Center/Achievements/Rows/Alphabets" unique_id=1955916097]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "Alphabets"
 vertical_alignment = 1
 
-[node name="Bar" type="ProgressBar" parent="Achievements/Rows/Alphabets" unique_id=693978343]
+[node name="Bar" type="ProgressBar" parent="Center/Achievements/Rows/Alphabets" unique_id=693978343]
 custom_minimum_size = Vector2(250, 22)
 layout_mode = 2
 size_flags_vertical = 4
@@ -677,7 +692,7 @@ max_value = 15.0
 step = 1.0
 show_percentage = false
 
-[node name="Levels" type="Label" parent="Achievements/Rows/Alphabets" unique_id=525683687]
+[node name="Levels" type="Label" parent="Center/Achievements/Rows/Alphabets" unique_id=525683687]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -685,7 +700,7 @@ text = "0/15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StarIcon" type="TextureRect" parent="Achievements/Rows/Alphabets" unique_id=1299664668]
+[node name="StarIcon" type="TextureRect" parent="Center/Achievements/Rows/Alphabets" unique_id=1299664668]
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
 size_flags_vertical = 4
@@ -693,32 +708,32 @@ texture = ExtResource("8_star")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Stars" type="Label" parent="Achievements/Rows/Alphabets" unique_id=102806676]
+[node name="Stars" type="Label" parent="Center/Achievements/Rows/Alphabets" unique_id=102806676]
 custom_minimum_size = Vector2(44, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "0"
 vertical_alignment = 1
 
-[node name="Numbers" type="HBoxContainer" parent="Achievements/Rows" unique_id=124612533]
+[node name="Numbers" type="HBoxContainer" parent="Center/Achievements/Rows" unique_id=124612533]
 custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="Dot" type="Panel" parent="Achievements/Rows/Numbers" unique_id=1886563152]
+[node name="Dot" type="Panel" parent="Center/Achievements/Rows/Numbers" unique_id=1886563152]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("Dot_Numbers")
 
-[node name="Name" type="Label" parent="Achievements/Rows/Numbers" unique_id=638247437]
+[node name="Name" type="Label" parent="Center/Achievements/Rows/Numbers" unique_id=638247437]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "Numbers"
 vertical_alignment = 1
 
-[node name="Bar" type="ProgressBar" parent="Achievements/Rows/Numbers" unique_id=2018722635]
+[node name="Bar" type="ProgressBar" parent="Center/Achievements/Rows/Numbers" unique_id=2018722635]
 custom_minimum_size = Vector2(250, 22)
 layout_mode = 2
 size_flags_vertical = 4
@@ -728,7 +743,7 @@ max_value = 15.0
 step = 1.0
 show_percentage = false
 
-[node name="Levels" type="Label" parent="Achievements/Rows/Numbers" unique_id=343918263]
+[node name="Levels" type="Label" parent="Center/Achievements/Rows/Numbers" unique_id=343918263]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -736,7 +751,7 @@ text = "0/15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StarIcon" type="TextureRect" parent="Achievements/Rows/Numbers" unique_id=1773473240]
+[node name="StarIcon" type="TextureRect" parent="Center/Achievements/Rows/Numbers" unique_id=1773473240]
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
 size_flags_vertical = 4
@@ -744,32 +759,32 @@ texture = ExtResource("8_star")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Stars" type="Label" parent="Achievements/Rows/Numbers" unique_id=406975539]
+[node name="Stars" type="Label" parent="Center/Achievements/Rows/Numbers" unique_id=406975539]
 custom_minimum_size = Vector2(44, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "0"
 vertical_alignment = 1
 
-[node name="Shapes" type="HBoxContainer" parent="Achievements/Rows" unique_id=1649257028]
+[node name="Shapes" type="HBoxContainer" parent="Center/Achievements/Rows" unique_id=1649257028]
 custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="Dot" type="Panel" parent="Achievements/Rows/Shapes" unique_id=2112649326]
+[node name="Dot" type="Panel" parent="Center/Achievements/Rows/Shapes" unique_id=2112649326]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("Dot_Shapes")
 
-[node name="Name" type="Label" parent="Achievements/Rows/Shapes" unique_id=1791193435]
+[node name="Name" type="Label" parent="Center/Achievements/Rows/Shapes" unique_id=1791193435]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "Shapes"
 vertical_alignment = 1
 
-[node name="Bar" type="ProgressBar" parent="Achievements/Rows/Shapes" unique_id=585883958]
+[node name="Bar" type="ProgressBar" parent="Center/Achievements/Rows/Shapes" unique_id=585883958]
 custom_minimum_size = Vector2(250, 22)
 layout_mode = 2
 size_flags_vertical = 4
@@ -779,7 +794,7 @@ max_value = 15.0
 step = 1.0
 show_percentage = false
 
-[node name="Levels" type="Label" parent="Achievements/Rows/Shapes" unique_id=995015323]
+[node name="Levels" type="Label" parent="Center/Achievements/Rows/Shapes" unique_id=995015323]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -787,7 +802,7 @@ text = "0/15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StarIcon" type="TextureRect" parent="Achievements/Rows/Shapes" unique_id=1929267796]
+[node name="StarIcon" type="TextureRect" parent="Center/Achievements/Rows/Shapes" unique_id=1929267796]
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
 size_flags_vertical = 4
@@ -795,32 +810,32 @@ texture = ExtResource("8_star")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Stars" type="Label" parent="Achievements/Rows/Shapes" unique_id=1084354506]
+[node name="Stars" type="Label" parent="Center/Achievements/Rows/Shapes" unique_id=1084354506]
 custom_minimum_size = Vector2(44, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "0"
 vertical_alignment = 1
 
-[node name="Colors" type="HBoxContainer" parent="Achievements/Rows" unique_id=1149053487]
+[node name="Colors" type="HBoxContainer" parent="Center/Achievements/Rows" unique_id=1149053487]
 custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="Dot" type="Panel" parent="Achievements/Rows/Colors" unique_id=357866600]
+[node name="Dot" type="Panel" parent="Center/Achievements/Rows/Colors" unique_id=357866600]
 custom_minimum_size = Vector2(18, 18)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("Dot_Colors")
 
-[node name="Name" type="Label" parent="Achievements/Rows/Colors" unique_id=775682155]
+[node name="Name" type="Label" parent="Center/Achievements/Rows/Colors" unique_id=775682155]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "Colors"
 vertical_alignment = 1
 
-[node name="Bar" type="ProgressBar" parent="Achievements/Rows/Colors" unique_id=1631837829]
+[node name="Bar" type="ProgressBar" parent="Center/Achievements/Rows/Colors" unique_id=1631837829]
 custom_minimum_size = Vector2(250, 22)
 layout_mode = 2
 size_flags_vertical = 4
@@ -830,7 +845,7 @@ max_value = 15.0
 step = 1.0
 show_percentage = false
 
-[node name="Levels" type="Label" parent="Achievements/Rows/Colors" unique_id=1835575274]
+[node name="Levels" type="Label" parent="Center/Achievements/Rows/Colors" unique_id=1835575274]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -838,7 +853,7 @@ text = "0/15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StarIcon" type="TextureRect" parent="Achievements/Rows/Colors" unique_id=1746493953]
+[node name="StarIcon" type="TextureRect" parent="Center/Achievements/Rows/Colors" unique_id=1746493953]
 custom_minimum_size = Vector2(28, 28)
 layout_mode = 2
 size_flags_vertical = 4
@@ -846,7 +861,7 @@ texture = ExtResource("8_star")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Stars" type="Label" parent="Achievements/Rows/Colors" unique_id=1691314091]
+[node name="Stars" type="Label" parent="Center/Achievements/Rows/Colors" unique_id=1691314091]
 custom_minimum_size = Vector2(44, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -871,7 +886,22 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.1, 0.06, 0.04, 0.55)
 
-[node name="Panel" type="Panel" parent="EditWindow" unique_id=1802793569]
+[node name="Center" type="Control" parent="EditWindow" unique_id=1846203762]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="EditWindow/Center" unique_id=1802793569]
 layout_mode = 0
 offset_left = 380.0
 offset_top = 110.0
@@ -880,7 +910,7 @@ offset_bottom = 640.0
 pivot_offset = Vector2(260, 265)
 theme_override_styles/panel = SubResource("Card")
 
-[node name="Title" type="Label" parent="EditWindow/Panel" unique_id=1597304384]
+[node name="Title" type="Label" parent="EditWindow/Center/Panel" unique_id=1597304384]
 layout_mode = 0
 offset_left = 60.0
 offset_top = -36.0
@@ -892,7 +922,7 @@ label_settings = SubResource("Title")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Username" type="LineEdit" parent="EditWindow/Panel" unique_id=1281380898]
+[node name="Username" type="LineEdit" parent="EditWindow/Center/Panel" unique_id=1281380898]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 96.0
@@ -908,7 +938,7 @@ alignment = 1
 max_length = 16
 select_all_on_focus = true
 
-[node name="NameHeader" type="Label" parent="EditWindow/Panel" unique_id=1979232248]
+[node name="NameHeader" type="Label" parent="EditWindow/Center/Panel" unique_id=1979232248]
 layout_mode = 0
 offset_top = 60.0
 offset_right = 520.0
@@ -917,7 +947,7 @@ theme_override_font_sizes/font_size = 28
 text = "Your name"
 horizontal_alignment = 1
 
-[node name="ShuffleButton" type="Button" parent="EditWindow/Panel" unique_id=679385661]
+[node name="ShuffleButton" type="Button" parent="EditWindow/Center/Panel" unique_id=679385661]
 layout_mode = 0
 offset_left = 354.0
 offset_top = 100.0
@@ -926,7 +956,7 @@ offset_bottom = 166.0
 theme_override_font_sizes/font_size = 26
 text = "Shuffle"
 
-[node name="AgeHeader" type="Label" parent="EditWindow/Panel" unique_id=711272343]
+[node name="AgeHeader" type="Label" parent="EditWindow/Center/Panel" unique_id=711272343]
 layout_mode = 0
 offset_top = 192.0
 offset_right = 520.0
@@ -935,7 +965,7 @@ theme_override_font_sizes/font_size = 28
 text = "Your age"
 horizontal_alignment = 1
 
-[node name="AgePicker" type="HBoxContainer" parent="EditWindow/Panel" unique_id=1992809378]
+[node name="AgePicker" type="HBoxContainer" parent="EditWindow/Center/Panel" unique_id=1992809378]
 layout_mode = 0
 offset_left = 60.0
 offset_top = 236.0
@@ -944,7 +974,7 @@ offset_bottom = 346.0
 theme_override_constants/separation = 28
 alignment = 1
 
-[node name="MinusButton" type="Button" parent="EditWindow/Panel/AgePicker" unique_id=482612479]
+[node name="MinusButton" type="Button" parent="EditWindow/Center/Panel/AgePicker" unique_id=482612479]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 size_flags_vertical = 4
@@ -952,7 +982,7 @@ icon = SubResource("Minus")
 icon_alignment = 1
 expand_icon = true
 
-[node name="AgeLabel" type="Label" parent="EditWindow/Panel/AgePicker" unique_id=415012148]
+[node name="AgeLabel" type="Label" parent="EditWindow/Center/Panel/AgePicker" unique_id=415012148]
 custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
 theme_override_styles/normal = SubResource("AgeBadge")
@@ -961,7 +991,7 @@ label_settings = SubResource("BigNumber")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlusButton" type="Button" parent="EditWindow/Panel/AgePicker" unique_id=291748589]
+[node name="PlusButton" type="Button" parent="EditWindow/Center/Panel/AgePicker" unique_id=291748589]
 custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
 size_flags_vertical = 4
@@ -969,7 +999,7 @@ icon = SubResource("Plus")
 icon_alignment = 1
 expand_icon = true
 
-[node name="CancelButton" type="Button" parent="EditWindow/Panel" unique_id=1000451295]
+[node name="CancelButton" type="Button" parent="EditWindow/Center/Panel" unique_id=1000451295]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 400.0
@@ -978,7 +1008,7 @@ offset_bottom = 470.0
 theme_override_font_sizes/font_size = 30
 text = "Cancel"
 
-[node name="SaveButton" type="Button" parent="EditWindow/Panel" unique_id=971133319]
+[node name="SaveButton" type="Button" parent="EditWindow/Center/Panel" unique_id=971133319]
 layout_mode = 0
 offset_left = 270.0
 offset_top = 400.0
