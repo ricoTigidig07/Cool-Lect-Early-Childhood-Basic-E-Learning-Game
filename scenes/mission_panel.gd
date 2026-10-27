@@ -42,6 +42,8 @@ func complete_mission_3() -> void:
 	_complete_mission(2, star_3)
 
 func _complete_mission(index: int, star: TextureRect) -> void:
+	if completed_missions[index]:
+		return            # already done (e.g. talking to the NPC again): no second star pop
 	AudioManager.play_sfx("mission")
 	star.texture = FILLED_STAR
 	completed_missions[index] = true

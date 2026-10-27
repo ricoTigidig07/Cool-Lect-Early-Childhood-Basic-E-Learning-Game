@@ -16,7 +16,6 @@ func _ready() -> void:
 	QuestManager.quest_updated.connect(_on_quest_updated)
 
 func show_panel() -> void:
-	print("ItemsPanel show_panel() called")
 	_clear_slots()
 	visible = true
 	_sync_from_quest_manager()
@@ -42,7 +41,6 @@ func _on_quest_updated(item_type: String, current: int, target: int) -> void:
 	slot.get_node("VBoxContainer/Label").text = "%d/%d" % [current, target]
 
 func _create_slot(item_type: String) -> void:
-	print("Creating slot for: ", item_type)
 	var slot = SLOT_SCENE.instantiate()
 	slots_container.add_child(slot)
 	slot.get_node("VBoxContainer/TextureRect").texture = item_icons.get(item_type)

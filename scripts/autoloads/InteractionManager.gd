@@ -20,6 +20,8 @@ func get_current_target() -> Node:
 	return nearby_interactables[0]
 
 func button_down() -> void:
+	if GameUIManager.level_over:
+		return            # the level is finishing: Mission Complete is on its way
 	var target = get_current_target()
 	if target == null:
 		return

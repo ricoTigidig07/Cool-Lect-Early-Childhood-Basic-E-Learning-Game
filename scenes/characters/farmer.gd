@@ -218,5 +218,6 @@ func _on_incomplete_choice_selected(choice_text: String) -> void:
 	is_dialogue_open = false
 	if not choice_text.begins_with("Yes"):
 		GameUIManager.hide_items_panel()
+		GameUIManager.end_level()
 		await get_tree().create_timer(0.6).timeout
 		GameUIManager.show_mission_complete()

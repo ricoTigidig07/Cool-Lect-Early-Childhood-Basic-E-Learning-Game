@@ -2,6 +2,11 @@ extends Node
 
 var dialogue_panel: TextureRect
 
+## True once the level is finishing (last mission done, or the player chose to stop):
+## the interaction button does nothing, so the conversation can't start over.
+var level_over := false
+var result_shown := false
+
 func register_ui(panel: TextureRect) -> void:
 	dialogue_panel = panel
 
@@ -17,6 +22,11 @@ func show_dialogue(text) -> void:
 
 func hide_dialogue() -> void:
 	dialogue_panel.visible = false
+	# a conversation that was closed early must not answer later conversations
+	for c in dialogue_panel.finished.get_connections():
+		dialogue_panel.finished.disconnect(c["callable"])
+	for c in dialogue_panel.choice_selected.get_connections():
+		dialogue_panel.choice_selected.disconnect(c["callable"])
 
 func connect_dialogue_finished(callback: Callable) -> void:
 	dialogue_panel.finished.connect(callback, CONNECT_ONE_SHOT)
@@ -31,6 +41,8 @@ var mission_panel: PanelContainer
 
 func register_mission_panel(panel: PanelContainer) -> void:
 	mission_panel = panel
+	level_over = false          # a new level has started
+	result_shown = false
 
 func complete_mission_1() -> void:
 	mission_panel.complete_mission_1()
@@ -39,7 +51,12 @@ func complete_mission_2() -> void:
 	mission_panel.complete_mission_2()
 
 func complete_mission_3() -> void:
+	level_over = true
 	mission_panel.complete_mission_3()
+
+## The player chose to stop early: the Mission Complete screen comes next.
+func end_level() -> void:
+	level_over = true
 	
 var items_panel: PanelContainer
 
@@ -66,6 +83,10 @@ func register_mission_complete_panel(panel: Control) -> void:
 ## Shows the Mission Complete screen, awarding a star per completed mission.
 ## Stars are saved to the subject and level the player is in (set by level_missions.gd).
 func show_mission_complete() -> void:
+	if result_shown:
+		return
+	result_shown = true
+	level_over = true
 	var stars = mission_panel.get_completed_count()
 	GameManager.set_level_result(GameManager.current_subject, GameManager.current_level, stars)
 	mission_complete_panel.show_result(stars)
