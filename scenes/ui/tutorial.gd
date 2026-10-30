@@ -23,6 +23,10 @@ const GIVERS := {
 	"colors": ["Pinta", Color(1.45, 0.8, 1.35)],
 }
 const HELPER_COLOR := Color(1.45, 0.8, 1.35)
+## The real look of each subject's mission NPC, and of the helper shown on the "Lost?" page.
+const GIVER_LOOKS := {"fruits": "merchant", "animals": "farmer", "alphabets": "teacher",
+	"numbers": "grandma", "shapes": "builder", "colors": "painter"}
+const NPC_SCALE := 5.0
 
 @export var talk_icon: Texture2D
 @export var paw_icon: Texture2D
@@ -125,7 +129,15 @@ func _show_page() -> void:
 	# right: an NPC / helper, or a picture (basket, board, easel ...)
 	right_char.visible = p.has("npc_color")
 	if right_char.visible:
-		right_char.modulate = p["npc_color"]
+		var look: String = p.get("npc_look", "")
+		if NpcLooks.FRAMES.has(look):
+			right_char.sprite_frames = NpcLooks.FRAMES[look]
+			right_char.modulate = Color.WHITE
+			right_char.scale = Vector2.ONE * NPC_SCALE * NpcLooks.SCALE[look]
+		else:
+			right_char.sprite_frames = NPC_FRAMES
+			right_char.modulate = p["npc_color"]
+			right_char.scale = Vector2(5, 5)
 		right_char.play("idle_front")
 	right_pic.visible = p.has("pic")
 	if right_pic.visible:
@@ -180,8 +192,9 @@ func _pages_for(s: String) -> Array:
 	var giver: String = GIVERS[s][0]
 	var giver_color: Color = GIVERS[s][1]
 	var Giver := giver.substr(0, 1).to_upper() + giver.substr(1)
+	var giver_look: String = GIVER_LOOKS[s]
 	var out: Array = []
-	out.append({"title": "Meet %s!" % Giver, "npc_color": giver_color, "action": talk_icon,
+	out.append({"title": "Meet %s!" % Giver, "npc_color": giver_color, "npc_look": giver_look, "action": talk_icon,
 		"arrow": true,
 		"text": "Walk with the joystick to %s.\nTap the hand button to talk and say YES!" % giver})
 	match s:
@@ -189,7 +202,7 @@ func _pages_for(s: String) -> Array:
 			var fruits := [_tex("res://scenes/objects/icons/apple.tres"), _tex("res://scenes/objects/icons/fruits/banana.tres"), _tex("res://scenes/objects/icons/fruits/grapes.tres")]
 			out.append({"title": "Find the fruits", "items": fruits, "arrow": true, "action": HAND, "action_tint": HAND_TINT,
 				"text": "Look for the fruits Momo asks for.\nHold the hand button next to a fruit to pick it up."})
-			out.append({"title": "Bring them back", "items": [fruits[0]], "arrow": true, "npc_color": giver_color,
+			out.append({"title": "Bring them back", "items": [fruits[0]], "arrow": true, "npc_color": giver_color, "npc_look": giver_look,
 				"text": "Got them all? Go back to Momo and give him the fruits!"})
 		"animals":
 			out.append({"title": "Pick the food", "items": [_tex("res://assets/sprites/animals/food/bread.png"), _tex("res://assets/sprites/animals/food/corn.png")], "action": HAND, "action_tint": HAND_TINT,
@@ -231,9 +244,9 @@ func _pages_for(s: String) -> Array:
 				"pic": _tex("res://assets/colors/pictures/apple_red.png"), "pic_tint": PaintColors.color("red"),
 				"text": "Hold at the easel to paint.\nNo color? Mix two in the pot: red + yellow = orange!"})
 	var helper_color := HELPER_COLOR if s != "colors" else Color(0.4, 0.8, 0.0)   # never the same as the mission NPC
-	out.append({"title": "Lost? Ask a helper!", "npc_color": helper_color, "action": ask_icon, "arrow": true,
+	out.append({"title": "Lost? Ask a helper!", "npc_color": helper_color, "npc_look": "painter" if s != "colors" else "grandma", "action": ask_icon, "arrow": true,
 		"text": "Villagers with a ? know where things are.\nTalk to them and follow the arrow at your feet!"})
-	out.append({"title": "Get 3 stars!", "player_anim": "idle_front", "npc_color": giver_color,
+	out.append({"title": "Get 3 stars!", "player_anim": "idle_front", "npc_color": giver_color, "npc_look": giver_look,
 		"items": [star_icon, star_icon, star_icon],
 		"text": "Talk, find, and go back to %s to finish all 3 missions.\nHave fun!" % giver})
 	return out

@@ -148,6 +148,22 @@ func _crop_to_character(tex: Texture2D) -> Texture2D:
 		crop.atlas = src.atlas
 		var r := src.region
 		crop.region = Rect2(r.position + r.size * Vector2(0.3, 0.3), r.size * Vector2(0.4, 0.4))
+		# zoom on the head: a square at the top of the visible character, centred on
+		# the middle of its pixels (so a pointer or a paint roller doesn't pull it sideways)
+		var img := src.atlas.get_image() if src.atlas else null
+		if img and not img.is_empty():
+			var frame := img.get_region(Rect2i(r))
+			var used := frame.get_used_rect()
+			if used.size.y > 0:
+				var side: float = max(8.0, used.size.y * 0.6)
+				var xs: Array[int] = []
+				for y in range(used.position.y, used.position.y + int(side)):
+					for x in range(used.position.x, used.end.x):
+						if frame.get_pixel(x, y).a > 0.5:
+							xs.append(x)
+				xs.sort()
+				var center_x: float = xs[xs.size() / 2] if xs.size() > 0 else used.position.x + used.size.x / 2.0
+				crop.region = Rect2(r.position.x + center_x + 0.5 - side / 2.0, r.position.y + used.position.y - 1, side, side)
 		return crop
 	return tex
 

@@ -23,6 +23,11 @@ enum Character { MERCHANT, TEACHER, BUILDER, PAINTER, GRANDMA, FARMER }
 		if is_node_ready():
 			_apply_look()
 
+const LOOK_NAMES := {
+	Character.MERCHANT: "merchant", Character.TEACHER: "teacher", Character.BUILDER: "builder",
+	Character.PAINTER: "painter", Character.GRANDMA: "grandma", Character.FARMER: "farmer",
+}
+
 ## Name, placeholder color and greeting for each villager.
 const LOOKS := {
 	Character.MERCHANT: {"name": "Momo", "color": Color(0.66, 0.95, 1.53), "hello": "Hi there! It's me, Momo!"},
@@ -92,7 +97,7 @@ func _apply_look() -> void:
 	var look: Dictionary = LOOKS[character]
 	display_name = look["name"]
 	if sprite:
-		sprite.modulate = look["color"]
+		NpcLooks.apply(sprite, LOOK_NAMES[character])
 
 # ---------- player near / far ----------
 
