@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://bkovjhv9sqke1" path="res://scenes/collectables/animals/farm/chicken.tscn" id="a_chicken"]
 [ext_resource type="PackedScene" uid="uid://r0hu23rkv0h6" path="res://scenes/collectables/animals/farm/duck.tscn" id="a_duck"]
 [ext_resource type="PackedScene" uid="uid://bb9kgumkss82j" path="res://scenes/collectables/animals/farm/pig.tscn" id="a_pig"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl13FarmFriendsMap" type="Node2D"]
 y_sort_enabled = true
@@ -173,14 +172,6 @@ position = Vector2(948, 360)
 
 [node name="Duck2" parent="Animals" instance=ExtResource("a_duck")]
 position = Vector2(828, 48)
-
-[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
-position = Vector2(845, 406)
-character = 2
-
-[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
-position = Vector2(705, 10)
-character = 4
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

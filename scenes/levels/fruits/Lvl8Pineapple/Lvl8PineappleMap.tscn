@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://ccb5eo2wtkap1" path="res://scenes/collectables/fruits/apple.tscn" id="f_apple"]
 [ext_resource type="PackedScene" uid="uid://w1rap0n0uq9h" path="res://scenes/collectables/fruits/pineapple.tscn" id="f_pineapple"]
 [ext_resource type="PackedScene" uid="uid://4p25igjv0p2t" path="res://scenes/collectables/fruits/strawberry.tscn" id="f_strawberry"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl8PineappleMap" type="Node2D"]
 y_sort_enabled = true
@@ -175,14 +174,6 @@ required_item = ""
 [node name="Apple3" parent="WrongFruits" instance=ExtResource("f_apple")]
 position = Vector2(608, 112)
 required_item = ""
-
-[node name="HelperPainter" parent="." instance=ExtResource("90_helper")]
-position = Vector2(828, 492)
-character = 3
-
-[node name="HelperFarmer" parent="." instance=ExtResource("90_helper")]
-position = Vector2(348, 216)
-character = 5
 
 [node name="GameUI" parent="." instance=ExtResource("12_ui")]
 

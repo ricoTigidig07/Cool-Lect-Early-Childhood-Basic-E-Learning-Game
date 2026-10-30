@@ -20,7 +20,6 @@
 [ext_resource type="TileSet" uid="uid://cu8m7lbxqc53j" path="res://scenes/tilesets/structures.tres" id="6_5r865"]
 [ext_resource type="TileSet" uid="uid://b547n11tgq3oo" path="res://scenes/tilesets/furniture_tileset.tres" id="7_uyugg"]
 [ext_resource type="PackedScene" uid="uid://dubbaqeuluioc" path="res://resources/door.tscn" id="8_8ibng"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl1ABMap" type="Node2D" unique_id=144494413]
 y_sort_enabled = true
@@ -127,14 +126,6 @@ letter_sequence = NodePath("../../LetterSequence")
 [node name="Smallb" parent="Letters" unique_id=249520903 instance=ExtResource("L_small_b")]
 position = Vector2(647, 405)
 letter_sequence = NodePath("../../LetterSequence")
-
-[node name="HelperMerchant" parent="." instance=ExtResource("90_helper")]
-position = Vector2(533, 403)
-character = 0
-
-[node name="HelperPainter" parent="." instance=ExtResource("90_helper")]
-position = Vector2(937, 515)
-character = 3
 
 [node name="GameUI" parent="." unique_id=1792889255 instance=ExtResource("14_ui")]
 

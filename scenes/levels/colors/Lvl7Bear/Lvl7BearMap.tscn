@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://c0kycpsyjv3g" path="res://assets/colors/pictures/bear_brown.png" id="part_brown"]
 [ext_resource type="Texture2D" uid="uid://bjrdsagsdigki" path="res://assets/colors/pictures/bear_black.png" id="part_black"]
 [ext_resource type="Texture2D" uid="uid://imnnvvqf32rk" path="res://assets/colors/pictures/bear_base.png" id="part_outline"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl7BearMap" type="Node2D"]
 y_sort_enabled = true
@@ -139,14 +138,6 @@ paint_color = "green"
 position = Vector2(12, -6)
 easel = NodePath("../../Easel")
 paint_color = "blue"
-
-[node name="HelperTeacher" parent="." instance=ExtResource("90_helper")]
-position = Vector2(81, 130)
-character = 1
-
-[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
-position = Vector2(597, 342)
-character = 4
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

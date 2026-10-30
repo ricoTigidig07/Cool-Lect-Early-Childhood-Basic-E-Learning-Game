@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://df4jjb85qcxr0" path="res://scenes/objects/count_basket/count_basket.tscn" id="12_basket"]
 [ext_resource type="PackedScene" path="res://scenes/collectables/numbers/egg.tscn" id="13_egg"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl8NumberTenMap" type="Node2D"]
 y_sort_enabled = true
@@ -166,14 +165,6 @@ position = Vector2(260, -164)
 
 [node name="Egg18" parent="Eggs" instance=ExtResource("13_egg")]
 position = Vector2(350, 208)
-
-[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
-position = Vector2(392, 158)
-character = 2
-
-[node name="HelperFarmer" parent="." instance=ExtResource("90_helper")]
-position = Vector2(800, 326)
-character = 5
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

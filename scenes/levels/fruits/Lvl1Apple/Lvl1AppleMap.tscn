@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://ddijrpvpg81cp" path="res://scenes/characters/player.tscn" id="10_player"]
 [ext_resource type="PackedScene" uid="uid://dyuicx7sagfg4" path="res://scenes/characters/merchant.tscn" id="11_merchant"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="12_ui"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 [ext_resource type="PackedScene" uid="uid://ccb5eo2wtkap1" path="res://scenes/collectables/fruits/apple.tscn" id="f_apple"]
 
 [node name="Lvl1AppleMap" type="Node2D" unique_id=803820536]
@@ -145,14 +144,6 @@ required_item = ""
 [node name="Apple5" parent="Fruits" unique_id=2024737277 instance=ExtResource("f_apple")]
 position = Vector2(560, 552)
 required_item = ""
-
-[node name="HelperTeacher" parent="." unique_id=568123912 instance=ExtResource("90_helper")]
-position = Vector2(828, 492)
-character = 1
-
-[node name="HelperPainter" parent="." unique_id=2146225914 instance=ExtResource("90_helper")]
-position = Vector2(408, 148)
-character = 3
 
 [node name="GameUI" parent="." unique_id=1261806766 instance=ExtResource("12_ui")]
 

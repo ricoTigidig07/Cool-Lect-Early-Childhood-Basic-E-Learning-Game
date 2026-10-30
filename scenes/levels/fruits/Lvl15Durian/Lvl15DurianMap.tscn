@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://bajgtvgd1dvq5" path="res://scenes/collectables/fruits/durian.tscn" id="f_durian"]
 [ext_resource type="PackedScene" uid="uid://c7bq074tl0q2" path="res://scenes/collectables/fruits/papaya.tscn" id="f_papaya"]
 [ext_resource type="PackedScene" uid="uid://w1rap0n0uq9h" path="res://scenes/collectables/fruits/pineapple.tscn" id="f_pineapple"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl15DurianMap" type="Node2D"]
 y_sort_enabled = true
@@ -187,14 +186,6 @@ position = Vector2(848, 400)
 
 [node name="Cherry2" parent="WrongFruits" instance=ExtResource("f_cherry")]
 position = Vector2(816, 632)
-
-[node name="HelperFarmer" parent="." instance=ExtResource("90_helper")]
-position = Vector2(828, 492)
-character = 5
-
-[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
-position = Vector2(348, 216)
-character = 2
 
 [node name="GameUI" parent="." instance=ExtResource("12_ui")]
 

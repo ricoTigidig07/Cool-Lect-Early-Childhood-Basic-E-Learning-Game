@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://ddijrpvpg81cp" path="res://scenes/characters/player.tscn" id="10_player"]
 [ext_resource type="PackedScene" uid="uid://bkl5qa661suvx" path="res://scenes/characters/farmer.tscn" id="11_farmer"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 [ext_resource type="PackedScene" uid="uid://bkovjhwasqke1" path="res://scenes/collectables/animals/farm/chicken.tscn" id="a_chicken"]
 [ext_resource type="PackedScene" uid="uid://4ffsq0mdcm8b" path="res://scenes/collectables/animals/farm/cow.tscn" id="a_cow"]
 [ext_resource type="PackedScene" uid="uid://r0hu23rkv0h6" path="res://scenes/collectables/animals/farm/duck.tscn" id="a_duck"]
@@ -187,13 +186,6 @@ position = Vector2(164, 440)
 
 [node name="Duck2" parent="Animals" unique_id=1696090099 instance=ExtResource("a_duck")]
 position = Vector2(540, 760)
-
-[node name="HelperGrandma" parent="." unique_id=613807998 instance=ExtResource("90_helper")]
-position = Vector2(845, 406)
-
-[node name="HelperTeacher" parent="." unique_id=94928661 instance=ExtResource("90_helper")]
-position = Vector2(317, 242)
-character = 1
 
 [node name="GameUI" parent="." unique_id=929781993 instance=ExtResource("14_ui")]
 

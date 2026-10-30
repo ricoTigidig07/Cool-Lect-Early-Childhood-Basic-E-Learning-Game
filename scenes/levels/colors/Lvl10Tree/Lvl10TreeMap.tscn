@@ -19,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://ua0prnem4ggn" path="res://assets/colors/pictures/tree_green.png" id="part_green"]
 [ext_resource type="Texture2D" uid="uid://bdkr5mkcjk0f" path="res://assets/colors/pictures/tree_brown.png" id="part_brown"]
 [ext_resource type="Texture2D" uid="uid://h5tmska17ok" path="res://assets/colors/pictures/tree_base.png" id="part_outline"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl10TreeMap" type="Node2D"]
 y_sort_enabled = true
@@ -144,14 +143,6 @@ y_sort_enabled = true
 position = Vector2(510, 456)
 easel = NodePath("../../Easel")
 paint_color = "pink"
-
-[node name="HelperFarmer" parent="." instance=ExtResource("90_helper")]
-position = Vector2(16, 18)
-character = 5
-
-[node name="HelperTeacher" parent="." instance=ExtResource("90_helper")]
-position = Vector2(412, 174)
-character = 1
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

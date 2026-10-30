@@ -1,0 +1,27 @@
+Cool-LecT - background music credits
+=====================================
+
+All three songs are from Pixabay (https://pixabay.com), used under the
+Pixabay Content License: https://pixabay.com/service/terms/
+The license certificates downloaded from Pixabay are kept next to this file.
+
+1. Main menu - assets/audio/bgm/menu.ogg
+   Original file: ncone-bouncy-plabouncy-plant-parade-playful-cute-gament-parade-535720.mp3
+   Pixabay audio ID: 535720
+   License certificate: NOT ADDED YET (the Credits.txt that came with it was empty).
+   -> Download the certificate for this song from its Pixabay page and save it here
+      as menu_music_license_pixabay_535720.txt
+
+2. In-game (inside every level) - assets/audio/bgm/gameplay.ogg
+   "Game Gaming Video Game Music" by tatamusic
+   https://pixabay.com/music/video-games-game-gaming-video-game-music-482380/
+   Pixabay audio ID: 482380
+   License certificate: gameplay_music_license_pixabay_482380.txt
+
+3. Credits - assets/audio/bgm/credits.ogg (plays in a scene with "credits" in its file name)
+   "Gaming Game Video Game Music" by viacheslavstarostin
+   https://pixabay.com/music/video-games-gaming-game-video-game-music-474517/
+   Pixabay audio ID: 474517
+   License certificate: credits_music_license_pixabay_474517.txt
+
+The songs were converted to .ogg and made a little quieter so the voices can be heard.

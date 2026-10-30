@@ -240,6 +240,7 @@ func _on_choice_pressed(button: Button) -> void:
 # ---------- pop-in ----------
 
 func _on_visibility_changed() -> void:
+	AudioManager.duck_music(visible)       # music quieter while someone talks
 	if visible:
 		position = base_position + Vector2(0, 30)
 		modulate.a = 0.0

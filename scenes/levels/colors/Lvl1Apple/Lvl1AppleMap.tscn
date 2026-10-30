@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://ghtx5gt0msvt" path="res://assets/colors/pictures/apple_red.png" id="part_red"]
 [ext_resource type="Texture2D" uid="uid://ba4c0nk27bp4a" path="res://assets/colors/pictures/apple_green.png" id="part_green"]
 [ext_resource type="Texture2D" uid="uid://bj855hpw7bvn0" path="res://assets/colors/pictures/apple_base.png" id="part_outline"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl1AppleMap" type="Node2D"]
 y_sort_enabled = true
@@ -126,14 +125,6 @@ paint_color = "red"
 position = Vector2(264, 90)
 easel = NodePath("../../Easel")
 paint_color = "green"
-
-[node name="HelperMerchant" parent="." instance=ExtResource("90_helper")]
-position = Vector2(116, 62)
-character = 0
-
-[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
-position = Vector2(408, 434)
-character = 2
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

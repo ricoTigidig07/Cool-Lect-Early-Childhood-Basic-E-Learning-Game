@@ -19,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://bg66hla8g4o7w" path="res://assets/colors/pictures/butterfly_purple.png" id="part_purple"]
 [ext_resource type="Texture2D" uid="uid://s0y5lrs0k1ob" path="res://assets/colors/pictures/butterfly_yellow.png" id="part_yellow"]
 [ext_resource type="Texture2D" uid="uid://b2nap3i7cans" path="res://assets/colors/pictures/butterfly_base.png" id="part_outline"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl11ButterflyMap" type="Node2D"]
 y_sort_enabled = true
@@ -144,14 +143,6 @@ y_sort_enabled = true
 position = Vector2(822, -84)
 easel = NodePath("../../Easel")
 paint_color = "white"
-
-[node name="HelperMerchant" parent="." instance=ExtResource("90_helper")]
-position = Vector2(283, 78)
-character = 0
-
-[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
-position = Vector2(723, 294)
-character = 2
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

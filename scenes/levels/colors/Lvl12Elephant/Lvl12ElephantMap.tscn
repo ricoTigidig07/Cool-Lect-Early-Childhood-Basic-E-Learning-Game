@@ -19,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://bgcnrc6pyxhym" path="res://assets/colors/pictures/elephant_grey.png" id="part_grey"]
 [ext_resource type="Texture2D" uid="uid://bma7gxk78lfja" path="res://assets/colors/pictures/elephant_pink.png" id="part_pink"]
 [ext_resource type="Texture2D" uid="uid://u2l70cp3orqi" path="res://assets/colors/pictures/elephant_base.png" id="part_outline"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl12ElephantMap" type="Node2D"]
 y_sort_enabled = true
@@ -144,14 +143,6 @@ y_sort_enabled = true
 position = Vector2(468, 180)
 easel = NodePath("../../Easel")
 paint_color = "green"
-
-[node name="HelperTeacher" parent="." instance=ExtResource("90_helper")]
-position = Vector2(713, 522)
-character = 1
-
-[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
-position = Vector2(681, 70)
-character = 4
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

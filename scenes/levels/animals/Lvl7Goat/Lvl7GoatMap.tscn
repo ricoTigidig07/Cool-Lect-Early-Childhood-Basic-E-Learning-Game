@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://bkl5qa661suvx" path="res://scenes/characters/farmer.tscn" id="11_farmer"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
 [ext_resource type="PackedScene" uid="uid://2bn5f0u541wp" path="res://scenes/collectables/animals/farm/goat.tscn" id="a_goat"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl7GoatMap" type="Node2D"]
 y_sort_enabled = true
@@ -165,14 +164,6 @@ position = Vector2(1124, 312)
 
 [node name="Goat4" parent="Animals" instance=ExtResource("a_goat")]
 position = Vector2(668, 768)
-
-[node name="HelperTeacher" parent="." instance=ExtResource("90_helper")]
-position = Vector2(845, 406)
-character = 1
-
-[node name="HelperPainter" parent="." instance=ExtResource("90_helper")]
-position = Vector2(445, 94)
-character = 3
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

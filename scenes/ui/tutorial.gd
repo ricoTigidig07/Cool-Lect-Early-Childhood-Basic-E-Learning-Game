@@ -243,9 +243,11 @@ func _pages_for(s: String) -> Array:
 			out.append({"title": "Paint and mix", "items": [red, yellow, PaintColors.bucket_icon("orange")], "arrow": true,
 				"pic": _tex("res://assets/colors/pictures/apple_red.png"), "pic_tint": PaintColors.color("red"),
 				"text": "Hold at the easel to paint.\nNo color? Mix two in the pot: red + yellow = orange!"})
-	var helper_color := HELPER_COLOR if s != "colors" else Color(0.4, 0.8, 0.0)   # never the same as the mission NPC
-	out.append({"title": "Lost? Ask a helper!", "npc_color": helper_color, "npc_look": "painter" if s != "colors" else "grandma", "action": ask_icon, "arrow": true,
-		"text": "Villagers with a ? know where things are.\nTalk to them and follow the arrow at your feet!"})
+	var guide_arrow := AtlasTexture.new()
+	guide_arrow.atlas = _tex("res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Icons/All Icons.png")
+	guide_arrow.region = Rect2(80, 208, 16, 16)
+	out.append({"title": "Lost? Follow the arrows!", "player_anim": "idle_front", "items": [guide_arrow, guide_arrow, guide_arrow],
+		"text": "Can't find something? Wait a little.\nArrows on the ground show you the way!"})
 	out.append({"title": "Get 3 stars!", "player_anim": "idle_front", "npc_color": giver_color, "npc_look": giver_look,
 		"items": [star_icon, star_icon, star_icon],
 		"text": "Talk, find, and go back to %s to finish all 3 missions.\nHave fun!" % giver})

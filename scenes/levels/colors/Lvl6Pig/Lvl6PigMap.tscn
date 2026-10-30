@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://bjfaemq36320h" path="res://assets/colors/pictures/pig_pink.png" id="part_pink"]
 [ext_resource type="Texture2D" uid="uid://blrgxwsrr37by" path="res://assets/colors/pictures/pig_black.png" id="part_black"]
 [ext_resource type="Texture2D" uid="uid://bgaxr4bqscamy" path="res://assets/colors/pictures/pig_base.png" id="part_outline"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl6PigMap" type="Node2D"]
 y_sort_enabled = true
@@ -134,14 +133,6 @@ y_sort_enabled = true
 position = Vector2(372, 0)
 easel = NodePath("../../Easel")
 paint_color = "yellow"
-
-[node name="HelperMerchant" parent="." instance=ExtResource("90_helper")]
-position = Vector2(508, 442)
-character = 0
-
-[node name="HelperBuilder" parent="." instance=ExtResource("90_helper")]
-position = Vector2(696, 2)
-character = 2
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

@@ -19,7 +19,6 @@
 [ext_resource type="TileSet" uid="uid://b547n11tgq3oo" path="res://scenes/tilesets/furniture_tileset.tres" id="4_sqpdo"]
 [ext_resource type="TileSet" uid="uid://umk8vkn0aa3g" path="res://scenes/tilesets/new_tile_set.tres" id="5_i4d3o"]
 [ext_resource type="TileSet" uid="uid://cu8m7lbxqc53j" path="res://scenes/tilesets/structures.tres" id="7_t1qvm"]
-[ext_resource type="PackedScene" path="res://scenes/characters/helper/helper_npc.tscn" id="90_helper"]
 
 [node name="Lvl2TrainMap" type="Node2D"]
 y_sort_enabled = true
@@ -178,14 +177,6 @@ tint = Color(0.306, 0.306, 0.345, 1)
 position = Vector2(654, 298)
 shape_board = NodePath("../../ShapeBoard")
 tint = Color(0.306, 0.306, 0.345, 1)
-
-[node name="HelperTeacher" parent="." instance=ExtResource("90_helper")]
-position = Vector2(524, 416)
-character = 1
-
-[node name="HelperGrandma" parent="." instance=ExtResource("90_helper")]
-position = Vector2(896, 220)
-character = 4
 
 [node name="GameUI" parent="." instance=ExtResource("14_ui")]
 

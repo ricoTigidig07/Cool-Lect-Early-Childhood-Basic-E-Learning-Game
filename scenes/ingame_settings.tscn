@@ -369,7 +369,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HintsRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Helper hints"
+text = "Guide arrows"
 label_settings = SubResource("LS_row")
 vertical_alignment = 1
 

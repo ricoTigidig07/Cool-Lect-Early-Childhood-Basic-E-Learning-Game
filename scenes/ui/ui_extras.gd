@@ -290,7 +290,7 @@ func _update_idle(delta: float) -> void:
 	idle_time += delta
 	if idle_time >= IDLE_TIME and not bubble_shown:
 		bubble_shown = true
-		idle_text.text = "Lost? Ask a helper!" if _has_helpers() and GameManager.helper_hints else "Look around!"
+		idle_text.text = "Look around!"
 		bubble_anim.play("show")
 		var a := _avatar()
 		if a and not a.is_near_merchant and not reacting:

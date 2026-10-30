@@ -6,6 +6,8 @@ extends Node
 ##   menus (main menu, profile, new player ...)  -> menu.ogg
 ##   level select islands (*_level_select.tscn)  -> level_map.ogg
 ##   inside a level (scenes/levels/...)          -> gameplay.ogg
+##   a credits scene (file name with "credits")  -> credits.ogg
+## Music credits and licenses: assets/audio/bgm/licenses/MUSIC_CREDITS.txt
 ##
 ## Any script can play a sound effect:
 ##   AudioManager.play_sfx("collect")
@@ -20,6 +22,7 @@ const MUSIC := {
 	"menu": preload("res://assets/audio/bgm/menu.ogg"),
 	"level_map": preload("res://assets/audio/bgm/level_map.ogg"),
 	"gameplay": preload("res://assets/audio/bgm/gameplay.ogg"),
+	"credits": preload("res://assets/audio/bgm/credits.ogg"),
 }
 const JINGLE := preload("res://assets/audio/bgm/level_complete.ogg")
 const SFX := {
@@ -42,6 +45,10 @@ const SETTINGS_PATH := "user://audio.cfg"
 const MUSIC_DB := 0.0
 const FADE_TIME := 0.8
 const SFX_VOICES := 8
+## While someone talks the music goes this much quieter (dB), fading in DUCK_IN / out DUCK_OUT seconds.
+const DUCK_DB := -12.0
+const DUCK_IN := 0.3
+const DUCK_OUT := 0.8
 
 var music_on := true
 var sfx_on := true
@@ -56,11 +63,16 @@ var _jingle_player: AudioStreamPlayer
 var _sfx_players: Array[AudioStreamPlayer] = []
 var _next_voice := 0
 var _last_scene: Node = null
+var _duck: AudioEffectAmplify           # on the Music bus: lowers the music while someone talks
+var _duck_tween: Tween
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS     # music keeps playing in the pause menu
 	_ensure_bus("Music")
 	_ensure_bus("SFX")
+	_duck = AudioEffectAmplify.new()
+	_duck.volume_db = 0.0
+	AudioServer.add_bus_effect(AudioServer.get_bus_index("Music"), _duck)
 	for i in 2:
 		var p := AudioStreamPlayer.new()
 		p.bus = "Music"
@@ -90,11 +102,13 @@ func _process(_delta: float) -> void:
 # ---------- music ----------
 
 func _track_for(path: String) -> String:
+	if path.get_file().to_lower().contains("credits"):
+		return "credits"
 	if path.contains("/levels/"):
 		return "level_map" if path.contains("level_select") else "gameplay"
 	return "menu"
 
-## Cross-fades to another song ("menu", "level_map", "gameplay").
+## Cross-fades to another song ("menu", "level_map", "gameplay", "credits").
 func play_music(track: String) -> void:
 	if track == _current_track or not MUSIC.has(track):
 		return
@@ -109,6 +123,15 @@ func play_music(track: String) -> void:
 	t.tween_property(incoming, "volume_db", MUSIC_DB, FADE_TIME)
 	t.tween_property(outgoing, "volume_db", -60.0, FADE_TIME)
 	t.chain().tween_callback(outgoing.stop)
+
+## Talking: the music fades down (true) and back up (false). Used by the dialogue box.
+func duck_music(on: bool) -> void:
+	if _duck == null:
+		return
+	if _duck_tween:
+		_duck_tween.kill()
+	_duck_tween = create_tween()
+	_duck_tween.tween_property(_duck, "volume_db", DUCK_DB if on else 0.0, DUCK_IN if on else DUCK_OUT)
 
 ## The "level complete" tune. The music goes quiet while it plays.
 func play_level_complete() -> void:
