@@ -43,13 +43,22 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mission1" unique_id=1299426121]
-custom_minimum_size = Vector2(210, 0)
+custom_minimum_size = Vector2(185, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 22
 text = "Mission one"
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="NpcSymbol" type="TextureRect" parent="MarginContainer/VBoxContainer/Mission1"]
+visible = false
+texture_filter = 1
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Mission2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=122766650]
 layout_mode = 2
@@ -64,7 +73,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mission2" unique_id=572596027]
-custom_minimum_size = Vector2(210, 0)
+custom_minimum_size = Vector2(185, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 22
@@ -85,10 +94,19 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Mission3" unique_id=277065857]
-custom_minimum_size = Vector2(210, 0)
+custom_minimum_size = Vector2(185, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 22
 text = "Mission three"
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="NpcSymbol" type="TextureRect" parent="MarginContainer/VBoxContainer/Mission3"]
+visible = false
+texture_filter = 1
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5

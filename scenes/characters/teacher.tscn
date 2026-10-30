@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bypundqocti8k"]
 
+[ext_resource type="PackedScene" path="res://scenes/characters/npc_symbol.tscn" id="sym_scene"]
+[ext_resource type="Texture2D" path="res://assets/sprites/npcs/symbols/teacher.png" id="sym_icon"]
 [ext_resource type="SpriteFrames" path="res://resources/npcs/teacher_frames.tres" id="npc_frames"]
 [ext_resource type="Script" uid="uid://c4orbk27yd5wd" path="res://scenes/characters/teacher.gd" id="1_ibkbj"]
 
@@ -44,3 +46,6 @@ debug_color = Color(1, 1, 1, 0.33333334)
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_body")
 
+[node name="Symbol" parent="." instance=ExtResource("sym_scene")]
+position = Vector2(0, -21)
+icon = ExtResource("sym_icon")

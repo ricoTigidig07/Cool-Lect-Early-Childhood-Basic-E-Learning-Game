@@ -72,6 +72,15 @@ func _refresh_styles() -> void:
 			label.add_theme_color_override("font_color", COLOR_LOCKED)
 			star.modulate = Color(1, 1, 1, 0.45)
 
+## The mission NPC's symbol (the same picture as on the sign above their head),
+## shown after "Talk to ..." (mission 1) and "Go back to ..." (mission 3).
+func set_npc_symbol(tex: Texture2D) -> void:
+	for label in [label_1, label_3]:
+		var spot: TextureRect = label.get_parent().get_node_or_null("NpcSymbol")
+		if spot:
+			spot.texture = tex
+			spot.visible = tex != null
+
 ## How many of the 3 missions are complete (0-3). Used to award stars
 ## on the Mission Complete screen.
 func get_completed_count() -> int:

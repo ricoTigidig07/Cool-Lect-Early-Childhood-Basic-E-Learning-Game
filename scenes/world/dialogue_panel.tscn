@@ -61,10 +61,10 @@ expand_mode = 1
 [node name="Portrait" type="TextureRect" parent="." unique_id=309214112]
 texture_filter = 1
 layout_mode = 0
-offset_left = 48.0
-offset_top = 45.0
-offset_right = 144.0
-offset_bottom = 141.0
+offset_left = 54.0
+offset_top = 46.0
+offset_right = 150.0
+offset_bottom = 149.0
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5

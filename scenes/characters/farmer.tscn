@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bkl5qa661suvx"]
 
+[ext_resource type="PackedScene" path="res://scenes/characters/npc_symbol.tscn" id="sym_scene"]
+[ext_resource type="Texture2D" path="res://assets/sprites/npcs/symbols/farmer.png" id="sym_icon"]
 [ext_resource type="SpriteFrames" path="res://resources/npcs/farmer_frames.tres" id="npc_frames"]
 [ext_resource type="Script" uid="uid://bhxcxnjx16iyh" path="res://scenes/characters/farmer.gd" id="1_t0wjc"]
 
@@ -75,3 +77,7 @@ debug_color = Color(1, 1, 1, 0.33333334)
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=141336955]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_7rnkl")
+
+[node name="Symbol" parent="." instance=ExtResource("sym_scene")]
+position = Vector2(0, -21)
+icon = ExtResource("sym_icon")

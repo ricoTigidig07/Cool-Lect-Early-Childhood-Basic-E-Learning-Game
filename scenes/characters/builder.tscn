@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://vpgxug5rrk11"]
 
+[ext_resource type="PackedScene" path="res://scenes/characters/npc_symbol.tscn" id="sym_scene"]
+[ext_resource type="Texture2D" path="res://assets/sprites/npcs/symbols/builder.png" id="sym_icon"]
 [ext_resource type="SpriteFrames" path="res://resources/npcs/builder_frames.tres" id="npc_frames"]
 [ext_resource type="Script" uid="uid://0klnpctbqdhe" path="res://scenes/characters/builder.gd" id="1_a6w1k"]
 
@@ -69,3 +71,6 @@ debug_color = Color(1, 1, 1, 0.33333334)
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_7rnkl")
 
+[node name="Symbol" parent="." instance=ExtResource("sym_scene")]
+position = Vector2(0, -21)
+icon = ExtResource("sym_icon")

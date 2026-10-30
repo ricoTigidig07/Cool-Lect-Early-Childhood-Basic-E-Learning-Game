@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://d1igvb3nxk2i3"]
 
+[ext_resource type="PackedScene" path="res://scenes/characters/npc_symbol.tscn" id="sym_scene"]
+[ext_resource type="Texture2D" path="res://assets/sprites/npcs/symbols/grandma.png" id="sym_icon"]
 [ext_resource type="SpriteFrames" path="res://resources/npcs/grandma_frames.tres" id="npc_frames"]
 [ext_resource type="Script" uid="uid://b5805vcu85y4p" path="res://scenes/characters/grandma.gd" id="1_kl0fr"]
 
@@ -66,3 +68,7 @@ debug_color = Color(1, 1, 1, 0.33333334)
 [node name="BodyShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 shape = SubResource("GrandmaBody")
+
+[node name="Symbol" parent="." instance=ExtResource("sym_scene")]
+position = Vector2(0, -21)
+icon = ExtResource("sym_icon")
