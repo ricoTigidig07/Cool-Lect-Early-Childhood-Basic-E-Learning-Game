@@ -155,7 +155,6 @@ position = Vector2(408, 148)
 character = 3
 
 [node name="GameUI" parent="." unique_id=1261806766 instance=ExtResource("12_ui")]
-visible = false
 
 [connection signal="button_down" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_down"]
 [connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
