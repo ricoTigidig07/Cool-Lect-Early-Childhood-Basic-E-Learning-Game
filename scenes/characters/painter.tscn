@@ -15,6 +15,7 @@ radius = 14.0
 radius = 4.0
 
 [node name="Painter" type="StaticBody2D" unique_id=1108219415]
+y_sort_enabled = true
 script = ExtResource("1_a6w1k")
 
 [node name="Workplace" type="Node2D" parent="."]

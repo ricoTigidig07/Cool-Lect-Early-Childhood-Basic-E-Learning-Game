@@ -26,6 +26,9 @@ var hold_progress: float = 0.0
 var uses_hotbar := false
 
 func _ready() -> void:
+	# items are always drawn above trees, bushes and roofs so they can never hide behind one
+	if z_index < 1:
+		z_index = 1
 	# some item scenes already connect these in the editor: only connect once
 	if not body_entered.is_connected(_on_body_entered):
 		body_entered.connect(_on_body_entered)

@@ -8,7 +8,12 @@ extends Node2D
 ## fits: as drawn or mirrored (left <-> right), then moved a little, then only the main piece.
 ## A layout fits when it doesn't stand in a wall/tree/water and doesn't cover an item,
 ## basket, board, easel, door or helper. If nothing fits, the workplace is hidden.
-## It is only decoration: it never blocks the player, so no path in a level can be closed.
+## Solid pieces get a thin collision at their bottom ("feet") so the player can't walk
+## through the shop, but only where there is a wide free gap all around it, so no path
+## in a level can be closed. The whole workplace sorts at its lowest bottom (Y sort):
+## the player is drawn behind it when standing behind it and in front when in front.
+
+const PATH_GAP := 12.0     # free room needed around a solid piece before it gets a collision
 
 const FOOT_HEIGHT := 6.0
 ## small moves tried when the drawn spot is taken (a little further back / to the side)
@@ -116,7 +121,45 @@ func _visual_rect(n: Node) -> Rect2:
 
 func _use(mirror: bool, only_main: bool, shift: Vector2) -> void:
 	var used := _used(only_main)
+	var bottom := -INF
 	for p in pieces:
 		p.visible = p in used
 		p.position = _local_pos(p, mirror, shift)
+		if p.visible:
+			bottom = maxf(bottom, p.position.y + p.texture.get_size().y)
+	# sort at the bottom of the workplace: move this node there, the pieces stay in place
+	var sort_y := bottom - 2.0
+	position.y += sort_y
+	for p in pieces:
+		p.position.y -= sort_y
+	for p in used:
+		if p.get_meta("solid", false):
+			_add_feet(p)
 	visible = true
+
+func _add_feet(p: Sprite2D) -> void:
+	var foot := _footprint(p, p.position)
+	var space := get_world_2d().direct_space_state
+	var room := RectangleShape2D.new()
+	room.size = foot.size + Vector2(PATH_GAP, PATH_GAP) * 2.0
+	var q := PhysicsShapeQueryParameters2D.new()
+	q.shape = room
+	q.transform = Transform2D(0, global_position + foot.get_center())
+	var exclude: Array[RID] = []
+	if owner is CollisionObject2D:
+		exclude.append(owner.get_rid())
+	var player = get_tree().current_scene.get_node_or_null("Player")
+	if player:
+		exclude.append(player.get_rid())
+	q.exclude = exclude
+	if not space.intersect_shape(q, 1).is_empty():
+		return          # something close by: a block here could close a path
+	var body := StaticBody2D.new()
+	body.name = "%sFeet" % p.name
+	var shape := CollisionShape2D.new()
+	var rect := RectangleShape2D.new()
+	rect.size = foot.size
+	shape.shape = rect
+	shape.position = foot.get_center()
+	body.add_child(shape)
+	add_child(body)

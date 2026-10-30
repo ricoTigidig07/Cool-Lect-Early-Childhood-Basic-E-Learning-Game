@@ -149,7 +149,6 @@ _data = {
 }
 
 [node name="HelperNPC" type="StaticBody2D"]
-z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_script")
 talk_icon = SubResource("Atlas_talk")
