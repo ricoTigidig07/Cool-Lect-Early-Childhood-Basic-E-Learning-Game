@@ -165,7 +165,7 @@ texture = ExtResource("icon_star")
 position = Vector2(492, 344)
 shape_board = NodePath("../ShapeBoard")
 picture_name = "boat"
-tip = "A boat sails on the water! Its sails are triangles and the bottom is made of rectangles."
+tip = "The sails are triangles!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

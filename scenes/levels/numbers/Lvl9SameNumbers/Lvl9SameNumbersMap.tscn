@@ -103,7 +103,7 @@ target_count = 5
 
 [node name="Grandma" parent="." instance=ExtResource("11_grandma")]
 position = Vector2(258, 124)
-tip = "Look! Both baskets have the same number. Same number, same eggs!"
+tip = "Same number, same eggs!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

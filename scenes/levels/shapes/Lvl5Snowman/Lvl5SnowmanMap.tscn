@@ -152,7 +152,7 @@ texture = ExtResource("icon_star")
 position = Vector2(916, 312)
 shape_board = NodePath("../ShapeBoard")
 picture_name = "snowman"
-tip = "Today's new shape is the oval! It looks like a stretched circle, just like an egg."
+tip = "An oval looks like an egg!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

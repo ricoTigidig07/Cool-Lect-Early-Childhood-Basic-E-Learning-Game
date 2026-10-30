@@ -8,6 +8,11 @@ extends StaticBody2D
 ## Optional: a short lesson about numbers, said after the greeting.
 @export_multiline var tip: String = ""
 
+## Which voice reads this NPC's lines (folder in assets/audio/voice/).
+var voice_id := "grandma"
+## Name shown on the dialogue box.
+var display_name := "Lola Nena"
+
 @onready var interaction_area: Area2D = $InteractionArea
 
 var is_dialogue_open := false
@@ -71,29 +76,31 @@ func _all_baskets_full() -> bool:
 func _intro_lines() -> Array[String]:
 	var lines: Array[String] = []
 	if GameManager.current_level <= 1:
-		lines.append("Oh hello, dear! I'm Grandma. My hens laid eggs all over the yard!")
+		lines.append("Hello, dear! I'm Lola Nena.")
+		lines.append("My hens laid eggs all over the yard!")
 	else:
-		lines.append("Hello again, dear! My hens laid more eggs all over the yard!")
+		lines.append("Hello again, dear! My hens laid more eggs!")
 	if tip != "":
 		lines.append(tip)
-	var count := _baskets().size()
-	lines.append("I have %d baskets. The numbers on them are %s." % [count, _numbers_text()])
-	lines.append("Pick up the eggs, then hold the button at a basket to put one egg in. Count with me: one, two, three...")
-	lines.append("Put just the right number of eggs in each basket. Will you help me?")
+	lines.append("My baskets say %s." % _numbers_text())
+	lines.append("Hold the button at a basket to drop one egg.")
+	lines.append("Put the right number of eggs in each basket!")
+	lines.append("Will you help me?")
 	return lines
 
 func _incomplete_lines() -> Array[String]:
-	return [
-		"Some baskets still need eggs! Look at the number on each basket.",
-		"Do you want to keep going?",
-	]
+	return ["Some baskets still need eggs!", "Will you keep going?"]
 
 func _delivery_lines() -> Array[String]:
 	return [
-		"You filled every basket with just the right number of eggs!",
-		"Let's count them all: %s eggs!" % _sum_text(),
-		"You're such a good counter. Thank you, dear!",
+		"Every basket has the right number of eggs!",
+		"%s eggs!" % _sum_text(),
+		"Thank you, dear!",
 	]
+
+## Every line Lola Nena can say in this level (used to make the voice clips).
+func voice_lines() -> Array[String]:
+	return _intro_lines() + _incomplete_lines() + _delivery_lines()
 
 # ---------- player near / far ----------
 

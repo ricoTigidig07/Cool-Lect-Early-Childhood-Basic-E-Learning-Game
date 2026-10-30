@@ -316,7 +316,7 @@ func _update_badge() -> void:
 		if holder is Chicken:
 			icon = badge_paw
 		elif holder is StaticBody2D:
-			icon = badge_talk          # Momo, Teacher, Bobo, Pinta, Grandma, Farmer, helpers
+			icon = badge_talk          # Momo, Teacher Abby, Bob, Pablo, Lola Nena, Farmer Kiko, helpers
 		elif not (holder is CollectableComponent):
 			icon = badge_use           # letter board, shape board, easel, basket, mixing pot
 	var button: Control = get_parent().get_node_or_null("InteractionButton/Button")

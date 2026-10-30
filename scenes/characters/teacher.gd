@@ -7,6 +7,11 @@ extends StaticBody2D
 ## Optional: your own lesson line (e.g. for the vowels level). Leave empty to use "Today we're learning the letters ...".
 @export_multiline var custom_lesson: String = ""
 
+## Which voice reads this NPC's lines (folder in assets/audio/voice/).
+var voice_id := "teacher"
+## Name shown on the dialogue box.
+var display_name := "Teacher Abby"
+
 @onready var interaction_area: Area2D = $InteractionArea
 
 var is_dialogue_open = false
@@ -41,46 +46,54 @@ func _intro_lines() -> Array[String]:
 	var seq = _seq()
 	var lines: Array[String] = []
 	if GameManager.current_level <= 1:
-		lines.append("Hello there! I'm your teacher. Today we're going to practice our letters.")
+		lines.append("Hello! I'm Teacher Abby.")
 	else:
-		lines.append("Welcome back, little reader! Ready for a new lesson?")
+		lines.append("Welcome back, little reader!")
 	if custom_lesson != "":
 		lines.append(custom_lesson)
 	else:
-		lines.append("Today we're learning the letters %s!" % _letters_text())
-	var how: String = "Find the big letter and the small letter, then put them together on the letter board."
+		lines.append("Today's letters are %s!" % _letters_text())
+	lines.append("Find the big and small letters, then match them on the board!")
 	if seq and seq.letter_order.size() > 0:
-		how += " Let's start with %s!" % seq.letter_order[0]
+		lines.append("Let's start with %s!" % seq.letter_order[0])
 	if get_parent().has_node("WrongLetters"):
-		how += " Be careful, some letters are not part of today's lesson!"
-	lines.append(how)
+		lines.append("Some letters are not in today's lesson!")
 	lines.append("Are you ready?")
 	return lines
 
-func _incomplete_lines() -> Array[String]:
-	var seq = _seq()
-	var current: String = seq.current_letter() if seq else ""
+func _incomplete_lines(current := "") -> Array[String]:
+	if current == "":
+		var seq = _seq()
+		current = seq.current_letter() if seq else ""
 	var lines: Array[String] = []
 	if current != "":
-		lines.append("We still need to match the letter %s! Look for the big %s and the small %s." % [current, current, current.to_lower()])
+		lines.append("Find the big %s and the small %s!" % [current, current.to_lower()])
 	else:
-		lines.append("There are still some letters waiting to be matched!")
-	lines.append("Do you want to keep going?")
+		lines.append("Some letters still need to be matched!")
+	lines.append("Will you keep going?")
 	return lines
 
 func _delivery_lines() -> Array[String]:
 	var seq = _seq()
-	var pairs: Array[String] = []
 	var names: Array[String] = []
 	if seq:
 		for letter in seq.letter_order:
-			pairs.append(letter + letter.to_lower())
 			names.append(letter)
 	return [
-		"Wonderful work! You matched every letter: %s!" % ", ".join(pairs),
-		"Let's say them together: %s!" % ", ".join(names),
-		"You're becoming such a great reader!"
+		"Wonderful! You matched every letter!",
+		"Let's say them: %s!" % ", ".join(names),
+		"You're a great reader!"
 	]
+
+## Every line Teacher Abby can say in this level (used to make the voice clips).
+func voice_lines() -> Array[String]:
+	var out: Array[String] = _intro_lines() + _delivery_lines()
+	var seq = _seq()
+	if seq:
+		for letter in seq.letter_order:
+			out.append_array(_incomplete_lines(letter))
+	out.append("Some letters still need to be matched!")
+	return out
 
 # ---------- player near / far ----------
 

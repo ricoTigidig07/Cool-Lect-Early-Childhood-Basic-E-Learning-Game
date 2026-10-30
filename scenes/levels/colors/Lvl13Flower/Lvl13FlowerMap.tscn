@@ -113,7 +113,7 @@ texture = ExtResource("part_outline")
 [node name="Painter" parent="." instance=ExtResource("11_painter")]
 position = Vector2(266, 48)
 easel = NodePath("../Easel")
-tip = "Red and a little white make pink, like a pretty flower!"
+tip = "Red and white make pink!"
 
 [node name="MixingPot" parent="." instance=ExtResource("15_pot")]
 position = Vector2(266, 84)

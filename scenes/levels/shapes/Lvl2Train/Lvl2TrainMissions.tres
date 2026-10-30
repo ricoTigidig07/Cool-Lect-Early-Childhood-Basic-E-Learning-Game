@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_data")
-mission_1_text = "Talk to the Builder!"
+mission_1_text = "Talk to Bob!"
 mission_2_text = "Find the shapes and build the train!"
-mission_3_text = "Show the Builder what you built!"
+mission_3_text = "Show Bob what you built!"

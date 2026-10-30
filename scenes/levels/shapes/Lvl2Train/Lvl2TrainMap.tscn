@@ -149,7 +149,7 @@ texture = ExtResource("icon_circle")
 position = Vector2(364, 272)
 shape_board = NodePath("../ShapeBoard")
 picture_name = "train"
-tip = "Today's new shape is the rectangle! It has 4 sides: 2 long sides and 2 short sides."
+tip = "A rectangle has 2 long sides and 2 short sides!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

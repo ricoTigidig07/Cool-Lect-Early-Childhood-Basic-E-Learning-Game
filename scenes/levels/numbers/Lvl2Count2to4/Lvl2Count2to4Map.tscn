@@ -107,7 +107,7 @@ target_count = 4
 
 [node name="Grandma" parent="." instance=ExtResource("11_grandma")]
 position = Vector2(162, -36)
-tip = "Four comes after three. One, two, three, four!"
+tip = "Four comes after three!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

@@ -112,7 +112,7 @@ letter_sequence = NodePath("../LetterSequence")
 [node name="Teacher" parent="." instance=ExtResource("11_teacher")]
 position = Vector2(625, 517)
 letter_sequence = NodePath("../LetterSequence")
-custom_lesson = "Today we're practicing tricky letters that look alike: B, D, P and Q! Look very closely at the small letters."
+custom_lesson = "Look closely! B, D, P and Q look alike."
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

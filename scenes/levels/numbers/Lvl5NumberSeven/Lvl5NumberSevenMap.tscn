@@ -103,7 +103,7 @@ target_count = 7
 
 [node name="Grandma" parent="." instance=ExtResource("11_grandma")]
 position = Vector2(226, 316)
-tip = "Seven comes after six. There are seven days in a week!"
+tip = "Seven comes after six!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

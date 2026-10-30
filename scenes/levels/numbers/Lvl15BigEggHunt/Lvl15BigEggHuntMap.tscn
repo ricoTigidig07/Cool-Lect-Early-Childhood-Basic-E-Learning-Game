@@ -111,7 +111,7 @@ target_count = 10
 
 [node name="Grandma" parent="." instance=ExtResource("11_grandma")]
 position = Vector2(902, 364)
-tip = "This is the big egg hunt! My hens laid lots of eggs today!"
+tip = "It's the big egg hunt!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

@@ -111,7 +111,7 @@ target_count = 3
 
 [node name="Grandma" parent="." instance=ExtResource("11_grandma")]
 position = Vector2(730, 372)
-tip = "Six, five, four, three. Each basket needs one less egg. Let's count down!"
+tip = "Each basket needs one less egg. Let's count down!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

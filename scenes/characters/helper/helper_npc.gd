@@ -31,21 +31,21 @@ const LOOK_NAMES := {
 ## Name, placeholder color and greeting for each villager.
 const LOOKS := {
 	Character.MERCHANT: {"name": "Momo", "color": Color(0.66, 0.95, 1.53), "hello": "Hi there! It's me, Momo!"},
-	Character.TEACHER: {"name": "Teacher", "color": Color(1.04, 0.43, 0.74), "hello": "Hello, my little student!"},
-	Character.BUILDER: {"name": "Bobo", "color": Color(1.35, 1.0, 0.55), "hello": "Hey there, buddy! I'm Bobo!"},
-	Character.PAINTER: {"name": "Pinta", "color": Color(1.45, 0.8, 1.35), "hello": "Hi, little artist! It's Pinta!"},
-	Character.GRANDMA: {"name": "Grandma", "color": Color(0.4, 0.8, 0.0), "hello": "Oh hello, dear! It's Grandma."},
-	Character.FARMER: {"name": "Farmer", "color": Color(1.29, 0.79, 0.0), "hello": "Howdy, little friend!"},
+	Character.TEACHER: {"name": "Teacher Abby", "color": Color(1.04, 0.43, 0.74), "hello": "Hello! It's Teacher Abby!"},
+	Character.BUILDER: {"name": "Bob", "color": Color(1.35, 1.0, 0.55), "hello": "Hey there, buddy! I'm Bob!"},
+	Character.PAINTER: {"name": "Pablo", "color": Color(1.45, 0.8, 1.35), "hello": "Hi, little artist! It's Pablo!"},
+	Character.GRANDMA: {"name": "Lola Nena", "color": Color(0.4, 0.8, 0.0), "hello": "Oh hello, dear! It's Lola Nena."},
+	Character.FARMER: {"name": "Farmer Kiko", "color": Color(1.29, 0.79, 0.0), "hello": "Howdy! It's Farmer Kiko!"},
 }
 
 ## The mission NPCs, found by their script.
 const GIVERS := {
 	"merchant.gd": "Momo",
-	"teacher.gd": "the Teacher",
-	"builder.gd": "Bobo",
-	"painter.gd": "Pinta",
-	"grandma.gd": "Grandma",
-	"farmer.gd": "the Farmer",
+	"teacher.gd": "Teacher Abby",
+	"builder.gd": "Bob",
+	"painter.gd": "Pablo",
+	"grandma.gd": "Lola Nena",
+	"farmer.gd": "Farmer Kiko",
 }
 
 ## Where the player uses what they collected, found by their script.
@@ -56,6 +56,10 @@ const STATIONS := {
 	"count_basket.gd": "the basket",
 	"mixing_pot.gd": "the mixing pot",
 }
+
+## Which voice reads this helper's lines: the villager it looks like.
+var voice_id: String:
+	get: return LOOK_NAMES[character]
 
 ## What each animal food is called when talking.
 const FOOD_NAMES := {
@@ -145,11 +149,7 @@ func interact() -> void:
 		_guide_player(hint)
 	if portrait:
 		portrait.play("merchant_talking")
-	var lines: Array[String] = [LOOKS[character]["hello"]]
-	var text: String = hint["text"]
-	if text.contains("%s"):
-		text = text % _direction_words(target)
-	lines.append(text)
+	var lines: Array[String] = [LOOKS[character]["hello"], hint["text"]]
 	GameUIManager.show_dialogue(lines)
 	is_dialogue_open = true
 	talk_id += 1
@@ -295,7 +295,11 @@ func _icon_of(n: Node) -> Texture2D:
 			return c.sprite_frames.get_frame_texture(c.animation, 0)
 	return null
 
-## Returns {node, icon, tint, text}. text has one %s for the direction.
+## " Follow the arrow!" when the arrow is shown (Settings > Helper hints), else " Look around!"
+func _arrow() -> String:
+	return " Follow the arrow!" if GameManager.helper_hints else " Look around!"
+
+## Returns {node, icon, tint, text}.
 func find_hint() -> Dictionary:
 	var nodes: Array = []
 	_all(_level(), nodes)
@@ -317,7 +321,7 @@ func find_hint() -> Dictionary:
 
 	# 1. the mission hasn't started yet
 	if not _mission_started(giver):
-		excl["text"] = "%s needs your help! Go and talk to %s first. Follow the arrow, it's %%s!" % [giver_name.capitalize(), giver_name]
+		excl["text"] = "%s needs your help!%s" % [giver_name.capitalize(), _arrow()]
 		return excl
 
 	# 2. the closest item that is still needed
@@ -337,18 +341,63 @@ func find_hint() -> Dictionary:
 			best_info = info
 	if best:
 		return {"node": best, "icon": best_info["icon"], "tint": best_info.get("tint", Color.WHITE), "kind": "item",
-			"text": "Looking for %s? It's %%s! Follow the arrow!%s" % [best_info["name"], best_info.get("extra", "")]}
+			"text": "Find %s!%s%s" % [best_info["name"], best_info.get("extra", ""), _arrow()]}
 
 	# 3. nothing left to find: where to use it
 	var place := _station_to_use(stations)
 	if place.size() > 0:
 		return {"node": place["node"], "icon": place["icon"], "tint": place.get("tint", Color.WHITE), "kind": "place",
-			"text": "You have what you need! Go to %s. It's %%s!" % place["name"]}
+			"text": "Now go to %s!%s" % [place["name"], _arrow()]}
 
 	# 4. go back to the mission NPC
 	excl["kind"] = "return"
-	excl["text"] = "Great job! Now go back to %s. It's %%s!" % giver_name
+	excl["text"] = "Great job! Go back to %s!%s" % [giver_name, _arrow()]
 	return excl
+
+## Every line this helper can say in this level (used to make the voice clips).
+func voice_lines() -> Array[String]:
+	var out: Array[String] = [LOOKS[character]["hello"], "Have fun exploring!"]
+	var places: Array[String] = []
+	var finds: Array[String] = []
+	var nodes: Array = []
+	_all(_level(), nodes)
+	for n in nodes:
+		var sn := _script_name(n)
+		if GIVERS.has(sn) and n != self:
+			out.append("%s needs your help!" % GIVERS[sn].capitalize())
+			out.append("Great job! Go back to %s!" % GIVERS[sn])
+		elif sn == "count_basket.gd":
+			places.append("the basket with number %d" % n.target_count)
+		elif STATIONS.has(sn):
+			places.append(STATIONS[sn])
+		elif n is CollectableComponent:
+			var type: String = n.item_type
+			if n is Chicken:
+				var food := " It likes %s!" % FOOD_NAMES.get(n.required_item, n.required_item) if n.required_item != "" else ""
+				finds.append("the %s!%s" % [type, food])
+			elif n is LetterCollectible:
+				finds.append("the %s %s!" % ["big letter" if type == type.to_upper() else "small letter", type])
+			elif n is ShapeCollectible:
+				finds.append(_a(type) + "!")
+			elif n is PaintBucket:
+				finds.append("%s paint!" % type)
+			elif type == "egg":
+				finds.append("an egg!")
+			elif type == "fruits":
+				finds.append(_a(n.collectable_name) + "!")
+	for p in places:
+		out.append("Now go to %s!" % p)
+	for f in finds:
+		out.append("Find " + f)
+	# every hint ends with one of the two endings
+	var done: Array[String] = []
+	for line in out:
+		if line == LOOKS[character]["hello"] or line == "Have fun exploring!":
+			done.append(line)
+		else:
+			done.append(line + " Follow the arrow!")
+			done.append(line + " Look around!")
+	return done
 
 func _mission_started(giver: Node) -> bool:
 	if "lesson_started" in giver:
@@ -373,7 +422,7 @@ func _item_info(n: Node, stations: Array) -> Dictionary:
 	if n is Chicken:
 		if n.tamed:
 			return {}
-		var food := " Remember, it likes %s!" % FOOD_NAMES.get(n.required_item, n.required_item) if n.required_item != "" else ""
+		var food := " It likes %s!" % FOOD_NAMES.get(n.required_item, n.required_item) if n.required_item != "" else ""
 		return {"name": "the %s" % type, "extra": food, "icon": n.icon if n.icon else _icon_of(n)}
 	# letters: only the letter the lesson is on, if not picked up yet
 	if n is LetterCollectible:
@@ -452,7 +501,7 @@ func _station_to_use(stations: Array) -> Dictionary:
 			"count_basket.gd":
 				var basket := _nearest_open_basket(stations)
 				if basket:
-					return {"node": basket, "name": "the basket with the number %d" % basket.target_count, "icon": GameUIManager.get_item_icon("egg")}
+					return {"node": basket, "name": "the basket with number %d" % basket.target_count, "icon": GameUIManager.get_item_icon("egg")}
 	# colors: paint what you hold, otherwise mix
 	for s in stations:
 		if _script_name(s) == "easel.gd" and not s.is_complete():

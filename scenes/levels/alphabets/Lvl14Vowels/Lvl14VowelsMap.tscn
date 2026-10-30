@@ -114,7 +114,7 @@ letter_sequence = NodePath("../LetterSequence")
 [node name="Teacher" parent="." instance=ExtResource("11_teacher")]
 position = Vector2(609, 509)
 letter_sequence = NodePath("../LetterSequence")
-custom_lesson = "Today we're learning the vowels: A, E, I, O and U! Every word needs a vowel."
+custom_lesson = "Today's letters are the vowels: A, E, I, O and U!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-## Bobo the Builder. Builds his dialogue from the ShapeBoard's holes,
+## Bob the builder. Builds his dialogue from the ShapeBoard's holes,
 ## so the same script works for every Shapes level.
 
 @export var shape_board: NodePath
@@ -15,6 +15,11 @@ const PLURALS := {
 	"rectangle": "rectangles", "star": "stars", "heart": "hearts",
 	"oval": "ovals", "diamond": "diamonds",
 }
+
+## Which voice reads this NPC's lines (folder in assets/audio/voice/).
+var voice_id := "builder"
+## Name shown on the dialogue box.
+var display_name := "Bob"
 
 @onready var interaction_area: Area2D = $InteractionArea
 
@@ -65,36 +70,50 @@ func _shapes_text() -> String:
 func _intro_lines() -> Array[String]:
 	var lines: Array[String] = []
 	if GameManager.current_level <= 1:
-		lines.append("Hi there! I'm Bobo the Builder. I build things using shapes!")
+		lines.append("Hi! I'm Bob.")
 	else:
-		lines.append("Hey, it's you again! Bobo the Builder here!")
+		lines.append("Hey, it's Bob again!")
 	if tip != "":
 		lines.append(tip)
-	lines.append("I'm making %s, but the pieces got scattered everywhere! Look at my blueprint. The white outlines show the shapes I need." % _a_picture())
-	var need: String = "I need %s." % _shapes_text()
+	lines.append("I'm building %s, but my shapes got scattered!" % _a_picture())
+	lines.append("My blueprint shows the shapes I need.")
+	lines.append("I need %s." % _shapes_text())
 	if get_parent().has_node("WrongShapes"):
-		need += " Be careful, some shapes don't fit my picture!"
-	lines.append(need)
+		lines.append("Some shapes don't fit my picture!")
 	lines.append("Will you help me build it?")
 	return lines
 
-func _incomplete_lines() -> Array[String]:
-	var board = _board()
-	var next: String = board.next_needed_shape() if board else ""
+func _incomplete_lines(next := "") -> Array[String]:
+	if next == "":
+		var board = _board()
+		next = board.next_needed_shape() if board else ""
 	var lines: Array[String] = []
 	if next != "":
-		lines.append("My %s isn't finished yet! I still need a %s." % [picture_name, next])
+		lines.append("I still need %s!" % _a_shape(next))
 	else:
 		lines.append("My %s isn't finished yet!" % picture_name)
-	lines.append("Do you want to keep building?")
+	lines.append("Will you keep building?")
 	return lines
 
 func _delivery_lines() -> Array[String]:
 	return [
-		"Wow, look at that! %s is finished!" % _the_picture(),
-		"It's made of %s. Shapes are everywhere!" % _shapes_text(),
-		"Thank you, you're a great builder!"
+		"Wow! %s is finished!" % _the_picture(),
+		"It's made of %s!" % _shapes_text(),
+		"Thanks, great builder!"
 	]
+
+## Every line Bob can say in this level (used to make the voice clips).
+func voice_lines() -> Array[String]:
+	var out: Array[String] = _intro_lines() + _delivery_lines()
+	var board = _board()
+	if board:
+		for shape in board.shape_counts().keys():
+			out.append_array(_incomplete_lines(shape))
+	out.append("My %s isn't finished yet!" % picture_name)
+	return out
+
+func _a_shape(shape: String) -> String:
+	return ("an " if "aeiou".contains(shape.substr(0, 1)) else "a ") + shape
 
 # ---------- player near / far ----------
 

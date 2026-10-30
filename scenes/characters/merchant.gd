@@ -18,22 +18,27 @@ const PLURALS := {
 
 ## Momo's story for each level, picked by the first fruit he asks for.
 const STORIES := {
-	"apple": "Oh no, a storm last night knocked apples all over the field!",
-	"banana": "The monkeys had a party last night and left bananas all over the village!",
-	"orange": "My orange cart tipped over on the bumpy road and the oranges rolled everywhere!",
-	"grapes": "Some silly birds dropped my grapes all around the village!",
-	"strawberry": "I'm baking a big strawberry cake for the village party!",
-	"mango": "Mango season is here, and the wind shook the mangoes off the trees!",
-	"cherry": "I'm making ice cream treats, and every treat needs a cherry on top!",
-	"pineapple": "The farmers left their pineapples all over the islands!",
-	"watermelon": "Phew, it's so hot today! Everyone wants a juicy watermelon.",
+	"apple": "A storm knocked my apples all over the field!",
+	"banana": "Silly monkeys left my bananas everywhere!",
+	"orange": "My cart tipped over and the oranges rolled away!",
+	"grapes": "Silly birds dropped my grapes all around!",
+	"strawberry": "I'm baking a big strawberry cake!",
+	"mango": "The wind shook my mangoes off the trees!",
+	"cherry": "Every ice cream needs a cherry on top!",
+	"pineapple": "The farmers left pineapples all over the islands!",
+	"watermelon": "It's so hot! Everyone wants a juicy watermelon.",
 	"papaya": "A big wave washed my papayas onto the land!",
-	"coconut": "I'm making a fruit salad for the whole village!",
-	"guava": "It's time to make fresh fruit juice for everyone!",
-	"avocado": "I'm packing a picnic basket for the village kids!",
-	"rambutan": "Visitors from far away are coming to my shop today!",
-	"durian": "Today is the big Fruit Festival, my biggest order ever!",
+	"coconut": "I'm making a fruit salad for the village!",
+	"guava": "It's time to make fresh fruit juice!",
+	"avocado": "I'm packing a picnic for the village kids!",
+	"rambutan": "Visitors are coming to my shop today!",
+	"durian": "Today is the big Fruit Festival!",
 }
+
+## Which voice reads this NPC's lines (folder in assets/audio/voice/).
+var voice_id := "merchant"
+## Name shown on the dialogue box.
+var display_name := "Momo"
 
 @onready var interaction_area: Area2D = $InteractionArea
 
@@ -70,22 +75,18 @@ func _intro_lines() -> Array[String]:
 	var story: String = custom_story if custom_story != "" else STORIES.get(first_fruit, "I need your help today!")
 	var lines: Array[String] = []
 	if GameManager.current_level <= 1:
-		lines.append("Hi there! I'm Momo, the merchant of this little village. I trade fruits, treats, and all sorts of goodies!")
+		lines.append("Hi! I'm Momo, the fruit merchant.")
 	else:
-		lines.append("Hi again, friend! It's me, Momo the merchant!")
+		lines.append("Hi again! It's me, Momo!")
 	lines.append(story)
-	var ask: String = "Can you help me collect %s?" % _wanted_text()
+	lines.append("Please bring me %s!" % _wanted_text())
 	if get_parent().has_node("WrongFruits"):
-		ask += " Be careful, only pick the fruits I asked for!"
-	lines.append(ask)
+		lines.append("Only pick the fruits I asked for!")
 	return lines
 
 func _incomplete_lines() -> Array[String]:
 	var what: String = _plural(quest_items.keys()[0]) if quest_items.size() == 1 else "fruits"
-	return [
-		"Hmm, I still need more %s! Check your basket to see how many you have." % what,
-		"Do you still want to keep looking for them?"
-	]
+	return ["I still need more %s!" % what, "Will you keep looking?"]
 
 func _delivery_lines() -> Array[String]:
 	var lines: Array[String] = []
@@ -95,11 +96,17 @@ func _delivery_lines() -> Array[String]:
 		var numbers: Array[String] = []
 		for i in range(1, count + 1):
 			numbers.append(str(i))
-		lines.append("Yay! You found all %d %s! Let's count them together: %s!" % [count, _plural(fruit), ", ".join(numbers)])
+		lines.append("Yay! You found all %d %s!" % [count, _plural(fruit)])
+		lines.append("Let's count: %s!" % ", ".join(numbers))
 	else:
-		lines.append("Yay! You found %s. That makes %d fruits in all!" % [_wanted_text(), _total()])
-	lines.append("Thank you so much, you're a great helper!")
+		lines.append("Yay! You found %s!" % _wanted_text())
+		lines.append("That's %d fruits in all!" % _total())
+	lines.append("Thank you, great helper!")
 	return lines
+
+## Every line Momo can say in this level (used to make the voice clips).
+func voice_lines() -> Array[String]:
+	return _intro_lines() + _incomplete_lines() + _delivery_lines()
 
 # ---------- player near / far ----------
 

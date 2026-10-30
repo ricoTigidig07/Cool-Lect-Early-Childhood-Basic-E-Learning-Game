@@ -16,11 +16,11 @@ const HAND_TINT := Color(1, 0.986, 0.72)
 ## Mission NPC of each subject: name and placeholder color (same as the helpers).
 const GIVERS := {
 	"fruits": ["Momo", Color(0.66, 0.95, 1.53)],
-	"animals": ["the Farmer", Color(1.29, 0.79, 0.0)],
-	"alphabets": ["the Teacher", Color(1.04, 0.43, 0.74)],
-	"numbers": ["Grandma", Color(0.4, 0.8, 0.0)],
-	"shapes": ["Bobo", Color(1.35, 1.0, 0.55)],
-	"colors": ["Pinta", Color(1.45, 0.8, 1.35)],
+	"animals": ["Farmer Kiko", Color(1.29, 0.79, 0.0)],
+	"alphabets": ["Teacher Abby", Color(1.04, 0.43, 0.74)],
+	"numbers": ["Lola Nena", Color(0.4, 0.8, 0.0)],
+	"shapes": ["Bob", Color(1.35, 1.0, 0.55)],
+	"colors": ["Pablo", Color(1.45, 0.8, 1.35)],
 }
 const HELPER_COLOR := Color(1.45, 0.8, 1.35)
 ## The real look of each subject's mission NPC, and of the helper shown on the "Lost?" page.
@@ -220,7 +220,7 @@ func _pages_for(s: String) -> Array:
 		"numbers":
 			var egg := _tex("res://scenes/objects/icons/egg.tres")
 			out.append({"title": "Find the eggs", "items": [egg, egg, egg], "action": HAND, "action_tint": HAND_TINT,
-				"text": "Grandma's hens laid eggs everywhere.\nHold the hand button to pick them up."})
+				"text": "Lola Nena's hens laid eggs everywhere.\nHold the hand button to pick them up."})
 			out.append({"title": "Count into the basket", "items": [egg], "arrow": true,
 				"pic": _tex("res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Piknik basket.png"),
 				"badge": _tex("res://scenes/collectables/numbers/number_3.tres"),
@@ -234,12 +234,12 @@ func _pages_for(s: String) -> Array:
 			out.append({"title": "Build the picture", "items": [shapes[0]], "arrow": true,
 				"pic": board_texture, "pic_tint": Color(0.55, 0.75, 1.3),
 				"badge": _tex("res://scenes/objects/icons/shapes/circle.tres"),
-				"text": "Hold the button at Bobo's board.\nPut each shape in the outline that matches!"})
+				"text": "Hold the button at Bob's board.\nPut each shape in the outline that matches!"})
 		"colors":
 			var red := PaintColors.bucket_icon("red")
 			var yellow := PaintColors.bucket_icon("yellow")
 			out.append({"title": "Find the paint", "items": [red, yellow], "action": HAND, "action_tint": HAND_TINT,
-				"text": "Find the paint buckets Pinta needs.\nHold the hand button to pick them up."})
+				"text": "Find the paint buckets Pablo needs.\nHold the hand button to pick them up."})
 			out.append({"title": "Paint and mix", "items": [red, yellow, PaintColors.bucket_icon("orange")], "arrow": true,
 				"pic": _tex("res://assets/colors/pictures/apple_red.png"), "pic_tint": PaintColors.color("red"),
 				"text": "Hold at the easel to paint.\nNo color? Mix two in the pot: red + yellow = orange!"})

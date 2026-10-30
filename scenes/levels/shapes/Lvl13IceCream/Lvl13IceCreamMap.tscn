@@ -166,7 +166,7 @@ texture = ExtResource("icon_star")
 position = Vector2(636, 328)
 shape_board = NodePath("../ShapeBoard")
 picture_name = "ice cream"
-tip = "Yummy! The cone is a triangle upside down, and the scoops are circles."
+tip = "The cone is a triangle, the scoops are circles!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

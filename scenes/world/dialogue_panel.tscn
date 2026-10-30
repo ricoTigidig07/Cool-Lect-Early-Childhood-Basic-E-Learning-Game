@@ -136,3 +136,6 @@ theme_override_fonts/font = ExtResource("7_poco")
 theme_override_font_sizes/font_size = 28
 text = "No"
 icon = SubResource("AtlasTexture_no")
+
+[node name="Voice" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

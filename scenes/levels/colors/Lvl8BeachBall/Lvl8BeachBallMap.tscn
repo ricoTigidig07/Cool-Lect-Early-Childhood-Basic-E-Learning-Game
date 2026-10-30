@@ -117,7 +117,7 @@ texture = ExtResource("part_outline")
 [node name="Painter" parent="." instance=ExtResource("11_painter")]
 position = Vector2(698, 488)
 easel = NodePath("../Easel")
-tip = "A beach ball has many colors. Can you find them all?"
+tip = "A beach ball has many colors!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

@@ -150,7 +150,7 @@ texture = ExtResource("icon_circle")
 position = Vector2(508, 432)
 shape_board = NodePath("../ShapeBoard")
 picture_name = "kite"
-tip = "Today's new shape is the diamond! It is like a square standing on one corner."
+tip = "A diamond is a square standing on a corner!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_uoffj")
-mission_1_text = "Talk to the Merchant!"
-mission_2_text = "Collect apples for the Merchant!"
-mission_3_text = "Deliver apples to the Merchant!"
+mission_1_text = "Talk to Momo!"
+mission_2_text = "Collect apples for Momo!"
+mission_3_text = "Deliver apples to Momo!"

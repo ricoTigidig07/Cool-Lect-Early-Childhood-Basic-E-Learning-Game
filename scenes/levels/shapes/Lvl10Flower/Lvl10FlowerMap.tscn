@@ -166,7 +166,7 @@ texture = ExtResource("icon_heart")
 position = Vector2(1188, 240)
 shape_board = NodePath("../ShapeBoard")
 picture_name = "flower"
-tip = "Flowers have shapes too! The petals look like ovals and the middle is a circle."
+tip = "Petals look like ovals, and the middle is a circle!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

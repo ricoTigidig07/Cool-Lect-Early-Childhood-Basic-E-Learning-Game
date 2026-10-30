@@ -147,7 +147,7 @@ texture = ExtResource("icon_star")
 position = Vector2(836, 520)
 shape_board = NodePath("../ShapeBoard")
 picture_name = "night sky"
-tip = "Today's new shape is the star! It has 5 pointy tips, just like the stars in the sky."
+tip = "A star has 5 pointy tips!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

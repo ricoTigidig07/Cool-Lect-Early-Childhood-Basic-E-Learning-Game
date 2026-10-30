@@ -146,7 +146,7 @@ tile_set = ExtResource("7_w8rtx")
 
 [node name="Farmer" parent="." instance=ExtResource("11_farmer")]
 position = Vector2(745, 424)
-tip = "Each animal likes a different food. Can you remember which one?"
+tip = "Each animal likes a different food!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

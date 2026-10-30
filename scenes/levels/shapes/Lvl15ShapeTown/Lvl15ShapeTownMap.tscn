@@ -184,7 +184,7 @@ texture = ExtResource("icon_diamond")
 position = Vector2(1140, 256)
 shape_board = NodePath("../ShapeBoard")
 picture_name = "Shape Town"
-tip = "This is Shape Town, my biggest build ever! It uses every shape you learned: circle, square, triangle, rectangle, star, heart, oval and diamond!"
+tip = "Shape Town uses every shape you learned!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

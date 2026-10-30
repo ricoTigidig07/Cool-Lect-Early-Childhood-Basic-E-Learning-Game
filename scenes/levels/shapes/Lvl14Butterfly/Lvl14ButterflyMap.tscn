@@ -168,7 +168,7 @@ texture = ExtResource("icon_star")
 position = Vector2(948, 272)
 shape_board = NodePath("../ShapeBoard")
 picture_name = "butterfly"
-tip = "A butterfly has wings on both sides. Both sides look the same!"
+tip = "Both wings look the same!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

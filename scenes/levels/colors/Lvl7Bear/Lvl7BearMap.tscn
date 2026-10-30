@@ -107,7 +107,7 @@ texture = ExtResource("part_outline")
 [node name="Painter" parent="." instance=ExtResource("11_painter")]
 position = Vector2(218, 192)
 easel = NodePath("../Easel")
-tip = "Brown is the color of tree bark, chocolate and teddy bears!"
+tip = "Teddy bears are brown!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

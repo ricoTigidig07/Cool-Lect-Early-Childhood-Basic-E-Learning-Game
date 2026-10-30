@@ -103,7 +103,7 @@ target_count = 8
 
 [node name="Grandma" parent="." instance=ExtResource("11_grandma")]
 position = Vector2(594, -20)
-tip = "Eight comes after seven. A spider has eight legs!"
+tip = "A spider has eight legs!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

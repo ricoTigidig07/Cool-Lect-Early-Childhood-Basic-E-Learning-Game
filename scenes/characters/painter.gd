@@ -1,11 +1,16 @@
 extends StaticBody2D
 
-## Pinta the Painter. Builds her dialogue from the Easel, so the same script
+## Pablo the Painter. Builds his dialogue from the Easel, so the same script
 ## works for every Colors level.
 
 @export var easel: NodePath
 ## Optional: a short lesson about colors, said after the greeting.
 @export_multiline var tip: String = ""
+
+## Which voice reads this NPC's lines (folder in assets/audio/voice/).
+var voice_id := "painter"
+## Name shown on the dialogue box.
+var display_name := "Pablo"
 
 @onready var interaction_area: Area2D = $InteractionArea
 
@@ -53,7 +58,7 @@ func _colors_line() -> String:
 	for c in colors:
 		if e.part_names.has(c):
 			bits.append("the %s should be %s" % [e.part_names[c], c])
-	if bits.size() == colors.size() and bits.size() > 0:
+	if bits.size() == colors.size() and bits.size() > 0 and bits.size() <= 2:
 		var line := _join(bits)
 		return line.substr(0, 1).to_upper() + line.substr(1) + "."
 	return "I need %s paint." % _join(colors)
@@ -77,37 +82,34 @@ func _colors_to_mix() -> Array[String]:
 func _intro_lines() -> Array[String]:
 	var lines: Array[String] = []
 	if GameManager.current_level <= 1:
-		lines.append("Hi there! I'm Pinta the Painter. I love painting pictures with lots of colors!")
+		lines.append("Hi! I'm Pablo the Painter.")
 	else:
-		lines.append("Hello again, little artist! It's me, Pinta!")
+		lines.append("Hello again! It's me, Pablo!")
 	if tip != "":
 		lines.append(tip)
-	lines.append("Look at my easel! I want to paint %s, but it has no colors yet." % _a_picture())
+	lines.append("I want to paint %s on my easel!" % _a_picture())
 	lines.append(_colors_line())
-	var to_mix := _colors_to_mix()
-	if not to_mix.is_empty() and get_parent().has_node("MixingPot"):
-		var how: Array[String] = []
-		for c in to_mix:
+	if get_parent().has_node("MixingPot"):
+		for c in _colors_to_mix():
 			var r: Array = PaintColors.RECIPES.get(c, [])
 			if r.size() == 2:
-				how.append("%s and %s make %s" % [r[0], r[1], c])
-		lines.append("I don't have any %s paint! Mix colors in the mixing pot: %s." % [_join(to_mix), _join(how)])
-	var find := "Find the paint buckets and bring them to my easel."
+				lines.append("No %s paint? Mix %s and %s in the pot!" % [c, r[0], r[1]])
+	lines.append("Find the paint and bring it to my easel!")
 	if get_parent().has_node("WrongPaints"):
-		find += " Be careful, only use the colors I need!"
-	lines.append(find)
+		lines.append("Only use the colors I need!")
 	lines.append("Will you help me paint it?")
 	return lines
 
-func _incomplete_lines() -> Array[String]:
-	var e = _easel()
-	var next: String = e.next_needed_color() if e else ""
+func _incomplete_lines(next := "") -> Array[String]:
+	if next == "":
+		var e = _easel()
+		next = e.next_needed_color() if e else ""
 	var lines: Array[String] = []
 	if next != "":
-		lines.append("My %s isn't finished yet! I still need %s paint." % [_picture(), next])
+		lines.append("I still need %s paint!" % next)
 	else:
 		lines.append("My %s isn't finished yet!" % _picture())
-	lines.append("Do you want to keep painting?")
+	lines.append("Will you keep painting?")
 	return lines
 
 func _delivery_lines() -> Array[String]:
@@ -115,9 +117,19 @@ func _delivery_lines() -> Array[String]:
 	var colors: Array[String] = e.needed_colors() if e else []
 	return [
 		"Wow, what a beautiful %s!" % _picture(),
-		"You used %s. Colors make everything happy!" % _join(colors),
+		"You used %s!" % _join(colors),
 		"Thank you, little artist!"
 	]
+
+## Every line Pablo can say in this level (used to make the voice clips).
+func voice_lines() -> Array[String]:
+	var out: Array[String] = _intro_lines() + _delivery_lines()
+	var e = _easel()
+	if e:
+		for c in e.needed_colors():
+			out.append_array(_incomplete_lines(c))
+	out.append("My %s isn't finished yet!" % _picture())
+	return out
 
 # ---------- player near / far ----------
 

@@ -1,7 +1,7 @@
 extends Node2D
 
 ## The NPC's symbol on a little wooden sign above their head (store for Momo, barn for
-## the Farmer, school for the Teacher, nest for Grandma, hammer for Bobo, palette for Pinta).
+## Farmer Kiko, school for Teacher Abby, nest for Lola Nena, hammer for Bob, palette for Pablo).
 ## Only the mission NPCs have it (it is in their scenes, not in the helper villagers').
 ## The same picture is shown next to "Talk to ..." and "Go back to ..." in the missions.
 

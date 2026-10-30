@@ -13,5 +13,9 @@ data_*/
 
 # System/tool-specific ignores
 .DS_Store
-Thumbs.db*.apk
+Thumbs.db
+*.apk
 *.keystore
+
+# files Claude sends (previews, scripts), not part of the game
+Claude outputs/

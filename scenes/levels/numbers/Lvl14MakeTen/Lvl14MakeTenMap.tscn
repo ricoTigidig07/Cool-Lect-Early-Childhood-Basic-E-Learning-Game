@@ -111,7 +111,7 @@ target_count = 6
 
 [node name="Grandma" parent="." instance=ExtResource("11_grandma")]
 position = Vector2(942, -68)
-tip = "Two and eight make ten. Four and six make ten too!"
+tip = "Two and eight make ten!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

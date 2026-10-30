@@ -163,7 +163,7 @@ texture = ExtResource("icon_star")
 position = Vector2(916, 320)
 shape_board = NodePath("../ShapeBoard")
 picture_name = "castle"
-tip = "Castles have lots of squares and triangles! A square has 4 corners and a triangle has 3."
+tip = "A square has 4 corners!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

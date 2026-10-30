@@ -13,6 +13,12 @@ extends TextureRect
 @onready var choices_container: VBoxContainer = $ChoicesContainer
 @onready var yes_button: Button = $ChoicesContainer/YesButton
 @onready var no_button: Button = $ChoicesContainer/NoButton
+@onready var voice: AudioStreamPlayer = $Voice
+
+## Voice clips: assets/audio/voice/<speaker voice_id>/<md5 of the line>.ogg
+## (made by tools/make_voices.py). A line without a clip just types with the blips.
+const VOICE_DIR := "res://assets/audio/voice/"
+var voice_id := ""
 
 const CHARS_PER_SECOND = 35.0
 const MIN_FONT_SIZE = 20
@@ -73,10 +79,20 @@ func _show_current_page() -> void:
 	_apply_responsive_font_size(full_text)
 	label.text = full_text
 	label.visible_characters = 0
+	_play_voice(full_text)
 	last_tap_ms = Time.get_ticks_msec()   # a new page ignores the tap that opened it
 	choices_container.visible = false
 	continue_icon.visible = false
 	typing_timer.start()
+
+func _play_voice(text: String) -> void:
+	voice.stop()
+	if voice_id == "":
+		return
+	var path := "%s%s/%s.ogg" % [VOICE_DIR, voice_id, text.md5_text()]
+	if ResourceLoader.exists(path):
+		voice.stream = load(path)
+		voice.play()
 
 func _apply_responsive_font_size(text: String) -> void:
 	var font = label.get_theme_font("font")
@@ -99,7 +115,7 @@ func _on_typing_tick() -> void:
 	label.visible_characters += 1
 	# soft talking blips (every 3rd letter, not on spaces)
 	var i: int = label.visible_characters - 1
-	if i % 3 == 0 and i < full_text.length() and full_text[i] != " ":
+	if i % 3 == 0 and i < full_text.length() and full_text[i] != " " and not voice.playing:
 		AudioManager.play_sfx("blip", randf_range(0.92, 1.12))
 	if label.visible_characters >= full_text.length():
 		typing_timer.stop()
@@ -120,6 +136,9 @@ func _detect_speaker() -> void:
 	var speaker: Node = InteractionManager.get_current_target()
 	if speaker and speaker.name == "InteractionArea":
 		speaker = speaker.get_parent()
+	voice_id = ""
+	if speaker != null and "voice_id" in speaker:
+		voice_id = speaker.voice_id
 	if speaker == null:
 		name_label.text = ""
 		portrait.texture = null
@@ -229,5 +248,6 @@ func _on_visibility_changed() -> void:
 		t.tween_property(self, "modulate:a", 1.0, 0.12)
 	else:
 		typing_timer.stop()
+		voice.stop()
 		choices_container.visible = false
 		continue_icon.visible = false

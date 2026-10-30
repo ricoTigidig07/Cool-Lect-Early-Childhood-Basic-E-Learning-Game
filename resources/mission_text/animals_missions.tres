@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_edds2")
-mission_1_text = "Talk to the Farmer!"
+mission_1_text = "Talk to Farmer Kiko!"
 mission_2_text = "Tame the chickens!"
-mission_3_text = "Bring them back to the Farmer!"
+mission_3_text = "Bring them back to Farmer Kiko!"

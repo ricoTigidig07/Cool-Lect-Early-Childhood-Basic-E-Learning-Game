@@ -157,7 +157,7 @@ texture = ExtResource("icon_circle")
 position = Vector2(812, 440)
 shape_board = NodePath("../ShapeBoard")
 picture_name = "car"
-tip = "Remember: a circle is round and has no corners. A square has 4 sides that are all the same!"
+tip = "A circle is round and has no corners!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

@@ -103,7 +103,7 @@ target_count = 10
 
 [node name="Grandma" parent="." instance=ExtResource("11_grandma")]
 position = Vector2(518, -12)
-tip = "Ten is the same as all the fingers on both hands!"
+tip = "Ten is all the fingers on both hands!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

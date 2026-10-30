@@ -19,6 +19,11 @@ const FOOD_NAMES := {
 	"berry": "berries", "milk": "milk",
 }
 
+## Which voice reads this NPC's lines (folder in assets/audio/voice/).
+var voice_id := "farmer"
+## Name shown on the dialogue box.
+var display_name := "Farmer Kiko"
+
 @onready var interaction_area: Area2D = $InteractionArea
 
 var is_dialogue_open := false
@@ -83,39 +88,31 @@ func _likes_line() -> String:
 	var line := _join(likes)
 	return line.substr(0, 1).to_upper() + line.substr(1) + "."
 
-# ---------- what the Farmer says ----------
+# ---------- what Farmer Kiko says ----------
 
 func _intro_lines() -> Array[String]:
 	var lines: Array[String] = []
 	if GameManager.current_level <= 1:
-		lines.append("Hello, little friend! I'm the Farmer, and this is my farm.")
+		lines.append("Hello! I'm Farmer Kiko, and this is my farm.")
 	else:
-		lines.append("Hello again, little friend! Welcome back to the farm!")
+		lines.append("Welcome back to the farm, little friend!")
 	if tip != "":
 		lines.append(tip)
-	lines.append("Oh no! My %s got out and ran all over the farm!" % _count_words(_animal_counts()))
+	lines.append("Oh no! My %s ran away!" % _count_words(_animal_counts()))
 	lines.append(_likes_line())
-	lines.append("I'll give you the food. Pick the right food in your bag, then hold the button next to an animal to make friends!")
+	lines.append("Pick their food in your bag, then hold the button near them!")
 	lines.append("Will you help me bring them back?")
 	return lines
 
 func _incomplete_lines() -> Array[String]:
-	var left := {}
-	for t in QuestManager.target_counts:
-		var n: int = QuestManager.target_counts[t] - QuestManager.current_counts.get(t, 0)
-		if n > 0:
-			left[t] = n
-	return [
-		"There are still %s out there!" % _count_words(left) if not left.is_empty() else "Some animals are still out there!",
-		"Do you want to keep looking?",
-	]
+	return ["Some animals are still out there!", "Will you keep looking?"]
 
 func _delivery_lines() -> Array[String]:
-	return [
-		"You found all my animals! Thank you so much!",
-		"Remember: " + _likes_line(),
-		"You're a great little farmer!",
-	]
+	return ["You found all my animals! Thank you!", "You're a great little farmer!"]
+
+## Every line Farmer Kiko can say in this level (used to make the voice clips).
+func voice_lines() -> Array[String]:
+	return _intro_lines() + _incomplete_lines() + _delivery_lines()
 
 # ---------- player near / far ----------
 

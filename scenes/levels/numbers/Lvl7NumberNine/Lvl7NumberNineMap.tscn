@@ -103,7 +103,7 @@ target_count = 9
 
 [node name="Grandma" parent="." instance=ExtResource("11_grandma")]
 position = Vector2(782, 348)
-tip = "Nine comes after eight. We're almost at ten!"
+tip = "Nine comes after eight!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

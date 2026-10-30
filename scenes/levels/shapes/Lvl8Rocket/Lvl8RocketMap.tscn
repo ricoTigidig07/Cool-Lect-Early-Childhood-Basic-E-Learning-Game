@@ -163,7 +163,7 @@ texture = ExtResource("icon_star")
 position = Vector2(572, 328)
 shape_board = NodePath("../ShapeBoard")
 picture_name = "rocket"
-tip = "Remember: a triangle has 3 sides and 3 corners. Count them with me: 1, 2, 3!"
+tip = "A triangle has 3 sides and 3 corners!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

@@ -108,7 +108,7 @@ texture = ExtResource("part_outline")
 [node name="Painter" parent="." instance=ExtResource("11_painter")]
 position = Vector2(890, 456)
 easel = NodePath("../Easel")
-tip = "Black and white together make grey, like a big elephant!"
+tip = "Black and white make grey!"
 
 [node name="MixingPot" parent="." instance=ExtResource("15_pot")]
 position = Vector2(774, 508)

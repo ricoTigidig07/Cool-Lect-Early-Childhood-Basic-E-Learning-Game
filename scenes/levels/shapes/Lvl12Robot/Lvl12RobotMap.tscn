@@ -171,7 +171,7 @@ texture = ExtResource("icon_rectangle")
 position = Vector2(964, 256)
 shape_board = NodePath("../ShapeBoard")
 picture_name = "robot"
-tip = "Let's build a robot! Look closely, some rectangles stand up tall and some lie down flat."
+tip = "Some rectangles stand tall, some lie flat!"
 
 [node name="Player" parent="." instance=ExtResource("10_player")]
 z_index = 1

@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_mt")
-mission_1_text = "Talk to Grandma!"
+mission_1_text = "Talk to Lola Nena!"
 mission_2_text = "Fill each basket with the right number of eggs!"
-mission_3_text = "Go back to Grandma!"
+mission_3_text = "Go back to Lola Nena!"
