@@ -15,6 +15,7 @@ func unregister(interactable: Node) -> void:
 		pending_tap_target = null
 
 func get_current_target() -> Node:
+	nearby_interactables = nearby_interactables.filter(func(n): return is_instance_valid(n))
 	if nearby_interactables.is_empty():
 		return null
 	return nearby_interactables[0]

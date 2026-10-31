@@ -1,0 +1,212 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/talk_mode.gd" id="1_talk"]
+[ext_resource type="Texture2D" path="res://assets/UI/WoodPanel60x60.png" id="2_wood"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Icons/All Icons.png" id="3_icons"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/Poco.ttf" id="4_poco"]
+
+[sub_resource type="AtlasTexture" id="Atlas_arrow"]
+atlas = ExtResource("3_icons")
+region = Rect2(80, 208, 16, 16)
+
+[sub_resource type="LabelSettings" id="Label_count"]
+font = ExtResource("4_poco")
+font_size = 40
+font_color = Color(1, 0.97, 0.88, 1)
+outline_size = 10
+outline_color = Color(0.36, 0.22, 0.15, 1)
+
+[sub_resource type="Animation" id="Anim_RESET"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NeedsFrame:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 40)]
+}
+
+[sub_resource type="Animation" id="Anim_show"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NeedsFrame:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-380, 40), Vector2(40, 40)]
+}
+
+[sub_resource type="Animation" id="Anim_hide"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_talk"]
+_data = {
+&"RESET": SubResource("Anim_RESET"),
+&"hide": SubResource("Anim_hide"),
+&"show": SubResource("Anim_show")
+}
+
+[node name="TalkMode" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_talk")
+
+[node name="NeedsFrame" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 400.0
+offset_bottom = 420.0
+mouse_filter = 2
+texture = ExtResource("2_wood")
+patch_margin_left = 14
+patch_margin_top = 14
+patch_margin_right = 14
+patch_margin_bottom = 14
+
+[node name="Box" type="VBoxContainer" parent="NeedsFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+mouse_filter = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Needs" type="GridContainer" parent="NeedsFrame/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Arrow" type="TextureRect" parent="NeedsFrame/Box"]
+self_modulate = Color(1, 0.97, 0.88, 1)
+texture_filter = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = SubResource("Atlas_arrow")
+expand_mode = 1
+
+[node name="Places" type="HBoxContainer" parent="NeedsFrame/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="NeedTemplate" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(84, 84)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 84.0
+offset_bottom = 84.0
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="NeedTemplate"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Badge" type="TextureRect" parent="NeedTemplate"]
+texture_filter = 1
+layout_mode = 1
+anchor_left = 0.55
+anchor_top = -0.05
+anchor_right = 1.05
+anchor_bottom = 0.45
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Count" type="Label" parent="NeedTemplate"]
+layout_mode = 1
+anchor_left = 0.35
+anchor_top = 0.62
+anchor_right = 1.15
+anchor_bottom = 1.1
+text = "x2"
+label_settings = SubResource("Label_count")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("Lib_talk")
+}

@@ -21,8 +21,8 @@ const VOICE_DIR := "res://assets/audio/voice/"
 var voice_id := ""
 
 const CHARS_PER_SECOND = 35.0
-const MIN_FONT_SIZE = 20
-const MAX_FONT_SIZE = 30
+const MIN_FONT_SIZE = 30
+const MAX_FONT_SIZE = 46
 const CONTINUE_FRAMES = 7
 const CONTINUE_FPS = 10.0
 const TAP_GUARD_MS = 250
@@ -133,7 +133,7 @@ func _on_page_typing_finished() -> void:
 # ---------- speaker ----------
 
 func _detect_speaker() -> void:
-	var speaker: Node = InteractionManager.get_current_target()
+	var speaker: Node = GameUIManager.talk_speaker if GameUIManager.talk_speaker else InteractionManager.get_current_target()
 	if speaker and speaker.name == "InteractionArea":
 		speaker = speaker.get_parent()
 	voice_id = ""

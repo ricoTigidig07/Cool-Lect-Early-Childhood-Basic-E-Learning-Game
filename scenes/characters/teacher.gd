@@ -106,6 +106,8 @@ func _on_body_entered(body: Node2D) -> void:
 			portrait.play("merchant_defaults")
 
 func _on_body_exited(body: Node2D) -> void:
+	if GameUIManager.talking:
+		return            # the player is walking over to talk (close-up), not leaving
 	if body is Player01:
 		InteractionManager.unregister(self)
 		var portrait = get_tree().get_first_node_in_group("avatar_icon")

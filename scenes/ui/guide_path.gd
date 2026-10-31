@@ -223,7 +223,7 @@ func _update_target() -> void:
 	_set_target(to, k)
 
 func _allowed() -> bool:
-	if not GameManager.helper_hints or GameUIManager.level_over:
+	if not GameManager.helper_hints or GameUIManager.level_over or GameUIManager.talking:
 		return false
 	var panel = GameUIManager.dialogue_panel
 	if panel and is_instance_valid(panel) and panel.visible:
@@ -242,6 +242,26 @@ func _set_target(to: Node2D, k: String) -> void:
 	if target == null:
 		return
 	_find_way()
+
+## A walking path for the player from where they are to a point (straight lines,
+## around walls and water). Empty when there is no way (or the grid isn't ready yet).
+func path_to(to: Vector2) -> PackedVector2Array:
+	if not grid_ready or player == null:
+		return PackedVector2Array()
+	var a = _free_cell_near(player.global_position)
+	var b = _free_cell_near(to)
+	if a == null or b == null:
+		return PackedVector2Array()
+	var cells := astar.get_id_path(a, b)
+	if cells.is_empty():
+		return PackedVector2Array()
+	var raw := PackedVector2Array()
+	for c in cells:
+		raw.append(_to_world(c))
+	raw[0] = player.global_position
+	var out := _smooth(raw)
+	out.remove_at(0)
+	return out
 
 func _find_way() -> void:
 	var a = _free_cell_near(player.global_position)

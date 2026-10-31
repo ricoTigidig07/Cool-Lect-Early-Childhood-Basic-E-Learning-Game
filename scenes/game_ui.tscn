@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/ui_extras.tscn" id="40_extras"]
 [ext_resource type="PackedScene" path="res://scenes/ui/tutorial.tscn" id="41_tutorial"]
 [ext_resource type="PackedScene" path="res://scenes/ui/player_sign.tscn" id="42_sign"]
+[ext_resource type="PackedScene" path="res://scenes/ui/talk_mode.tscn" id="43_talk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bj1rn"]
 texture = ExtResource("3_5kjus")
@@ -248,12 +249,14 @@ offset_bottom = 96.23999
 unique_name_in_owner = true
 visible = false
 
+[node name="TalkMode" parent="." instance=ExtResource("43_talk")]
+
 [node name="DialoguePanel" parent="." unique_id=1547596810 instance=ExtResource("19_2rmtt")]
 visible = false
-offset_left = -455.0
-offset_top = -206.0
-offset_right = 457.0
-offset_bottom = -14.0
+offset_left = -608.0
+offset_top = -268.0
+offset_right = 608.0
+offset_bottom = -12.0
 
 [connection signal="button_down" from="InteractionButton/Button" to="InteractionButton/Button" method="_on_button_down"]
 [connection signal="button_up" from="InteractionButton/Button" to="InteractionButton/Button" method="_on_button_up"]

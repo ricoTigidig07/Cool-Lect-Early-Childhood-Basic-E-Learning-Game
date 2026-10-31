@@ -17,6 +17,18 @@ const SHADOW_MAX_SCALE = 1.0
 var last_direction = "down"  # remembers facing direction for idle state
 var bob_time: float = 0.0
 
+## Walking by itself (e.g. to stand next to an NPC when talking): the points to walk through.
+var auto_path := PackedVector2Array()
+## True while a conversation is open: the joystick / keys don't move the player.
+var controls_locked := false
+signal auto_walk_done
+
+## Walks through these points by itself, then sends auto_walk_done.
+func walk_path(points: PackedVector2Array) -> void:
+	auto_path = points
+	if auto_path.is_empty():
+		auto_walk_done.emit()
+
 func _ready() -> void:
 	camera.zoom = Vector2(3.7, 3.7)
 	# Colors levels teach real colors: keep the bright, happy light but no warm color shift.
@@ -39,6 +51,20 @@ func _physics_process(delta):
 	if joystick and joystick.direction != Vector2.ZERO:
 		direction = joystick.direction
 		direction_name = joystick.direction_name
+	if controls_locked:
+		direction = Vector2.ZERO
+		direction_name = ""
+	if not auto_path.is_empty():
+		var to: Vector2 = auto_path[0] - global_position
+		if to.length() < 1.5:
+			global_position = auto_path[0]
+			auto_path.remove_at(0)
+			direction = Vector2.ZERO
+			if auto_path.is_empty():
+				auto_walk_done.emit()
+		else:
+			direction = to.normalized() * minf(1.0, to.length() / (SPEED * delta))
+			direction_name = ""
 	
 	velocity = direction * SPEED
 	move_and_slide()

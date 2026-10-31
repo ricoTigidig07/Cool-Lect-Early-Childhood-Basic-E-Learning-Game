@@ -7,10 +7,25 @@ var dialogue_panel: TextureRect
 var level_over := false
 var result_shown := false
 
+## The close-up conversation (scenes/ui/talk_mode.gd), set by itself when a level starts.
+var talk_mode: Node = null
+## True while a close-up conversation is going on (NPCs ignore the player "walking away").
+var talking := false
+## Who is talking in the close-up (the dialogue box shows their name and face).
+var talk_speaker: Node = null
+
 func register_ui(panel: TextureRect) -> void:
 	dialogue_panel = panel
 
 func show_dialogue(text) -> void:
+	# a mission NPC: first the player walks over and the camera zooms in, then the words
+	var who = InteractionManager.get_current_target()
+	if talk_mode and is_instance_valid(talk_mode) and not talk_mode.active and talk_mode.is_talker(who):
+		talk_mode.start(who, _show_words.bind(text))
+		return
+	_show_words(text)
+
+func _show_words(text) -> void:
 	dialogue_panel.visible = true
 	if text is Array:
 		var typed_pages: Array[String] = []
@@ -21,6 +36,8 @@ func show_dialogue(text) -> void:
 		dialogue_panel.set_text(text)
 
 func hide_dialogue() -> void:
+	if talk_mode and is_instance_valid(talk_mode) and talk_mode.active:
+		talk_mode.finish()
 	dialogue_panel.visible = false
 	# a conversation that was closed early must not answer later conversations
 	for c in dialogue_panel.finished.get_connections():
