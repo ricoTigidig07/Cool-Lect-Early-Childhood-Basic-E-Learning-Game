@@ -24,6 +24,8 @@ var is_holding: bool = false
 var hold_progress: float = 0.0
 ## True for items that go into the bag (hotbar): letters, shapes, paint, eggs.
 var uses_hotbar := false
+## The name in English ("Apple"); the label shows it in the chosen language.
+var label_english := ""
 
 func _ready() -> void:
 	# items are always drawn above trees, bushes and roofs so they can never hide behind one
@@ -44,6 +46,7 @@ func _ready() -> void:
 	elif name_label.text == "" or name_label.text == "Name":
 		name_label.text = collectable_name.substr(0, 1).to_upper() + collectable_name.substr(1)
 	name_label.visible = false
+	label_english = name_label.text
 	if item_type == "fruits":
 		_hide_until_quest()
 
@@ -65,7 +68,9 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player01:
 		InteractionManager.register(self)
 		player_ref = body
+		name_label.text = Lang.item_name(label_english)
 		name_label.visible = true
+		Lang.say_item(label_english)       # the NPC says its name
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player01:

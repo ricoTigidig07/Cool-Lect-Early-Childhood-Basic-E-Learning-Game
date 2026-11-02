@@ -20,6 +20,12 @@ const TABLES := {
 	"ceb": preload("res://scripts/lang/dialogue_ceb.gd"),
 }
 
+const ITEM_NAMES := preload("res://scripts/lang/item_names.gd")
+## Who says the item names in each subject (the subject's NPC).
+const ITEM_VOICE := {"fruits": "merchant", "animals": "farmer", "alphabets": "teacher",
+		"numbers": "grandma", "shapes": "builder", "colors": "painter"}
+const ITEM_REPEAT_MS := 2500     # the same item is not said again within this time
+
 var code := "en"
 ## True once a language was picked (a new player picks it on the first screen).
 var chosen := false
@@ -60,3 +66,45 @@ func line(english: String) -> String:
 
 func voice_dir() -> String:
 	return VOICE_DIRS[code]
+
+# ---------- item names ----------
+
+var _item_voice: AudioStreamPlayer
+var _item_said := {}      # item key -> time it was last said
+
+## An item's name ("Apple", "Capital A", "Red paint") in the chosen language.
+func item_name(english: String) -> String:
+	if code == "en" or not ITEM_NAMES.NAMES.has(english):
+		return english
+	return ITEM_NAMES.NAMES[english][1 if code == "ceb" else 0]
+
+## "Apple" -> apple, "Capital A" / "Small a" -> letter_a, "Red paint" -> paint_red
+func item_key(english: String) -> String:
+	if english.begins_with("Capital ") or english.begins_with("Small "):
+		return "letter_" + english.right(1).to_lower()
+	if english.ends_with(" paint"):
+		return "paint_" + english.get_slice(" ", 0).to_lower()
+	return english.to_lower().replace(" ", "_")
+
+## The subject's NPC says the item's name (cut from their voice-over), in the chosen language.
+## Clips: assets/audio/voice*/<npc>/item_<key>.ogg
+func say_item(english: String) -> void:
+	if GameUIManager.talking or (GameUIManager.dialogue_panel and is_instance_valid(GameUIManager.dialogue_panel) \
+			and GameUIManager.dialogue_panel.visible):
+		return
+	var npc: String = ITEM_VOICE.get(GameManager.current_subject, "")
+	if npc == "":
+		return
+	var path := "%s%s/item_%s.ogg" % [voice_dir(), npc, item_key(english)]
+	var now := Time.get_ticks_msec()
+	if now - int(_item_said.get(path, -100000)) < ITEM_REPEAT_MS:
+		return
+	if not ResourceLoader.exists(path):
+		return
+	_item_said[path] = now
+	if _item_voice == null:
+		_item_voice = AudioStreamPlayer.new()
+		_item_voice.bus = &"SFX"
+		add_child(_item_voice)
+	_item_voice.stream = load(path)
+	_item_voice.play()
