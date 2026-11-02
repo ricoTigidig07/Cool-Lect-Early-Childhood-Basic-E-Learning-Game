@@ -6,11 +6,11 @@ Pixabay Content License: https://pixabay.com/service/terms/
 The license certificates downloaded from Pixabay are kept next to this file.
 
 1. Main menu - assets/audio/bgm/menu.ogg
+   "Bouncy Plant Parade" by Ncone
    Original file: ncone-bouncy-plabouncy-plant-parade-playful-cute-gament-parade-535720.mp3
    Pixabay audio ID: 535720
-   License certificate: NOT ADDED YET (the Credits.txt that came with it was empty).
-   -> Download the certificate for this song from its Pixabay page and save it here
-      as menu_music_license_pixabay_535720.txt
+   License: Pixabay Content License (free to use, no attribution required).
+   No license certificate: Pixabay did not give one for this download.
 
 2. In-game (inside every level) - assets/audio/bgm/gameplay.ogg
    "Game Gaming Video Game Music" by tatamusic

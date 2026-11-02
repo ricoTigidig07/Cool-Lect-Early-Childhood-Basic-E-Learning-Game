@@ -1,9 +1,1135 @@
 [gd_scene format=3 uid="uid://bf2i0cx3r0b58"]
 
-[node name="Credits" type="Control" unique_id=672481190]
+[ext_resource type="Script" path="res://scenes/credits.gd" id="1_script"]
+[ext_resource type="Theme" path="res://assets/UI/cool_lect_theme.tres" id="2_theme"]
+[ext_resource type="PackedScene" path="res://scenes/main_menu/menu_background.tscn" id="3_bg"]
+[ext_resource type="FontFile" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="4_font"]
+[ext_resource type="Texture2D" path="res://scenes/arrow_left.png" id="5_arrow"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/Poco.ttf" id="6_poco"]
+[ext_resource type="Texture2D" path="res://assets/UI/crown.png" id="7_crown"]
+[ext_resource type="Texture2D" path="res://assets/sprites/credits_team/john.png" id="s_john"]
+[ext_resource type="Texture2D" path="res://assets/sprites/credits_team/humphrey.png" id="s_humphrey"]
+[ext_resource type="Texture2D" path="res://assets/sprites/credits_team/tantan.png" id="s_tantan"]
+[ext_resource type="Texture2D" path="res://assets/sprites/credits_team/jewe.png" id="s_jewe"]
+[ext_resource type="Texture2D" path="res://assets/sprites/credits_team/iven.png" id="s_iven"]
+[ext_resource type="Texture2D" path="res://assets/sprites/credits_team/ryan.png" id="s_ryan"]
+[ext_resource type="PackedScene" path="res://scenes/credits/team_member.tscn" id="8_member"]
+[ext_resource type="SpriteFrames" path="res://resources/npcs/teacher_frames.tres" id="n_teacher"]
+[ext_resource type="SpriteFrames" path="res://resources/npcs/farmer_frames.tres" id="n_farmer"]
+[ext_resource type="SpriteFrames" path="res://resources/npcs/grandma_frames.tres" id="n_grandma"]
+[ext_resource type="SpriteFrames" path="res://resources/npcs/merchant_frames.tres" id="n_merchant"]
+[ext_resource type="SpriteFrames" path="res://resources/npcs/builder_frames.tres" id="n_builder"]
+[ext_resource type="SpriteFrames" path="res://resources/npcs/painter_frames.tres" id="n_painter"]
+[ext_resource type="Texture2D" path="res://scenes/collectables/alphabets/capital_A.tres" id="i_0"]
+[ext_resource type="Texture2D" path="res://scenes/objects/icons/apple.tres" id="i_1"]
+[ext_resource type="Texture2D" path="res://scenes/collectables/numbers/number_3.tres" id="i_2"]
+[ext_resource type="Texture2D" path="res://scenes/objects/icons/fruits/banana.tres" id="i_3"]
+[ext_resource type="Texture2D" path="res://scenes/collectables/alphabets/capital_C.tres" id="i_4"]
+[ext_resource type="Texture2D" path="res://scenes/objects/icons/egg.tres" id="i_5"]
+[ext_resource type="Texture2D" path="res://scenes/collectables/numbers/number_5.tres" id="i_6"]
+[ext_resource type="Texture2D" path="res://scenes/objects/icons/fruits/grapes.tres" id="i_7"]
+
+[sub_resource type="LabelSettings" id="LS_big"]
+font = ExtResource("4_font")
+font_size = 56
+font_color = Color(1, 0.86, 0.36, 1)
+outline_size = 14
+outline_color = Color(0.29, 0.17, 0.1, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LS_head"]
+font = ExtResource("4_font")
+font_size = 42
+font_color = Color(1, 0.86, 0.36, 1)
+outline_size = 12
+outline_color = Color(0.29, 0.17, 0.1, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LS_sub"]
+font = ExtResource("4_font")
+font_size = 28
+font_color = Color(1, 0.86, 0.36, 1)
+outline_size = 10
+outline_color = Color(0.29, 0.17, 0.1, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LS_name"]
+font = ExtResource("4_font")
+font_size = 28
+font_color = Color(1, 0.97, 0.88, 1)
+outline_size = 10
+outline_color = Color(0.29, 0.17, 0.1, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LS_role"]
+font = ExtResource("6_poco")
+font_size = 26
+font_color = Color(0.98, 0.9, 0.74, 1)
+outline_size = 8
+outline_color = Color(0.29, 0.17, 0.1, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LS_line"]
+font = ExtResource("6_poco")
+font_size = 28
+font_color = Color(1, 0.97, 0.88, 1)
+outline_size = 8
+outline_color = Color(0.29, 0.17, 0.1, 1)
+shadow_size = 0
+
+[sub_resource type="StyleBoxFlat" id="SB_frame"]
+bg_color = Color(0.64, 0.82, 0.49, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.55, 0.35, 0.22, 1)
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 4
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="Animation" id="An_roll"]
+length = 51.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roll/Strip:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 49.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [480.0, -3206.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Finale:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 48.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Finale:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 48.15, 48.95),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Finale/Stage/Jewe:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 48.45, 48.7, 48.85),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Finale/Stage/John:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 48.7, 48.95, 49.1),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Finale/Stage/Ryan:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 48.95, 49.2, 49.35),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Finale/Stage/Tantan:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 49.2, 49.45, 49.6),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Finale/Stage/Humphrey:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 49.45, 49.7, 49.85),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Finale/Stage/Iven:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 49.7, 49.95, 50.1),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Finale/Thanks:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 48.65, 48.95, 49.15),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Dim:color")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 48.15, 48.95),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.12, 0.08, 0.05, 0.5), Color(0.12, 0.08, 0.05, 0.5), Color(0.12, 0.08, 0.05, 0.3)]
+}
+
+[sub_resource type="Animation" id="An_idle"]
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Finale/Thanks:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2, 2.4),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [-0.03, 0.03, -0.03]
+}
+
+[sub_resource type="Animation" id="An_float"]
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftLane/Item1:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [170.0, 162.0, 170.0, 162.0, 170.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftLane/Item1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [0.15, -0.15, 0.15]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftLane/Item2:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [232.0, 240.0, 232.0, 240.0, 232.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftLane/Item2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [-0.15, 0.15, -0.15]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftLane/Item3:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [430.0, 422.0, 430.0, 422.0, 430.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LeftLane/Item3:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [0.15, -0.15, 0.15]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LeftLane/Item4:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [652.0, 660.0, 652.0, 660.0, 652.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LeftLane/Item4:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [-0.15, 0.15, -0.15]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RightLane/Item5:position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [95.0, 87.0, 95.0, 87.0, 95.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RightLane/Item5:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [0.15, -0.15, 0.15]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("RightLane/Item6:position:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [322.0, 330.0, 322.0, 330.0, 322.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("RightLane/Item6:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [-0.15, 0.15, -0.15]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("RightLane/Item7:position:y")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [560.0, 552.0, 560.0, 552.0, 560.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("RightLane/Item7:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [0.15, -0.15, 0.15]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("RightLane/Item8:position:y")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2),
+"update": 0,
+"values": [522.0, 530.0, 522.0, 530.0, 522.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("RightLane/Item8:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [-0.15, 0.15, -0.15]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_float"]
+_data = {
+&"float": SubResource("An_float")
+}
+
+[sub_resource type="Animation" id="An_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Roll/Strip:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [480.0]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib"]
+_data = {
+&"RESET": SubResource("An_reset"),
+&"idle": SubResource("An_idle"),
+&"roll": SubResource("An_roll")
+}
+
+[node name="Credits" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
+
+[node name="MenuBackground" parent="." instance=ExtResource("3_bg")]
+
+[node name="World" parent="MenuBackground"]
+item_count = 0
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.12, 0.08, 0.05, 0.5)
+
+[node name="LeftLane" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 220.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Teacher" type="AnimatedSprite2D" parent="LeftLane"]
+texture_filter = 1
+position = Vector2(95, 330)
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("n_teacher")
+animation = &"idle_front"
+autoplay = "idle_front"
+flip_h = false
+
+[node name="Grandma" type="AnimatedSprite2D" parent="LeftLane"]
+texture_filter = 1
+position = Vector2(120, 560)
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("n_grandma")
+animation = &"idle_front"
+autoplay = "idle_front"
+flip_h = false
+
+[node name="Item1" type="Sprite2D" parent="LeftLane"]
+texture_filter = 1
+position = Vector2(70, 170)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("i_0")
+
+[node name="Item2" type="Sprite2D" parent="LeftLane"]
+texture_filter = 1
+position = Vector2(170, 240)
+scale = Vector2(4.0, 4.0)
+texture = ExtResource("i_1")
+
+[node name="Item3" type="Sprite2D" parent="LeftLane"]
+texture_filter = 1
+position = Vector2(165, 430)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("i_2")
+
+[node name="Item4" type="Sprite2D" parent="LeftLane"]
+texture_filter = 1
+position = Vector2(60, 660)
+scale = Vector2(4.0, 4.0)
+texture = ExtResource("i_3")
+
+[node name="RightLane" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Merchant" type="AnimatedSprite2D" parent="RightLane"]
+texture_filter = 1
+position = Vector2(125, 200)
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("n_merchant")
+animation = &"idle_front"
+autoplay = "idle_front"
+flip_h = true
+
+[node name="Farmer" type="AnimatedSprite2D" parent="RightLane"]
+texture_filter = 1
+position = Vector2(95, 450)
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("n_farmer")
+animation = &"idle_front"
+autoplay = "idle_front"
+flip_h = true
+
+[node name="Builder" type="AnimatedSprite2D" parent="RightLane"]
+texture_filter = 1
+position = Vector2(140, 650)
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("n_builder")
+animation = &"idle_front"
+autoplay = "idle_front"
+flip_h = true
+
+[node name="Item5" type="Sprite2D" parent="RightLane"]
+texture_filter = 1
+position = Vector2(60, 95)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("i_4")
+
+[node name="Item6" type="Sprite2D" parent="RightLane"]
+texture_filter = 1
+position = Vector2(175, 330)
+scale = Vector2(4.0, 4.0)
+texture = ExtResource("i_5")
+
+[node name="Item7" type="Sprite2D" parent="RightLane"]
+texture_filter = 1
+position = Vector2(55, 560)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("i_6")
+
+[node name="Item8" type="Sprite2D" parent="RightLane"]
+texture_filter = 1
+position = Vector2(170, 530)
+scale = Vector2(4.0, 4.0)
+texture = ExtResource("i_7")
+
+[node name="Roll" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+clip_contents = true
+mouse_filter = 2
+
+[node name="Strip" type="VBoxContainer" parent="Roll"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -410.0
+offset_top = 480.0
+offset_right = 410.0
+offset_bottom = 3686
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 28
+
+[node name="Title" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "Cool-LecT"
+label_settings = SubResource("LS_big")
+horizontal_alignment = 1
+
+[node name="Sub" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "Credits"
+label_settings = SubResource("LS_head")
+horizontal_alignment = 1
+
+[node name="Gap0" type="Control" parent="Roll/Strip"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TeamHead" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "Meet the Team"
+label_settings = SubResource("LS_head")
+horizontal_alignment = 1
+
+[node name="Member1" type="HBoxContainer" parent="Roll/Strip"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Holder" type="Control" parent="Roll/Strip/Member1"]
+custom_minimum_size = Vector2(250, 270)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Member" parent="Roll/Strip/Member1/Holder" instance=ExtResource("8_member")]
+position = Vector2(125, 210)
+sheet = ExtResource("s_john")
+nickname = "RICO"
+sprite_scale = 5.0
+
+[node name="Info" type="VBoxContainer" parent="Roll/Strip/Member1"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Name" type="Label" parent="Roll/Strip/Member1/Info"]
+layout_mode = 2
+text = "John Rico G. Paciencia"
+label_settings = SubResource("LS_name")
+horizontal_alignment = 0
+autowrap_mode = 3
+
+[node name="Line" type="ColorRect" parent="Roll/Strip/Member1/Info"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 0.86, 0.36, 0.8)
+
+[node name="Roles" type="Label" parent="Roll/Strip/Member1/Info"]
+layout_mode = 2
+text = "Project Lead\nGame Designer\nLead Programmer\nGameplay Programmer\nUI Programmer\nArt Director\nUI/UX Designer\nWriter & Content Designer"
+label_settings = SubResource("LS_role")
+horizontal_alignment = 0
+
+[node name="Member2" type="HBoxContainer" parent="Roll/Strip"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Info" type="VBoxContainer" parent="Roll/Strip/Member2"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Name" type="Label" parent="Roll/Strip/Member2/Info"]
+layout_mode = 2
+text = "Humphrey M. Basas"
+label_settings = SubResource("LS_name")
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Line" type="ColorRect" parent="Roll/Strip/Member2/Info"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 0.86, 0.36, 0.8)
+
+[node name="Roles" type="Label" parent="Roll/Strip/Member2/Info"]
+layout_mode = 2
+text = "Game Designer\nArt Director\nCharacter Artist\nSprite Artist\nAnimator\nWriter & Content Designer"
+label_settings = SubResource("LS_role")
+horizontal_alignment = 2
+
+[node name="Holder" type="Control" parent="Roll/Strip/Member2"]
+custom_minimum_size = Vector2(250, 270)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Member" parent="Roll/Strip/Member2/Holder" instance=ExtResource("8_member")]
+position = Vector2(125, 210)
+sheet = ExtResource("s_humphrey")
+nickname = "EGG"
+sprite_scale = 5.0
+speed = 0.5
+
+[node name="Member3" type="HBoxContainer" parent="Roll/Strip"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Holder" type="Control" parent="Roll/Strip/Member3"]
+custom_minimum_size = Vector2(250, 270)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Member" parent="Roll/Strip/Member3/Holder" instance=ExtResource("8_member")]
+position = Vector2(125, 210)
+sheet = ExtResource("s_tantan")
+nickname = "TANTAN"
+sprite_scale = 5.0
+
+[node name="Info" type="VBoxContainer" parent="Roll/Strip/Member3"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Name" type="Label" parent="Roll/Strip/Member3/Info"]
+layout_mode = 2
+text = "Jonathan P. Ouano"
+label_settings = SubResource("LS_name")
+horizontal_alignment = 0
+autowrap_mode = 3
+
+[node name="Line" type="ColorRect" parent="Roll/Strip/Member3/Info"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 0.86, 0.36, 0.8)
+
+[node name="Roles" type="Label" parent="Roll/Strip/Member3/Info"]
+layout_mode = 2
+text = "Game Designer\nLevel Designer\nCharacter Artist\nSprite Artist\nAnimator\nWriter & Content Designer\nQA / Playtester"
+label_settings = SubResource("LS_role")
+horizontal_alignment = 0
+
+[node name="Member4" type="HBoxContainer" parent="Roll/Strip"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Info" type="VBoxContainer" parent="Roll/Strip/Member4"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Name" type="Label" parent="Roll/Strip/Member4/Info"]
+layout_mode = 2
+text = "Jeruel L. Malubay"
+label_settings = SubResource("LS_name")
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Line" type="ColorRect" parent="Roll/Strip/Member4/Info"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 0.86, 0.36, 0.8)
+
+[node name="Roles" type="Label" parent="Roll/Strip/Member4/Info"]
+layout_mode = 2
+text = "Game Designer\nCharacter Artist\nSprite Artist\nAnimator\nWriter & Content Designer\nQA / Playtester"
+label_settings = SubResource("LS_role")
+horizontal_alignment = 2
+
+[node name="Holder" type="Control" parent="Roll/Strip/Member4"]
+custom_minimum_size = Vector2(250, 270)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Member" parent="Roll/Strip/Member4/Holder" instance=ExtResource("8_member")]
+position = Vector2(125, 210)
+sheet = ExtResource("s_jewe")
+nickname = "JEWE"
+sprite_scale = 5.0
+
+[node name="Member5" type="HBoxContainer" parent="Roll/Strip"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Holder" type="Control" parent="Roll/Strip/Member5"]
+custom_minimum_size = Vector2(250, 270)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Member" parent="Roll/Strip/Member5/Holder" instance=ExtResource("8_member")]
+position = Vector2(125, 210)
+sheet = ExtResource("s_iven")
+nickname = "IVEN"
+sprite_scale = 5.0
+speed = 0.8
+
+[node name="Info" type="VBoxContainer" parent="Roll/Strip/Member5"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Name" type="Label" parent="Roll/Strip/Member5/Info"]
+layout_mode = 2
+text = "Iven Christian T. Comanda"
+label_settings = SubResource("LS_name")
+horizontal_alignment = 0
+autowrap_mode = 3
+
+[node name="Line" type="ColorRect" parent="Roll/Strip/Member5/Info"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 0.86, 0.36, 0.8)
+
+[node name="Roles" type="Label" parent="Roll/Strip/Member5/Info"]
+layout_mode = 2
+text = "Sprite Artist\nWriter & Content Designer\nQA / Playtester"
+label_settings = SubResource("LS_role")
+horizontal_alignment = 0
+
+[node name="Member6" type="HBoxContainer" parent="Roll/Strip"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Info" type="VBoxContainer" parent="Roll/Strip/Member6"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Name" type="Label" parent="Roll/Strip/Member6/Info"]
+layout_mode = 2
+text = "Ryan C. Getes"
+label_settings = SubResource("LS_name")
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Line" type="ColorRect" parent="Roll/Strip/Member6/Info"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 0.86, 0.36, 0.8)
+
+[node name="Roles" type="Label" parent="Roll/Strip/Member6/Info"]
+layout_mode = 2
+text = "Sprite Artist\nWriter & Content Designer\nQA / Playtester"
+label_settings = SubResource("LS_role")
+horizontal_alignment = 2
+
+[node name="Holder" type="Control" parent="Roll/Strip/Member6"]
+custom_minimum_size = Vector2(250, 270)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Member" parent="Roll/Strip/Member6/Holder" instance=ExtResource("8_member")]
+position = Vector2(125, 210)
+sheet = ExtResource("s_ryan")
+nickname = "RYAN"
+sprite_scale = 5.0
+
+[node name="Gap1" type="Control" parent="Roll/Strip"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Head1" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "Special Thanks"
+label_settings = SubResource("LS_head")
+horizontal_alignment = 1
+
+[node name="Lines1" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "Capstone Adviser:  Sir Kenneth L. Dugaria\nIT Expert:  Ma'am Myla G. Raminez"
+label_settings = SubResource("LS_line")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Gap2" type="Control" parent="Roll/Strip"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Head2" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "Third Party Assets"
+label_settings = SubResource("LS_head")
+horizontal_alignment = 1
+
+[node name="Gap3" type="Control" parent="Roll/Strip"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Head3" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "Sound Design"
+label_settings = SubResource("LS_sub")
+horizontal_alignment = 1
+
+[node name="Lines3" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "\"Bouncy Plant Parade\" by Ncone\n\"Game Gaming Video Game Music\" by tatamusic\n\"Gaming Game Video Game Music\" by viacheslavstarostin\nMusic from Pixabay  (Pixabay Content License)\nVoices:  ElevenLabs"
+label_settings = SubResource("LS_line")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Gap4" type="Control" parent="Roll/Strip"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Head4" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "Art"
+label_settings = SubResource("LS_sub")
+horizontal_alignment = 1
+
+[node name="Lines4" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "Sprout Lands asset packs by Cup Nooble"
+label_settings = SubResource("LS_line")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Gap5" type="Control" parent="Roll/Strip"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Head5" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "AI Assistant"
+label_settings = SubResource("LS_sub")
+horizontal_alignment = 1
+
+[node name="Lines5" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "Claude AI  (Anthropic)"
+label_settings = SubResource("LS_line")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Gap6" type="Control" parent="Roll/Strip"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Head6" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "Game Engine"
+label_settings = SubResource("LS_sub")
+horizontal_alignment = 1
+
+[node name="Lines6" type="Label" parent="Roll/Strip"]
+layout_mode = 2
+text = "Godot Engine"
+label_settings = SubResource("LS_line")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="GapEnd" type="Control" parent="Roll/Strip"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Finale" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+visible = false
+modulate = Color(1, 1, 1, 0)
+mouse_filter = 2
+
+[node name="Thanks" type="Label" parent="Finale"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 22.0
+offset_right = 400.0
+offset_bottom = 92.0
+grow_horizontal = 2
+text = "Thank you for playing!"
+label_settings = SubResource("LS_big")
+horizontal_alignment = 1
+vertical_alignment = 1
+pivot_offset = Vector2(400, 35)
+
+[node name="Stage" type="Control" parent="Finale"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="Jewe" parent="Finale/Stage" instance=ExtResource("8_member")]
+position = Vector2(-210, 330)
+sheet = ExtResource("s_jewe")
+nickname = "JEWE"
+sprite_scale = 4.0
+
+[node name="John" parent="Finale/Stage" instance=ExtResource("8_member")]
+position = Vector2(0, 315)
+sheet = ExtResource("s_john")
+nickname = "RICO"
+sprite_scale = 4.0
+
+[node name="Ryan" parent="Finale/Stage" instance=ExtResource("8_member")]
+position = Vector2(210, 330)
+sheet = ExtResource("s_ryan")
+nickname = "RYAN"
+sprite_scale = 4.0
+
+[node name="Tantan" parent="Finale/Stage" instance=ExtResource("8_member")]
+position = Vector2(-300, 560)
+sheet = ExtResource("s_tantan")
+nickname = "TANTAN"
+sprite_scale = 4.0
+
+[node name="Humphrey" parent="Finale/Stage" instance=ExtResource("8_member")]
+position = Vector2(0, 575)
+sheet = ExtResource("s_humphrey")
+nickname = "EGG"
+sprite_scale = 4.0
+speed = 0.5
+
+[node name="Iven" parent="Finale/Stage" instance=ExtResource("8_member")]
+position = Vector2(300, 560)
+sheet = ExtResource("s_iven")
+nickname = "IVEN"
+sprite_scale = 4.0
+speed = 0.8
+
+[node name="Team" type="Label" parent="Finale"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -72.0
+offset_right = 400.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "- The Cool-LecT Team -"
+label_settings = SubResource("LS_name")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 26.0
+offset_right = 164.0
+offset_bottom = 82.0
+text = "Back"
+icon = ExtResource("5_arrow")
+expand_icon = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("Lib")
+}
+autoplay = &"roll"
+
+[node name="FloatPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("Lib_float")
+}
+autoplay = &"float"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]
+
+[editable path="MenuBackground"]
