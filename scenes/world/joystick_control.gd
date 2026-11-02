@@ -1,7 +1,7 @@
 extends Control
 ## Big touch joystick for phones (also works with the mouse on a computer).
 ## The whole bottom-left area is the touch zone: put a finger anywhere there and the
-## joystick jumps under it, then drag to walk. It follows the finger if it goes far.
+## joystick appears right under it and stays fixed there while you drag to walk.
 ## Only the finger that started it can move it, so the hand button works at the same time.
 
 @onready var base: Control = $Base
@@ -64,18 +64,13 @@ func _start(finger: int, at: Vector2) -> void:
 	_finger = finger
 	if _back:
 		_back.kill()
-	# touched outside the circle: the joystick jumps under the finger
-	if at.distance_to(_center()) > base.size.x * 0.5:
-		_place(at)
+	# the joystick sits fixed where the finger touched
+	_place(at)
 	anim.play("press")
 	_move(at)
 
 func _move(at: Vector2) -> void:
 	var v := at - _center()
-	var far := _travel() * 1.35
-	if v.length() > far:        # the finger went far away: drag the joystick along
-		_place(_center() + v.normalized() * (v.length() - far))
-		v = at - _center()
 	var knob_v := v.limit_length(_travel())
 	knob.position = base.size * 0.5 - knob.size * 0.5 + knob_v
 	if v.length() < _travel() * DEAD_ZONE:

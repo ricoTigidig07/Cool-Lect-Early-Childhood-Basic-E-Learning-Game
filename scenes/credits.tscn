@@ -89,7 +89,7 @@ shadow_size = 4
 shadow_offset = Vector2(0, 4)
 
 [sub_resource type="Animation" id="An_roll"]
-length = 51.15
+length = 51.41
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -97,10 +97,10 @@ tracks/0/path = NodePath("Roll/Strip:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 49.15),
+"times": PackedFloat32Array(0, 49.41),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [480.0, -3206.0]
+"values": [480.0, -3226.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -109,7 +109,7 @@ tracks/1/path = NodePath("Finale:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 48.15),
+"times": PackedFloat32Array(0, 48.41),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -121,7 +121,7 @@ tracks/2/path = NodePath("Finale:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 48.15, 48.95),
+"times": PackedFloat32Array(0, 48.41, 49.21),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -133,7 +133,7 @@ tracks/3/path = NodePath("Finale/Stage/Jewe:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 48.45, 48.7, 48.85),
+"times": PackedFloat32Array(0, 48.71, 48.96, 49.11),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -145,7 +145,7 @@ tracks/4/path = NodePath("Finale/Stage/John:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 48.7, 48.95, 49.1),
+"times": PackedFloat32Array(0, 48.96, 49.21, 49.36),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -157,7 +157,7 @@ tracks/5/path = NodePath("Finale/Stage/Ryan:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 48.95, 49.2, 49.35),
+"times": PackedFloat32Array(0, 49.21, 49.46, 49.61),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -169,7 +169,7 @@ tracks/6/path = NodePath("Finale/Stage/Tantan:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 49.2, 49.45, 49.6),
+"times": PackedFloat32Array(0, 49.46, 49.71, 49.86),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -181,7 +181,7 @@ tracks/7/path = NodePath("Finale/Stage/Humphrey:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 49.45, 49.7, 49.85),
+"times": PackedFloat32Array(0, 49.71, 49.96, 50.11),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -193,7 +193,7 @@ tracks/8/path = NodePath("Finale/Stage/Iven:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 49.7, 49.95, 50.1),
+"times": PackedFloat32Array(0, 49.96, 50.21, 50.36),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -205,7 +205,7 @@ tracks/9/path = NodePath("Finale/Thanks:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 48.65, 48.95, 49.15),
+"times": PackedFloat32Array(0, 48.91, 49.21, 49.41),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -217,7 +217,7 @@ tracks/10/path = NodePath("Dim:color")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 48.15, 48.95),
+"times": PackedFloat32Array(0, 48.41, 49.21),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(0.12, 0.08, 0.05, 0.5), Color(0.12, 0.08, 0.05, 0.5), Color(0.12, 0.08, 0.05, 0.3)]
@@ -617,7 +617,7 @@ anchor_right = 0.5
 offset_left = -410.0
 offset_top = 480.0
 offset_right = 410.0
-offset_bottom = 3686
+offset_bottom = 3706
 grow_horizontal = 2
 mouse_filter = 2
 theme_override_constants/separation = 28
@@ -717,7 +717,7 @@ color = Color(1, 0.86, 0.36, 0.8)
 
 [node name="Roles" type="Label" parent="Roll/Strip/Member2/Info"]
 layout_mode = 2
-text = "Game Designer\nArt Director\nCharacter Artist\nSprite Artist\nAnimator\nWriter & Content Designer"
+text = "Game Designer\nLevel Designer\nArt Director\nCharacter Artist\nSprite Artist\nAnimator\nWriter & Content Designer"
 label_settings = SubResource("LS_role")
 horizontal_alignment = 2
 
@@ -806,7 +806,7 @@ color = Color(1, 0.86, 0.36, 0.8)
 
 [node name="Roles" type="Label" parent="Roll/Strip/Member4/Info"]
 layout_mode = 2
-text = "Game Designer\nCharacter Artist\nSprite Artist\nAnimator\nWriter & Content Designer\nQA / Playtester"
+text = "Game Designer\nLevel Designer\nCharacter Artist\nSprite Artist\nAnimator\nWriter & Content Designer\nQA / Playtester"
 label_settings = SubResource("LS_role")
 horizontal_alignment = 2
 
