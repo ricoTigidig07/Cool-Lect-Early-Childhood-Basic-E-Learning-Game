@@ -31,6 +31,18 @@ enum State { WANDER_IDLE, WANDER_MOVE, FOLLOW }
 var tamed := false
 
 const SEPARATION_PUSH := 40.0
+## Animals have a small "feet" circle that can't go through walls, fences, trees or water
+## (anything solid on collision layer 1). The player doesn't block them.
+const FEET_RADIUS := 4.0
+## A friend following the player that is stuck behind something for this long
+## walks through it for a moment, so it never gets left behind.
+const STUCK_TIME := 1.2
+const GHOST_TIME := 0.8
+
+var _feet := CircleShape2D.new()
+var _core := CircleShape2D.new()
+var _stuck := 0.0
+var _ghost := 0.0
 
 var state: State = State.WANDER_IDLE
 var current_idle_anim: String = ""
@@ -97,13 +109,64 @@ func _apply_separation(delta: float) -> void:
 		if away.length() > 0.001:
 			push += away.normalized() / away.length()
 	if push != Vector2.ZERO:
-		global_position += push.normalized() * SEPARATION_PUSH * delta
+		_try_move(push.normalized() * SEPARATION_PUSH * delta)
 
 func _move_toward(target: Vector2, speed: float, delta: float) -> void:
 	var dir = (target - global_position).normalized()
-	global_position += dir * speed * delta
+	var want: Vector2 = dir * speed * delta
+	var moved := _try_move(want)
 	sprite.play(anim_prefix + "_walk")
 	sprite.flip_h = dir.x < 0
+	if moved.length() < want.length() * 0.3:
+		if state == State.WANDER_MOVE:
+			_start_idle_pause()        # bumped into something: stop, then pick another spot
+			state = State.WANDER_IDLE
+		else:
+			_stuck += delta
+			if _stuck > STUCK_TIME:
+				_ghost = GHOST_TIME
+				_stuck = 0.0
+	else:
+		_stuck = 0.0
+
+## Moves as far as possible without going into anything solid; slides along walls.
+## Returns how far it really moved.
+func _try_move(motion: Vector2) -> Vector2:
+	if _ghost > 0.0:
+		_ghost -= get_physics_process_delta_time()
+		global_position += motion
+		return motion
+	var start := global_position
+	for m in [motion, Vector2(motion.x, 0), Vector2(0, motion.y)]:
+		if m.length() < 0.001:
+			continue
+		var f := _free_fraction(m)
+		if f > 0.0:
+			global_position += m * f
+			if f >= 0.999 or m != motion:
+				break
+	return global_position - start
+
+func _free_fraction(motion: Vector2) -> float:
+	var q := PhysicsShapeQueryParameters2D.new()
+	_feet.radius = FEET_RADIUS
+	q.shape = _feet
+	q.transform = Transform2D(0, global_position)
+	q.motion = motion
+	q.collision_mask = 1
+	q.collide_with_areas = false
+	q.collide_with_bodies = true
+	var player = get_tree().current_scene.get_node_or_null("Player") if get_tree().current_scene else null
+	if player:
+		q.exclude = [player.get_rid()]
+	var space := get_world_2d().direct_space_state
+	_core.radius = FEET_RADIUS - 1.5
+	q.shape = _core
+	if not space.intersect_shape(q, 1).is_empty():
+		return 1.0         # standing inside something (spawned on it): don't trap it
+	q.shape = _feet
+	var r := space.cast_motion(q)
+	return r[0] if r.size() > 0 else 1.0
 
 func _pick_new_wander_target() -> void:
 	var offset = Vector2(randf_range(-wander_radius, wander_radius), randf_range(-wander_radius, wander_radius))
