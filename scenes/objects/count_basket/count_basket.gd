@@ -53,6 +53,7 @@ func activate() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player01:
 		InteractionManager.register(self)
+		Lang.say_number(target_count)      # Lola Nena says the number on the sign
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player01:
@@ -66,7 +67,7 @@ func start_hold() -> void:
 	if GameUIManager.get_equipped_item() != accepted_item:
 		return
 	if is_full:
-		_show_pop("Too many!", Color(0.9, 0.3, 0.3))
+		_show_pop(Lang.word("Too many!"), Color(0.9, 0.3, 0.3))
 		AudioManager.play_sfx("wrong")
 		_shake_basket()
 		return
@@ -94,6 +95,7 @@ func _complete_hold() -> void:
 	AudioManager.play_sfx("place", 1.0 + 0.06 * current_count)   # a little higher for each one: counting up!
 	_add_item_sprite(current_count - 1)
 	_show_pop(str(current_count), Color(1, 1, 1))
+	Lang.say_number(current_count, true)     # counting out loud: one, two, three...
 	if current_count >= target_count:
 		_on_filled()
 

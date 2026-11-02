@@ -86,6 +86,30 @@ func item_key(english: String) -> String:
 		return "paint_" + english.get_slice(" ", 0).to_lower()
 	return english.to_lower().replace(" ", "_")
 
+## Lola Nena says a number (1-10) in the chosen language (assets/audio/voice*/grandma/item_num_<n>.ogg).
+## again = true: say it even if it was just said (counting eggs).
+func say_number(n: int, again := false) -> void:
+	if n < 1 or n > 10:
+		return
+	if not again and (GameUIManager.talking or (GameUIManager.dialogue_panel and \
+			is_instance_valid(GameUIManager.dialogue_panel) and GameUIManager.dialogue_panel.visible)):
+		return
+	var path := "%sgrandma/item_num_%d.ogg" % [voice_dir(), n]
+	var now := Time.get_ticks_msec()
+	if not again and now - int(_item_said.get(path, -100000)) < ITEM_REPEAT_MS:
+		return
+	if not ResourceLoader.exists(path):
+		return
+	_item_said[path] = now
+	_play_item(path)
+
+## A few words on screen (not dialogue) in the chosen language.
+const WORDS := {"Too many!": ["Sobra na!", "Sobra na!"]}
+func word(english: String) -> String:
+	if code == "en" or not WORDS.has(english):
+		return english
+	return WORDS[english][1 if code == "ceb" else 0]
+
 ## The subject's NPC says the item's name (cut from their voice-over), in the chosen language.
 ## Clips: assets/audio/voice*/<npc>/item_<key>.ogg
 func say_item(english: String) -> void:
@@ -102,6 +126,9 @@ func say_item(english: String) -> void:
 	if not ResourceLoader.exists(path):
 		return
 	_item_said[path] = now
+	_play_item(path)
+
+func _play_item(path: String) -> void:
 	if _item_voice == null:
 		_item_voice = AudioStreamPlayer.new()
 		_item_voice.bus = &"SFX"
