@@ -126,7 +126,8 @@ func _use(mirror: bool, only_main: bool, shift: Vector2) -> void:
 		p.visible = p in used
 		p.position = _local_pos(p, mirror, shift)
 		if p.visible:
-			bottom = maxf(bottom, p.position.y + p.texture.get_size().y)
+			var drawn := DepthSorter._drawn_bottom(p.texture, Rect2i(Vector2i.ZERO, p.texture.get_size()))
+			bottom = maxf(bottom, p.position.y + (drawn + 1 if drawn >= 0 else p.texture.get_size().y))
 	# sort at the bottom of the workplace: move this node there, the pieces stay in place
 	var sort_y := bottom - 2.0
 	position.y += sort_y

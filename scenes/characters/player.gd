@@ -16,6 +16,7 @@ const BOB_SPEED = 6.5
 const SHADOW_MIN_SCALE = 0.75
 const SHADOW_MAX_SCALE = 1.0
 
+var _rustle := 0.0          # 0..1, how much the plants near the player shake
 var last_direction = "down"  # remembers facing direction for idle state
 var bob_time: float = 0.0
 
@@ -70,6 +71,10 @@ func _physics_process(delta):
 	
 	velocity = direction * SPEED
 	move_and_slide()
+	# plants and bushes shake when the player walks past (plant_sway / bush_sway shaders)
+	_rustle = move_toward(_rustle, 1.0 if get_real_velocity().length() > 5.0 else 0.0, delta * 4.0)
+	RenderingServer.global_shader_parameter_set("player_pos", global_position)
+	RenderingServer.global_shader_parameter_set("player_speed", _rustle)
 	update_animation(direction, direction_name)
 	update_shadow(direction, delta)
 	update_held_item()

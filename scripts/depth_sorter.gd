@@ -85,6 +85,8 @@ static func apply(level: Node2D) -> void:
 			elif kind == ROOF:
 				roofs[_grid(layer, cell)] = [layer, cell]
 		if not tiles.is_empty():
+			tiles = _stack_pieces(layer, tiles, standing)
+		if not tiles.is_empty():
 			var sorted := _new_layer(layer, standing)
 			sorted.name = "%s_ysort" % layer.name
 			sorted.y_sort_enabled = true
@@ -93,10 +95,118 @@ static func apply(level: Node2D) -> void:
 	for part in _parts(objects, {}, true):
 		_make_piece(part, objects, standing, "Object")
 	for part in _parts(roofs, walls, false):
-		var holder := _make_piece(part, roofs, standing, "Roof", walls)
+		var holders := _make_roof(part, roofs, standing)
 		for g: Vector2i in part:
 			if doors.has(g):
-				_block(holder, Vector2(g) * 16.0 + Vector2(8, 8))
+				_block(holders[0], Vector2(g) * 16.0 + Vector2(8, 8))
+
+	# doors (and other small scenes) placed inside the tile group were drawn flat under everyone
+	var loose := []
+	for n in group.find_children("*", "Node2D", true, false):
+		if n is TileMapLayer or n.scene_file_path == "" or not n.find_children("*", "TileMapLayer", true, false).is_empty():
+			continue
+		var p := n.get_parent()
+		var in_layer := false
+		while p != group:
+			if p is TileMapLayer or p in loose:
+				in_layer = true
+			p = p.get_parent()
+		if not in_layer:
+			loose.append(n)
+	for n in loose:
+		n.reparent(standing)
+		align_to_drawn_bottom(n)
+	for n in level.find_children("*", "Node2D", true, false):
+		if n.get_script() and n.get_script().resource_path.get_file() in SORT_AT_DRAWN_BOTTOM:
+			align_to_drawn_bottom(n)
+
+## Objects whose pictures hang below their node position: they are sorted at the bottom of
+## what is drawn instead (else they cover the head of a player standing just in front of them).
+const SORT_AT_DRAWN_BOTTOM := ["easel.gd", "shape_board.gd", "letter_frame.gd", "count_basket.gd"]
+
+## Moves a node so it sorts at the lowest visible pixel of its pictures; its children are
+## moved back the other way, so nothing moves on screen.
+static func align_to_drawn_bottom(n: Node2D, inset := 2.0) -> void:
+	var bottom := -INF
+	for c in [n] + n.find_children("*", "", true, false):
+		if c is Control and not (c is Label) and not (c is Range) and c.is_visible_in_tree():
+			bottom = maxf(bottom, c.get_global_rect().end.y)     # boards / easels drawn with panels
+			continue
+		if not (c is Sprite2D or c is AnimatedSprite2D) or not c.is_visible_in_tree():
+			continue
+		var tex: Texture2D = null
+		if c is Sprite2D:
+			tex = c.texture
+		elif c.sprite_frames and c.sprite_frames.has_animation(c.animation):
+			tex = c.sprite_frames.get_frame_texture(c.animation, c.frame)
+		if tex == null:
+			continue
+		var region := Rect2i(Vector2i.ZERO, tex.get_size())
+		if c is Sprite2D and c.region_enabled:
+			region = Rect2i(c.region_rect)
+		var drawn := _drawn_bottom(tex, region)
+		if drawn < 0:
+			continue
+		var top: float = c.offset.y - (region.size.y / 2.0 if c.centered else 0.0)
+		var y: float = (c.get_global_transform() * Vector2(0, top + drawn + 1)).y
+		bottom = maxf(bottom, y)
+	if bottom == -INF:
+		return
+	var d := n.global_position.y - (bottom - inset)
+	if absf(d) < 1.0:
+		return
+	n.global_position.y -= d
+	for c in n.get_children():
+		if c is Node2D:
+			c.position.y += d
+		elif c is Control:
+			c.position.y += d
+
+## Tiles that are drawn from tiles right above / below each other in the picture form one
+## object (a bed is 2 tiles tall). Such stacks sort at their lowest tile, so the player is
+## never half in front / half behind them. Stacks with the same bottom row share one piece.
+## Returns the tiles that stay single.
+static func _stack_pieces(layer: TileMapLayer, tiles: Array[Vector2i], standing: Node2D) -> Array[Vector2i]:
+	var have := {}
+	for c in tiles:
+		have[c] = true
+	var rows := {}            # bottom cell y -> cells
+	var used := {}
+	for c in tiles:
+		var tn := _texture_name(layer, c)
+		if used.has(c) or tn.contains("fence") or tn.contains("walls") \
+				or not layer.tile_set.get_source(layer.get_cell_source_id(c)) is TileSetAtlasSource:
+			continue
+		var below := c + Vector2i(0, 1)
+		if have.has(below) and _same_object([layer, c], [layer, below], Vector2i(0, 1)):
+			continue          # not the bottom of its stack
+		var run: Array[Vector2i] = [c]
+		var up := c - Vector2i(0, 1)
+		while have.has(up) and _same_object([layer, up], [layer, run[-1]], Vector2i(0, 1)) and run.size() < 4:
+			run.append(up)
+			up -= Vector2i(0, 1)
+		if run.size() < 2:
+			continue
+		for r in run:
+			used[r] = true
+		if not rows.has(c.y):
+			rows[c.y] = []
+		rows[c.y].append_array(run)
+	for y in rows:
+		var cells: Array = rows[y]
+		var holder := Node2D.new()
+		holder.name = "Stack"
+		standing.add_child(holder)
+		var bottom := layer.to_global(layer.map_to_local(Vector2i(cells[0].x, y))).y + 8.0
+		holder.global_position = Vector2(0, bottom - FOOT_INSET)
+		var piece := _new_layer(layer, holder)
+		piece.name = "%s_stack" % layer.name
+		_move_cells(layer, piece, cells)
+	var rest: Array[Vector2i] = []
+	for c in tiles:
+		if not used.has(c):
+			rest.append(c)
+	return rest
 
 ## The level's tile group: the plain Node2D holding the TileMapLayers.
 static func _tile_group(level: Node) -> Node2D:
@@ -126,12 +236,16 @@ static func _kind(layer: TileMapLayer, cell: Vector2i, ground_layer: bool) -> in
 	if ground_layer:
 		return GROUND
 	var tex := _texture_name(layer, cell)
+	if tex == "basic_furniture.png" and layer.get_cell_atlas_coords(cell).y == 5:
+		return GROUND                        # carpets and rugs: always under the player
 	if tex.contains("roof"):
 		return ROOF
-	if tex.contains("walls") or tex.contains("door") or tex.contains("fence"):
+	if tex.contains("walls") or tex.contains("fence"):
 		return TILE
 	if _has_word(tex, OBJECT_TEX_WORDS):
-		return OBJECT
+		return OBJECT                        # barns, chicken houses, NPC houses (also "..._with_door")
+	if tex.contains("door"):
+		return TILE
 	if _has_word(tex, GROUND_TEX_WORDS):
 		return GROUND
 	return TILE
@@ -152,7 +266,11 @@ static func _set_tile_feet(tile_set: TileSet) -> void:
 			for a in source.get_alternative_tiles_count(coords):
 				var data: TileData = source.get_tile_data(coords, source.get_alternative_tile_id(coords, a))
 				var feet := region.size.y / 2.0 - FOOT_INSET - data.texture_origin.y
-				if physics and data.get_collision_polygons_count(0) > 0:
+				var drawn := _drawn_bottom(source.texture, region)
+				if drawn >= 0:
+					# lowest drawn pixel, a little up (the "feet" of the thing in the picture)
+					feet = -region.size.y / 2.0 + drawn + 1 - FOOT_INSET - 1 - data.texture_origin.y
+				elif physics and data.get_collision_polygons_count(0) > 0:
 					var lo := INF
 					var hi := -INF
 					for p in data.get_collision_polygons_count(0):
@@ -161,6 +279,25 @@ static func _set_tile_feet(tile_set: TileSet) -> void:
 							hi = max(hi, v.y)
 					feet = (lo + hi) / 2.0
 				data.y_sort_origin = int(round(feet))
+
+static var _images := {}
+## Lowest row with a visible pixel inside a tile's picture (-1 if empty).
+static func _drawn_bottom(tex: Texture2D, region: Rect2i) -> int:
+	if tex == null:
+		return -1
+	if not _images.has(tex):
+		var img := tex.get_image()
+		if img and img.is_compressed():
+			img.decompress()
+		_images[tex] = img
+	var img: Image = _images[tex]
+	if img == null:
+		return -1
+	for y in range(region.size.y - 1, -1, -1):
+		for x in region.size.x:
+			if img.get_pixel(region.position.x + x, region.position.y + y).a > 0.3:
+				return y
+	return -1
 
 static func _grid(layer: TileMapLayer, cell: Vector2i) -> Vector2i:
 	var p := layer.to_global(layer.map_to_local(cell))
@@ -205,6 +342,33 @@ static func _same_object(a: Array, b: Array, step: Vector2i) -> bool:
 	var lb: TileMapLayer = b[0]
 	return la == lb and la.get_cell_source_id(a[1]) == lb.get_cell_source_id(b[1]) \
 			and lb.get_cell_atlas_coords(b[1]) - la.get_cell_atlas_coords(a[1]) == step
+
+## A roof, cut into columns: each column sorts at the bottom of the walls under it
+## (or at its own bottom where it hangs over the side). Columns with the same bottom share a piece.
+static func _make_roof(part: Array, cells: Dictionary, standing: Node2D) -> Array:
+	var col_bottom := {}      # grid x -> lowest y (pixels)
+	for g: Vector2i in part:
+		var y: float
+		if cells.has(g):
+			var layer: TileMapLayer = cells[g][0]
+			var cell: Vector2i = cells[g][1]
+			var region: Rect2i = layer.tile_set.get_source(layer.get_cell_source_id(cell)).get_tile_texture_region(layer.get_cell_atlas_coords(cell))
+			y = layer.to_global(layer.map_to_local(cell)).y + region.size.y / 2.0
+		else:
+			y = g.y * 16.0 + 16.0      # a wall under the roof
+		col_bottom[g.x] = maxf(col_bottom.get(g.x, -INF), y)
+	var by_bottom := {}       # bottom -> roof grid cells
+	for g: Vector2i in part:
+		if cells.has(g):
+			var b: float = col_bottom[g.x]
+			if not by_bottom.has(b):
+				by_bottom[b] = []
+			by_bottom[b].append(g)
+	var holders := []
+	for b in by_bottom:
+		holders.append(_make_piece(by_bottom[b], cells, standing, "Roof"))
+		holders[-1].global_position.y = b - FOOT_INSET
+	return holders
 
 static func _make_piece(part: Array, cells: Dictionary, standing: Node2D, label: String, extra := {}) -> Node2D:
 	var bottom := -INF

@@ -4,11 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://6u1ux6hfioyp" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Items/item shadow.png" id="2_dyp2m"]
 [ext_resource type="SpriteFrames" uid="uid://b8v6g45voltm6" path="res://resources/character_animation.tres" id="3_dyp2m"]
 [ext_resource type="PackedScene" uid="uid://bl3t42ub1gqxg" path="res://scenes/components/hit_component.tscn" id="6_qgnko"]
-[ext_resource type="Shader" path="res://scenes/objects/nature/lively_light.gdshader" id="20_lively"]
-[ext_resource type="Texture2D" path="res://assets/fx/sparkle.png" id="21_spark"]
+[ext_resource type="Shader" uid="uid://dnipf20pormqy" path="res://scenes/objects/nature/lively_light.gdshader" id="20_lively"]
+[ext_resource type="Texture2D" uid="uid://ctxpghpj0jgys" path="res://assets/fx/sparkle.png" id="21_spark"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2l4js"]
-radius = 4.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kqtwu"]
+radius = 5.0
+height = 13.998665
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jk2m4"]
 radius = 3.0
@@ -166,13 +167,14 @@ sprite_frames = ExtResource("3_dyp2m")
 animation = &"walk_up"
 autoplay = "idle_front"
 
-[node name="HeldItem" type="Sprite2D" parent="AnimatedSprite2D2"]
+[node name="HeldItem" type="Sprite2D" parent="AnimatedSprite2D2" unique_id=2116162076]
 visible = false
 position = Vector2(0, 5)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1567545173]
-position = Vector2(0, -4)
-shape = SubResource("CircleShape2D_2l4js")
+position = Vector2(0, -6)
+rotation = -3.1277826
+shape = SubResource("CapsuleShape2D_kqtwu")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=794829696]
 position_smoothing_enabled = true
@@ -187,9 +189,9 @@ debug_color = Color(0.99552125, 0, 0.21178854, 0.41960785)
 [node name="Reactions" type="AnimationPlayer" parent="." unique_id=2068782874]
 libraries/ = SubResource("Lib_reactions")
 
-[node name="LightFilter" type="CanvasLayer" parent="."]
+[node name="LightFilter" type="CanvasLayer" parent="." unique_id=1065948826]
 
-[node name="Lively" type="ColorRect" parent="LightFilter"]
+[node name="Lively" type="ColorRect" parent="LightFilter" unique_id=1165661355]
 material = SubResource("ShaderMaterial_lively")
 anchors_preset = 15
 anchor_right = 1.0
@@ -198,15 +200,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Sparkles" type="CPUParticles2D" parent="."]
+[node name="Sparkles" type="CPUParticles2D" parent="." unique_id=1806817193]
 z_index = 20
 z_as_relative = false
 position = Vector2(0, -6)
 amount = 30
+texture = ExtResource("21_spark")
 lifetime = 7.0
 preprocess = 7.0
-local_coords = false
-texture = ExtResource("21_spark")
 emission_shape = 3
 emission_rect_extents = Vector2(200, 115)
 direction = Vector2(0.3, -1)
@@ -222,6 +223,6 @@ scale_amount_curve = SubResource("Curve_twinkle")
 color_ramp = SubResource("Gradient_fade")
 color_initial_ramp = SubResource("Gradient_pastel")
 
-[node name="SunLight" type="AnimationPlayer" parent="."]
+[node name="SunLight" type="AnimationPlayer" parent="." unique_id=1022030951]
 libraries/ = SubResource("Lib_sun")
 autoplay = &"sun_breathe"

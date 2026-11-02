@@ -31,18 +31,17 @@ enum State { WANDER_IDLE, WANDER_MOVE, FOLLOW }
 var tamed := false
 
 const SEPARATION_PUSH := 40.0
-## Animals have a small "feet" circle that can't go through walls, fences, trees or water
-## (anything solid on collision layer 1). The player doesn't block them.
-const FEET_RADIUS := 4.0
-## A friend following the player that is stuck behind something for this long
-## walks through it for a moment, so it never gets left behind.
-const STUCK_TIME := 1.2
-const GHOST_TIME := 0.8
+## Animals bump into things exactly like the player: they use the player's own collision
+## shape and collision mask (walls, fences, houses, trees, rocks, water...).
+## The player doesn't block them.
+## A friend following the player that is stuck for this long pops up next to the player.
+const STUCK_TIME := 2.0
 
-var _feet := CircleShape2D.new()
+var _shape: Shape2D = null          # the player's collision shape
+var _shape_offset := Vector2.ZERO   # where it sits on the player
+var _mask := 1
 var _core := CircleShape2D.new()
 var _stuck := 0.0
-var _ghost := 0.0
 
 var state: State = State.WANDER_IDLE
 var current_idle_anim: String = ""
@@ -124,18 +123,32 @@ func _move_toward(target: Vector2, speed: float, delta: float) -> void:
 		else:
 			_stuck += delta
 			if _stuck > STUCK_TIME:
-				_ghost = GHOST_TIME
 				_stuck = 0.0
+				_pop_to_player()
 	else:
 		_stuck = 0.0
+
+## Stuck behind something: appear right next to the player (a free spot), with a little hop.
+func _pop_to_player() -> void:
+	var player = _player()
+	if player == null:
+		return
+	var base: Vector2 = player.global_position
+	global_position = base + Vector2(0, 12)
+	for off in [Vector2(0, 14), Vector2(-14, 8), Vector2(14, 8), Vector2(-16, 0), Vector2(16, 0),
+			Vector2(0, -14), Vector2(-12, -10), Vector2(12, -10), Vector2(0, 24), Vector2(-24, 0), Vector2(24, 0)]:
+		if _is_free(base + off):
+			global_position = base + off
+			break
+	sprite.scale = Vector2(0.3, 0.3)
+	var t := create_tween()
+	t.tween_property(sprite, "scale", Vector2(1.15, 1.15), 0.12)
+	t.tween_property(sprite, "scale", Vector2.ONE, 0.1)
+	AudioManager.play_sfx("hop")
 
 ## Moves as far as possible without going into anything solid; slides along walls.
 ## Returns how far it really moved.
 func _try_move(motion: Vector2) -> Vector2:
-	if _ghost > 0.0:
-		_ghost -= get_physics_process_delta_time()
-		global_position += motion
-		return motion
 	var start := global_position
 	for m in [motion, Vector2(motion.x, 0), Vector2(0, motion.y)]:
 		if m.length() < 0.001:
@@ -147,24 +160,50 @@ func _try_move(motion: Vector2) -> Vector2:
 				break
 	return global_position - start
 
-func _free_fraction(motion: Vector2) -> float:
+func _player() -> Node2D:
+	return get_tree().current_scene.get_node_or_null("Player") if get_tree().current_scene else null
+
+## Copies the player's collision shape and mask (once).
+func _query() -> PhysicsShapeQueryParameters2D:
+	if _shape == null:
+		_shape = CircleShape2D.new()
+		(_shape as CircleShape2D).radius = 4.0
+		var player = _player()
+		if player:
+			_mask = player.collision_mask
+			for c in player.get_children():
+				if c is CollisionShape2D and not c.disabled and c.shape:
+					_shape = c.shape
+					_shape_offset = c.position
+					break
 	var q := PhysicsShapeQueryParameters2D.new()
-	_feet.radius = FEET_RADIUS
-	q.shape = _feet
-	q.transform = Transform2D(0, global_position)
-	q.motion = motion
-	q.collision_mask = 1
+	q.shape = _shape
+	q.collision_mask = _mask
 	q.collide_with_areas = false
 	q.collide_with_bodies = true
-	var player = get_tree().current_scene.get_node_or_null("Player") if get_tree().current_scene else null
+	var player = _player()
 	if player:
 		q.exclude = [player.get_rid()]
+	return q
+
+func _is_free(at: Vector2) -> bool:
+	var q := _query()
+	q.transform = Transform2D(0, at + _shape_offset)
+	return get_world_2d().direct_space_state.intersect_shape(q, 1).is_empty()
+
+func _free_fraction(motion: Vector2) -> float:
+	var q := _query()
+	q.transform = Transform2D(0, global_position + _shape_offset)
+	q.motion = motion
 	var space := get_world_2d().direct_space_state
-	_core.radius = FEET_RADIUS - 1.5
-	q.shape = _core
-	if not space.intersect_shape(q, 1).is_empty():
-		return 1.0         # standing inside something (spawned on it): don't trap it
-	q.shape = _feet
+	# standing inside something (spawned on it): don't trap it, let it walk out
+	var full := q.shape
+	if full is CircleShape2D:
+		_core.radius = maxf(1.0, full.radius - 1.5)
+		q.shape = _core
+		if not space.intersect_shape(q, 1).is_empty():
+			return 1.0
+		q.shape = full
 	var r := space.cast_motion(q)
 	return r[0] if r.size() > 0 else 1.0
 
