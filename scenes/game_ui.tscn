@@ -6,11 +6,7 @@
 [ext_resource type="Script" uid="uid://dgne8xfq8i7fw" path="res://scenes/world/avatar_panel.gd" id="4_36vcn"]
 [ext_resource type="SpriteFrames" uid="uid://mdg0i8hf5s5p" path="res://resources/avatar_animations.tres" id="5_x8pta"]
 [ext_resource type="Script" uid="uid://nk7rd473pimh" path="res://scenes/world/animated_sprite_2d.gd" id="7_5v8bm"]
-[ext_resource type="Script" uid="uid://dn86xv7iw6pxy" path="res://scenes/world/joystick_control.gd" id="8_8wu16"]
 [ext_resource type="Texture2D" uid="uid://be71c03j777y2" path="res://assets/UI/Basic_UI_Sprite.png" id="9_sdeak"]
-[ext_resource type="Texture2D" uid="uid://jxg4exvtla73" path="res://assets/UI/ui/Sprite sheets/buttons/Small Square Buttons.png" id="10_32nla"]
-[ext_resource type="Script" uid="uid://52n6hq8tmr0v" path="res://scenes/world/button.gd" id="11_h8a34"]
-[ext_resource type="Texture2D" uid="uid://cxgbi1ejfdjdq" path="res://assets/UI/ui/Sprite sheets/Mouse sprites/Catpaw Mouse icon.png" id="12_wbo4m"]
 [ext_resource type="Script" uid="uid://11lnif2mlihw" path="res://scenes/world/settings_button.gd" id="13_nlan2"]
 [ext_resource type="PackedScene" uid="uid://dqr0lj71i108g" path="res://scenes/ingame_settings.tscn" id="14_sfun4"]
 [ext_resource type="PackedScene" uid="uid://3hujl8yhh3o5" path="res://scenes/world/dialogue_panel.tscn" id="19_2rmtt"]
@@ -22,6 +18,8 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/tutorial.tscn" id="41_tutorial"]
 [ext_resource type="PackedScene" path="res://scenes/ui/player_sign.tscn" id="42_sign"]
 [ext_resource type="PackedScene" path="res://scenes/ui/talk_mode.tscn" id="43_talk"]
+[ext_resource type="PackedScene" path="res://scenes/ui/joystick.tscn" id="50_joy"]
+[ext_resource type="PackedScene" path="res://scenes/ui/action_button.tscn" id="51_act"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bj1rn"]
 texture = ExtResource("3_5kjus")
@@ -30,49 +28,6 @@ texture_margin_top = 37.0
 texture_margin_right = 38.0
 texture_margin_bottom = 38.0
 region_rect = Rect2(11, 12, 58, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ejiy"]
-atlas = ExtResource("9_sdeak")
-region = Rect2(375, 72, 18, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dhwrh"]
-atlas = ExtResource("9_sdeak")
-region = Rect2(375, 40, 18, 17)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mksnn"]
-atlas = ExtResource("10_32nla")
-region = Rect2(1, 32, 14, 16)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ccjov"]
-texture = SubResource("AtlasTexture_mksnn")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2l0xo"]
-atlas = ExtResource("10_32nla")
-region = Rect2(1, 64, 14, 16)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mksnn"]
-texture = SubResource("AtlasTexture_2l0xo")
-region_rect = Rect2(0, 0, 14, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ccjov"]
-atlas = ExtResource("10_32nla")
-region = Rect2(17, 65, 14, 15)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bl5hp"]
-texture = SubResource("AtlasTexture_ccjov")
-
-[sub_resource type="Theme" id="Theme_hltlk"]
-Button/styles/hover = SubResource("StyleBoxTexture_ccjov")
-Button/styles/normal = SubResource("StyleBoxTexture_mksnn")
-Button/styles/pressed = SubResource("StyleBoxTexture_bl5hp")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fl30d"]
-region = Rect2(0, 64, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1t5je"]
-atlas = ExtResource("12_wbo4m")
-
-[sub_resource type="GDScript" id="GDScript_dhwrh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5c8y"]
 atlas = ExtResource("9_sdeak")
@@ -127,87 +82,9 @@ offset_top = 6.0
 offset_right = 384.0
 offset_bottom = 129.0
 
-[node name="JoystickControl" type="Control" parent="." unique_id=1552026671]
-layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 62.0
-offset_top = -247.0
-offset_right = 256.0
-offset_bottom = -50.0
-grow_vertical = 0
-script = ExtResource("8_8wu16")
+[node name="JoystickControl" parent="." instance=ExtResource("50_joy")]
 
-[node name="Base" type="TextureRect" parent="JoystickControl" unique_id=114556856]
-self_modulate = Color(1, 1, 1, 0.42352942)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -121.25
-offset_right = 120.0
-offset_bottom = 121.25
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_6ejiy")
-
-[node name="Knob" type="TextureRect" parent="JoystickControl" unique_id=833980539]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -37.5
-offset_top = -40.25
-offset_right = 37.5
-offset_bottom = 40.25
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_dhwrh")
-
-[node name="InteractionButton" type="Control" parent="." unique_id=417545912]
-layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -272.0
-offset_top = -272.0
-offset_right = -39.0
-offset_bottom = -43.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="Button" type="Button" parent="InteractionButton" unique_id=1665872355]
-modulate = Color(1, 1, 1, 0.6117647)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.48600003
-anchor_top = 0.5
-anchor_right = 0.48600003
-anchor_bottom = 0.5
-offset_left = -94.23801
-offset_top = -81.5
-offset_right = 94.26199
-offset_bottom = 92.5
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_hltlk")
-icon = SubResource("AtlasTexture_fl30d")
-script = ExtResource("11_h8a34")
-
-[node name="Sprite2D" type="Sprite2D" parent="InteractionButton" unique_id=1731990669]
-modulate = Color(1, 0.986, 0.72, 1)
-position = Vector2(113.5, 114.49994)
-scale = Vector2(7, 6.213)
-texture = SubResource("AtlasTexture_1t5je")
-script = SubResource("GDScript_dhwrh")
+[node name="InteractionButton" parent="." instance=ExtResource("51_act")]
 
 [node name="SettingsButton" type="Button" parent="." unique_id=1028255447]
 custom_minimum_size = Vector2(100, 100)
@@ -258,7 +135,5 @@ offset_top = -268.0
 offset_right = 608.0
 offset_bottom = -12.0
 
-[connection signal="button_down" from="InteractionButton/Button" to="InteractionButton/Button" method="_on_button_down"]
-[connection signal="button_up" from="InteractionButton/Button" to="InteractionButton/Button" method="_on_button_up"]
 
 [node name="Tutorial" parent="." instance=ExtResource("41_tutorial")]

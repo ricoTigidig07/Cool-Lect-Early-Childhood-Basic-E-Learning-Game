@@ -284,6 +284,106 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.12, 0.08, 0.05, 0.35)
 
+[node name="LanguagePage" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Center" type="Control" parent="LanguagePage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Card" type="Panel" parent="LanguagePage/Center"]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 110.0
+offset_right = 940.0
+offset_bottom = 620.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0uqbd")
+
+[node name="Title" type="Label" parent="LanguagePage/Center"]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 70.0
+offset_right = 940.0
+offset_bottom = 150.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_wuhys")
+text = "Pick your language"
+label_settings = SubResource("Title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="Label" parent="LanguagePage/Center"]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 170.0
+offset_right = 940.0
+offset_bottom = 205.0
+text = "Piliin ang wika  -  Pilia ang pinulongan"
+label_settings = SubResource("Hint")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="English" type="Button" parent="LanguagePage/Center"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 240.0
+offset_right = 840.0
+offset_bottom = 320.0
+theme_override_colors/font_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_pressed_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_hover_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("6_green")
+theme_override_styles/pressed = ExtResource("7_green_pressed")
+theme_override_styles/hover = ExtResource("6_green")
+text = "English"
+
+[node name="Tagalog" type="Button" parent="LanguagePage/Center"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 345.0
+offset_right = 840.0
+offset_bottom = 425.0
+theme_override_colors/font_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_pressed_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_hover_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("6_green")
+theme_override_styles/pressed = ExtResource("7_green_pressed")
+theme_override_styles/hover = ExtResource("6_green")
+text = "Tagalog"
+
+[node name="Bisaya" type="Button" parent="LanguagePage/Center"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 450.0
+offset_right = 840.0
+offset_bottom = 530.0
+theme_override_colors/font_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_pressed_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_colors/font_hover_color = Color(0.16, 0.33, 0.1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("6_green")
+theme_override_styles/pressed = ExtResource("7_green_pressed")
+theme_override_styles/hover = ExtResource("6_green")
+text = "Bisaya (Cebuano)"
+
 [node name="AgePage" type="Control" parent="." unique_id=1780950599]
 layout_mode = 1
 anchors_preset = 15
@@ -399,6 +499,16 @@ theme_override_styles/normal = ExtResource("6_green")
 theme_override_styles/pressed = ExtResource("7_green_pressed")
 theme_override_styles/hover = ExtResource("6_green")
 text = "Next"
+
+[node name="BackButton" type="Button" parent="AgePage"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 20.0
+offset_right = 164.0
+offset_bottom = 76.0
+text = "Back"
+icon = ExtResource("8_arrow")
+expand_icon = true
 
 [node name="NamePage" type="Control" parent="." unique_id=2051132227]
 layout_mode = 1

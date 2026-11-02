@@ -75,11 +75,12 @@ func show_pages(new_pages: Array[String]) -> void:
 	_show_current_page()
 
 func _show_current_page() -> void:
-	full_text = pages[current_page]
+	var english: String = pages[current_page]
+	full_text = Lang.line(english)       # Tagalog / Cebuano when chosen in Settings
 	_apply_responsive_font_size(full_text)
 	label.text = full_text
 	label.visible_characters = 0
-	_play_voice(full_text)
+	_play_voice(english)
 	last_tap_ms = Time.get_ticks_msec()   # a new page ignores the tap that opened it
 	choices_container.visible = false
 	continue_icon.visible = false
@@ -89,7 +90,8 @@ func _play_voice(text: String) -> void:
 	voice.stop()
 	if voice_id == "":
 		return
-	var path := "%s%s/%s.ogg" % [VOICE_DIR, voice_id, text.md5_text()]
+	# clips are named after the English line, in the folder of the chosen language
+	var path := "%s%s/%s.ogg" % [Lang.voice_dir(), voice_id, text.md5_text()]
 	if ResourceLoader.exists(path):
 		voice.stream = load(path)
 		voice.play()
@@ -222,11 +224,15 @@ func _on_skip_pressed() -> void:
 
 # ---------- choices ----------
 
+var choice_texts := {}     # button -> the English answer (what the NPC scripts check)
+
 func show_choices(choices: Array[String]) -> void:
 	if choices.size() >= 1:
-		yes_button.text = choices[0]
+		yes_button.text = Lang.line(choices[0])
+		choice_texts[yes_button] = choices[0]
 	if choices.size() >= 2:
-		no_button.text = choices[1]
+		no_button.text = Lang.line(choices[1])
+		choice_texts[no_button] = choices[1]
 	continue_icon.visible = false
 	choices_container.visible = true
 	choices_container.modulate.a = 0.0
@@ -235,7 +241,7 @@ func show_choices(choices: Array[String]) -> void:
 
 func _on_choice_pressed(button: Button) -> void:
 	choices_container.visible = false
-	choice_selected.emit(button.text)
+	choice_selected.emit(choice_texts.get(button, button.text))
 
 # ---------- pop-in ----------
 

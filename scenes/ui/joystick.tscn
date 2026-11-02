@@ -1,0 +1,236 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" uid="uid://dn86xv7iw6pxy" path="res://scenes/world/joystick_control.gd" id="1_js"]
+
+[sub_resource type="StyleBoxFlat" id="Style_base"]
+bg_color = Color(0.99, 0.95, 0.83, 0.5)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.52, 0.34, 0.2, 0.9)
+corner_radius_top_left = 130
+corner_radius_top_right = 130
+corner_radius_bottom_right = 130
+corner_radius_bottom_left = 130
+corner_detail = 24
+shadow_color = Color(0, 0, 0, 0.18)
+shadow_size = 4
+shadow_offset = Vector2(0, 6)
+
+[sub_resource type="StyleBoxFlat" id="Style_ring"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.52, 0.34, 0.2, 0.35)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="Style_knob"]
+bg_color = Color(0.95, 0.68, 0.38, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.45, 0.27, 0.15, 1)
+corner_radius_top_left = 58
+corner_radius_top_right = 58
+corner_radius_bottom_right = 58
+corner_radius_bottom_left = 58
+corner_detail = 20
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 3
+shadow_offset = Vector2(0, 7)
+
+[sub_resource type="StyleBoxFlat" id="Style_shine"]
+bg_color = Color(1, 1, 1, 0.45)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 12
+
+[sub_resource type="Animation" id="An_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Base:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.8)]
+}
+
+[sub_resource type="Animation" id="An_press"]
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.15),
+"transitions": PackedFloat32Array(0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.08, 1.08), Vector2(1.04, 1.04)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Base:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.8), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="An_release"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1.04, 1.04), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Base:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.8)]
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_js"]
+_data = {
+&"RESET": SubResource("An_reset"),
+&"press": SubResource("An_press"),
+&"release": SubResource("An_release")
+}
+
+[node name="JoystickControl" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -420.0
+offset_right = 470.0
+grow_vertical = 0
+script = ExtResource("1_js")
+
+[node name="Base" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0.8)
+anchors_preset = 0
+offset_left = 60.0
+offset_top = 100.0
+offset_right = 320.0
+offset_bottom = 360.0
+pivot_offset = Vector2(130, 130)
+mouse_filter = 2
+
+[node name="Back" type="Panel" parent="Base"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_base")
+
+[node name="Ring" type="Panel" parent="Base"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_ring")
+
+[node name="ArrowUp" type="Polygon2D" parent="Base"]
+position = Vector2(130, 24)
+color = Color(0.52, 0.34, 0.2, 0.75)
+polygon = PackedVector2Array(0, -10, 13, 7, -13, 7)
+
+[node name="ArrowDown" type="Polygon2D" parent="Base"]
+position = Vector2(130, 236)
+rotation = 3.1415927
+color = Color(0.52, 0.34, 0.2, 0.75)
+polygon = PackedVector2Array(0, -10, 13, 7, -13, 7)
+
+[node name="ArrowLeft" type="Polygon2D" parent="Base"]
+position = Vector2(24, 130)
+rotation = -1.5707964
+color = Color(0.52, 0.34, 0.2, 0.75)
+polygon = PackedVector2Array(0, -10, 13, 7, -13, 7)
+
+[node name="ArrowRight" type="Polygon2D" parent="Base"]
+position = Vector2(236, 130)
+rotation = 1.5707964
+color = Color(0.52, 0.34, 0.2, 0.75)
+polygon = PackedVector2Array(0, -10, 13, 7, -13, 7)
+
+[node name="Knob" type="Panel" parent="Base"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 72.0
+offset_right = 188.0
+offset_bottom = 188.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_knob")
+
+[node name="Shine" type="Panel" parent="Base/Knob"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 42.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_shine")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("Lib_js")
+}

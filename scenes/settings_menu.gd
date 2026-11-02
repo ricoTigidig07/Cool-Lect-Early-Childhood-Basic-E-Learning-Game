@@ -34,6 +34,7 @@ const RESET_WORD := "RESET"
 @onready var sound_plus: Button = box.get_node("SoundRow/Plus")
 @onready var sound_pips: HBoxContainer = box.get_node("SoundRow/Pips")
 @onready var hints_button: Button = box.get_node("HintsRow/Toggle")
+@onready var language_button: Button = box.get_node("LanguageRow/Toggle")
 @onready var reset_button: Button = box.get_node("ResetRow/ResetButton")
 @onready var reset_ring: TextureRect = box.get_node("ResetRow/Ring")
 @onready var reset_window: Control = $ResetWindow
@@ -58,6 +59,9 @@ func _ready() -> void:
 	sound_minus.pressed.connect(_on_step.bind("sfx", -1))
 	sound_plus.pressed.connect(_on_step.bind("sfx", 1))
 	hints_button.pressed.connect(_on_hints_pressed)
+	language_button.pressed.connect(func():   # English -> Tagalog -> Bisaya -> English
+		Lang.set_language(Lang.next_code())
+		_refresh())
 	reset_button.button_down.connect(_on_reset_down)
 	reset_button.button_up.connect(_cancel_hold)
 	reset_input.text_changed.connect(_on_reset_text_changed)
@@ -166,6 +170,7 @@ func _refresh() -> void:
 	sound_mute.icon = sound_icon if _step_of("sfx") > 0 else sound_off_icon
 	hints_button.icon = check_icon if GameManager.helper_hints else x_icon
 	hints_button.text = "On" if GameManager.helper_hints else "Off"
+	language_button.text = Lang.display_name()
 
 func _fill_pips(row: HBoxContainer, step: int) -> void:
 	for i in row.get_child_count():

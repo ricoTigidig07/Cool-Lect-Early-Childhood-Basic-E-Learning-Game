@@ -5,6 +5,7 @@
 [ext_resource type="TileSet" uid="uid://umk8vkn0aa3g" path="res://scenes/tilesets/new_tile_set.tres" id="3_p2rfd"]
 [ext_resource type="TileSet" uid="uid://c1ur0lia3oeio" path="res://scenes/tilesets/NpcHouses_tilesets.tres" id="4_cy3cs"]
 [ext_resource type="TileSet" uid="uid://cjh1t8bl1l8lf" path="res://scenes/tilesets/House_tile_set.tres" id="5_jhmao"]
+[ext_resource type="TileSet" uid="uid://cu8m7lbxqc53j" path="res://scenes/tilesets/structures.tres" id="5_sl87k"]
 [ext_resource type="TileSet" uid="uid://b547n11tgq3oo" path="res://scenes/tilesets/furniture_tileset.tres" id="6_w8rtx"]
 [ext_resource type="TileSet" uid="uid://duk7v32o2b6wi" path="res://scenes/tilesets/animal_structures_tile_set.tres" id="7_w8rtx"]
 
@@ -52,7 +53,7 @@ tile_set = ExtResource("4_cy3cs")
 [node name="Fences" type="TileMapLayer" parent="BaseMap/Structures" unique_id=560974739]
 tile_map_data = PackedByteArray("AAAlACUACwABAAAAAAAuACUACwADAAAAAAAmACUACwACAAMAAAAnACUACwACAAMAAAAoACUACwACAAMAAAApACUACwACAAMAAAAqACUACwACAAMAAAArACUACwACAAMAAAAsACUACwACAAMAAAAtACUACwACAAMAAAAlACYACwAAAAEAAAAlACcACwAAAAEAAAAlACgACwAAAAEAAAAuACYACwAAAAEAAAAuACcACwAAAAEAAAAuACgACwAAAAEAAAAlACkACwAAAAEAAAAlACsACwABAAIAAAAuACsACwADAAIAAAAmACsACwACAAMAAAAnACsACwACAAMAAAAoACsACwACAAMAAAApACsACwACAAMAAAAqACsACwACAAMAAAArACsACwACAAMAAAAsACsACwACAAMAAAAtACsACwACAAMAAAAlACoACwAAAAEAAAA=")
 enabled = false
-tile_set = ExtResource("3_p2rfd")
+tile_set = ExtResource("5_sl87k")
 
 [node name="Player House" type="Node2D" parent="BaseMap/Structures" unique_id=282320789]
 

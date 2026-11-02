@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bkl5qa661suvx" path="res://scenes/characters/farmer.tscn" id="11_farmer"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
 [ext_resource type="PackedScene" uid="uid://bkovjhv9sqke1" path="res://scenes/collectables/animals/farm/chicken.tscn" id="a_chicken"]
+[ext_resource type="PackedScene" path="res://scenes/levels/animals/barn_decor.tscn" id="bd_decor"]
 
 [node name="Lvl1ChickenMap" type="Node2D"]
 y_sort_enabled = true
@@ -140,6 +141,8 @@ tile_set = ExtResource("5_jhmao")
 
 [node name="Chicken Coop" type="TileMapLayer" parent="Lvl1ChickenTilemap/BaseMap/Animal Structures"]
 tile_set = ExtResource("7_w8rtx")
+
+[node name="BarnDecor" parent="Lvl1ChickenTilemap/BaseMap" instance=ExtResource("bd_decor")]
 
 [node name="Farmer" parent="." instance=ExtResource("11_farmer")]
 position = Vector2(745, 424)

@@ -199,9 +199,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -290.0
-offset_top = -190.0
+offset_top = -224.0
 offset_right = 290.0
-offset_bottom = 200.0
+offset_bottom = 234.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(290, 195)
@@ -394,6 +394,23 @@ theme_override_font_sizes/font_size = 26
 text = "On"
 icon = ExtResource("8_check")
 expand_icon = true
+
+[node name="LanguageRow" type="HBoxContainer" parent="Card/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Card/MarginContainer/VBoxContainer/LanguageRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Language"
+label_settings = SubResource("LS_row")
+vertical_alignment = 1
+
+[node name="Toggle" type="Button" parent="Card/MarginContainer/VBoxContainer/LanguageRow"]
+custom_minimum_size = Vector2(190, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "English"
 
 [node name="HSeparator" type="HSeparator" parent="Card/MarginContainer/VBoxContainer"]
 layout_mode = 2

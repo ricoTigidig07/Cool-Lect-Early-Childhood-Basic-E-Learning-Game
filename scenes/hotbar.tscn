@@ -35,7 +35,7 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1134597440]
 layout_mode = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 26
 
 [node name="HotbarSlot" parent="MarginContainer/HBoxContainer" unique_id=2102393103 instance=ExtResource("1_yj1xu")]
 layout_mode = 2

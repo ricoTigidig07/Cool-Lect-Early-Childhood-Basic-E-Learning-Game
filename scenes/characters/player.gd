@@ -9,6 +9,8 @@ const SPEED = 70.0
 @onready var shadow = $Shadow
 @onready var reactions: AnimationPlayer = get_node_or_null("Reactions")
 @onready var lively_light: ColorRect = get_node_or_null("LightFilter/Lively")
+## The item picked in the hotbar, shown in the player's hands (player.tscn → AnimatedSprite2D2/HeldItem).
+@onready var held_item: Sprite2D = get_node_or_null("AnimatedSprite2D2/HeldItem")
 
 const BOB_SPEED = 6.5
 const SHADOW_MIN_SCALE = 0.75
@@ -70,6 +72,7 @@ func _physics_process(delta):
 	move_and_slide()
 	update_animation(direction, direction_name)
 	update_shadow(direction, delta)
+	update_held_item()
 
 const DIRECTION_TO_ANIM = {
 	"up": "up",
@@ -105,6 +108,38 @@ func update_animation(direction: Vector2, joystick_name: String = ""):
 	
 	last_direction = DIRECTION_TO_ANIM.get(raw_direction, raw_direction)
 	animated_sprite.play("walk_" + last_direction)
+
+# ---------- item in the hands ----------
+
+## How big the held item is drawn (pixels, its longest side).
+const HELD_SIZE := 7.0
+## Where the hands are for each way the player looks (from the sprite's middle).
+const HELD_SPOT := {
+	"down": Vector2(0, 5), "right": Vector2(5, 5), "left": Vector2(-5, 5), "up": Vector2(0, 2),
+}
+var _held_texture: Texture2D = null
+
+func update_held_item() -> void:
+	if held_item == null:
+		return
+	var tex: Texture2D = null
+	var bar = GameUIManager.hotbar
+	if bar and is_instance_valid(bar) and bar.equipped_item != "" and bar.selected_slot:
+		tex = bar.selected_slot.get_node("TextureRect").texture
+	if tex != _held_texture:
+		_held_texture = tex
+		held_item.texture = tex
+		held_item.visible = tex != null
+		if tex:
+			var s := HELD_SIZE / maxf(tex.get_width(), tex.get_height())
+			held_item.scale = Vector2(s, s) * 0.4
+			create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT) \
+				.tween_property(held_item, "scale", Vector2(s, s), 0.2)   # little pop
+	if tex == null:
+		return
+	# held in front; when walking away (back view) it is behind the body
+	held_item.position = HELD_SPOT.get(last_direction, HELD_SPOT["down"]) + Vector2(0, -absf(sin(bob_time)))
+	held_item.show_behind_parent = last_direction == "up"
 
 func update_shadow(direction: Vector2, delta: float) -> void:
 	if direction == Vector2.ZERO:

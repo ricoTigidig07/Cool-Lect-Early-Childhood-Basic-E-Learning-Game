@@ -1,9 +1,11 @@
 extends PanelContainer
 
 @onready var slots_container: HBoxContainer = $MarginContainer/HBoxContainer
-@onready var selector: TextureRect = get_node_or_null("%Selector")
+@onready var selector: Control = get_node_or_null("%Selector")
 
-const SELECTOR_SIZE := Vector2(70, 70)
+## The selector picture is drawn 2.5x big; its corners stick out this far around the slot.
+const SELECTOR_SCALE := 2.5
+const SELECTOR_OUT := 10.0
 var selected_slot: Button = null
 
 var item_icons: Dictionary = {
@@ -33,7 +35,7 @@ var equipped_item: String = ""
 
 func _ready() -> void:
 	if selector:
-		selector.size = SELECTOR_SIZE
+		selector.scale = Vector2.ONE * SELECTOR_SCALE
 	for slot in slots_container.get_children():
 		slot.pressed.connect(_on_slot_pressed.bind(slot))
 	await get_tree().process_frame
@@ -87,8 +89,15 @@ func _select_slot(slot: Button) -> void:
 	if selector == null:
 		return
 	selector.visible = true
-	var slot_center = slot.global_position + slot.size / 2.0
-	selector.global_position = slot_center - SELECTOR_SIZE / 2.0
+	# the frame goes around the outside of the slot; it is moved into the slot
+	# so the count number is always drawn on top of it
+	selector.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	if selector.get_parent() != slot:
+		selector.reparent(slot, false)
+	slot.move_child(slot.get_node("Label"), -1)
+	selector.scale = Vector2.ONE * SELECTOR_SCALE
+	selector.size = (slot.size + Vector2.ONE * SELECTOR_OUT * 2.0) / SELECTOR_SCALE
+	selector.position = -Vector2.ONE * SELECTOR_OUT
 
 func consume_item(item_type: String) -> void:
 	var slot = slot_by_item.get(item_type)

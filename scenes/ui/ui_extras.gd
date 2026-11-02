@@ -321,7 +321,10 @@ func _update_badge() -> void:
 			icon = badge_use           # letter board, shape board, easel, basket, mixing pot
 	var button: Control = get_parent().get_node_or_null("InteractionButton/Button")
 	if button:
-		button.modulate.a = 1.0 if t != null else 0.6117647
+		if button.has_method("set_ready"):
+			button.set_ready(t != null)   # glows when there is something to use
+		else:
+			button.modulate.a = 1.0 if t != null else 0.6117647
 	if icon:
 		badge_icon.texture = icon
 		badge.visible = true

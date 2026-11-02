@@ -166,6 +166,10 @@ sprite_frames = ExtResource("3_dyp2m")
 animation = &"walk_up"
 autoplay = "idle_front"
 
+[node name="HeldItem" type="Sprite2D" parent="AnimatedSprite2D2"]
+visible = false
+position = Vector2(0, 5)
+
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1567545173]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_2l4js")

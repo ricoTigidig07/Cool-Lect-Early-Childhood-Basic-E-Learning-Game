@@ -1,12 +1,14 @@
 extends Control
 
-## First-time screen: asks the child's age (4 and up), then gives them a username.
-## Page 1 (AgePage): – [age] + and Next.  Page 2 (NamePage): the username + Shuffle + Let's Play.
+## First-time screen: the language, the child's age (4 and up), then a username.
+## Page 1 (LanguagePage): English / Tagalog / Bisaya.  Page 2 (AgePage): – [age] + and Next.
+## Page 3 (NamePage): the username + Shuffle + Let's Play.
 
 const MAIN_MENU := "res://scenes/main_menu.tscn"
 const MIN_AGE := 4
 const KEYBOARD_GAP := 16.0      # space between the name box and the phone keyboard
 
+@onready var language_page: Control = $LanguagePage
 @onready var age_page: Control = $AgePage
 @onready var name_page: Control = $NamePage
 @onready var age_label: Label = $AgePage/Center/AgePicker/AgeLabel
@@ -31,8 +33,11 @@ func _ready() -> void:
 	back_button.pressed.connect(func():
 		username_label.unedit()
 		_show_page(age_page))
+	for pair in [["English", "en"], ["Tagalog", "tl"], ["Bisaya", "ceb"]]:
+		get_node("LanguagePage/Center/" + pair[0]).pressed.connect(_on_language_chosen.bind(pair[1]))
+	$AgePage/BackButton.pressed.connect(func(): _show_page(language_page))
 	_update_age()
-	_show_page(age_page)
+	_show_page(language_page)
 	username_label.text_changed.connect(_on_name_typed)
 	username_label.text_submitted.connect(func(_t): _on_play())
 
@@ -49,6 +54,10 @@ func _process(delta: float) -> void:
 			target = max(0.0, box_bottom + KEYBOARD_GAP - (view_h - kb_h))
 	keyboard_lift = lerp(keyboard_lift, target, min(1.0, delta * 12.0))
 	name_box.position.y = -360.0 + (name_box.get_parent_area_size().y / 2.0) - keyboard_lift
+
+func _on_language_chosen(code: String) -> void:
+	Lang.set_language(code)
+	_show_page(age_page)
 
 func _change_age(step: int) -> void:
 	chosen_age = max(MIN_AGE, chosen_age + step)
@@ -81,6 +90,7 @@ func _on_play() -> void:
 	get_tree().change_scene_to_file(MAIN_MENU)
 
 func _show_page(page: Control) -> void:
+	language_page.visible = page == language_page
 	age_page.visible = page == age_page
 	name_page.visible = page == name_page
 

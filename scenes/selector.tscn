@@ -6,8 +6,13 @@
 atlas = ExtResource("1_g5dyd")
 region = Rect2(68, 4, 24, 25)
 
-[node name="Selector" type="TextureRect" unique_id=949682650]
-custom_minimum_size = Vector2(70, 70)
-offset_right = 70.0
-offset_bottom = 70.0
+[node name="Selector" type="NinePatchRect" unique_id=949682650]
+offset_right = 36.0
+offset_bottom = 36.0
+mouse_filter = 2
 texture = SubResource("AtlasTexture_7ji5i")
+draw_center = false
+patch_margin_left = 8
+patch_margin_top = 9
+patch_margin_right = 8
+patch_margin_bottom = 9

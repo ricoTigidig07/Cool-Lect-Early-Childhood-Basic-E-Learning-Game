@@ -381,6 +381,23 @@ text = "On"
 icon = ExtResource("7_check")
 expand_icon = true
 
+[node name="LanguageRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LanguageRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Language"
+label_settings = SubResource("LS_row")
+vertical_alignment = 1
+
+[node name="Toggle" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/LanguageRow"]
+custom_minimum_size = Vector2(190, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "English"
+
 [node name="HowToButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
