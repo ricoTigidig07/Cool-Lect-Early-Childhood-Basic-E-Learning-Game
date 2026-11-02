@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" path="res://scenes/levels/level_lock.png" id="7_lock"]
 [ext_resource type="Texture2D" path="res://resources/blank_star.tres" id="8_star"]
 [ext_resource type="SpriteFrames" path="res://resources/character_animation.tres" id="9_player"]
+[ext_resource type="Texture2D" path="res://assets/UI/crown.png" id="10_crown"]
 [ext_resource type="Material" path="res://scenes/levels/grey_material.tres" id="10_grey"]
 
 [sub_resource type="AtlasTexture" id="Bush"]
@@ -91,6 +92,52 @@ _data = {
 &"RESET": SubResource("Anim_reset"),
 &"pulse": SubResource("Anim_pulse"),
 &"wiggle": SubResource("Anim_wiggle")
+}
+
+[sub_resource type="Animation" id="Crown_shine"]
+resource_name = "shine"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Crown:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -76), Vector2(0, -81), Vector2(0, -76)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Crown:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.07, -0.07, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Crown:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1.25, 1.2, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="Crown_lib"]
+_data = {
+&"shine": SubResource("Crown_shine")
 }
 
 [node name="LevelIsland" type="Node2D"]
@@ -184,6 +231,16 @@ texture_filter = 1
 position = Vector2(36, 0)
 scale = Vector2(2.1, 2.1)
 texture = ExtResource("8_star")
+
+[node name="Crown" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -76)
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("10_crown")
+
+[node name="CrownAnim" type="AnimationPlayer" parent="."]
+libraries/ = SubResource("Crown_lib")
 
 [node name="PlayerMarker" type="AnimatedSprite2D" parent="."]
 visible = false

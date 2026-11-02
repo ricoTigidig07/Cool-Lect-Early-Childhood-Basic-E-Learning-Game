@@ -45,6 +45,11 @@ func setup(subject: String, is_current: bool) -> void:
 		badge.texture_pressed = locked_pressed
 		for n in [$Island, $Bush, $Badge]:
 			n.material = locked_material
+	# 3 stars: a gold crown on top (it bobs and shines: CrownAnim "shine")
+	$Crown.visible = unlocked and stars >= 3
+	if $Crown.visible:
+		$CrownAnim.play("shine")
+		$CrownAnim.seek(randf() * 1.6)     # not all crowns bob together
 	$PlayerMarker.visible = is_current
 	if is_current:
 		anim.play("pulse")
