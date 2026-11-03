@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/ui/tutorial.gd" id="1_script"]
 [ext_resource type="Theme" path="res://assets/UI/cool_lect_theme.tres" id="2_theme"]
-[ext_resource type="FontFile" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="3_font"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="3_font"]
 [ext_resource type="SpriteFrames" path="res://resources/character_animation.tres" id="4_player"]
 [ext_resource type="SpriteFrames" path="res://scenes/characters/helper/npc_placeholder_frames.tres" id="5_npc"]
 [ext_resource type="Texture2D" path="res://scenes/arrow_left.png" id="6_left"]
@@ -51,12 +51,12 @@ region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="LabelSettings" id="LS_title"]
 font = ExtResource("3_font")
-font_size = 38
+font_size = 49
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="LabelSettings" id="LS_text"]
 font = ExtResource("3_font")
-font_size = 24
+font_size = 31
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="Animation" id="An_reset"]

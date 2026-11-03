@@ -80,11 +80,15 @@ var items_panel: PanelContainer
 func register_items_panel(panel: PanelContainer) -> void:
 	items_panel = panel
 
+## (The items panel was taken out of the top-right corner for the map: these do nothing
+## when there is no panel.)
 func show_items_panel() -> void:
-	items_panel.show_panel()
+	if items_panel and is_instance_valid(items_panel):
+		items_panel.show_panel()
 
 func hide_items_panel() -> void:
-	items_panel.hide_panel()
+	if items_panel and is_instance_valid(items_panel):
+		items_panel.hide_panel()
 
 func set_missions(text_1: String, text_2: String, text_3: String) -> void:
 	mission_panel.set_missions(text_1, text_2, text_3)

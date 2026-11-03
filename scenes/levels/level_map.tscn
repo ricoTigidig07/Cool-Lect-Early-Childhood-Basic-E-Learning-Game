@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dy58e15qqr224" path="res://scenes/levels/level_map.gd" id="1_script"]
 [ext_resource type="Theme" uid="uid://b1oxrs8tp4hwy" path="res://assets/UI/cool_lect_theme.tres" id="2_theme"]
 [ext_resource type="TileSet" uid="uid://bvukl1jpqiuwh" path="res://scenes/tilesets/water_tileset.tres" id="3_lu8xc"]
-[ext_resource type="FontFile" uid="uid://cth151usmtkbc" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="3_title"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="3_title"]
 [ext_resource type="Texture2D" uid="uid://cng1500ljd7il" path="res://scenes/arrow_left.png" id="4_al"]
 [ext_resource type="TileSet" path="res://scenes/levels/water_objects_tileset.tres" id="4_u8k6i"]
 [ext_resource type="Texture2D" uid="uid://cahk1n1l61ysd" path="res://resources/filled_star.tres" id="5_star"]
@@ -41,7 +41,7 @@ animations = [{
 
 [sub_resource type="LabelSettings" id="Title"]
 font = ExtResource("3_title")
-font_size = 44
+font_size = 57
 font_color = Color(1, 0.98, 0.92, 1)
 outline_size = 12
 outline_color = Color(0.36, 0.22, 0.15, 1)

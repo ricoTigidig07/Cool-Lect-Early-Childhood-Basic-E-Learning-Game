@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/ingame_settings.gd" id="1_ggmd1"]
 [ext_resource type="Theme" path="res://assets/UI/cool_lect_theme.tres" id="2_theme"]
 [ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green.tres" id="3_green"]
-[ext_resource type="FontFile" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="4_title"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="4_title"]
 [ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Icons/All Icons.png" id="5_icons"]
 [ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/Sliders/Sliders.png" id="6_sliders"]
 [ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/Xs and check marks/1s/big check mark.png" id="7_check"]
@@ -36,12 +36,12 @@ region = Rect2(240, 112, 16, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_title"]
 font = ExtResource("4_title")
-font_size = 36
+font_size = 47
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="LabelSettings" id="LS_row"]
 font = ExtResource("4_title")
-font_size = 24
+font_size = 31
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="Animation" id="An_reset"]

@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scenes/credits/team_member.gd" id="1_script"]
-[ext_resource type="FontFile" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="2_font"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="2_font"]
 [ext_resource type="Texture2D" path="res://assets/sprites/credits_team/john.png" id="3_sheet"]
 
 [sub_resource type="StyleBoxFlat" id="SB_board"]
@@ -26,7 +26,7 @@ shadow_offset = Vector2(0, 3)
 
 [sub_resource type="LabelSettings" id="LS_board"]
 font = ExtResource("2_font")
-font_size = 28
+font_size = 36
 font_color = Color(1, 0.86, 0.36, 1)
 
 [sub_resource type="Animation" id="An_reset"]

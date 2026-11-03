@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/settings_menu.gd" id="1_script"]
 [ext_resource type="Theme" path="res://assets/UI/cool_lect_theme.tres" id="2_theme"]
 [ext_resource type="PackedScene" path="res://scenes/main_menu/menu_background.tscn" id="3_bg"]
-[ext_resource type="FontFile" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="4_font"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="4_font"]
 [ext_resource type="Texture2D" path="res://scenes/arrow_left.png" id="5_arrow"]
 [ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Icons/All Icons.png" id="6_icons"]
 [ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Other UI sprites/Sliders/Sliders.png" id="7_sliders"]
@@ -46,17 +46,17 @@ region = Rect2(0, 0, 96, 32)
 
 [sub_resource type="LabelSettings" id="LS_title"]
 font = ExtResource("4_font")
-font_size = 44
+font_size = 57
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="LabelSettings" id="LS_row"]
 font = ExtResource("4_font")
-font_size = 26
+font_size = 34
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="LabelSettings" id="LS_small"]
 font = ExtResource("4_font")
-font_size = 18
+font_size = 23
 font_color = Color(0.55, 0.36, 0.24, 1)
 
 [sub_resource type="Animation" id="An_reset2"]

@@ -6,13 +6,13 @@
 [ext_resource type="Theme" path="res://assets/UI/cool_lect_theme.tres" id="3_theme"]
 [ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green.tres" id="4_green"]
 [ext_resource type="PackedScene" path="res://scenes/main_menu/menu_background.tscn" id="5_bg"]
-[ext_resource type="FontFile" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="6_title"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="6_title"]
 [ext_resource type="Texture2D" path="res://scenes/arrow_left.png" id="7_al"]
 [ext_resource type="Texture2D" path="res://scenes/arrow_right.png" id="8_ar"]
 
 [sub_resource type="LabelSettings" id="Title"]
 font = ExtResource("6_title")
-font_size = 48
+font_size = 62
 font_color = Color(1, 0.98, 0.92, 1)
 outline_size = 12
 outline_color = Color(0.36, 0.22, 0.15, 1)

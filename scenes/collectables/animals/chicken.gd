@@ -43,6 +43,33 @@ var _shape_offset := Vector2.ZERO   # where it sits on the player
 var _mask := 1
 var _stuck := 0.0
 
+## A tamed friend talks now and then while it follows the player: a soft animal sound
+## (assets/audio/sfx/animals/<anim_prefix>.ogg) and its word pops up over its head.
+const SOUND_PATH := "res://assets/audio/sfx/animals/%s.ogg"
+## What each animal says: [English, Tagalog, Bisaya] (small letters, like "meeh~ meeh~")
+const WORDS := {
+	"chicken": ["cluck~ cluck~", "kok~ kok~", "kok~ kok~"],
+	"chick": ["peep~ peep~", "siyap~ siyap~", "siyap~ siyap~"],
+	"duck": ["quack~ quack~", "kwak~ kwak~", "kwak~ kwak~"],
+	"cow": ["moo~ moo~", "moo~ moo~", "moo~ moo~"],
+	"calf": ["moo~ moo~", "moo~ moo~", "moo~ moo~"],
+	"pig": ["oink~ oink~", "oink~ oink~", "oink~ oink~"],
+	"piglet": ["oink~ oink~", "oink~ oink~", "oink~ oink~"],
+	"sheep": ["baa~ baa~", "mee~ mee~", "mee~ mee~"],
+	"goat": ["meeh~ meeh~", "meee~ meee~", "meee~ meee~"],
+	"horse": ["neigh~ neigh~", "iihh~ iihh~", "iihh~ iihh~"],
+	"donkey": ["hee~ haw~", "hi~ haw~", "hi~ haw~"],
+	"rabbit": ["sniff~ sniff~", "singhot~ singhot~", "simhot~ simhot~"],
+	"cat": ["meow~ meow~", "miyaw~ miyaw~", "ngiyaw~ ngiyaw~"],
+	"dog": ["woof~ woof~", "aw~ aw~", "aw~ aw~"],
+	"turkey": ["gobble~ gobble~", "gobol~ gobol~", "gobol~ gobol~"],
+}
+const TALK_EVERY := Vector2(4.0, 7.5)     # seconds between two "talks" (random in between)
+const TALK_DB := -14.0                    # not too loud: just enough to hear they are friends
+const WORD_FONT := preload("res://assets/UI/Fonts/Poco.ttf")    # has small letters
+var _talk_timer := 0.0
+var _talk_player: AudioStreamPlayer2D
+
 var state: State = State.WANDER_IDLE
 var current_idle_anim: String = ""
 var is_actively_following: bool = false
@@ -86,6 +113,10 @@ func _physics_process(delta: float) -> void:
 		State.FOLLOW:
 			if follow_target == null:
 				return
+			_talk_timer -= delta
+			if _talk_timer <= 0.0:
+				_talk_timer = randf_range(TALK_EVERY.x, TALK_EVERY.y)
+				_talk()
 			var target_pos = follow_target.global_position + Vector2(0, 16)
 			var dist = global_position.distance_to(target_pos)
 			if dist > follow_distance:
@@ -293,6 +324,72 @@ func _finish_collect() -> void:
 	follow_target = player_ref
 	set_deferred("monitoring", true)
 	_play_tamed_fx()
+	_talk_timer = randf_range(1.2, 2.5)      # the first "hello" comes soon after taming
+
+## The animal says its word: soft sound + a little speech bubble that floats up.
+func _talk() -> void:
+	var path := SOUND_PATH % anim_prefix
+	if ResourceLoader.exists(path):
+		if _talk_player == null:
+			_talk_player = AudioStreamPlayer2D.new()
+			_talk_player.bus = "SFX"
+			_talk_player.volume_db = TALK_DB
+			_talk_player.max_distance = 420.0
+			add_child(_talk_player)
+		_talk_player.stream = load(path)
+		_talk_player.pitch_scale = randf_range(0.94, 1.08)
+		_talk_player.play()
+	var words: Array = WORDS.get(anim_prefix, [])
+	if words.is_empty():
+		return
+	var text: String = words[{"tl": 1, "ceb": 2}.get(Lang.code, 0)]
+	var top: float = sprite.position.y - 12.0
+	if sprite.sprite_frames:
+		var tex := sprite.sprite_frames.get_frame_texture(sprite.animation, 0)
+		if tex:
+			top = sprite.position.y - tex.get_height() * 0.5 + 6.0
+	_pop_word(text, Vector2(0, top))
+
+## The word comes out of the animal's head: it squeezes out small, pops bigger,
+## bobs up with a little wiggle, then fades away.
+func _pop_word(text: String, at: Vector2) -> void:
+	var label := Label.new()
+	label.text = text
+	label.add_theme_font_override("font", WORD_FONT)
+	label.add_theme_font_size_override("font_size", 24)
+	label.add_theme_color_override("font_color", Color(0.24, 0.16, 0.12))
+	label.add_theme_color_override("font_outline_color", Color(1, 0.98, 0.92))
+	label.add_theme_constant_override("outline_size", 6)
+	var holder := Node2D.new()          # world space, on top of the animal's head
+	holder.z_index = 60
+	holder.z_as_relative = false
+	holder.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	add_child(holder)
+	holder.add_child(label)
+	label.reset_size()
+	label.position = Vector2(-label.size.x * 0.5, -label.size.y)    # bottom-middle on the head
+	holder.position = at
+	holder.scale = Vector2(0.05, 0.05)
+	holder.modulate.a = 0.0
+	holder.rotation = deg_to_rad(randf_range(-6.0, 6.0))
+	const SIZE := 0.26
+	# 1. squeeze out of the head and pop (stretch up, then settle)
+	var t := create_tween()
+	t.tween_property(holder, "modulate:a", 1.0, 0.08)
+	t.parallel().tween_property(holder, "scale", Vector2(SIZE * 0.8, SIZE * 1.4), 0.14).set_ease(Tween.EASE_OUT)
+	t.parallel().tween_property(holder, "position", at + Vector2(0, -7.0), 0.14).set_ease(Tween.EASE_OUT)
+	t.tween_property(holder, "scale", Vector2(SIZE * 1.25, SIZE * 0.85), 0.08)
+	t.tween_property(holder, "scale", Vector2.ONE * SIZE, 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	# 2. float up, wiggling side to side
+	t.tween_property(holder, "position", at + Vector2(0, -17.0), 1.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	var wiggle := create_tween()
+	wiggle.tween_interval(0.32)
+	for i in 6:
+		wiggle.tween_property(holder, "rotation", deg_to_rad(8.0 if i % 2 == 0 else -8.0), 0.12).set_trans(Tween.TRANS_SINE)
+	wiggle.tween_property(holder, "rotation", 0.0, 0.12)
+	# 3. fade out
+	t.tween_property(holder, "modulate:a", 0.0, 0.3)
+	t.tween_callback(holder.queue_free)
 
 func _play_tamed_fx() -> void:
 	tamed_fx.visible = true

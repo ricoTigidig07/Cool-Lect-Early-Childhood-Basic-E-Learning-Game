@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/ui/player_sign.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://vw2ivp4sftcv" path="res://assets/UI/ui/Sprite sheets/Sprite sheet for Basic Pack.png" id="2_sheet"]
 [ext_resource type="Texture2D" uid="uid://cahk1n1l61ysd" path="res://resources/filled_star.tres" id="3_star"]
-[ext_resource type="FontFile" uid="uid://cth151usmtkbc" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="4_font"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="4_font"]
 
 [sub_resource type="AtlasTexture" id="Post_left"]
 atlas = ExtResource("2_sheet")
@@ -15,12 +15,12 @@ region = Rect2(532, 149, 3, 6)
 
 [sub_resource type="LabelSettings" id="Name_text"]
 font = ExtResource("4_font")
-font_size = 21
+font_size = 27
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="LabelSettings" id="Count_text"]
 font = ExtResource("4_font")
-font_size = 21
+font_size = 27
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="Animation" id="Anim_RESET"]

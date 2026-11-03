@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" path="res://scenes/objects/icons/egg.tres" id="2_egg"]
 [ext_resource type="Texture2D" uid="uid://b4vsme8t84r2e" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Objects/Piknik basket.png" id="3_basket"]
 [ext_resource type="Texture2D" path="res://scenes/collectables/numbers/number_3.tres" id="4_num"]
-[ext_resource type="FontFile" uid="uid://cth151usmtkbc" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="5_font"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="5_font"]
 [ext_resource type="PackedScene" uid="uid://cwmpjscqvef1j" path="res://scenes/components/hold_indicator.tscn" id="6_hold"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
@@ -15,7 +15,7 @@ size = Vector2(56, 48)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pop"]
 font = ExtResource("5_font")
-font_size = 14
+font_size = 18
 outline_size = 4
 outline_color = Color(0.23, 0.14, 0.09, 1)
 

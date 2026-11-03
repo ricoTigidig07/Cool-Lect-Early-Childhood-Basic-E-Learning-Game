@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Icons/All Icons.png" id="5_icons"]
 [ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/buttons/round/small colored round buttons.png" id="6_round"]
 [ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Mouse sprites/Catpaw pointing Mouse icon.png" id="7_cursor"]
-[ext_resource type="FontFile" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="8_font"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="8_font"]
 
 [sub_resource type="AtlasTexture" id="A_panel"]
 atlas = ExtResource("2_panel")
@@ -39,22 +39,22 @@ region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="LabelSettings" id="LS_title"]
 font = ExtResource("8_font")
-font_size = 22
+font_size = 29
 font_color = Color(0.55, 0.36, 0.24, 1)
 
 [sub_resource type="LabelSettings" id="LS_name"]
 font = ExtResource("8_font")
-font_size = 40
+font_size = 52
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="LabelSettings" id="LS_count"]
 font = ExtResource("8_font")
-font_size = 28
+font_size = 36
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="LabelSettings" id="LS_bubble"]
 font = ExtResource("8_font")
-font_size = 22
+font_size = 29
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="Animation" id="An_b_reset"]

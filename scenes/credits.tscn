@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/credits.gd" id="1_script"]
 [ext_resource type="Theme" path="res://assets/UI/cool_lect_theme.tres" id="2_theme"]
 [ext_resource type="PackedScene" path="res://scenes/main_menu/menu_background.tscn" id="3_bg"]
-[ext_resource type="FontFile" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="4_font"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="4_font"]
 [ext_resource type="Texture2D" path="res://scenes/arrow_left.png" id="5_arrow"]
 [ext_resource type="FontFile" path="res://assets/UI/Fonts/Poco.ttf" id="6_poco"]
 [ext_resource type="Texture2D" path="res://assets/UI/crown.png" id="7_crown"]
@@ -31,7 +31,7 @@
 
 [sub_resource type="LabelSettings" id="LS_big"]
 font = ExtResource("4_font")
-font_size = 56
+font_size = 73
 font_color = Color(1, 0.86, 0.36, 1)
 outline_size = 14
 outline_color = Color(0.29, 0.17, 0.1, 1)
@@ -39,7 +39,7 @@ shadow_size = 0
 
 [sub_resource type="LabelSettings" id="LS_head"]
 font = ExtResource("4_font")
-font_size = 42
+font_size = 55
 font_color = Color(1, 0.86, 0.36, 1)
 outline_size = 12
 outline_color = Color(0.29, 0.17, 0.1, 1)
@@ -47,7 +47,7 @@ shadow_size = 0
 
 [sub_resource type="LabelSettings" id="LS_sub"]
 font = ExtResource("4_font")
-font_size = 28
+font_size = 36
 font_color = Color(1, 0.86, 0.36, 1)
 outline_size = 10
 outline_color = Color(0.29, 0.17, 0.1, 1)
@@ -55,7 +55,7 @@ shadow_size = 0
 
 [sub_resource type="LabelSettings" id="LS_name"]
 font = ExtResource("4_font")
-font_size = 28
+font_size = 32
 font_color = Color(1, 0.97, 0.88, 1)
 outline_size = 10
 outline_color = Color(0.29, 0.17, 0.1, 1)
@@ -89,7 +89,7 @@ shadow_size = 4
 shadow_offset = Vector2(0, 4)
 
 [sub_resource type="Animation" id="An_roll"]
-length = 51.41
+length = 55.16
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -97,10 +97,10 @@ tracks/0/path = NodePath("Roll/Strip:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 49.41),
+"times": PackedFloat32Array(0, 53.16),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [480.0, -3226.0]
+"values": [480.0, -3507.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -109,7 +109,7 @@ tracks/1/path = NodePath("Finale:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 48.41),
+"times": PackedFloat32Array(0, 52.16),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -121,7 +121,7 @@ tracks/2/path = NodePath("Finale:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 48.41, 49.21),
+"times": PackedFloat32Array(0, 52.16, 52.96),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -133,7 +133,7 @@ tracks/3/path = NodePath("Finale/Stage/Jewe:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 48.71, 48.96, 49.11),
+"times": PackedFloat32Array(0, 52.46, 52.71, 52.86),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -145,7 +145,7 @@ tracks/4/path = NodePath("Finale/Stage/John:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 48.96, 49.21, 49.36),
+"times": PackedFloat32Array(0, 52.71, 52.96, 53.11),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -157,7 +157,7 @@ tracks/5/path = NodePath("Finale/Stage/Ryan:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 49.21, 49.46, 49.61),
+"times": PackedFloat32Array(0, 52.96, 53.21, 53.36),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -169,7 +169,7 @@ tracks/6/path = NodePath("Finale/Stage/Tantan:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 49.46, 49.71, 49.86),
+"times": PackedFloat32Array(0, 53.21, 53.46, 53.61),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -181,7 +181,7 @@ tracks/7/path = NodePath("Finale/Stage/Humphrey:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 49.71, 49.96, 50.11),
+"times": PackedFloat32Array(0, 53.46, 53.71, 53.86),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -193,7 +193,7 @@ tracks/8/path = NodePath("Finale/Stage/Iven:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 49.96, 50.21, 50.36),
+"times": PackedFloat32Array(0, 53.71, 53.96, 54.11),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -205,7 +205,7 @@ tracks/9/path = NodePath("Finale/Thanks:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 48.91, 49.21, 49.41),
+"times": PackedFloat32Array(0, 52.66, 52.96, 53.16),
 "transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.15, 1.15), Vector2(1, 1)]
@@ -217,7 +217,7 @@ tracks/10/path = NodePath("Dim:color")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 48.41, 49.21),
+"times": PackedFloat32Array(0, 52.16, 52.96),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(0.12, 0.08, 0.05, 0.5), Color(0.12, 0.08, 0.05, 0.5), Color(0.12, 0.08, 0.05, 0.3)]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cjdrtuokhcqc"]
 
 [ext_resource type="Texture2D" uid="uid://daatfjfbe2wva" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/ALL UI ASSETS on one sheet.png" id="1_ea3t7"]
-[ext_resource type="FontFile" uid="uid://dd2f3nbk1ijei" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/fonts/Font files TTF/pixelFont-3-7x5-sproutLands.ttf" id="4_xfbr6"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="4_xfbr6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ea3t7"]
 atlas = ExtResource("1_ea3t7")
@@ -59,6 +59,6 @@ theme_override_colors/font_color = Color(1, 0.98, 0.92, 1)
 theme_override_colors/font_outline_color = Color(0.36, 0.22, 0.15, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_xfbr6")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 2
 vertical_alignment = 2

@@ -574,4 +574,10 @@ const LINES := {
 	"Thank you for the durians!": "Salamat sa durian!",
 	"Now please give me the durians!": "Ngayon, pakibigay naman ang durian!",
 	"Tap again to choose!": "Pindutin ulit para piliin!",
+	# Map
+	"North": "Hilaga",
+	"South": "Timog",
+	"West": "Kanluran",
+	"East": "Silangan",
+	"Map": "Mapa",
 }

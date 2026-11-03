@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://cjhi4gm235mtn" path="res://scenes/world/dialogue_panel.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://byee8abb4oroc" path="res://assets/UI/ui/Sprite sheets/Dialouge UI/Premade dialog box  big.png" id="2_box"]
 [ext_resource type="Texture2D" uid="uid://bt07gop56gb4b" path="res://assets/UI/ui/Sprite sheets/Dialouge UI/dialog box character finished talking click to continue indicator - spritesheet .png" id="3_cont"]
-[ext_resource type="FontFile" uid="uid://cth151usmtkbc" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="4_font"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="4_font"]
 [ext_resource type="Theme" uid="uid://cq6yjwxcf3scm" path="res://assets/UI/dialogueButtons.tres" id="5_btn"]
 [ext_resource type="Texture2D" uid="uid://dvsrrybs70wr3" path="res://assets/UI/ui/Sprite sheets/Icons/All Icons.png" id="6_icons"]
 [ext_resource type="FontFile" uid="uid://dvahnwe3pl6sq" path="res://assets/UI/Fonts/Poco.ttf" id="7_poco"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_name"]
 font = ExtResource("4_font")
-font_size = 34
+font_size = 44
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_text"]

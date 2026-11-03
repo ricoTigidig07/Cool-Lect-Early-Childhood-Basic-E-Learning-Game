@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" path="res://assets/UI/map_button.png" id="2_btn"]
 [ext_resource type="FontFile" path="res://assets/UI/Fonts/Poco.ttf" id="3_poco"]
 [ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Icons/All Icons.png" id="4_icons"]
-[ext_resource type="FontFile" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="5_font"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="5_font"]
 [ext_resource type="Shader" path="res://scenes/ui/map_fog.gdshader" id="6_fog"]
 
 [sub_resource type="ShaderMaterial" id="Mat_fog"]
@@ -61,7 +61,7 @@ outline_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="LabelSettings" id="LS_title"]
 font = ExtResource("5_font")
-font_size = 42
+font_size = 55
 font_color = Color(1, 0.97, 0.88, 1)
 outline_size = 10
 outline_color = Color(0.36, 0.22, 0.15, 1)

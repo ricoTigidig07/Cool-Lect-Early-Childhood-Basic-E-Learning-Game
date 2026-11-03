@@ -30,7 +30,7 @@ const SUBJECTS := [
 		"scene": "res://scenes/levels/animals/animals_level_select.tscn"},
 ]
 const ICON_SHEET := "res://assets/UI/ui/emojis-free/subjects_icon.png"
-const TITLE_FONT := "res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf"
+const TITLE_FONT := "res://assets/UI/Fonts/PocoUI.ttf"
 const LEVELS_PER_SUBJECT := 15
 
 const CARD_SIZE := Vector2(300, 370)
@@ -163,7 +163,7 @@ func _build_cards() -> void:
 		var name_label := Label.new()
 		name_label.text = s.name.to_upper()
 		name_label.add_theme_font_override("font", title_font)
-		name_label.add_theme_font_size_override("font_size", 40)
+		name_label.add_theme_font_size_override("font_size", 52)
 		name_label.add_theme_color_override("font_color", Color(0.36, 0.22, 0.15))
 		name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		name_label.position = Vector2(0, 262)

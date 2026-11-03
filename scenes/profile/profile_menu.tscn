@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://b1oxrs8tp4hwy" path="res://assets/UI/cool_lect_theme.tres" id="2_theme"]
 [ext_resource type="PackedScene" path="res://scenes/main_menu/menu_background.tscn" id="3_bg"]
 [ext_resource type="Texture2D" uid="uid://daatfjfbe2wva" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/ALL UI ASSETS on one sheet.png" id="4_ui"]
-[ext_resource type="FontFile" uid="uid://cth151usmtkbc" path="res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf" id="5_font"]
+[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="5_font"]
 [ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green.tres" id="6_green"]
 [ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green_pressed.tres" id="7_green_pressed"]
 [ext_resource type="Texture2D" uid="uid://cahk1n1l61ysd" path="res://resources/filled_star.tres" id="8_star"]
@@ -25,7 +25,7 @@ corner_radius_bottom_left = 12
 
 [sub_resource type="LabelSettings" id="Title"]
 font = ExtResource("5_font")
-font_size = 44
+font_size = 57
 font_color = Color(1, 0.98, 0.92, 1)
 outline_size = 12
 outline_color = Color(0.36, 0.22, 0.15, 1)
@@ -68,14 +68,14 @@ corner_radius_bottom_left = 14
 
 [sub_resource type="LabelSettings" id="Name"]
 font = ExtResource("5_font")
-font_size = 30
+font_size = 39
 font_color = Color(1, 0.98, 0.92, 1)
 outline_size = 8
 outline_color = Color(0.2, 0.36, 0.12, 1)
 
 [sub_resource type="LabelSettings" id="Header"]
 font = ExtResource("5_font")
-font_size = 30
+font_size = 39
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="StyleBoxFlat" id="TotalsBox"]
@@ -92,7 +92,7 @@ corner_radius_bottom_left = 12
 
 [sub_resource type="LabelSettings" id="BigStars"]
 font = ExtResource("5_font")
-font_size = 44
+font_size = 57
 font_color = Color(0.93, 0.62, 0.12, 1)
 outline_size = 8
 outline_color = Color(0.36, 0.22, 0.15, 1)
@@ -195,7 +195,7 @@ corner_radius_bottom_left = 50
 
 [sub_resource type="LabelSettings" id="BigNumber"]
 font = ExtResource("5_font")
-font_size = 60
+font_size = 78
 font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="AtlasTexture" id="Plus"]
