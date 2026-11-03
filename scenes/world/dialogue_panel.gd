@@ -32,6 +32,9 @@ var full_text: String = ""
 var pages: Array[String] = []
 var current_page: int = 0
 var base_position: Vector2
+## Where the box sits (its anchors + offsets from the scene). Kept so the box goes back to
+## the right spot after the screen size changes (a phone turning to landscape at start).
+var _home_offsets: Array[float] = []
 var continue_time: float = 0.0
 var continue_atlas: AtlasTexture
 var last_tap_ms: int = 0
@@ -56,6 +59,7 @@ func _ready() -> void:
 	choices_container.visible = false
 	continue_icon.visible = false
 	base_position = position
+	_home_offsets = [offset_left, offset_top, offset_right, offset_bottom]
 
 func _process(delta: float) -> void:
 	if continue_icon.visible and continue_atlas:
@@ -248,6 +252,13 @@ func _on_choice_pressed(button: Button) -> void:
 func _on_visibility_changed() -> void:
 	AudioManager.duck_music(visible)       # music quieter while someone talks
 	if visible:
+		# the pop-in below moves the box by its position, which also rewrites its offsets:
+		# put the scene's offsets back first, so it is placed for the screen size of now
+		offset_left = _home_offsets[0]
+		offset_top = _home_offsets[1]
+		offset_right = _home_offsets[2]
+		offset_bottom = _home_offsets[3]
+		base_position = position
 		position = base_position + Vector2(0, 30)
 		modulate.a = 0.0
 		var t := create_tween().set_parallel(true)
