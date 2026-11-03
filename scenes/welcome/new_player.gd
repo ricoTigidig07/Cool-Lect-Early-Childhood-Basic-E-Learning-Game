@@ -3,8 +3,11 @@ extends Control
 ## First-time screen: the language, the child's age (4 and up), then a username.
 ## Page 1 (LanguagePage): English / Tagalog / Bisaya.  Page 2 (AgePage): – [age] + and Next.
 ## Page 3 (NamePage): the username + Shuffle + Let's Play.
+## Page 4 (TutorialPage): Banban, the player's bunny, says hi and shows how to play,
+## then the practice yard (try the controls for real) or the main menu opens.
 
 const MAIN_MENU := "res://scenes/main_menu.tscn"
+const PRACTICE_YARD := "res://scenes/welcome/practice/practice_yard.tscn"
 const MIN_AGE := 4
 const KEYBOARD_GAP := 16.0      # space between the name box and the phone keyboard
 
@@ -20,6 +23,7 @@ const KEYBOARD_GAP := 16.0      # space between the name box and the phone keybo
 @onready var play_button: Button = $NamePage/Center/PlayButton
 @onready var back_button: Button = $NamePage/BackButton
 @onready var name_box: Control = $NamePage/Center
+@onready var tutorial_page: Control = $TutorialPage
 
 var chosen_age := MIN_AGE
 var keyboard_lift := 0.0        # how far the name page is moved up for the keyboard
@@ -81,18 +85,24 @@ func _shuffle() -> void:
 	_pop(username_label)
 
 func _on_play() -> void:
+	if tutorial_page.visible:
+		return          # already started (Enter + button)
 	var name_text := username_label.text.strip_edges()
 	if name_text == "":
 		_pop(username_label)
 		return
 	username_label.unedit()          # hides the virtual keyboard
 	PlayerProfile.create_profile(chosen_age, name_text)
-	get_tree().change_scene_to_file(MAIN_MENU)
+	_show_page(tutorial_page)
+	tutorial_page.start()
+	var practice: bool = await tutorial_page.done
+	get_tree().change_scene_to_file(PRACTICE_YARD if practice else MAIN_MENU)
 
 func _show_page(page: Control) -> void:
 	language_page.visible = page == language_page
 	age_page.visible = page == age_page
 	name_page.visible = page == name_page
+	tutorial_page.visible = page == tutorial_page
 
 func _pop(node: Control) -> void:
 	node.pivot_offset = node.size / 2.0

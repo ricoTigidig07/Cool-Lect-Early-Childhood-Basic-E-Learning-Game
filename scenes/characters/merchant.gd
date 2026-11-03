@@ -44,6 +44,9 @@ var display_name := "Momo"
 
 var is_dialogue_open = false
 var quest_ready_to_deliver = false
+## Fruits already given to Momo (fruit -> true). The player gives each fruit by holding
+## it (tap it in the item bar) and tapping the hand button next to Momo.
+var given := {}
 
 func _ready() -> void:
 	interaction_area.body_entered.connect(_on_body_entered)
@@ -104,9 +107,28 @@ func _delivery_lines() -> Array[String]:
 	lines.append("Thank you, great helper!")
 	return lines
 
+func _hold_first_lines(fruit: String) -> Array[String]:
+	return ["Please hold the %s first! Tap them in your item bar." % _plural(fruit)]
+
+func _thanks_lines(fruit: String, next_fruit: String) -> Array[String]:
+	return ["Thank you for the %s!" % _plural(fruit), "Now please give me the %s!" % _plural(next_fruit)]
+
+## A fruit that is all picked up and waiting in the item bar (not given yet), or "".
+func _ready_to_give() -> String:
+	for fruit in quest_items.keys():
+		if not given.has(fruit) and GameUIManager.hotbar_count(fruit) >= int(quest_items[fruit]):
+			return fruit
+	return ""
+
 ## Every line Momo can say in this level (used to make the voice clips).
 func voice_lines() -> Array[String]:
-	return _intro_lines() + _incomplete_lines() + _delivery_lines()
+	var lines := _intro_lines() + _incomplete_lines() + _delivery_lines()
+	for fruit in quest_items.keys():
+		lines += _hold_first_lines(fruit)
+		for other in quest_items.keys():
+			if other != fruit:
+				lines += _thanks_lines(fruit, other)
+	return lines
 
 # ---------- player near / far ----------
 
@@ -140,13 +162,13 @@ func interact() -> void:
 		if portrait:
 			portrait.play("merchant_defaults")
 		is_dialogue_open = false
-	elif quest_ready_to_deliver:
+	elif QuestManager.active or quest_ready_to_deliver:
 		if portrait:
 			portrait.play("merchant_talking")
-		GameUIManager.show_dialogue(_delivery_lines())
-		GameUIManager.connect_dialogue_finished(_on_delivery_dialogue_finished)
+		_talk_about_fruits()
 		is_dialogue_open = true
-	elif QuestManager.active:
+	elif not given.is_empty():
+		return            # everything was given: the level is finishing
 		if portrait:
 			portrait.play("merchant_talking")
 		GameUIManager.show_dialogue(_incomplete_lines())
@@ -159,6 +181,46 @@ func interact() -> void:
 		GameUIManager.show_dialogue(_intro_lines())
 		GameUIManager.connect_dialogue_finished(_on_dialogue_finished)
 		is_dialogue_open = true
+
+## The quest is on: take the fruit the player is holding, or say what to do.
+func _talk_about_fruits() -> void:
+	var held := GameUIManager.get_equipped_item()
+	var held_wanted: bool = quest_items.has(held) and not given.has(held)
+	if held_wanted and GameUIManager.hotbar_count(held) >= int(quest_items[held]):
+		_take(held)
+		return
+	var waiting := _ready_to_give()
+	if waiting != "" and not held_wanted:
+		# all picked up, but not in the hands
+		GameUIManager.show_dialogue(_hold_first_lines(waiting))
+		GameUIManager.connect_dialogue_finished(_on_hint_finished)
+		return
+	GameUIManager.show_dialogue(_incomplete_lines())
+	GameUIManager.connect_dialogue_finished(_on_incomplete_dialogue_finished)
+
+## Momo takes all of this fruit from the item bar.
+func _take(fruit: String) -> void:
+	for i in int(quest_items[fruit]):
+		GameUIManager.consume_hotbar_item(fruit)
+	given[fruit] = true
+	AudioManager.play_sfx("collect")
+	var left: Array = quest_items.keys().filter(func(f): return not given.has(f))
+	if left.is_empty():
+		GameUIManager.show_dialogue(_delivery_lines())
+		GameUIManager.connect_dialogue_finished(_on_delivery_dialogue_finished)
+	else:
+		GameUIManager.show_dialogue(_thanks_lines(fruit, left[0]))
+		GameUIManager.connect_dialogue_finished(_on_hint_finished)
+
+func _on_hint_finished() -> void:
+	await get_tree().create_timer(1.2).timeout
+	if not is_dialogue_open:
+		return
+	GameUIManager.hide_dialogue()
+	var portrait = get_tree().get_first_node_in_group("avatar_icon")
+	if portrait:
+		portrait.play("merchant_defaults")
+	is_dialogue_open = false
 
 func _on_dialogue_finished() -> void:
 	GameUIManager.show_choices(["Yes, I am happy to help!", "No, but maybe next time!"])

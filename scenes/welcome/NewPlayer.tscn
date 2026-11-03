@@ -10,6 +10,7 @@
 [ext_resource type="StyleBox" path="res://assets/UI/cool_lect_button_green_pressed.tres" id="7_green_pressed"]
 [ext_resource type="Texture2D" uid="uid://cng1500ljd7il" path="res://scenes/arrow_left.png" id="8_arrow"]
 [ext_resource type="SpriteFrames" uid="uid://mdg0i8hf5s5p" path="res://resources/avatar_animations.tres" id="9_tj8yj"]
+[ext_resource type="PackedScene" path="res://scenes/welcome/banban_tutorial.tscn" id="10_tutorial"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lyen1"]
 atlas = ExtResource("4_ui")
@@ -630,6 +631,9 @@ offset_bottom = 76.0
 text = "Back"
 icon = ExtResource("8_arrow")
 expand_icon = true
+
+[node name="TutorialPage" parent="." instance=ExtResource("10_tutorial")]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=493327241]
 libraries/ = SubResource("Lib_intro")

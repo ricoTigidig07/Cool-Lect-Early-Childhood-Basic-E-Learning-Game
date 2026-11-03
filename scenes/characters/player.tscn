@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://ctxpghpj0jgys" path="res://assets/fx/sparkle.png" id="21_spark"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kqtwu"]
-radius = 5.0
-height = 13.998665
+radius = 3.9996183
+height = 9.999046
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jk2m4"]
 radius = 3.0
@@ -172,7 +172,7 @@ visible = false
 position = Vector2(0, 5)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1567545173]
-position = Vector2(0, -6)
+position = Vector2(7.450581e-09, -5)
 rotation = -3.1277826
 shape = SubResource("CapsuleShape2D_kqtwu")
 

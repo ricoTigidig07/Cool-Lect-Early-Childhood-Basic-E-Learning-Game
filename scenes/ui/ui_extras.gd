@@ -93,6 +93,10 @@ func _show_banner() -> void:
 	else:
 		banner_title.text = "Level %d" % level
 	banner_name.text = pretty if pretty != "" else "Let's play!"
+	if scene and scene.has_method("banner_text"):      # e.g. the practice yard
+		var own: Array = scene.banner_text()
+		banner_title.text = own[0]
+		banner_name.text = own[1]
 	banner_anim.play("show")
 	AudioManager.play_sfx("pop")
 

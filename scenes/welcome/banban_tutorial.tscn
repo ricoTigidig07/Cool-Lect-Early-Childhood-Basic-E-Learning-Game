@@ -1,0 +1,728 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/welcome/banban_tutorial.gd" id="1_script"]
+[ext_resource type="Script" path="res://scenes/welcome/banban_speaker.gd" id="2_speaker"]
+[ext_resource type="SpriteFrames" path="res://resources/character_animation.tres" id="3_frames"]
+[ext_resource type="PackedScene" path="res://scenes/world/dialogue_panel.tscn" id="4_dialogue"]
+[ext_resource type="PackedScene" path="res://scenes/ui/joystick.tscn" id="5_joy"]
+[ext_resource type="PackedScene" path="res://scenes/ui/action_button.tscn" id="6_hand"]
+[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/ALL UI ASSETS on one sheet.png" id="7_ui"]
+[ext_resource type="Texture2D" path="res://resources/filled_star.tres" id="8_star"]
+[ext_resource type="Texture2D" path="res://scenes/objects/icons/apple.tres" id="9_apple"]
+[ext_resource type="Texture2D" path="res://scenes/objects/icons/fruits/banana.tres" id="10_banana"]
+[ext_resource type="Texture2D" path="res://scenes/collectables/alphabets/capital_A.tres" id="11_a"]
+[ext_resource type="Texture2D" path="res://scenes/collectables/numbers/number_3.tres" id="12_three"]
+[ext_resource type="Theme" path="res://assets/UI/cool_lect_theme.tres" id="13_theme"]
+
+[sub_resource type="AtlasTexture" id="A_slot"]
+atlas = ExtResource("7_ui")
+region = Rect2(59, 59, 26, 26)
+
+[sub_resource type="StyleBoxTexture" id="SB_slot"]
+texture = SubResource("A_slot")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="SB_pad"]
+bg_color = Color(0.2, 0.32, 0.12, 0.35)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="SB_select"]
+draw_center = false
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 0.86, 0.36, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Animation" id="A_idle"]
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stage/Banban:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(240, 410), Vector2(240, 403), Vector2(240, 410)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stage/Banban/Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle_front"]
+}
+
+
+[sub_resource type="Animation" id="A_hop"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stage/Banban:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.28, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5, 2, 1),
+"update": 0,
+"values": [Vector2(240, 410), Vector2(240, 414), Vector2(240, 350), Vector2(240, 410)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stage/Banban/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.28, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(9, 9), Vector2(10.2, 7.8), Vector2(8.2, 10), Vector2(9.8, 8.2), Vector2(9, 9)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stage/Banban/Sprite:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk_down"]
+}
+
+
+[sub_resource type="Animation" id="A_joy"]
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Demo:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.25),
+"transitions": PackedFloat32Array(0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0.85, 0.85), Vector2(1.04, 1.04), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Demo/JoyDemo/Joystick/Base/Knob:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.6, 2, 2.4, 3.6, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(72, 72), Vector2(122, 72), Vector2(122, 72), Vector2(72, 72), Vector2(22, 72), Vector2(22, 72), Vector2(72, 72)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Demo/JoyDemo/Walker:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.6, 2, 2.4, 3.6, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(560, 250), Vector2(560, 250), Vector2(660, 250), Vector2(660, 250), Vector2(660, 250), Vector2(560, 250), Vector2(560, 250)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Demo/JoyDemo/Walker:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.6, 2.4, 3.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [&"idle_front", &"walk_right", &"idle_front", &"walk_left", &"idle_front"]
+}
+
+
+[sub_resource type="Animation" id="A_hand"]
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Demo:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.25),
+"transitions": PackedFloat32Array(0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0.85, 0.85), Vector2(1.04, 1.04), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Demo/HandDemo/ActionButton/Button/Face:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.7, 0.9, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.85, 0.85), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Demo/HandDemo/Apple:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.2, 2.4),
+"transitions": PackedFloat32Array(1, 0.5, 1, 1),
+"update": 0,
+"values": [Vector2(250, 220), Vector2(250, 220), Vector2(150, 170), Vector2(150, 170)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Demo/HandDemo/Apple:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.2, 1.3, 2.3, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(4, 4), Vector2(2, 2), Vector2(0, 0), Vector2(0, 0), Vector2(4, 4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Demo/HandDemo/Taker:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [&"idle_right", &"walk_right", &"idle_right"]
+}
+
+
+[sub_resource type="Animation" id="A_items"]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Demo:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.25),
+"transitions": PackedFloat32Array(0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0.85, 0.85), Vector2(1.04, 1.04), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Demo/ItemsDemo/Slots/Slot1/Icon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.75, 0.85),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Demo/ItemsDemo/Slots/Slot2/Icon:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.05, 1.15),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Demo/ItemsDemo/Slots/Slot3/Icon:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.2, 1.35, 1.45),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Demo/ItemsDemo/Slots/Slot4/Icon:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.65, 1.75),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Demo/ItemsDemo/Slots/Slot1:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.8, 2, 2.2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1.1, 1.1), Vector2(1.1, 1.1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Demo/ItemsDemo/Selector:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+
+[sub_resource type="Animation" id="A_stars"]
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Demo:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.25),
+"transitions": PackedFloat32Array(0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0.85, 0.85), Vector2(1.04, 1.04), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Demo/StarsDemo/Stars/Star1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.65, 0.85, 0.97),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.25, 1.25), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Demo/StarsDemo/Stars/Star2:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.2, 1.32),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.25, 1.25), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Demo/StarsDemo/Stars/Star3:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.35, 1.55, 1.67),
+"transitions": PackedFloat32Array(1, 0.5, 1.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1.25, 1.25), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Demo/StarsDemo/Stars:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.6, 2, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.05, 0.0]
+}
+
+
+[sub_resource type="Animation" id="A_hidecard"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Demo:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Demo:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+
+[sub_resource type="Animation" id="A_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Demo:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stage/Banban:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(240, 410)]
+}
+
+
+[sub_resource type="AnimationLibrary" id="Lib_banban"]
+_data = {
+&"RESET": SubResource("A_reset"),
+&"hop": SubResource("A_hop"),
+&"idle": SubResource("A_idle")
+}
+
+[sub_resource type="AnimationLibrary" id="Lib_demo"]
+_data = {
+&"hand": SubResource("A_hand"),
+&"hide_card": SubResource("A_hidecard"),
+&"items": SubResource("A_items"),
+&"joystick": SubResource("A_joy"),
+&"stars": SubResource("A_stars")
+}
+
+[node name="BanbanTutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("13_theme")
+script = ExtResource("1_script")
+
+[node name="Stage" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="Pad" type="Panel" parent="Stage"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 390.0
+offset_right = 350.0
+offset_bottom = 430.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_pad")
+
+[node name="Banban" type="Node2D" parent="Stage"]
+position = Vector2(240, 410)
+script = ExtResource("2_speaker")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Stage/Banban"]
+texture_filter = 1
+scale = Vector2(9, 9)
+sprite_frames = ExtResource("3_frames")
+animation = &"idle_front"
+autoplay = "idle_front"
+offset = Vector2(0, -8)
+
+[node name="Demo" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 470.0
+offset_top = 24.0
+offset_right = 1210.0
+offset_bottom = 430.0
+pivot_offset = Vector2(370, 203)
+mouse_filter = 2
+
+[node name="JoyDemo" type="Control" parent="Demo"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Joystick" parent="Demo/JoyDemo" instance=ExtResource("5_joy")]
+scale = Vector2(0.8, 0.8)
+
+[node name="Walker" type="AnimatedSprite2D" parent="Demo/JoyDemo"]
+texture_filter = 1
+position = Vector2(560, 250)
+scale = Vector2(6, 6)
+sprite_frames = ExtResource("3_frames")
+animation = &"idle_front"
+autoplay = "idle_front"
+offset = Vector2(0, -8)
+
+[node name="HandDemo" type="Control" parent="Demo"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ActionButton" parent="Demo/HandDemo" instance=ExtResource("6_hand")]
+scale = Vector2(0.9, 0.9)
+
+[node name="Taker" type="AnimatedSprite2D" parent="Demo/HandDemo"]
+texture_filter = 1
+position = Vector2(130, 260)
+scale = Vector2(6, 6)
+sprite_frames = ExtResource("3_frames")
+animation = &"idle_right"
+offset = Vector2(0, -8)
+
+[node name="Apple" type="Sprite2D" parent="Demo/HandDemo"]
+texture_filter = 1
+position = Vector2(250, 220)
+scale = Vector2(4, 4)
+texture = ExtResource("9_apple")
+
+[node name="ItemsDemo" type="Control" parent="Demo"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Slots" type="HBoxContainer" parent="Demo/ItemsDemo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -50.0
+offset_right = 280.0
+offset_bottom = 50.0
+mouse_filter = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Slot1" type="Panel" parent="Demo/ItemsDemo/Slots"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+pivot_offset = Vector2(50, 50)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_slot")
+
+[node name="Icon" type="TextureRect" parent="Demo/ItemsDemo/Slots/Slot1"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 80.0
+pivot_offset = Vector2(30, 30)
+mouse_filter = 2
+texture = ExtResource("9_apple")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot2" type="Panel" parent="Demo/ItemsDemo/Slots"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+pivot_offset = Vector2(50, 50)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_slot")
+
+[node name="Icon" type="TextureRect" parent="Demo/ItemsDemo/Slots/Slot2"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 80.0
+pivot_offset = Vector2(30, 30)
+mouse_filter = 2
+texture = ExtResource("10_banana")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot3" type="Panel" parent="Demo/ItemsDemo/Slots"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+pivot_offset = Vector2(50, 50)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_slot")
+
+[node name="Icon" type="TextureRect" parent="Demo/ItemsDemo/Slots/Slot3"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 80.0
+pivot_offset = Vector2(30, 30)
+mouse_filter = 2
+texture = ExtResource("11_a")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot4" type="Panel" parent="Demo/ItemsDemo/Slots"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+pivot_offset = Vector2(50, 50)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_slot")
+
+[node name="Icon" type="TextureRect" parent="Demo/ItemsDemo/Slots/Slot4"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 80.0
+pivot_offset = Vector2(30, 30)
+mouse_filter = 2
+texture = ExtResource("12_three")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot5" type="Panel" parent="Demo/ItemsDemo/Slots"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+pivot_offset = Vector2(50, 50)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_slot")
+
+[node name="Selector" type="Panel" parent="Demo/ItemsDemo"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -60.0
+offset_right = -170.0
+offset_bottom = 60.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("SB_select")
+
+[node name="StarsDemo" type="Control" parent="Demo"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Stars" type="HBoxContainer" parent="Demo/StarsDemo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -70.0
+offset_right = 230.0
+offset_bottom = 70.0
+pivot_offset = Vector2(230, 70)
+mouse_filter = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Star1" type="TextureRect" parent="Demo/StarsDemo/Stars"]
+texture_filter = 1
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+pivot_offset = Vector2(65, 65)
+mouse_filter = 2
+texture = ExtResource("8_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Star2" type="TextureRect" parent="Demo/StarsDemo/Stars"]
+texture_filter = 1
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+pivot_offset = Vector2(65, 65)
+mouse_filter = 2
+texture = ExtResource("8_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Star3" type="TextureRect" parent="Demo/StarsDemo/Stars"]
+texture_filter = 1
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+pivot_offset = Vector2(65, 65)
+mouse_filter = 2
+texture = ExtResource("8_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DialoguePanel" parent="." instance=ExtResource("4_dialogue")]
+visible = false
+
+[node name="BanbanAnim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("Lib_banban")
+}
+
+[node name="DemoAnim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("Lib_demo")
+}

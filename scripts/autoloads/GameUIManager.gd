@@ -156,6 +156,9 @@ func get_equipped_item() -> String:
 		return hotbar.equipped_item
 	return ""
 
+func hotbar_count(item_type: String) -> int:
+	return hotbar.count_of(item_type) if hotbar else 0
+
 func consume_hotbar_item(item_type: String) -> void:
 	if hotbar:
 		hotbar.consume_item(item_type)

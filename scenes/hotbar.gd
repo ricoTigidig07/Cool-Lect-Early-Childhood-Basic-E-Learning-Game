@@ -14,10 +14,16 @@ var item_icons: Dictionary = {
 }
 
 const LETTER_ICON_PATH := "res://scenes/collectables/alphabets/"
+## Fruits: res://scenes/objects/icons/fruits/<fruit>.tres (the apple is one folder up).
+const FRUIT_ICON_PATHS := ["res://scenes/objects/icons/fruits/%s.tres", "res://scenes/objects/icons/%s.tres"]
 
 func get_icon(item_type: String) -> Texture2D:
 	if item_icons.has(item_type):
 		return item_icons[item_type]
+	for p in FRUIT_ICON_PATHS:
+		if item_type.length() > 1 and ResourceLoader.exists(p % item_type):
+			item_icons[item_type] = load(p % item_type)
+			return item_icons[item_type]
 	if item_type.length() == 1 and item_type.is_valid_identifier():
 		var path: String
 		if item_type == item_type.to_upper():
@@ -98,6 +104,13 @@ func _select_slot(slot: Button) -> void:
 	selector.scale = Vector2.ONE * SELECTOR_SCALE
 	selector.size = (slot.size + Vector2.ONE * SELECTOR_OUT * 2.0) / SELECTOR_SCALE
 	selector.position = -Vector2.ONE * SELECTOR_OUT
+
+## How many of this item are in the bag.
+func count_of(item_type: String) -> int:
+	var slot = slot_by_item.get(item_type)
+	if slot == null:
+		return 0
+	return int(slot.get_node("Label").text)
 
 func consume_item(item_type: String) -> void:
 	var slot = slot_by_item.get(item_type)

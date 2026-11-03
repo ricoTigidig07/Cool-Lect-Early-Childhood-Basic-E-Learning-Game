@@ -48,7 +48,20 @@ func _ready() -> void:
 	name_label.visible = false
 	label_english = name_label.text
 	if item_type == "fruits":
+		uses_hotbar = true        # fruits go into the item bar, Momo takes them from there
 		_hide_until_quest()
+
+## The item bar groups things by this name: each fruit has its own slot ("apple").
+func bag_key() -> String:
+	return collectable_name if item_type == "fruits" else item_type
+
+## A fruit Momo didn't ask for (or one he already has enough of) can't be picked.
+func _fruit_wanted() -> bool:
+	if item_type != "fruits":
+		return true
+	if not QuestManager.target_counts.has(collectable_name):
+		return false
+	return QuestManager.current_counts.get(collectable_name, 0) < QuestManager.target_counts[collectable_name]
 
 ## Fruits stay hidden until the player says "Yes" to Momo.
 func _hide_until_quest() -> void:
@@ -81,7 +94,10 @@ func _on_body_exited(body: Node2D) -> void:
 func start_hold() -> void:
 	if is_collecting:
 		return
-	if uses_hotbar and not GameUIManager.hotbar_has_room(item_type):
+	if not _fruit_wanted():
+		_bag_full_feedback()      # not one of the fruits Momo asked for: it wiggles, "no"
+		return
+	if uses_hotbar and not GameUIManager.hotbar_has_room(bag_key()):
 		_bag_full_feedback()      # all 5 bag slots hold other things: use some first
 		return
 	if player_ref and player_ref.has_method("face_toward"):
@@ -118,7 +134,7 @@ func interact() -> void:
 	is_collecting = true
 	collector = player_ref
 	if uses_hotbar:
-		GameUIManager.reserve_hotbar_item(item_type)   # keep a bag slot while it flies in
+		GameUIManager.reserve_hotbar_item(bag_key())   # keep a bag slot while it flies in
 	set_deferred("monitoring", false)
 	InteractionManager.unregister(self)
 	name_label.visible = false
@@ -204,6 +220,8 @@ func _player_hop() -> void:
 	t.tween_property(body, "position:y", -6.0, 0.12).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 
 func _finish_collect() -> void:
+	if item_type == "fruits":
+		GameUIManager.give_hotbar_item(bag_key(), 1)
 	QuestManager.collect_item(collectable_name)
 	collected.emit(collectable_name, item_type)
 	queue_free()

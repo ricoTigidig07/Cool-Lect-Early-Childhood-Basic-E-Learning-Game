@@ -16,6 +16,7 @@ shader_parameter/sway_amount = 0.8
 shader_parameter/sway_speed = 1.6
 shader_parameter/wave_scale = 0.025
 shader_parameter/padded_tile = 18.0
+shader_parameter/rustle_amount = 1.8
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1vli0"]
 texture = ExtResource("1_3ucl4")
