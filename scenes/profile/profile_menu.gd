@@ -6,6 +6,7 @@ extends Control
 
 const MAIN_MENU := "res://scenes/main_menu.tscn"
 const LEVELS_PER_SUBJECT := 15
+const SUBJECT_ORDER := ["Alphabets", "Numbers", "Fruits", "Colors", "Shapes", "Animals"]
 const MIN_AGE := 4
 const KEYBOARD_GAP := 16.0      # space between the name box and the phone keyboard
 
@@ -65,6 +66,11 @@ func _refresh() -> void:
 	username_label.text = PlayerProfile.username if PlayerProfile.username != "" else "New Player"
 	age_label.text = "%d years old" % max(PlayerProfile.age, MIN_AGE)
 
+	# same order as the subject cards
+	for i in SUBJECT_ORDER.size():
+		var r := rows.get_node_or_null(SUBJECT_ORDER[i])
+		if r:
+			rows.move_child(r, i)
 	var all_stars := 0
 	var all_levels := 0
 	for row in rows.get_children():

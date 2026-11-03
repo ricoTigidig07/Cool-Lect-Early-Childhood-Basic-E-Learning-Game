@@ -16,18 +16,18 @@ signal closed
 @export var embedded := false
 
 const SUBJECTS := [
-	{"id": "fruits", "name": "Fruits", "icon": Rect2(8, 2, 176, 166), "color": Color(0.93, 0.42, 0.4),
-		"scene": "res://scenes/levels/fruits/fruits_level_select.tscn"},
-	{"id": "numbers", "name": "Numbers", "icon": Rect2(296, 0, 160, 168), "color": Color(0.42, 0.62, 0.95),
-		"scene": "res://scenes/levels/numbers/numbers_level_select.tscn"},
 	{"id": "alphabets", "name": "Alphabets", "icon": Rect2(576, 0, 176, 168), "color": Color(0.97, 0.62, 0.3),
 		"scene": "res://scenes/levels/alphabets/alphabets_level_select.tscn"},
-	{"id": "animals", "name": "Animals", "icon": Rect2(8, 160, 176, 172), "color": Color(0.93, 0.56, 0.7),
-		"scene": "res://scenes/levels/animals/animals_level_select.tscn"},
-	{"id": "shapes", "name": "Shapes", "icon": Rect2(296, 160, 168, 172), "color": Color(0.95, 0.78, 0.3),
-		"scene": "res://scenes/levels/shapes/shapes_level_select.tscn"},
+	{"id": "numbers", "name": "Numbers", "icon": Rect2(296, 0, 160, 168), "color": Color(0.42, 0.62, 0.95),
+		"scene": "res://scenes/levels/numbers/numbers_level_select.tscn"},
+	{"id": "fruits", "name": "Fruits", "icon": Rect2(8, 2, 176, 166), "color": Color(0.93, 0.42, 0.4),
+		"scene": "res://scenes/levels/fruits/fruits_level_select.tscn"},
 	{"id": "colors", "name": "Colors", "icon": Rect2(576, 160, 176, 172), "color": Color(0.68, 0.5, 0.9),
 		"scene": "res://scenes/levels/colors/colors_level_select.tscn"},
+	{"id": "shapes", "name": "Shapes", "icon": Rect2(296, 160, 168, 172), "color": Color(0.95, 0.78, 0.3),
+		"scene": "res://scenes/levels/shapes/shapes_level_select.tscn"},
+	{"id": "animals", "name": "Animals", "icon": Rect2(8, 160, 176, 172), "color": Color(0.93, 0.56, 0.7),
+		"scene": "res://scenes/levels/animals/animals_level_select.tscn"},
 ]
 const ICON_SHEET := "res://assets/UI/ui/emojis-free/subjects_icon.png"
 const TITLE_FONT := "res://assets/UI/ui/fonts/pixelFont-7-8x14-sproutLands.ttf"
