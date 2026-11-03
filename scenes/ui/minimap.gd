@@ -16,8 +16,8 @@ const COMPASS := ["North", "South", "West", "East"]
 const CELL := 8.0                 # explored mask: one pixel per this many world pixels
 const SEE_RADIUS := 150.0         # how far around the player becomes explored (world px)
 const SCREEN_DARK := 0.45         # how dark unexplored places are on the game screen
-const SMALL_ICON := 18.0          # size of the item icons on the small map
-const BIG_ICON := 26.0            # ... and on the big map
+const SMALL_ICON := 28.0          # size of the item icons on the small map
+const BIG_ICON := 28.0            # ... and on the big map
 
 @onready var small_vp: SubViewport = $Frame/View/Viewport
 @onready var small_cam: Camera2D = $Frame/View/Viewport/Cam
@@ -203,6 +203,10 @@ func _find_things() -> void:
 		return
 	for n in level.find_children("*", "CollectableComponent", true, false):
 		_things.append(n)
+	# the NPCs' symbols (store, barn, school...) as big as the player's head too
+	for n in level.find_children("Symbol", "Node2D", true, false):
+		if n.get_script() and n.get_script().resource_path.ends_with("npc_symbol.gd"):
+			_things.append(n)
 
 func _icon_texture(n: Node) -> Texture2D:
 	if "icon" in n and n.icon:
