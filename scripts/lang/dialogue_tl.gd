@@ -573,4 +573,5 @@ const LINES := {
 	"Please hold the durians first! Tap them in your item bar.": "Hawakan mo muna ang durian! Pindutin ito sa iyong item bar.",
 	"Thank you for the durians!": "Salamat sa durian!",
 	"Now please give me the durians!": "Ngayon, pakibigay naman ang durian!",
+	"Tap again to choose!": "Pindutin ulit para piliin!",
 }
