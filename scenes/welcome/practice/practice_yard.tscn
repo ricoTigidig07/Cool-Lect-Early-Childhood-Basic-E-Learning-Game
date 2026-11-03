@@ -14,7 +14,12 @@
 [ext_resource type="PackedScene" path="res://scenes/collectables/fruits/apple.tscn" id="12_apple"]
 [ext_resource type="PackedScene" path="res://scenes/game_ui.tscn" id="13_ui"]
 [ext_resource type="Texture2D" path="res://assets/UI/ui/Sprite sheets/Mouse sprites/Catpaw pointing Mouse icon.png" id="14_point"]
+[ext_resource type="Shader" path="res://scenes/welcome/practice/spotlight.gdshader" id="16_spot"]
 [ext_resource type="Texture2D" path="res://assets/UI/ui/Sprite sheets/Mouse sprites/Catpaw holding Mouse icon.png" id="15_press"]
+
+[sub_resource type="ShaderMaterial" id="Mat_spot"]
+shader = ExtResource("16_spot")
+shader_parameter/dim = 0.0
 
 [sub_resource type="AtlasTexture" id="Tree_Apple"]
 atlas = ExtResource("6_trees")
@@ -429,6 +434,16 @@ animation = &"idle_front"
 
 [node name="Coach" type="CanvasLayer" parent="."]
 layer = 5
+
+[node name="Dim" type="ColorRect" parent="Coach"]
+material = SubResource("Mat_spot")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Pointer" type="Node2D" parent="Coach"]
 visible = false

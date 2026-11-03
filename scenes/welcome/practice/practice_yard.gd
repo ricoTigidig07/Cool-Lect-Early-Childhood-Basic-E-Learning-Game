@@ -9,6 +9,8 @@ extends Node2D
 ## Then the main menu opens. Nothing is saved (no stars).
 ## A pointing paw shows what to touch (joystick, hand button, the apple in the item bar)
 ## and goes away once the player uses it; in the yard it points at Momo or the apple.
+## While the paw points at a button, the rest of the screen goes dark (spotlight.gdshader).
+## The item bar starts on its SECOND box, so the apple (in the first box) has to be tapped.
 ## Lines are in English here; Lang.line() shows them in Tagalog / Bisaya.
 
 const MAIN_MENU := "res://scenes/main_menu.tscn"
@@ -25,6 +27,7 @@ const NOT_NOW := "Not now."
 @onready var goal: Node2D = $Goal
 @onready var apple: Area2D = $Apple
 @onready var anim: AnimationPlayer = $YardAnim
+@onready var dim: ColorRect = $Coach/Dim
 @onready var pointer: Node2D = $Coach/Pointer
 @onready var pointer_anim: AnimationPlayer = $Coach/Pointer/PawAnim
 @onready var world_pointer: Node2D = $WorldPointer
@@ -36,6 +39,8 @@ var coach := ""
 var _walked := false          # the joystick (or keys) moved the player
 var _pressed_at := -100.0     # last time the hand button was pressed (s)
 const PRESS_HIDE := 4.0       # after a press the paw waits this long before showing again
+const DIM := 0.6              # how dark the screen gets around the button to press
+var _dim := 0.0
 
 var _tapped := false
 var _tap_ok_at := 0
@@ -59,6 +64,9 @@ func _ready() -> void:
 		GameUIManager.hotbar.item_icons["apple"] = APPLE_ICON
 	GameUIManager.set_missions(Lang.line("Walk to the star"), Lang.line("Talk to Momo"), Lang.line("Give Momo the apple"))
 	await get_tree().create_timer(0.8).timeout
+	# the second box is picked at the start: the apple will land in the first one
+	if GameUIManager.hotbar:
+		GameUIManager.hotbar._select_slot(GameUIManager.hotbar.slots_container.get_child(1))
 	_run()
 
 
@@ -104,11 +112,18 @@ func _run() -> void:
 	coach = ""
 	await get_tree().create_timer(0.4).timeout
 	await _say(banban, ["You got the apple! It's in your item bar now.",
-		"Tap the apple in your item bar to hold it.",
-		"Then walk to Momo and tap the hand button to give it to him."])
-	# 4. give it
+		"Tap the apple in your item bar to hold it."])
+	# 4. hold it (tap it in the item bar)
+	coach = "select"
+	while GameUIManager.get_equipped_item() != "apple":
+		await get_tree().process_frame
+	coach = ""
+	AudioManager.play_sfx("pop")
+	await get_tree().create_timer(0.5).timeout
+	await _say(banban, ["Then walk to Momo and tap the hand button to give it to him."])
+	# 5. give it
 	while true:
-		coach = "select"
+		coach = "give"
 		await momo.talked
 		coach = ""
 		if GameUIManager.get_equipped_item() == "apple":
@@ -153,7 +168,7 @@ func _say(who: Node, lines: Array[String], answers: Array[String] = []) -> Strin
 func _now() -> float:
 	return Time.get_ticks_msec() / 1000.0
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if player.velocity.length() > 5.0 and not player.controls_locked:
 		_walked = true
 	var ui_target: Control = null
@@ -178,12 +193,24 @@ func _process(_delta: float) -> void:
 					hold = true
 			"select":
 				var bar = GameUIManager.hotbar
-				if GameUIManager.get_equipped_item() == "apple":
-					coach = "give"
-				elif bar and bar.slot_by_item.has("apple"):
+				if bar and bar.slot_by_item.has("apple") and GameUIManager.get_equipped_item() != "apple":
 					ui_target = bar.slot_by_item["apple"]
 	_point_ui(ui_target, hold)
 	_point_world(world_target)
+	_spotlight(ui_target, delta)
+
+## Darkens everything but the button the paw points at.
+func _spotlight(target: Control, delta: float) -> void:
+	var on := target != null and target.is_visible_in_tree()
+	_dim = move_toward(_dim, DIM if on else 0.0, delta * 2.5)
+	var mat := dim.material as ShaderMaterial
+	mat.set_shader_parameter("dim", _dim)
+	mat.set_shader_parameter("rect_size", dim.size)
+	if on:
+		var r := target.get_global_rect().grow(12.0)
+		mat.set_shader_parameter("hole", Vector4(r.position.x, r.position.y, r.size.x, r.size.y))
+		mat.set_shader_parameter("radius", minf(r.size.x, r.size.y) * 0.3)
+	dim.visible = _dim > 0.001
 
 ## The paw's fingertip touches the middle of this button (from below; from the left
 ## side for buttons on the right half of the screen, so it stays on screen).
