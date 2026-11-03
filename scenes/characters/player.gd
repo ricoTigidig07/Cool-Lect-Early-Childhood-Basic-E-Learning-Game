@@ -34,6 +34,10 @@ func walk_path(points: PackedVector2Array) -> void:
 
 func _ready() -> void:
 	camera.zoom = Vector2(3.7, 3.7)
+	# The whole player sorts at the feet (this node's position). With Y sort on here the
+	# body sprite (drawn 6 px higher) would sort on its own and slip behind things
+	# the player is standing in front of.
+	y_sort_enabled = false
 	# Colors levels teach real colors: keep the bright, happy light but no warm color shift.
 	if lively_light and GameManager.current_subject == "colors":
 		lively_light.material.set_shader_parameter("warmth", Vector3.ONE)

@@ -10,8 +10,8 @@ extends Node2D
 ## basket, board, easel, door or helper. If nothing fits, the workplace is hidden.
 ## Solid pieces get a thin collision at their bottom ("feet") so the player can't walk
 ## through the shop, but only where there is a wide free gap all around it, so no path
-## in a level can be closed. The whole workplace sorts at its lowest bottom (Y sort):
-## the player is drawn behind it when standing behind it and in front when in front.
+## in a level can be closed. Every piece sorts at its own drawn bottom (Y sort), so the
+## player is drawn in front of a piece when standing below it and behind it when above it.
 
 const PATH_GAP := 12.0     # free room needed around a solid piece before it gets a collision
 
@@ -121,21 +121,20 @@ func _visual_rect(n: Node) -> Rect2:
 
 func _use(mirror: bool, only_main: bool, shift: Vector2) -> void:
 	var used := _used(only_main)
-	var bottom := -INF
 	for p in pieces:
 		p.visible = p in used
 		p.position = _local_pos(p, mirror, shift)
-		if p.visible:
-			var drawn := DepthSorter._drawn_bottom(p.texture, Rect2i(Vector2i.ZERO, p.texture.get_size()))
-			bottom = maxf(bottom, p.position.y + (drawn + 1 if drawn >= 0 else p.texture.get_size().y))
-	# sort at the bottom of the workplace: move this node there, the pieces stay in place
-	var sort_y := bottom - 2.0
-	position.y += sort_y
-	for p in pieces:
-		p.position.y -= sort_y
 	for p in used:
 		if p.get_meta("solid", false):
 			_add_feet(p)
+	# each piece sorts at its own drawn bottom: move the piece's origin down there
+	# and draw the picture back up by the same amount (it stays where it was)
+	y_sort_enabled = true
+	for p in used:
+		var drawn := DepthSorter._drawn_bottom(p.texture, Rect2i(Vector2i.ZERO, p.texture.get_size()))
+		var foot: float = (drawn + 1.0 if drawn >= 0 else p.texture.get_size().y) - 2.0
+		p.position.y += foot
+		p.offset.y -= foot
 	visible = true
 
 func _add_feet(p: Sprite2D) -> void:
