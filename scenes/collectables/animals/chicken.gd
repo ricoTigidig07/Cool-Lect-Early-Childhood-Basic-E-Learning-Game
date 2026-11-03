@@ -32,7 +32,8 @@ var tamed := false
 
 const SEPARATION_PUSH := 40.0
 ## Animals bump into things exactly like the player: they use the player's own collision
-## shape and collision mask (walls, fences, houses, trees, rocks, water...).
+## shape and collision mask (walls, fences, houses, trees, rocks, water...), placed at
+## the animal's feet (where its picture touches the ground), just like on the player.
 ## The player doesn't block them.
 ## A friend following the player that is stuck for this long pops up next to the player.
 const STUCK_TIME := 2.0
@@ -40,7 +41,6 @@ const STUCK_TIME := 2.0
 var _shape: Shape2D = null          # the player's collision shape
 var _shape_offset := Vector2.ZERO   # where it sits on the player
 var _mask := 1
-var _core := CircleShape2D.new()
 var _stuck := 0.0
 
 var state: State = State.WANDER_IDLE
@@ -53,6 +53,7 @@ var follow_target: Node2D = null
 
 func _ready() -> void:
 	super._ready()
+	_origin_to_feet()
 	add_to_group("farm_animals")
 	current_idle_anim = anim_prefix + "_idle"
 	if want_bubble:
@@ -95,6 +96,32 @@ func _physics_process(delta: float) -> void:
 				_move_toward(target_pos, follow_speed, delta)
 			else:
 				sprite.play(anim_prefix + "_idle")
+
+## The pictures are drawn with the feet up to 10 px below this node's position. Move the
+## position down to the feet (and every child up by the same amount, so nothing moves on
+## screen). Now the collision and the Y sort both happen where the animal stands.
+func _origin_to_feet() -> void:
+	var tex: Texture2D = sprite.sprite_frames.get_frame_texture(sprite.animation, 0) if sprite.sprite_frames else null
+	if tex == null:
+		return
+	var img := tex.get_image()
+	if img == null:
+		return
+	if img.is_compressed():
+		img.decompress()
+	var used := img.get_used_rect()
+	if used.size == Vector2i.ZERO:
+		return
+	var top := sprite.position.y + sprite.offset.y * sprite.scale.y
+	if sprite.centered:
+		top -= tex.get_height() * 0.5 * sprite.scale.y
+	var feet := top + used.end.y * sprite.scale.y - 1.0     # same as the player: feet 1 px below
+	if absf(feet) < 0.5:
+		return
+	for c in get_children():
+		if c is Node2D or c is Control:
+			c.position.y -= feet
+	global_position.y += feet
 
 func _apply_separation(delta: float) -> void:
 	var push = Vector2.ZERO
@@ -196,14 +223,12 @@ func _free_fraction(motion: Vector2) -> float:
 	q.transform = Transform2D(0, global_position + _shape_offset)
 	q.motion = motion
 	var space := get_world_2d().direct_space_state
-	# standing inside something (spawned on it): don't trap it, let it walk out
-	var full := q.shape
-	if full is CircleShape2D:
-		_core.radius = maxf(1.0, full.radius - 1.5)
-		q.shape = _core
-		if not space.intersect_shape(q, 1).is_empty():
+	# already pushed into something (spawned on it): only let it walk OUT, never deeper
+	var rest := space.get_rest_info(q)
+	if not rest.is_empty():
+		var out: Vector2 = rest.normal
+		if out != Vector2.ZERO and motion.normalized().dot(out) > 0.3:
 			return 1.0
-		q.shape = full
 	var r := space.cast_motion(q)
 	return r[0] if r.size() > 0 else 1.0
 
