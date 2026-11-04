@@ -80,6 +80,7 @@ var follow_target: Node2D = null
 
 func _ready() -> void:
 	super._ready()
+	z_index = 0     # sort with the player (in front / behind by who is lower), not always on top
 	_origin_to_feet()
 	add_to_group("farm_animals")
 	current_idle_anim = anim_prefix + "_idle"
