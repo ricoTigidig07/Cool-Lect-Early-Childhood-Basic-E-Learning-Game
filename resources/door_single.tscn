@@ -1,0 +1,90 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://d0jhi1gdbiq0q" path="res://resources/door.gd" id="1_door"]
+[ext_resource type="Texture2D" uid="uid://ckvs7mvhb674e" path="res://assets/sprites/game/Sprout Lands - Sprites - premium pack/Tilesets/Building parts/door animation sprites.png" id="2_sheet"]
+
+[sub_resource type="AtlasTexture" id="A_f5"]
+atlas = ExtResource("2_sheet")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_f4"]
+atlas = ExtResource("2_sheet")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_f3"]
+atlas = ExtResource("2_sheet")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_f2"]
+atlas = ExtResource("2_sheet")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_f1"]
+atlas = ExtResource("2_sheet")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="A_f0"]
+atlas = ExtResource("2_sheet")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="Frames"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("A_f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("A_f4")
+}, {
+"duration": 1.0,
+"texture": SubResource("A_f3")
+}, {
+"duration": 1.0,
+"texture": SubResource("A_f2")
+}, {
+"duration": 1.0,
+"texture": SubResource("A_f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("A_f0")
+}],
+"loop": false,
+"name": &"open",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="Shape_area"]
+size = Vector2(16, 21)
+
+[sub_resource type="RectangleShape2D" id="Shape_door"]
+size = Vector2(10, 16)
+
+[sub_resource type="RectangleShape2D" id="Shape_post"]
+size = Vector2(3, 16)
+
+[node name="DoorSingle" type="Area2D"]
+script = ExtResource("1_door")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("Frames")
+animation = &"open"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("Shape_area")
+
+[node name="DoorBody" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorBody"]
+position = Vector2(0, 1)
+shape = SubResource("Shape_door")
+
+[node name="WallBody" type="StaticBody2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="WallBody"]
+position = Vector2(-6.5, 1)
+shape = SubResource("Shape_post")
+
+[node name="Right" type="CollisionShape2D" parent="WallBody"]
+position = Vector2(6.5, 1)
+shape = SubResource("Shape_post")

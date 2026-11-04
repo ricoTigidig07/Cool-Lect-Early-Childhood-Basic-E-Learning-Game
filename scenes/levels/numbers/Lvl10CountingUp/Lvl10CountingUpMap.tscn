@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" path="res://scenes/collectables/numbers/egg.tscn" id="13_egg"]
 [ext_resource type="PackedScene" uid="uid://dvl77xufpmsgi" path="res://scenes/game_ui.tscn" id="14_ui"]
 
+[ext_resource type="PackedScene" uid="uid://dubbaqeuluioc" path="res://resources/door.tscn" id="door_auto"]
+[ext_resource type="PackedScene" path="res://resources/door_single.tscn" id="door_single_auto"]
 [node name="Lvl10CountingUpMap" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_missions")
@@ -73,7 +75,7 @@ tile_map_data = PackedByteArray("AAAXAAEAAAAAAAEAAAAXAAIAAAAAAAEAAAAXAAMAAAAAAAE
 tile_set = ExtResource("6_ov82n")
 
 [node name="door" type="TileMapLayer" parent="Lvl10CountingUpTilemap/House"]
-tile_map_data = PackedByteArray("AAAcAAcAAgAJAAEAAAAdAAcAAgAKAAEAAAAeAAcAAgALAAEAAAAbAAQAAgADAAAAAAA6ABYAAgADAAAAAAA=")
+tile_map_data = PackedByteArray("AAA=")
 tile_set = ExtResource("6_ov82n")
 
 [node name="furnitures" type="TileMapLayer" parent="Lvl10CountingUpTilemap/House"]
@@ -175,3 +177,12 @@ position = Vector2(320, 454)
 [connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
 
 [editable path="GameUI"]
+
+[node name="Door1" parent="Lvl10CountingUpTilemap/House/door" instance=ExtResource("door_auto")]
+position = Vector2(472, 120)
+
+[node name="SmallDoor2" parent="Lvl10CountingUpTilemap/House/door" instance=ExtResource("door_single_auto")]
+position = Vector2(440, 72)
+
+[node name="SmallDoor3" parent="Lvl10CountingUpTilemap/House/door" instance=ExtResource("door_single_auto")]
+position = Vector2(936, 360)
