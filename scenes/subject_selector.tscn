@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" path="res://scenes/arrow_left.png" id="7_al"]
 [ext_resource type="Texture2D" path="res://scenes/arrow_right.png" id="8_ar"]
 
+[ext_resource type="PackedScene" path="res://scenes/ui/deco/ui_plant.tscn" id="ui_plant"]
 [sub_resource type="LabelSettings" id="Title"]
 font = ExtResource("6_title")
 font_size = 62
@@ -209,3 +210,40 @@ text = "Let's Go!"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries/ = SubResource("Lib_blind")
+
+[node name="Plant1" parent="Blind/BackButton" instance=ExtResource("ui_plant")]
+plant = "grass"
+at = Vector2(0, 0)
+nudge = Vector2(14, 8)
+pixel_scale = 2.5
+
+[node name="Plant2" parent="Blind/BackButton" instance=ExtResource("ui_plant")]
+plant = "flower_pink_small"
+at = Vector2(1, 0)
+nudge = Vector2(-14, 8)
+pixel_scale = 2.5
+
+[node name="Plant3" parent="Blind/GoButton" instance=ExtResource("ui_plant")]
+plant = "grass_big"
+at = Vector2(0, 0)
+nudge = Vector2(18, 8)
+pixel_scale = 2.5
+
+[node name="Plant4" parent="Blind/GoButton" instance=ExtResource("ui_plant")]
+plant = "flower_yellow"
+at = Vector2(0, 0)
+nudge = Vector2(40, 8)
+pixel_scale = 2.2
+
+[node name="Plant5" parent="Blind/GoButton" instance=ExtResource("ui_plant")]
+plant = "grass"
+at = Vector2(1, 0)
+nudge = Vector2(-18, 8)
+pixel_scale = 2.5
+flip = true
+
+[node name="Plant6" parent="Blind/GoButton" instance=ExtResource("ui_plant")]
+plant = "leaves"
+at = Vector2(1, 1)
+nudge = Vector2(-30, -2)
+pixel_scale = 2.5

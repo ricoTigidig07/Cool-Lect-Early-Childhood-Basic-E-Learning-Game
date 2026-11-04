@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dtf6beqshjbh8" path="res://scenes/collectables/alphabets/capital_O.tres" id="L_O"]
 [ext_resource type="Texture2D" uid="uid://ch0i0felrcqov" path="res://scenes/collectables/alphabets/capital_T.tres" id="L_T"]
 
+[ext_resource type="PackedScene" path="res://scenes/ui/deco/ui_plant.tscn" id="ui_plant"]
 [sub_resource type="LabelSettings" id="Subtitle"]
 font = ExtResource("7_poco")
 font_size = 34
@@ -1121,3 +1122,61 @@ autoplay = &"idle_loop"
 [connection signal="pressed" from="ButtonRow/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="ButtonRow/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="closed" from="SubjectSelector" to="." method="_on_subject_selector_closed"]
+
+[node name="Plant1" parent="PlayButton" instance=ExtResource("ui_plant")]
+plant = "grass_big"
+at = Vector2(0, 0)
+nudge = Vector2(22, 10)
+
+[node name="Plant2" parent="PlayButton" instance=ExtResource("ui_plant")]
+plant = "flower_pink"
+at = Vector2(0, 0)
+nudge = Vector2(48, 10)
+pixel_scale = 2.5
+
+[node name="Plant3" parent="PlayButton" instance=ExtResource("ui_plant")]
+plant = "grass"
+at = Vector2(1, 0)
+nudge = Vector2(-26, 10)
+flip = true
+
+[node name="Plant4" parent="PlayButton" instance=ExtResource("ui_plant")]
+plant = "mushroom_red"
+at = Vector2(1, 1)
+nudge = Vector2(-30, -4)
+pixel_scale = 2.5
+
+[node name="Plant5" parent="ButtonRow/ProfileButton" instance=ExtResource("ui_plant")]
+plant = "grass"
+at = Vector2(0, 0)
+nudge = Vector2(16, 8)
+
+[node name="Plant6" parent="ButtonRow/ProfileButton" instance=ExtResource("ui_plant")]
+plant = "flower_yellow"
+at = Vector2(0, 1)
+nudge = Vector2(26, -2)
+pixel_scale = 2.5
+
+[node name="Plant7" parent="ButtonRow/SettingsButton" instance=ExtResource("ui_plant")]
+plant = "leaves_two"
+at = Vector2(0.5, 0)
+nudge = Vector2(0, 8)
+pixel_scale = 2.5
+
+[node name="Plant8" parent="ButtonRow/SettingsButton" instance=ExtResource("ui_plant")]
+plant = "grass"
+at = Vector2(1, 1)
+nudge = Vector2(-18, -2)
+flip = true
+
+[node name="Plant9" parent="ButtonRow/CreditsButton" instance=ExtResource("ui_plant")]
+plant = "flower_blue"
+at = Vector2(1, 0)
+nudge = Vector2(-22, 8)
+pixel_scale = 2.5
+
+[node name="Plant10" parent="ButtonRow/CreditsButton" instance=ExtResource("ui_plant")]
+plant = "grass_big"
+at = Vector2(0, 1)
+nudge = Vector2(20, -2)
+pixel_scale = 2.5

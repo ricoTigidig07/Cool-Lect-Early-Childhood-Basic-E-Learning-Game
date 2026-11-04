@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cahk1n1l61ysd" path="res://resources/filled_star.tres" id="3_star"]
 [ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="4_font"]
 
+[ext_resource type="PackedScene" path="res://scenes/ui/deco/ui_plant.tscn" id="ui_plant"]
 [sub_resource type="AtlasTexture" id="Post_left"]
 atlas = ExtResource("2_sheet")
 region = Rect2(509, 149, 3, 6)
@@ -235,3 +236,28 @@ vertical_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_sign")
 }
+
+[node name="Plant1" parent="Board/Top" instance=ExtResource("ui_plant")]
+plant = "grass"
+at = Vector2(0, 0)
+nudge = Vector2(16, 8)
+pixel_scale = 2.5
+
+[node name="Plant2" parent="Board/Top" instance=ExtResource("ui_plant")]
+plant = "flower_yellow"
+at = Vector2(1, 0)
+nudge = Vector2(-18, 8)
+pixel_scale = 2.2
+
+[node name="Plant3" parent="Board/Bottom" instance=ExtResource("ui_plant")]
+plant = "grass_big"
+at = Vector2(1, 0)
+nudge = Vector2(-16, 8)
+pixel_scale = 2.2
+flip = true
+
+[node name="Plant4" parent="Board/Bottom" instance=ExtResource("ui_plant")]
+plant = "leaves"
+at = Vector2(0, 1)
+nudge = Vector2(18, -2)
+pixel_scale = 2.2

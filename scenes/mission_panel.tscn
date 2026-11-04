@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://b1oxrs8tp4hwy" path="res://assets/UI/cool_lect_theme.tres" id="3_theme"]
 [ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="4_title"]
 
+[ext_resource type="PackedScene" path="res://scenes/ui/deco/ui_plant.tscn" id="ui_plant"]
 [sub_resource type="LabelSettings" id="LabelSettings_title"]
 font = ExtResource("4_title")
 font_size = 26
@@ -110,3 +111,40 @@ layout_mode = 2
 size_flags_vertical = 4
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Plant1" parent="." instance=ExtResource("ui_plant")]
+plant = "grass_big"
+at = Vector2(0, 0)
+nudge = Vector2(22, 10)
+pixel_scale = 2.5
+
+[node name="Plant2" parent="." instance=ExtResource("ui_plant")]
+plant = "flower_pink_small"
+at = Vector2(0, 0)
+nudge = Vector2(42, 10)
+pixel_scale = 2.2
+
+[node name="Plant3" parent="." instance=ExtResource("ui_plant")]
+plant = "grass"
+at = Vector2(1, 0)
+nudge = Vector2(-20, 10)
+pixel_scale = 2.5
+flip = true
+
+[node name="Plant4" parent="." instance=ExtResource("ui_plant")]
+plant = "leaves_two"
+at = Vector2(1, 0.55)
+nudge = Vector2(-6, 0)
+pixel_scale = 2.2
+
+[node name="Plant5" parent="." instance=ExtResource("ui_plant")]
+plant = "grass"
+at = Vector2(0, 1)
+nudge = Vector2(20, -4)
+pixel_scale = 2.5
+
+[node name="Plant6" parent="." instance=ExtResource("ui_plant")]
+plant = "mushroom_purple"
+at = Vector2(1, 1)
+nudge = Vector2(-22, -4)
+pixel_scale = 2.5

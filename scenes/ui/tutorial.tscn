@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" path="res://resources/filled_star.tres" id="15_star"]
 [ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Dialouge UI/Character Backdrop-frame/backdrops_a1.png" id="16_frame"]
 
+[ext_resource type="PackedScene" path="res://scenes/ui/deco/ui_plant.tscn" id="ui_plant"]
 [sub_resource type="AtlasTexture" id="A_talk"]
 atlas = ExtResource("10_icons")
 region = Rect2(208, 80, 16, 16)
@@ -428,3 +429,74 @@ libraries/ = SubResource("Lib_main")
 [node name="LoopAnim" type="AnimationPlayer" parent="."]
 libraries/ = SubResource("Lib_loop")
 autoplay = &"float"
+
+[node name="Plant1" parent="Card" instance=ExtResource("ui_plant")]
+plant = "grass_big"
+at = Vector2(0, 0)
+nudge = Vector2(26, 12)
+
+[node name="Plant2" parent="Card" instance=ExtResource("ui_plant")]
+plant = "flower_pink"
+at = Vector2(0, 0)
+nudge = Vector2(54, 12)
+pixel_scale = 2.5
+
+[node name="Plant3" parent="Card" instance=ExtResource("ui_plant")]
+plant = "grass"
+at = Vector2(1, 0)
+nudge = Vector2(-24, 12)
+flip = true
+
+[node name="Plant4" parent="Card" instance=ExtResource("ui_plant")]
+plant = "flower_blue_tall"
+at = Vector2(1, 0)
+nudge = Vector2(-48, 12)
+pixel_scale = 2.5
+
+[node name="Plant5" parent="Card" instance=ExtResource("ui_plant")]
+plant = "leaves_two"
+at = Vector2(1, 0.5)
+nudge = Vector2(-10, 0)
+pixel_scale = 2.5
+
+[node name="Plant6" parent="Card" instance=ExtResource("ui_plant")]
+plant = "grass"
+at = Vector2(0, 1)
+nudge = Vector2(24, -6)
+
+[node name="Plant7" parent="Card" instance=ExtResource("ui_plant")]
+plant = "mushrooms_red"
+at = Vector2(0, 1)
+nudge = Vector2(48, -6)
+pixel_scale = 2.5
+
+[node name="Plant8" parent="Card" instance=ExtResource("ui_plant")]
+plant = "grass_big"
+at = Vector2(1, 1)
+nudge = Vector2(-26, -6)
+pixel_scale = 2.5
+flip = true
+
+[node name="Plant9" parent="Card/Picture/Frame" instance=ExtResource("ui_plant")]
+plant = "grass"
+at = Vector2(0, 1)
+nudge = Vector2(14, -4)
+pixel_scale = 2.5
+
+[node name="Plant10" parent="Card/Picture/Frame" instance=ExtResource("ui_plant")]
+plant = "flower_yellow"
+at = Vector2(1, 0)
+nudge = Vector2(-16, 8)
+pixel_scale = 2.2
+
+[node name="Plant11" parent="Card/DontShow" instance=ExtResource("ui_plant")]
+plant = "leaves"
+at = Vector2(0, 1)
+nudge = Vector2(18, -2)
+pixel_scale = 2.5
+
+[node name="Plant12" parent="Card/Buttons/Next" instance=ExtResource("ui_plant")]
+plant = "flower_white"
+at = Vector2(1, 0)
+nudge = Vector2(-14, 8)
+pixel_scale = 2.2
