@@ -57,7 +57,10 @@ animations = [{
 size = Vector2(48, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hbj0n"]
-size = Vector2(48, 16)
+size = Vector2(22, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(13, 16)
 
 [node name="Door" type="Area2D" unique_id=265404745]
 script = ExtResource("1_hbj0n")
@@ -76,3 +79,13 @@ shape = SubResource("RectangleShape2D_ic78j")
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_hbj0n")
 debug_color = Color(0.971314, 0, 0.45203477, 0.41960785)
+
+[node name="WallBody" type="StaticBody2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="WallBody"]
+position = Vector2(-17.5, 1)
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="Right" type="CollisionShape2D" parent="WallBody"]
+position = Vector2(17.5, 1)
+shape = SubResource("RectangleShape2D_wall")
