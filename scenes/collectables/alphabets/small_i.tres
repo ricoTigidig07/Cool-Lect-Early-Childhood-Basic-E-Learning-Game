@@ -5,3 +5,4 @@
 [resource]
 atlas = ExtResource("1_voicl")
 region = Rect2(29, 87, 13, 37)
+margin = Rect2(22, 10, 45, 21)

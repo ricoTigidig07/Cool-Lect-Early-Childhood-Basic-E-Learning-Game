@@ -23,6 +23,7 @@ const HOLD_DURATION := 1.0
 const LETTER_ICON_PATH := "res://scenes/collectables/alphabets/"
 const LETTER_SCALE := 0.46
 const SLOT_FIT := 20.0
+const SMALL_LETTER := 0.78     # small letters are this much of the capital's size
 const DOT_EMPTY := Color(0.36, 0.22, 0.14, 1)
 const MAX_DOTS := 8
 const DOT_DONE := Color(0.55, 0.85, 0.35, 1)
@@ -249,8 +250,13 @@ func _bounce(node: Control, amount: float) -> void:
 func _fit_scale(tex: Texture2D) -> float:
 	if tex == null:
 		return LETTER_SCALE
-	var biggest: float = max(tex.get_width(), tex.get_height())
-	return min(LETTER_SCALE, SLOT_FIT / biggest)
+	# the letter itself (small letters have empty space around them for the icons)
+	var drawn: Vector2 = (tex as AtlasTexture).region.size if tex is AtlasTexture else tex.get_size()
+	var biggest: float = max(drawn.x, drawn.y)
+	var base := LETTER_SCALE
+	if tex is AtlasTexture and (tex as AtlasTexture).margin.has_area():
+		base *= SMALL_LETTER       # small letters: clearly smaller than the capital
+	return min(base, SLOT_FIT / biggest)
 
 func _letter_icon(letter: String) -> Texture2D:
 	var prefix = "capital_" if letter == letter.to_upper() else "small_"

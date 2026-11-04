@@ -5,3 +5,4 @@
 [resource]
 atlas = ExtResource("1_sdlqu")
 region = Rect2(87, 84, 21, 41)
+margin = Rect2(18, 8, 37, 17)

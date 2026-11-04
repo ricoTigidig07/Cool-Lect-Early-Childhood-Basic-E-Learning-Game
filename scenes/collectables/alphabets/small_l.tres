@@ -5,3 +5,4 @@
 [resource]
 atlas = ExtResource("1_nvmnt")
 region = Rect2(218, 79, 17, 46)
+margin = Rect2(20, 6, 41, 12)

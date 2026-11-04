@@ -1,11 +1,16 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://c33qcuub242ha"]
 
-[ext_resource type="Script" path="res://scenes/ui/player_sign.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://ch6tga8gf6twa" path="res://scenes/ui/player_sign.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://vw2ivp4sftcv" path="res://assets/UI/ui/Sprite sheets/Sprite sheet for Basic Pack.png" id="2_sheet"]
 [ext_resource type="Texture2D" uid="uid://cahk1n1l61ysd" path="res://resources/filled_star.tres" id="3_star"]
-[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="4_font"]
-
+[ext_resource type="FontFile" uid="uid://bs0vevgqmhm63" path="res://assets/UI/Fonts/PocoUI.ttf" id="4_font"]
 [ext_resource type="PackedScene" path="res://scenes/ui/deco/ui_plant.tscn" id="ui_plant"]
+
+[sub_resource type="LabelSettings" id="Name_text"]
+font = ExtResource("4_font")
+font_size = 27
+font_color = Color(0.36, 0.22, 0.15, 1)
+
 [sub_resource type="AtlasTexture" id="Post_left"]
 atlas = ExtResource("2_sheet")
 region = Rect2(509, 149, 3, 6)
@@ -13,11 +18,6 @@ region = Rect2(509, 149, 3, 6)
 [sub_resource type="AtlasTexture" id="Post_right"]
 atlas = ExtResource("2_sheet")
 region = Rect2(532, 149, 3, 6)
-
-[sub_resource type="LabelSettings" id="Name_text"]
-font = ExtResource("4_font")
-font_size = 27
-font_color = Color(0.36, 0.22, 0.15, 1)
 
 [sub_resource type="LabelSettings" id="Count_text"]
 font = ExtResource("4_font")
@@ -63,34 +63,6 @@ tracks/2/keys = {
 "values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Anim_intro"]
-resource_name = "intro"
-length = 1.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Board:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.35, 0.5, 0.62),
-"transitions": PackedFloat32Array(2, 0.5, 2, 1),
-"update": 0,
-"values": [Vector2(0, -150), Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Board:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.35, 0.55, 0.75, 0.92, 1.1),
-"transitions": PackedFloat32Array(1, -2, -2, -2, -2, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.07, -0.045, 0.02, 0.0]
-}
-
 [sub_resource type="Animation" id="Anim_bump"]
 resource_name = "bump"
 length = 0.45
@@ -119,6 +91,34 @@ tracks/1/keys = {
 "values": [0.0, 0.04, -0.025, 0.0]
 }
 
+[sub_resource type="Animation" id="Anim_intro"]
+resource_name = "intro"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Board:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.5, 0.62),
+"transitions": PackedFloat32Array(2, 0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0, -150), Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Board:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.55, 0.75, 0.92, 1.1),
+"transitions": PackedFloat32Array(1, -2, -2, -2, -2, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.07, -0.045, 0.02, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sign"]
 _data = {
 &"RESET": SubResource("Anim_RESET"),
@@ -126,7 +126,7 @@ _data = {
 &"intro": SubResource("Anim_intro")
 }
 
-[node name="PlayerSign" type="Control"]
+[node name="PlayerSign" type="Control" unique_id=542391680]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 240.0
@@ -134,18 +134,17 @@ offset_bottom = 123.0
 mouse_filter = 2
 script = ExtResource("1_script")
 
-[node name="Board" type="Control" parent="."]
-layout_mode = 0
+[node name="Board" type="Control" parent="." unique_id=200282840]
+anchors_preset = 0
 offset_right = 240.0
 offset_bottom = 123.0
 pivot_offset = Vector2(120, 0)
 mouse_filter = 2
 
-[node name="Top" type="NinePatchRect" parent="Board"]
+[node name="Top" type="NinePatchRect" parent="Board" unique_id=1417242378]
 layout_mode = 0
 offset_right = 240.0
 offset_bottom = 54.0
-mouse_filter = 2
 texture = ExtResource("2_sheet")
 region_rect = Rect2(504, 131, 35, 18)
 patch_margin_left = 6
@@ -153,7 +152,7 @@ patch_margin_top = 4
 patch_margin_right = 6
 patch_margin_bottom = 5
 
-[node name="Name" type="Label" parent="Board/Top"]
+[node name="Name" type="Label" parent="Board/Top" unique_id=1707152582]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -170,7 +169,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="PostLeft" type="TextureRect" parent="Board"]
+[node name="Plant1" parent="Board/Top" unique_id=70829640 instance=ExtResource("ui_plant")]
+position = Vector2(13, 24)
+scale = Vector2(2.5, 2.5)
+nudge = Vector2(13, 24)
+pixel_scale = 2.5
+
+[node name="Plant2" parent="Board/Top" unique_id=202046362 instance=ExtResource("ui_plant")]
+position = Vector2(234, 53)
+scale = Vector2(2.2, 2.2)
+plant = "flower_yellow"
+at = Vector2(1, 0)
+nudge = Vector2(-6, 53)
+pixel_scale = 2.2
+
+[node name="PostLeft" type="TextureRect" parent="Board" unique_id=1598546693]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 54.0
@@ -180,7 +193,7 @@ mouse_filter = 2
 texture = SubResource("Post_left")
 expand_mode = 1
 
-[node name="PostRight" type="TextureRect" parent="Board"]
+[node name="PostRight" type="TextureRect" parent="Board" unique_id=886673025]
 layout_mode = 0
 offset_left = 219.0
 offset_top = 54.0
@@ -190,12 +203,11 @@ mouse_filter = 2
 texture = SubResource("Post_right")
 expand_mode = 1
 
-[node name="Bottom" type="NinePatchRect" parent="Board"]
+[node name="Bottom" type="NinePatchRect" parent="Board" unique_id=632259772]
 layout_mode = 0
 offset_top = 72.0
 offset_right = 240.0
 offset_bottom = 123.0
-mouse_filter = 2
 texture = ExtResource("2_sheet")
 region_rect = Rect2(504, 155, 35, 17)
 patch_margin_left = 6
@@ -203,7 +215,7 @@ patch_margin_top = 4
 patch_margin_right = 6
 patch_margin_bottom = 5
 
-[node name="Row" type="HBoxContainer" parent="Board/Bottom"]
+[node name="Row" type="HBoxContainer" parent="Board/Bottom" unique_id=1783968081]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -217,7 +229,7 @@ mouse_filter = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Star" type="TextureRect" parent="Board/Bottom/Row"]
+[node name="Star" type="TextureRect" parent="Board/Bottom/Row" unique_id=927374123]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 4
@@ -226,38 +238,53 @@ texture = ExtResource("3_star")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Count" type="Label" parent="Board/Bottom/Row"]
+[node name="Count" type="Label" parent="Board/Bottom/Row" unique_id=553992227]
 layout_mode = 2
 text = "0 / 270"
 label_settings = SubResource("Count_text")
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_sign")
-}
-
-[node name="Plant1" parent="Board/Top" instance=ExtResource("ui_plant")]
-plant = "grass"
-at = Vector2(0, 0)
-nudge = Vector2(16, 8)
-pixel_scale = 2.5
-
-[node name="Plant2" parent="Board/Top" instance=ExtResource("ui_plant")]
-plant = "flower_yellow"
-at = Vector2(1, 0)
-nudge = Vector2(-18, 8)
-pixel_scale = 2.2
-
-[node name="Plant3" parent="Board/Bottom" instance=ExtResource("ui_plant")]
+[node name="Plant3" parent="Board/Bottom" unique_id=388157005 instance=ExtResource("ui_plant")]
+position = Vector2(229, 23)
+scale = Vector2(2.2, 2.2)
 plant = "grass_big"
 at = Vector2(1, 0)
-nudge = Vector2(-16, 8)
+nudge = Vector2(-11, 23)
 pixel_scale = 2.2
 flip = true
 
-[node name="Plant4" parent="Board/Bottom" instance=ExtResource("ui_plant")]
+[node name="Plant4" parent="Board/Bottom" unique_id=338945963 instance=ExtResource("ui_plant")]
+position = Vector2(10, 49)
+scale = Vector2(2.2, 2.2)
 plant = "leaves"
 at = Vector2(0, 1)
-nudge = Vector2(18, -2)
+nudge = Vector2(10, -2)
 pixel_scale = 2.2
+
+[node name="Plant5" parent="Board/Bottom" unique_id=898976290 instance=ExtResource("ui_plant")]
+position = Vector2(31, 6)
+scale = Vector2(2.2, 2.2)
+plant = "leaves"
+at = Vector2(0, 1)
+nudge = Vector2(31, -45)
+pixel_scale = 2.2
+
+[node name="Plant6" parent="Board/Bottom" unique_id=246437054 instance=ExtResource("ui_plant")]
+position = Vector2(94, 52)
+scale = Vector2(2.2, 2.2)
+plant = "leaves"
+at = Vector2(0, 1)
+nudge = Vector2(94, 1)
+pixel_scale = 2.2
+
+[node name="Plant7" parent="Board/Bottom" unique_id=1084780303 instance=ExtResource("ui_plant")]
+position = Vector2(147, 8)
+scale = Vector2(2.2, 2.2)
+plant = "grass_big"
+at = Vector2(1, 0)
+nudge = Vector2(-93, 8)
+pixel_scale = 2.2
+flip = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2042725371]
+libraries/ = SubResource("AnimationLibrary_sign")
