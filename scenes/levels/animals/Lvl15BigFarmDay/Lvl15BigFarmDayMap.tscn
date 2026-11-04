@@ -146,7 +146,7 @@ tile_set = ExtResource("5_jhmao")
 [node name="Chicken Coop" type="TileMapLayer" parent="Lvl15BigFarmDayTilemap/BaseMap/Animal Structures" unique_id=1537551269]
 tile_set = ExtResource("7_w8rtx")
 
-[node name="BarnDecor" parent="Lvl15BigFarmDayTilemap/BaseMap" instance=ExtResource("bd_decor")]
+[node name="BarnDecor" parent="Lvl15BigFarmDayTilemap/BaseMap" unique_id=423598033 instance=ExtResource("bd_decor")]
 
 [node name="Farmer" parent="." unique_id=303328706 instance=ExtResource("11_farmer")]
 position = Vector2(745, 424)
@@ -191,8 +191,5 @@ position = Vector2(164, 440)
 position = Vector2(540, 760)
 
 [node name="GameUI" parent="." unique_id=929781993 instance=ExtResource("14_ui")]
-
-[connection signal="button_down" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_down"]
-[connection signal="button_up" from="GameUI/InteractionButton/Button" to="Player" method="_on_button_button_up"]
 
 [editable path="GameUI"]

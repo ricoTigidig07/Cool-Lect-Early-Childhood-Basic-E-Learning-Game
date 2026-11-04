@@ -15,9 +15,12 @@ const SMALL_ZOOM := 0.5           # how much of the level the small map shows (s
 const COMPASS := ["North", "South", "West", "East"]
 const CELL := 8.0                 # explored mask: one pixel per this many world pixels
 const SEE_RADIUS := 150.0         # how far around the player becomes explored (world px)
-const SCREEN_DARK := 0.45         # how dark unexplored places are on the game screen
+const SCREEN_DARK := 0.20       # how dark unexplored places are on the game screen
 const SMALL_ICON := 28.0          # size of the item icons on the small map
 const BIG_ICON := 28.0            # ... and on the big map
+## Outline colours of the round badges (the player's is red, in minimap.tscn "SB_dot").
+const NPC_RING := Color(0.98, 0.72, 0.2)       # NPCs: yellow
+const THING_RING := Color(0.36, 0.72, 0.33)    # things to collect and animals: green
 
 @onready var small_vp: SubViewport = $Frame/View/Viewport
 @onready var small_cam: Camera2D = $Frame/View/Viewport/Cam
@@ -234,19 +237,14 @@ func _place_icons(layer: Control, cam: Camera2D, which: int, need_explored: bool
 		seen[n] = true
 		if not _icons.has(n):
 			_icons[n] = [null, null]
-		var icon: TextureRect = _icons[n][which]
+		var icon: Control = _icons[n][which]
 		if icon == null or not is_instance_valid(icon):
-			icon = TextureRect.new()
-			icon.texture = _icon_texture(n)
-			icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-			icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-			icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			icon.size = Vector2(size, size)
+			icon = _make_badge(n, size)
 			layer.add_child(icon)
 			_icons[n][which] = icon
 		icon.visible = true
 		icon.position = p - icon.size * 0.5 + Vector2(0, -size * 0.3)
+		icon.scale = (big_dot if which == 1 else small_dot).scale      # zooms with the player's dot
 	for n in _icons.keys():
 		var icon = _icons[n][which]
 		if icon and is_instance_valid(icon) and not seen.has(n):
@@ -256,6 +254,29 @@ func _place_icons(layer: Control, cam: Camera2D, which: int, need_explored: bool
 				if i and is_instance_valid(i):
 					i.queue_free()
 			_icons.erase(n)
+
+## A round badge with an outline, like the player's dot, with the picture inside.
+func _make_badge(n: Node, size: float) -> Control:
+	var badge := Panel.new()
+	badge.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	badge.size = Vector2(size, size)
+	badge.pivot_offset = badge.size * 0.5
+	var style := (small_dot.get_theme_stylebox("panel") as StyleBoxFlat).duplicate() as StyleBoxFlat
+	style.border_color = NPC_RING if n.get_script() and n.get_script().resource_path.ends_with("npc_symbol.gd") else THING_RING
+	badge.add_theme_stylebox_override("panel", style)
+	var pic := TextureRect.new()
+	pic.texture = _icon_texture(n)
+	pic.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	pic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	pic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	pic.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	pic.set_anchors_preset(Control.PRESET_FULL_RECT)
+	pic.offset_left = 4.0
+	pic.offset_top = 4.0
+	pic.offset_right = -4.0
+	pic.offset_bottom = -4.0
+	badge.add_child(pic)
+	return badge
 
 # ---------- the big map ----------
 
