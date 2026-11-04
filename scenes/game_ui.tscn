@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dqr0lj71i108g" path="res://scenes/ingame_settings.tscn" id="14_sfun4"]
 [ext_resource type="PackedScene" uid="uid://3hujl8yhh3o5" path="res://scenes/world/dialogue_panel.tscn" id="19_2rmtt"]
 [ext_resource type="PackedScene" uid="uid://1nwlrkk2crhm" path="res://scenes/mission_panel.tscn" id="21_3458y"]
-[ext_resource type="PackedScene" path="res://scenes/ui/minimap.tscn" id="52_map"]
 [ext_resource type="PackedScene" uid="uid://0v3vcqlfdmv5" path="res://scenes/hotbar.tscn" id="23_5kjus"]
 [ext_resource type="PackedScene" uid="uid://c77bjci0hltvd" path="res://scenes/selector.tscn" id="24_bj1rn"]
 [ext_resource type="PackedScene" path="res://scenes/ui/ui_extras.tscn" id="40_extras"]
@@ -20,6 +19,8 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/talk_mode.tscn" id="43_talk"]
 [ext_resource type="PackedScene" path="res://scenes/ui/joystick.tscn" id="50_joy"]
 [ext_resource type="PackedScene" path="res://scenes/ui/action_button.tscn" id="51_act"]
+[ext_resource type="PackedScene" uid="uid://iwhbxqfe38pg" path="res://scenes/ui/minimap.tscn" id="52_map"]
+[ext_resource type="PackedScene" path="res://scenes/ui/deco/ui_plant.tscn" id="ui_plant"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bj1rn"]
 texture = ExtResource("3_5kjus")
@@ -76,15 +77,38 @@ sprite_frames = ExtResource("5_x8pta")
 animation = &"defaults"
 script = ExtResource("7_5v8bm")
 
-[node name="PlayerSign" parent="." instance=ExtResource("42_sign")]
+[node name="Plant1" parent="AvatarPanel" unique_id=259262324 instance=ExtResource("ui_plant")]
+position = Vector2(21, 33.000004)
+scale = Vector2(2.5, 2.5)
+plant = "grass_big"
+nudge = Vector2(21, 33)
+pixel_scale = 2.5
+
+[node name="Plant2" parent="AvatarPanel" unique_id=1818934860 instance=ExtResource("ui_plant")]
+position = Vector2(119.99999, 17)
+scale = Vector2(2.2, 2.2)
+plant = "flower_pink_small"
+at = Vector2(1, 0)
+nudge = Vector2(-14, 17)
+pixel_scale = 2.2
+
+[node name="Plant3" parent="AvatarPanel" unique_id=1591524357 instance=ExtResource("ui_plant")]
+position = Vector2(17, 125.99999)
+scale = Vector2(2.2, 2.2)
+plant = "mushroom_red"
+at = Vector2(0, 1)
+nudge = Vector2(17, -9)
+pixel_scale = 2.2
+
+[node name="PlayerSign" parent="." unique_id=1518866537 instance=ExtResource("42_sign")]
 offset_left = 144.0
 offset_top = 6.0
 offset_right = 384.0
 offset_bottom = 129.0
 
-[node name="JoystickControl" parent="." instance=ExtResource("50_joy")]
+[node name="JoystickControl" parent="." unique_id=704448292 instance=ExtResource("50_joy")]
 
-[node name="InteractionButton" parent="." instance=ExtResource("51_act")]
+[node name="InteractionButton" parent="." unique_id=247332449 instance=ExtResource("51_act")]
 
 [node name="SettingsButton" type="Button" parent="." unique_id=1028255447]
 custom_minimum_size = Vector2(78, 84)
@@ -99,6 +123,30 @@ grow_horizontal = 0
 theme = SubResource("Theme_g8hl1")
 script = ExtResource("13_nlan2")
 
+[node name="Plant4" parent="SettingsButton" unique_id=1878830788 instance=ExtResource("ui_plant")]
+position = Vector2(62, 12)
+scale = Vector2(2.2, 2.2)
+plant = "flower_white"
+at = Vector2(1, 0)
+nudge = Vector2(-16, 12)
+pixel_scale = 2.2
+
+[node name="Plant5" parent="SettingsButton" unique_id=1632690781 instance=ExtResource("ui_plant")]
+position = Vector2(6, 24)
+scale = Vector2(2.2, 2.2)
+plant = "flower_white"
+at = Vector2(1, 0)
+nudge = Vector2(-72, 24)
+pixel_scale = 2.2
+
+[node name="Plant6" parent="SettingsButton" unique_id=412799620 instance=ExtResource("ui_plant")]
+position = Vector2(57, 76)
+scale = Vector2(2.2, 2.2)
+plant = "flower_white"
+at = Vector2(1, 0)
+nudge = Vector2(-21, 76)
+pixel_scale = 2.2
+
 [node name="SettingsPanel" parent="." unique_id=1113848892 instance=ExtResource("14_sfun4")]
 visible = false
 
@@ -109,22 +157,17 @@ offset_bottom = 318.0
 
 [node name="Hotbar" parent="." unique_id=1298573925 instance=ExtResource("23_5kjus")]
 
-[node name="UIExtras" parent="." instance=ExtResource("40_extras")]
+[node name="UIExtras" parent="." unique_id=1142784417 instance=ExtResource("40_extras")]
 
 [node name="Selector" parent="." unique_id=949682650 instance=ExtResource("24_bj1rn")]
 unique_name_in_owner = true
 visible = false
 
-[node name="Minimap" parent="." instance=ExtResource("52_map")]
+[node name="Minimap" parent="." unique_id=630397430 instance=ExtResource("52_map")]
 
-[node name="TalkMode" parent="." instance=ExtResource("43_talk")]
+[node name="TalkMode" parent="." unique_id=667881955 instance=ExtResource("43_talk")]
 
 [node name="DialoguePanel" parent="." unique_id=1547596810 instance=ExtResource("19_2rmtt")]
 visible = false
-offset_left = -608.0
-offset_top = -268.0
-offset_right = 608.0
-offset_bottom = -12.0
 
-
-[node name="Tutorial" parent="." instance=ExtResource("41_tutorial")]
+[node name="Tutorial" parent="." unique_id=606806817 instance=ExtResource("41_tutorial")]

@@ -1,26 +1,12 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://iwhbxqfe38pg"]
 
-[ext_resource type="Script" path="res://scenes/ui/minimap.gd" id="1_map"]
-[ext_resource type="Texture2D" path="res://assets/UI/map_button.png" id="2_btn"]
-[ext_resource type="FontFile" path="res://assets/UI/Fonts/Poco.ttf" id="3_poco"]
-[ext_resource type="Texture2D" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Icons/All Icons.png" id="4_icons"]
-[ext_resource type="FontFile" path="res://assets/UI/Fonts/PocoUI.ttf" id="5_font"]
-[ext_resource type="Shader" path="res://scenes/ui/map_fog.gdshader" id="6_fog"]
-
-[sub_resource type="ShaderMaterial" id="Mat_fog"]
-shader = ExtResource("6_fog")
-
-[sub_resource type="AtlasTexture" id="A_btn"]
-atlas = ExtResource("2_btn")
-region = Rect2(0, 0, 22, 24)
-
-[sub_resource type="AtlasTexture" id="A_btn_p"]
-atlas = ExtResource("2_btn")
-region = Rect2(22, 0, 22, 24)
-
-[sub_resource type="AtlasTexture" id="A_close"]
-atlas = ExtResource("4_icons")
-region = Rect2(208, 32, 16, 16)
+[ext_resource type="Script" uid="uid://crsmevdg2csw6" path="res://scenes/ui/minimap.gd" id="1_map"]
+[ext_resource type="Texture2D" uid="uid://dsiject4nnm3k" path="res://assets/UI/map_button.png" id="2_btn"]
+[ext_resource type="FontFile" uid="uid://dvahnwe3pl6sq" path="res://assets/UI/Fonts/Poco.ttf" id="3_poco"]
+[ext_resource type="Texture2D" uid="uid://bnrg66o7vkhcu" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Icons/All Icons.png" id="4_icons"]
+[ext_resource type="FontFile" uid="uid://bs0vevgqmhm63" path="res://assets/UI/Fonts/PocoUI.ttf" id="5_font"]
+[ext_resource type="Shader" uid="uid://8lear65vk2yg" path="res://scenes/ui/map_fog.gdshader" id="6_fog"]
+[ext_resource type="PackedScene" path="res://scenes/ui/deco/ui_plant.tscn" id="ui_plant"]
 
 [sub_resource type="StyleBoxFlat" id="SB_frame"]
 bg_color = Color(0.36, 0.22, 0.15, 1)
@@ -59,6 +45,14 @@ font_color = Color(1, 0.97, 0.88, 1)
 outline_size = 7
 outline_color = Color(0.36, 0.22, 0.15, 1)
 
+[sub_resource type="AtlasTexture" id="A_btn"]
+atlas = ExtResource("2_btn")
+region = Rect2(0, 0, 22, 24)
+
+[sub_resource type="AtlasTexture" id="A_btn_p"]
+atlas = ExtResource("2_btn")
+region = Rect2(22, 0, 22, 24)
+
 [sub_resource type="LabelSettings" id="LS_title"]
 font = ExtResource("5_font")
 font_size = 55
@@ -66,8 +60,19 @@ font_color = Color(1, 0.97, 0.88, 1)
 outline_size = 10
 outline_color = Color(0.36, 0.22, 0.15, 1)
 
+[sub_resource type="ShaderMaterial" id="Mat_fog"]
+shader = ExtResource("6_fog")
+shader_parameter/use_snapshot = false
+shader_parameter/level_rect = Vector4(0, 0, 0, 0)
+shader_parameter/view_rect = Vector4(0, 0, 0, 0)
+shader_parameter/faint = 0.12
+shader_parameter/max_dark = 1.0
+
+[sub_resource type="AtlasTexture" id="A_close"]
+atlas = ExtResource("4_icons")
+region = Rect2(208, 32, 16, 16)
+
 [sub_resource type="Animation" id="A_pulse"]
-length = 1.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -94,13 +99,12 @@ tracks/1/keys = {
 "values": [Vector2(1.5, 1.5), Vector2(1.7, 1.7), Vector2(1.5, 1.5)]
 }
 
-
 [sub_resource type="AnimationLibrary" id="Lib"]
 _data = {
 &"pulse": SubResource("A_pulse")
 }
 
-[node name="Minimap" type="Control"]
+[node name="Minimap" type="Control" unique_id=134287214]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,7 +114,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_map")
 
-[node name="Frame" type="Panel" parent="."]
+[node name="Frame" type="Panel" parent="." unique_id=1813945599]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -123,7 +127,7 @@ grow_horizontal = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_frame")
 
-[node name="View" type="SubViewportContainer" parent="Frame"]
+[node name="View" type="SubViewportContainer" parent="Frame" unique_id=997371437]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,15 +141,16 @@ grow_vertical = 2
 mouse_filter = 2
 stretch = true
 
-[node name="Viewport" type="SubViewport" parent="Frame/View"]
+[node name="Viewport" type="SubViewport" parent="Frame/View" unique_id=1963112861]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(280, 190)
+size = Vector2i(284, 188)
 render_target_update_mode = 4
 
-[node name="Cam" type="Camera2D" parent="Frame/View/Viewport"]
+[node name="Cam" type="Camera2D" parent="Frame/View/Viewport" unique_id=1248432030]
 
-[node name="Items" type="Control" parent="Frame"]
+[node name="Items" type="Control" parent="Frame" unique_id=480183510]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -157,9 +162,8 @@ offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-clip_contents = true
 
-[node name="Dot" type="Panel" parent="Frame"]
+[node name="Dot" type="Panel" parent="Frame" unique_id=1371319234]
 layout_mode = 0
 offset_right = 28.0
 offset_bottom = 28.0
@@ -167,7 +171,7 @@ pivot_offset = Vector2(14, 14)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_dot")
 
-[node name="Head" type="TextureRect" parent="Frame/Dot"]
+[node name="Head" type="TextureRect" parent="Frame/Dot" unique_id=2120397002]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -183,71 +187,105 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="North" type="Label" parent="Frame"]
+[node name="North" type="Label" parent="Frame" unique_id=1651646784]
 layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0
 anchor_right = 0.5
-anchor_bottom = 0
 offset_left = -80.0
 offset_top = 4.0
 offset_right = 80.0
 offset_bottom = 30.0
-mouse_filter = 2
 text = "North"
 label_settings = SubResource("LS_dir")
 horizontal_alignment = 1
-vertical_alignment = 0
 
-[node name="South" type="Label" parent="Frame"]
+[node name="South" type="Label" parent="Frame" unique_id=1653752434]
 layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 1
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1
+anchor_bottom = 1.0
 offset_left = -80.0
 offset_top = -32.0
 offset_right = 80.0
 offset_bottom = -6.0
-mouse_filter = 2
 text = "South"
 label_settings = SubResource("LS_dir")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="West" type="Label" parent="Frame"]
+[node name="West" type="Label" parent="Frame" unique_id=160191272]
 layout_mode = 1
-anchor_left = 0
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0
 anchor_bottom = 0.5
 offset_left = 10.0
 offset_top = -14.0
 offset_right = 110.0
 offset_bottom = 14.0
-mouse_filter = 2
 text = "West"
 label_settings = SubResource("LS_dir")
-horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="East" type="Label" parent="Frame"]
+[node name="East" type="Label" parent="Frame" unique_id=1159144623]
 layout_mode = 1
-anchor_left = 1
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 1
+anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -110.0
 offset_top = -14.0
 offset_right = -10.0
 offset_bottom = 14.0
-mouse_filter = 2
 text = "East"
 label_settings = SubResource("LS_dir")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="MapButton" type="TextureButton" parent="."]
+[node name="Plant1" parent="Frame" unique_id=1037957169 instance=ExtResource("ui_plant")]
+position = Vector2(117, 18)
+scale = Vector2(2.5, 2.5)
+plant = "grass_big"
+at = Vector2(0.5, 0)
+nudge = Vector2(-32, 18)
+pixel_scale = 2.5
+
+[node name="Plant2" parent="Frame" unique_id=1088262411 instance=ExtResource("ui_plant")]
+position = Vector2(280, 8)
+scale = Vector2(2.2, 2.2)
+plant = "flower_pink"
+at = Vector2(1, 0)
+nudge = Vector2(-18, 8)
+pixel_scale = 2.2
+
+[node name="Plant3" parent="Frame" unique_id=835656238 instance=ExtResource("ui_plant")]
+position = Vector2(3, 102)
+scale = Vector2(2.2, 2.2)
+at = Vector2(0, 0.5)
+nudge = Vector2(3, 0)
+pixel_scale = 2.2
+
+[node name="Plant4" parent="Frame" unique_id=897935938 instance=ExtResource("ui_plant")]
+position = Vector2(12, 204)
+scale = Vector2(2.2, 2.2)
+plant = "leaves_two"
+at = Vector2(0, 1)
+nudge = Vector2(12, 0)
+pixel_scale = 2.2
+
+[node name="Plant5" parent="Frame" unique_id=1454547538 instance=ExtResource("ui_plant")]
+position = Vector2(289, 200)
+scale = Vector2(2.2, 2.2)
+plant = "flower_yellow"
+at = Vector2(1, 1)
+nudge = Vector2(-9, -4)
+pixel_scale = 2.2
+
+[node name="MapButton" type="TextureButton" parent="." unique_id=2066556974]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -257,23 +295,34 @@ offset_top = 220.0
 offset_right = -98.0
 offset_bottom = 304.0
 grow_horizontal = 0
-texture_filter = 1
 texture_normal = SubResource("A_btn")
 texture_pressed = SubResource("A_btn_p")
 texture_hover = SubResource("A_btn")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="BigMap" type="Control" parent="."]
+[node name="Plant6" parent="MapButton" unique_id=12028485 instance=ExtResource("ui_plant")]
+position = Vector2(8, 16)
+scale = Vector2(2.2, 2.2)
+nudge = Vector2(8, 16)
+pixel_scale = 2.2
+
+[node name="Plant7" parent="MapButton" unique_id=1358122703 instance=ExtResource("ui_plant")]
+position = Vector2(70, 67)
+scale = Vector2(2.2, 2.2)
+nudge = Vector2(70, 67)
+pixel_scale = 2.2
+
+[node name="BigMap" type="Control" parent="." unique_id=1892910826]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-visible = false
 
-[node name="Dim" type="ColorRect" parent="BigMap"]
+[node name="Dim" type="ColorRect" parent="BigMap" unique_id=880426872]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -282,21 +331,21 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.55)
 
-[node name="Frame" type="Panel" parent="BigMap"]
+[node name="Frame" type="Panel" parent="BigMap" unique_id=803513276]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 offset_left = 60.0
 offset_top = 30.0
 offset_right = -60.0
 offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_frame")
 
-[node name="Title" type="Label" parent="BigMap/Frame"]
+[node name="Title" type="Label" parent="BigMap/Frame" unique_id=148197592]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -308,7 +357,7 @@ label_settings = SubResource("LS_title")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="View" type="SubViewportContainer" parent="BigMap/Frame"]
+[node name="View" type="SubViewportContainer" parent="BigMap/Frame" unique_id=301948800]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -322,29 +371,16 @@ grow_vertical = 2
 mouse_filter = 2
 stretch = true
 
-[node name="Viewport" type="SubViewport" parent="BigMap/Frame/View"]
+[node name="Viewport" type="SubViewport" parent="BigMap/Frame/View" unique_id=773452873]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(280, 190)
-render_target_update_mode = 4
+size = Vector2i(1136, 592)
+render_target_update_mode = 0
 
-[node name="Cam" type="Camera2D" parent="BigMap/Frame/View/Viewport"]
+[node name="Cam" type="Camera2D" parent="BigMap/Frame/View/Viewport" unique_id=951650104]
 
-[node name="Fog" type="ColorRect" parent="BigMap/Frame"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = 54.0
-offset_right = -12.0
-offset_bottom = -14.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="Fog" type="ColorRect" parent="BigMap/Frame" unique_id=879269121]
 material = SubResource("Mat_fog")
-
-[node name="Items" type="Control" parent="BigMap/Frame"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -356,9 +392,22 @@ offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-clip_contents = true
 
-[node name="Dot" type="Panel" parent="BigMap/Frame"]
+[node name="Items" type="Control" parent="BigMap/Frame" unique_id=2101023309]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 54.0
+offset_right = -12.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dot" type="Panel" parent="BigMap/Frame" unique_id=634471743]
 layout_mode = 0
 offset_right = 28.0
 offset_bottom = 28.0
@@ -366,7 +415,7 @@ pivot_offset = Vector2(14, 14)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("SB_dot")
 
-[node name="Head" type="TextureRect" parent="BigMap/Frame/Dot"]
+[node name="Head" type="TextureRect" parent="BigMap/Frame/Dot" unique_id=140971697]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -382,71 +431,66 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="North" type="Label" parent="BigMap/Frame"]
+[node name="North" type="Label" parent="BigMap/Frame" unique_id=494431263]
 layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0
 anchor_right = 0.5
-anchor_bottom = 0
 offset_left = -80.0
 offset_top = 58.0
 offset_right = 80.0
 offset_bottom = 84.0
-mouse_filter = 2
 text = "North"
 label_settings = SubResource("LS_dir")
 horizontal_alignment = 1
-vertical_alignment = 0
 
-[node name="South" type="Label" parent="BigMap/Frame"]
+[node name="South" type="Label" parent="BigMap/Frame" unique_id=216308574]
 layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 1
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1
+anchor_bottom = 1.0
 offset_left = -80.0
 offset_top = -32.0
 offset_right = 80.0
 offset_bottom = -6.0
-mouse_filter = 2
 text = "South"
 label_settings = SubResource("LS_dir")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="West" type="Label" parent="BigMap/Frame"]
+[node name="West" type="Label" parent="BigMap/Frame" unique_id=968105512]
 layout_mode = 1
-anchor_left = 0
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0
 anchor_bottom = 0.5
 offset_left = 10.0
 offset_top = -14.0
 offset_right = 110.0
 offset_bottom = 14.0
-mouse_filter = 2
 text = "West"
 label_settings = SubResource("LS_dir")
-horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="East" type="Label" parent="BigMap/Frame"]
+[node name="East" type="Label" parent="BigMap/Frame" unique_id=1251837071]
 layout_mode = 1
-anchor_left = 1
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 1
+anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -110.0
 offset_top = -14.0
 offset_right = -10.0
 offset_bottom = 14.0
-mouse_filter = 2
 text = "East"
 label_settings = SubResource("LS_dir")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Close" type="TextureButton" parent="BigMap/Frame"]
+[node name="Close" type="TextureButton" parent="BigMap/Frame" unique_id=1556692400]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -456,14 +500,31 @@ offset_top = 4.0
 offset_right = -8.0
 offset_bottom = 52.0
 grow_horizontal = 0
-texture_filter = 1
 texture_normal = SubResource("A_close")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="DotAnim" type="AnimationPlayer" parent="."]
+[node name="Plant7" parent="BigMap/Frame" unique_id=1600748085 instance=ExtResource("ui_plant")]
+position = Vector2(30, 10)
+scale = Vector2(3, 3)
+plant = "grass_big"
+nudge = Vector2(30, 10)
+
+[node name="Plant8" parent="BigMap/Frame" unique_id=686478501 instance=ExtResource("ui_plant")]
+position = Vector2(58, 10)
+scale = Vector2(2.5, 2.5)
+plant = "flower_blue_tall"
+nudge = Vector2(58, 10)
+pixel_scale = 2.5
+
+[node name="Plant9" parent="BigMap/Frame" unique_id=1874214603 instance=ExtResource("ui_plant")]
+position = Vector2(1130, 654)
+scale = Vector2(3, 3)
+at = Vector2(1, 1)
+nudge = Vector2(-30, -6)
+flip = true
+
+[node name="DotAnim" type="AnimationPlayer" parent="." unique_id=919735578]
 process_mode = 3
-libraries = {
-&"": SubResource("Lib")
-}
+libraries/ = SubResource("Lib")
 autoplay = &"pulse"

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://03ysbjkevxcd" path="res://assets/UI/Sprout Lands - UI Pack - Premium pack/Sprout Lands - UI Pack - Premium pack/UI Sprites/Dialouge UI/Character Backdrop-frame/backdrops_big2.png" id="1_4qkdb"]
 [ext_resource type="PackedScene" uid="uid://cjdrtuokhcqc" path="res://scenes/hotbar_slot.tscn" id="1_yj1xu"]
 [ext_resource type="Script" uid="uid://svf8aa6s8nfq" path="res://scenes/hotbar.gd" id="2_xrqkv"]
+[ext_resource type="PackedScene" path="res://scenes/ui/deco/ui_plant.tscn" id="ui_plant"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrqkv"]
 atlas = ExtResource("1_4qkdb")
@@ -52,3 +53,41 @@ layout_mode = 2
 
 [node name="HotbarSlot5" parent="MarginContainer/HBoxContainer" unique_id=2004979816 instance=ExtResource("1_yj1xu")]
 layout_mode = 2
+
+[node name="Plant1" parent="." unique_id=1662086461 instance=ExtResource("ui_plant")]
+position = Vector2(20.999985, 27)
+scale = Vector2(2.5, 2.5)
+plant = "grass_big"
+nudge = Vector2(21, 27)
+pixel_scale = 2.5
+
+[node name="Plant2" parent="." unique_id=1359680409 instance=ExtResource("ui_plant")]
+position = Vector2(260, 22)
+scale = Vector2(2.2, 2.2)
+plant = "flower_blue"
+at = Vector2(0.5, 0)
+nudge = Vector2(2, 22)
+pixel_scale = 2.2
+
+[node name="Plant3" parent="." unique_id=1570020716 instance=ExtResource("ui_plant")]
+position = Vector2(496, 25)
+scale = Vector2(2.5, 2.5)
+at = Vector2(1, 0)
+nudge = Vector2(-20, 25)
+pixel_scale = 2.5
+flip = true
+
+[node name="Plant4" parent="." unique_id=1946171960 instance=ExtResource("ui_plant")]
+position = Vector2(32, 118.99997)
+scale = Vector2(2.2, 2.2)
+plant = "mushrooms_red"
+at = Vector2(0, 1)
+nudge = Vector2(32, -16)
+pixel_scale = 2.2
+
+[node name="Plant5" parent="." unique_id=1846811095 instance=ExtResource("ui_plant")]
+position = Vector2(486, 117.99997)
+scale = Vector2(2.5, 2.5)
+at = Vector2(1, 1)
+nudge = Vector2(-30, -17)
+pixel_scale = 2.5
