@@ -953,7 +953,7 @@ horizontal_alignment = 1
 
 [node name="Lines3" type="Label" parent="Roll/Strip"]
 layout_mode = 2
-text = "\"Bouncy Plant Parade\" by Ncone\n\"Game Gaming Video Game Music\" by tatamusic\n\"Gaming Game Video Game Music\" by viacheslavstarostin\nMusic from Pixabay  (Pixabay Content License)\nVoices:  ElevenLabs"
+text = "\"Bouncy Plant Parade\" by Ncone\n\"Game Gaming Video Game Music\" by tatamusic\n\"Gaming Game Video Game Music\" by viacheslavstarostin\nMusic from Pixabay  (Pixabay Content License)\nVoices and animal sounds:  ElevenLabs"
 label_settings = SubResource("LS_line")
 horizontal_alignment = 1
 autowrap_mode = 3
