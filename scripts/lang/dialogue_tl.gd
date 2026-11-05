@@ -580,4 +580,7 @@ const LINES := {
 	"West": "Kanluran",
 	"East": "Silangan",
 	"Map": "Mapa",
+	# Continue the practice (main menu)
+	"Continue the practice?": "Ituloy ang pagsasanay?",
+	"You left the practice before it was done. Do you want to finish it now?": "Umalis ka sa pagsasanay bago ito natapos. Gusto mo bang tapusin ito ngayon?",
 }

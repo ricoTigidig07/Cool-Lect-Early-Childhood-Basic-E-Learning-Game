@@ -42,6 +42,19 @@ func _ready() -> void:
 	if lively_light and GameManager.current_subject == "colors":
 		lively_light.material.set_shader_parameter("warmth", Vector3.ONE)
 		lively_light.material.set_shader_parameter("saturation", 1.1)
+	_connect_hand_button.call_deferred()
+
+## The hand button on the screen talks / picks up through the player. Some levels had no
+## connection saved in their scene, so the button did nothing there: connect it here.
+func _connect_hand_button() -> void:
+	var level := get_tree().current_scene
+	var button: Node = level.get_node_or_null("GameUI/InteractionButton/Button") if level else null
+	if button == null:
+		return
+	if not button.button_down.is_connected(_on_button_button_down):
+		button.button_down.connect(_on_button_button_down)
+	if not button.button_up.is_connected(_on_button_button_up):
+		button.button_up.connect(_on_button_button_up)
 
 ## Tells the light which part of the world is on screen, so cloud shadows stay on the ground.
 func _process(_delta: float) -> void:

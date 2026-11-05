@@ -9,6 +9,8 @@ extends Control
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var subject_selector: Control = $SubjectSelector
 
+const CONTINUE_PRACTICE := preload("res://scenes/welcome/practice/continue_practice.tscn")
+
 func _ready() -> void:
 	# first time playing: ask the age and give a username first
 	if not PlayerProfile.has_profile():
@@ -20,6 +22,9 @@ func _ready() -> void:
 		b.mouse_exited.connect(_squish.bind(b, 1.0))
 		b.button_down.connect(_squish.bind(b, 0.94))
 	anim.play("intro")
+	# left the practice yard before it was done: offer to continue it
+	if PlayerProfile.practice_pending:
+		add_child(CONTINUE_PRACTICE.instantiate())
 
 func _squish(b: Button, amount: float) -> void:
 	create_tween().tween_property(b, "scale", Vector2.ONE * amount, 0.08)

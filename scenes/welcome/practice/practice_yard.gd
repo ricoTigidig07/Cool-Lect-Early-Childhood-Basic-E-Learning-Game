@@ -48,6 +48,7 @@ var _tap_ok_at := 0
 
 func _ready() -> void:
 	GameManager.current_subject = ""       # not a subject level: no level tutorial, no stars
+	PlayerProfile.set_practice_pending(true)   # left before the end -> the menu offers to continue
 	QuestManager.reset()
 	var cam: Camera2D = player.camera
 	cam.limit_left = int(YARD.position.x)
@@ -135,6 +136,7 @@ func _run() -> void:
 	await _say(momo, ["Yay! Thank you for the apple!", "Thank you, great helper!"])
 	GameUIManager.complete_mission_3()
 	await _say(banban, ["You did it! Now you know how to play.", "Let's start our adventure!"])
+	PlayerProfile.set_practice_pending(false)
 	get_tree().change_scene_to_file(MAIN_MENU)
 
 

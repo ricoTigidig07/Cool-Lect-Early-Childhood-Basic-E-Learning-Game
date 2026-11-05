@@ -580,4 +580,7 @@ const LINES := {
 	"West": "Kasadpan",
 	"East": "Sidlakan",
 	"Map": "Mapa",
+	# Continue the practice (main menu)
+	"Continue the practice?": "Padayonon ang praktis?",
+	"You left the practice before it was done. Do you want to finish it now?": "Mibiya ka sa praktis sa wala pa kini mahuman. Gusto ba nimo kining humanon karon?",
 }

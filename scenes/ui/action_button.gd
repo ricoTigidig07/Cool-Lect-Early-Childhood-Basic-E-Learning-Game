@@ -47,6 +47,8 @@ func _has_point(point: Vector2) -> bool:
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
+		if event.pressed and _finger != NO_TOUCH and _finger != event.index:
+			_release()          # the last finger's "up" was lost (e.g. a box opened under it): start fresh
 		if event.pressed and _finger == NO_TOUCH:
 			_press(event.index)
 		elif not event.pressed and event.index == _finger:
@@ -55,6 +57,8 @@ func _gui_input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.device == InputEvent.DEVICE_ID_EMULATION:
 			return          # a phone finger pretending to be a mouse: the touch is already handled
+		if event.pressed and _finger != NO_TOUCH:
+			_release()          # the last "up" was lost: start fresh
 		if event.pressed and _finger == NO_TOUCH:
 			_press(MOUSE)
 		elif not event.pressed and _finger == MOUSE:

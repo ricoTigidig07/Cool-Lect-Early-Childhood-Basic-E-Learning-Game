@@ -12,6 +12,9 @@ const ANIMALS := ["Panda", "Bunny", "Kitten", "Puppy", "Duckling", "Koala", "Tur
 
 var age: int = 0
 var username: String = ""
+## The practice yard was started but not finished (the app closed, or the player went
+## back to the menu): the main menu asks if they want to continue it.
+var practice_pending := false
 
 func _ready() -> void:
 	load_profile()
@@ -32,6 +35,7 @@ func save_profile() -> void:
 	var cfg := ConfigFile.new()
 	cfg.set_value("player", "age", age)
 	cfg.set_value("player", "username", username)
+	cfg.set_value("player", "practice_pending", practice_pending)
 	cfg.set_value("progress", "levels", GameManager.level_progress)
 	cfg.save(SAVE_PATH)
 
@@ -41,14 +45,21 @@ func load_profile() -> void:
 		return
 	age = cfg.get_value("player", "age", 0)
 	username = cfg.get_value("player", "username", "")
+	practice_pending = cfg.get_value("player", "practice_pending", false)
 	var saved: Dictionary = cfg.get_value("progress", "levels", {})
 	for subject in saved.keys():
 		GameManager.level_progress[subject] = saved[subject]
+
+## The practice yard started (true) or was finished / skipped (false).
+func set_practice_pending(on: bool) -> void:
+	practice_pending = on
+	save_profile()
 
 ## Deletes the profile (for testing, or a "New Player" button).
 func reset_profile() -> void:
 	age = 0
 	username = ""
+	practice_pending = false
 	for subject in GameManager.level_progress.keys():
 		GameManager.level_progress[subject] = {}
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(SAVE_PATH))
