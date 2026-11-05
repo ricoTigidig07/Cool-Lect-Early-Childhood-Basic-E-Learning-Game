@@ -23,8 +23,6 @@ texture = ExtResource("2_k16mo")
 position = Vector2(0, -7)
 scale = Vector2(0.235, 0.235)
 texture = ExtResource("3_1pvqu")
-region_enabled = true
-region_rect = Rect2(0, 0, 24, 50)
 script = ExtResource("4_y2gy2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1674801666]
