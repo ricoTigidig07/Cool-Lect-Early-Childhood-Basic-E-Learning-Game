@@ -179,6 +179,10 @@ func _detect_speaker() -> void:
 
 	portrait.texture = null
 	portrait.self_modulate = Color.WHITE
+	# a speaker with its own face picture (Banban: the same face as in the top-left corner)
+	if "portrait_texture" in speaker and speaker.portrait_texture:
+		portrait.texture = speaker.portrait_texture
+		return
 	for child in speaker.get_children():
 		if child is AnimatedSprite2D and child.sprite_frames:
 			var anim: StringName = &"idle_front" if child.sprite_frames.has_animation(&"idle_front") else child.animation

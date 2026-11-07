@@ -19,6 +19,14 @@ var labels: Array
 var stars: Array
 var current_mission := 1
 var completed_missions: Array[bool] = [false, false, false]
+## The missions in English (the labels show them in the chosen language).
+var english := ["", "", ""]
+
+## Banban tells each mission when it becomes the one to do (the first right after the
+## level banner, the next one when the last is done): scenes/ui/banban_talk.gd.
+const NEXT_DELAY := 1.2          # seconds after a mission is done before he reads the next
+var _announcing := false
+var _said: Array[bool] = [false, false, false]
 
 func _ready() -> void:
 	labels = [label_1, label_2, label_3]
@@ -26,11 +34,17 @@ func _ready() -> void:
 	for star in stars:
 		star.texture = BLANK_STAR
 	_refresh_styles()
+	Lang.changed.connect(_apply_language)
 
 func set_missions(text_1: String, text_2: String, text_3: String) -> void:
-	label_1.text = text_1
-	label_2.text = text_2
-	label_3.text = text_3
+	english = [text_1, text_2, text_3]
+	_apply_language()
+
+## The labels in the chosen language (also when it is changed in the Settings).
+func _apply_language() -> void:
+	$MarginContainer/VBoxContainer/Header.text = Lang.line("MISSIONS")
+	for i in labels.size():
+		labels[i].text = Lang.line(english[i])
 
 func complete_mission_1() -> void:
 	_complete_mission(0, star_1)
@@ -50,6 +64,41 @@ func _complete_mission(index: int, star: TextureRect) -> void:
 	current_mission = index + 2
 	_refresh_styles()
 	_pop(star)
+	if index < 2:
+		await get_tree().create_timer(NEXT_DELAY).timeout
+		announce_current()
+
+# ---------- Banban reads the missions ----------
+
+## Called by the level banner when it has finished showing (scenes/ui/ui_extras.gd).
+func start_announcing() -> void:
+	_announcing = GameManager.current_subject != ""     # not in the practice yard (it has its own talk)
+	announce_current()
+
+## Banban says the mission to do now (once each).
+func announce_current() -> void:
+	var i := current_mission - 1
+	if not _announcing or i < 0 or i > 2 or _said[i] or completed_missions[i]:
+		return
+	_said[i] = true
+	# wait while someone is talking, the menu is open or the level is ending
+	while _busy():
+		await get_tree().create_timer(0.3).timeout
+	if completed_missions[i] or not is_inside_tree():
+		return
+	var row: Control = labels[i].get_parent()
+	row.pivot_offset = row.size * 0.5
+	var t := create_tween()
+	t.tween_property(row, "scale", Vector2.ONE * 1.08, 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	t.tween_property(row, "scale", Vector2.ONE, 0.2)
+	var talk := get_tree().get_first_node_in_group("banban_talk")
+	if talk:
+		await talk.say(i, english[i])
+
+func _busy() -> bool:
+	var panel = GameUIManager.dialogue_panel
+	return get_tree().paused or GameUIManager.level_over or GameUIManager.talking \
+		or (panel != null and is_instance_valid(panel) and panel.visible)
 
 func _pop(node: Control) -> void:
 	node.pivot_offset = node.size / 2.0

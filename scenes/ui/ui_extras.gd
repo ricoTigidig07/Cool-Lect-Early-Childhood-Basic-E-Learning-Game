@@ -99,6 +99,10 @@ func _show_banner() -> void:
 		banner_name.text = own[1]
 	banner_anim.play("show")
 	AudioManager.play_sfx("pop")
+	# when the banner is done, Banban reads the first mission (scenes/mission_panel.gd)
+	await banner_anim.animation_finished
+	if GameUIManager.mission_panel and is_instance_valid(GameUIManager.mission_panel):
+		GameUIManager.mission_panel.start_announcing()
 
 # ---------- every frame ----------
 

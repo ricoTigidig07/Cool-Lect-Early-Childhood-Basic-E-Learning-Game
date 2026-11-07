@@ -24,6 +24,10 @@ var bob_time: float = 0.0
 var auto_path := PackedVector2Array()
 ## True while a conversation is open: the joystick / keys don't move the player.
 var controls_locked := false
+## Banban as a speaker in the dialogue box (his name and his voice clips).
+var display_name := "Banban"
+var voice_id := "banban"
+@onready var portrait_texture: Texture2D = (load("res://resources/avatar_animations.tres") as SpriteFrames).get_frame_texture(&"defaults", 0)
 signal auto_walk_done
 
 ## Walks through these points by itself, then sends auto_walk_done.
