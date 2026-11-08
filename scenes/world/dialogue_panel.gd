@@ -39,14 +39,23 @@ var continue_time: float = 0.0
 var continue_atlas: AtlasTexture
 var last_tap_ms: int = 0
 
-## Answer buttons say the answer in Banban's voice (assets/audio/voice*/banban/<md5>.ogg):
-##  - computer: when the mouse points at the answer; one click picks it
-##  - phone: the FIRST tap says it and shows "Tap again to choose!", the SECOND tap picks it
+## Answer buttons, made for kids who can't read yet. Banban's voice: assets/audio/voice*/banban/<md5>.ogg
+##  - when the answers appear, Banban reads them out one after the other; the one he says glows
+##  - computer: pointing at an answer says it; one click picks it
+##  - phone: the FIRST tap says it, the button bounces and glows with the paw tapping on it,
+##    and Banban says "Tap again to choose!". The SECOND tap picks it, however long it takes;
+##    tapping the other answer moves the paw there instead.
+## The glow / bounce / paw are nodes under each button, played by its "Fx" AnimationPlayer.
 var two_tap := OS.has_feature("mobile") or OS.has_feature("web_android") or OS.has_feature("web_ios")
 const ANSWER_VOICE := "banban"
+const TAP_AGAIN := "Tap again to choose!"
+const READ_GAP := 0.3          # pause between the two answers
+const NO_CLIP_WAIT := 1.2      # time an answer glows when it has no voice clip
+const REPEAT_TAP_MS := 250     # one tap that arrives twice on a phone is not a second tap
 var _armed: Button = null           # phone: the answer tapped once
-var _hint: Label                    # "Tap again to choose!"
-var _pulse: Tween
+var _armed_at := 0
+var _talk_id := 0                   # bumped to stop the read-out / the "tap again" line
+var _reading := false
 
 signal skipped
 signal advanced
@@ -62,18 +71,7 @@ func _ready() -> void:
 	yes_button.pressed.connect(_on_choice_pressed.bind(yes_button))
 	no_button.pressed.connect(_on_choice_pressed.bind(no_button))
 	for b in [yes_button, no_button]:
-		b.mouse_entered.connect(func(): if not two_tap: _say_answer(b))
-	_hint = Label.new()
-	_hint.name = "TapAgainHint"
-	_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_hint.add_theme_font_override("font", yes_button.get_theme_font("font"))
-	_hint.add_theme_font_size_override("font_size", 30)
-	_hint.add_theme_color_override("font_color", Color(1, 0.97, 0.88))
-	_hint.add_theme_color_override("font_outline_color", Color(0.36, 0.22, 0.15))
-	_hint.add_theme_constant_override("outline_size", 8)
-	_hint.visible = false
-	_hint.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	choices_container.add_child(_hint)
+		b.mouse_entered.connect(func(): if not two_tap and not _reading: _say_answer(b))
 	gui_input.connect(_on_gui_input)
 	visibility_changed.connect(_on_visibility_changed)
 
@@ -269,47 +267,101 @@ func show_choices(choices: Array[String]) -> void:
 	choices_container.modulate.a = 0.0
 	var t := create_tween()
 	t.tween_property(choices_container, "modulate:a", 1.0, 0.15)
+	_read_answers()
 
 func _on_choice_pressed(button: Button) -> void:
 	if two_tap and _armed != button:
 		_arm(button)          # first tap: hear it, then tap again to choose
 		return
+	if two_tap and Time.get_ticks_msec() - _armed_at < REPEAT_TAP_MS:
+		return                # the same tap arriving twice, not a real second tap
 	_disarm()
 	choices_container.visible = false
 	choice_selected.emit(choice_texts.get(button, button.text))
 
+## Banban reads the answers out, one after the other, each one glowing while he says it.
+## Stops as soon as an answer is tapped or the box closes.
+func _read_answers() -> void:
+	_talk_id += 1
+	var id := _talk_id
+	_reading = true
+	await get_tree().create_timer(0.35).timeout
+	while voice.playing and id == _talk_id:       # let the question finish first
+		await get_tree().process_frame
+	for b in [yes_button, no_button]:
+		if id != _talk_id or not choices_container.visible:
+			break
+		if not b.is_visible_in_tree():
+			continue
+		_fx(b, "say")
+		await _say_and_wait(choice_texts.get(b, ""), id)
+		if id != _talk_id:
+			break
+		_fx(b, "RESET")
+		await get_tree().create_timer(READ_GAP).timeout
+	if id == _talk_id:
+		_reading = false
+
+## Says a line in Banban's voice and waits until it is done (or a moment, with no clip).
+func _say_and_wait(english: String, id: int) -> void:
+	if _say_line(english):
+		await get_tree().process_frame
+		while voice.playing and id == _talk_id:
+			await get_tree().process_frame
+	else:
+		await get_tree().create_timer(NO_CLIP_WAIT).timeout
+
+## Stops the read-out / the "tap again" line, and takes the glow off the answers.
+func _stop_talking(stop_voice := true) -> void:
+	_talk_id += 1
+	_reading = false
+	if stop_voice:
+		voice.stop()
+	for b in [yes_button, no_button]:
+		if b != _armed:
+			_fx(b, "RESET")
+
+func _fx(button: Button, anim: String) -> void:
+	button.pivot_offset = button.size / 2.0
+	var fx: AnimationPlayer = button.get_node("Fx")
+	fx.play(anim)
+	if anim == "RESET":
+		fx.advance(0)
+
 ## Banban says this answer (if there is a clip for it).
 func _say_answer(button: Button) -> void:
-	var english: String = choice_texts.get(button, "")
-	if english == "" or not button.is_visible_in_tree():
-		return
-	var path := "%s%s/%s.ogg" % [Lang.voice_dir(), ANSWER_VOICE, english.md5_text()]
-	if ResourceLoader.exists(path):
-		voice.stop()
-		voice.stream = load(path)
-		voice.play()
+	_say_line(choice_texts.get(button, ""))
 
-## Phone, first tap: the answer is said, wiggles, and the reminder shows under the buttons.
+## Plays Banban's clip of an English line. False when there is none.
+func _say_line(english: String) -> bool:
+	if english == "" or not is_visible_in_tree():
+		return false
+	var path := "%s%s/%s.ogg" % [Lang.voice_dir(), ANSWER_VOICE, english.md5_text()]
+	if not ResourceLoader.exists(path):
+		return false
+	voice.stop()
+	voice.stream = load(path)
+	voice.play()
+	return true
+
+## Phone, first tap: the answer is said, then "Tap again to choose!"; the button bounces
+## and glows with the paw tapping on it until it is tapped again or the other one is.
 func _arm(button: Button) -> void:
 	_disarm()
+	_stop_talking()
 	_armed = button
-	_say_answer(button)
-	_hint.text = Lang.line("Tap again to choose!")
-	_hint.visible = true
-	button.pivot_offset = button.size / 2.0
-	_pulse = create_tween().set_loops()
-	_pulse.tween_property(button, "scale", Vector2.ONE * 1.06, 0.3).set_trans(Tween.TRANS_SINE)
-	_pulse.tween_property(button, "scale", Vector2.ONE, 0.3).set_trans(Tween.TRANS_SINE)
+	_armed_at = Time.get_ticks_msec()
+	_fx(button, "armed")
+	var id := _talk_id
+	await _say_and_wait(choice_texts.get(button, ""), id)
+	if id == _talk_id and _armed == button:
+		_say_line(TAP_AGAIN)
 
 func _disarm() -> void:
-	if _pulse:
-		_pulse.kill()
-		_pulse = null
+	_stop_talking(false)      # keeps a line that is still being said (the question)
 	if _armed:
-		_armed.scale = Vector2.ONE
+		_fx(_armed, "RESET")
 	_armed = null
-	if _hint:
-		_hint.visible = false
 
 # ---------- pop-in ----------
 
@@ -330,6 +382,7 @@ func _on_visibility_changed() -> void:
 		t.tween_property(self, "modulate:a", 1.0, 0.12)
 	else:
 		typing_timer.stop()
+		_disarm()
 		voice.stop()
 		choices_container.visible = false
 		continue_icon.visible = false

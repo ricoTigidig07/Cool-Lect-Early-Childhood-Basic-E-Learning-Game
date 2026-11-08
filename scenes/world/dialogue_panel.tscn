@@ -7,6 +7,8 @@
 [ext_resource type="Theme" uid="uid://cq6yjwxcf3scm" path="res://assets/UI/dialogueButtons.tres" id="5_btn"]
 [ext_resource type="Texture2D" uid="uid://dvsrrybs70wr3" path="res://assets/UI/ui/Sprite sheets/Icons/All Icons.png" id="6_icons"]
 [ext_resource type="FontFile" uid="uid://dvahnwe3pl6sq" path="res://assets/UI/Fonts/Poco.ttf" id="7_poco"]
+[ext_resource type="Texture2D" path="res://assets/UI/ui/Sprite sheets/Mouse sprites/Catpaw pointing Mouse icon.png" id="8_point"]
+[ext_resource type="Texture2D" path="res://assets/UI/ui/Sprite sheets/Mouse sprites/Catpaw holding Mouse icon.png" id="9_press"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_name"]
 font = ExtResource("4_font")
@@ -30,6 +32,126 @@ region = Rect2(194, 35, 13, 10)
 [sub_resource type="AtlasTexture" id="AtlasTexture_no"]
 atlas = ExtResource("6_icons")
 region = Rect2(210, 34, 12, 12)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_glow"]
+bg_color = Color(1, 0.93, 0.45, 0.85)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(1, 0.88, 0.3, 0.6)
+shadow_size = 12
+
+[sub_resource type="Animation" id="Anim_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 0, "values": [Vector2(1, 1)]}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 0, "values": [Color(1, 1, 1, 0)]}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Paw:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 1, "values": [false]}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Paw:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 1, "values": [ExtResource("8_point")]}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Paw:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 0, "values": [Vector2(354, 46)]}
+
+[sub_resource type="Animation" id="Anim_say"]
+resource_name = "say"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {"times": PackedFloat32Array(0, 0.3), "transitions": PackedFloat32Array(1, 1), "update": 0, "values": [Vector2(1.04, 1.04), Vector2(1.08, 1.08)]}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glow:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {"times": PackedFloat32Array(0, 0.3), "transitions": PackedFloat32Array(1, 1), "update": 0, "values": [Color(1, 1, 1, 0.55), Color(1, 1, 1, 1)]}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Paw:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 1, "values": [false]}
+
+[sub_resource type="Animation" id="Anim_armed"]
+resource_name = "armed"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {"times": PackedFloat32Array(0, 0.15, 0.3, 0.45), "transitions": PackedFloat32Array(1, 1, 1, 1), "update": 0, "values": [Vector2(1, 1), Vector2(1.12, 1.12), Vector2(0.97, 0.97), Vector2(1.04, 1.04)]}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glow:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {"times": PackedFloat32Array(0, 0.4), "transitions": PackedFloat32Array(1, 1), "update": 0, "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.65)]}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Paw:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {"times": PackedFloat32Array(0), "transitions": PackedFloat32Array(1), "update": 1, "values": [true]}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Paw:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {"times": PackedFloat32Array(0, 0.4, 0.6), "transitions": PackedFloat32Array(1, 1, 1), "update": 1, "values": [ExtResource("8_point"), ExtResource("9_press"), ExtResource("8_point")]}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Paw:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {"times": PackedFloat32Array(0, 0.4, 0.6), "transitions": PackedFloat32Array(1, 1, 1), "update": 0, "values": [Vector2(354, 46), Vector2(344, 37), Vector2(354, 46)]}
+
+[sub_resource type="AnimationLibrary" id="AnimLib_fx"]
+_data = {
+&"RESET": SubResource("Anim_reset"),
+&"armed": SubResource("Anim_armed"),
+&"say": SubResource("Anim_say")
+}
 
 [node name="DialoguePanel" type="TextureRect" unique_id=128829468]
 anchors_preset = 7
@@ -112,7 +234,7 @@ theme = ExtResource("5_btn")
 theme_override_constants/separation = 18
 
 [node name="YesButton" type="Button" parent="ChoicesContainer" unique_id=88713010]
-custom_minimum_size = Vector2(388, 72)
+custom_minimum_size = Vector2(388, 76)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.36, 0.22, 0.15, 1)
 theme_override_colors/font_pressed_color = Color(0.2, 0.45, 0.2, 1)
@@ -123,9 +245,48 @@ theme_override_fonts/font = ExtResource("7_poco")
 theme_override_font_sizes/font_size = 31
 text = "Yes!"
 icon = SubResource("AtlasTexture_yes")
+theme_override_constants/icon_max_width = 44
+theme_override_constants/h_separation = 12
+expand_icon = true
+
+[node name="Glow" type="Panel" parent="ChoicesContainer/YesButton"]
+modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBox_glow")
+
+[node name="Paw" type="TextureRect" parent="ChoicesContainer/YesButton"]
+visible = false
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 354.0
+offset_top = 46.0
+offset_right = 410.0
+offset_bottom = 102.0
+mouse_filter = 2
+texture = ExtResource("8_point")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Fx" type="AnimationPlayer" parent="ChoicesContainer/YesButton"]
+root_node = NodePath("..")
+libraries = {
+&"": SubResource("AnimLib_fx")
+}
 
 [node name="NoButton" type="Button" parent="ChoicesContainer" unique_id=111754256]
-custom_minimum_size = Vector2(388, 72)
+custom_minimum_size = Vector2(388, 76)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.36, 0.22, 0.15, 1)
 theme_override_colors/font_pressed_color = Color(0.6, 0.2, 0.2, 1)
@@ -136,6 +297,45 @@ theme_override_fonts/font = ExtResource("7_poco")
 theme_override_font_sizes/font_size = 31
 text = "No"
 icon = SubResource("AtlasTexture_no")
+theme_override_constants/icon_max_width = 44
+theme_override_constants/h_separation = 12
+expand_icon = true
+
+[node name="Glow" type="Panel" parent="ChoicesContainer/NoButton"]
+modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBox_glow")
+
+[node name="Paw" type="TextureRect" parent="ChoicesContainer/NoButton"]
+visible = false
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 354.0
+offset_top = 46.0
+offset_right = 410.0
+offset_bottom = 102.0
+mouse_filter = 2
+texture = ExtResource("8_point")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Fx" type="AnimationPlayer" parent="ChoicesContainer/NoButton"]
+root_node = NodePath("..")
+libraries = {
+&"": SubResource("AnimLib_fx")
+}
 
 [node name="Voice" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
