@@ -172,7 +172,7 @@ visible = false
 position = Vector2(0, 5)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1567545173]
-position = Vector2(7.450581e-09, -5)
+position = Vector2(7.450581e-09, -3)
 rotation = -3.1277826
 shape = SubResource("CapsuleShape2D_kqtwu")
 
