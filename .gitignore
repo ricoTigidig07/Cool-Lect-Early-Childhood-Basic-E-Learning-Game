@@ -19,3 +19,7 @@ Thumbs.db
 
 # files Claude sends (previews, scripts), not part of the game
 Claude outputs/
+
+# Web export (upload the zip to itch.io)
+web_build/
+web_build.zip
