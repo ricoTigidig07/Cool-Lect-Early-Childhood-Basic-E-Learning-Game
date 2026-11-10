@@ -48,6 +48,13 @@ func say(i: int, mission_english: String) -> void:
 	var panel = GameUIManager.dialogue_panel
 	if player == null or panel == null:
 		return
+	# a conversation with an NPC may still be zooming the camera back out: wait for it,
+	# or its half-way zoom would be saved as "normal" and the camera would stay zoomed in
+	var tm = GameUIManager.talk_mode
+	while tm and is_instance_valid(tm) and tm.has_method("is_busy") and tm.is_busy() and is_inside_tree():
+		await get_tree().process_frame
+	if not is_instance_valid(player):
+		return
 	var was_over: bool = GameUIManager.level_over
 	GameUIManager.level_over = true          # the hand button does nothing while he talks
 	GameUIManager.talking = true

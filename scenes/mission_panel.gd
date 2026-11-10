@@ -97,8 +97,10 @@ func announce_current() -> void:
 
 func _busy() -> bool:
 	var panel = GameUIManager.dialogue_panel
+	var tm = GameUIManager.talk_mode
 	return get_tree().paused or GameUIManager.level_over or GameUIManager.talking \
-		or (panel != null and is_instance_valid(panel) and panel.visible)
+		or (panel != null and is_instance_valid(panel) and panel.visible) \
+		or (tm != null and is_instance_valid(tm) and tm.has_method("is_busy") and tm.is_busy())
 
 func _pop(node: Control) -> void:
 	node.pivot_offset = node.size / 2.0

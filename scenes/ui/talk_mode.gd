@@ -37,6 +37,8 @@ var npc: Node2D = null
 var player: Node2D = null
 var _hidden: Array[CanvasItem] = []
 var _cam_saved := {}
+## True while the camera is still zooming back out after a conversation.
+var _settling := false
 
 func _ready() -> void:
 	visible = false
@@ -79,6 +81,11 @@ func start(speaker: Node, show_words: Callable) -> void:
 	visible = true
 	anim.play("show")
 	show_words.call()
+
+## True while a conversation is on, or its camera is still zooming back out.
+## Banban waits for this before his own close-up (scenes/ui/banban_talk.gd).
+func is_busy() -> bool:
+	return active or _settling
 
 ## Back to playing.
 func finish() -> void:
@@ -171,6 +178,7 @@ func _zoom_out() -> void:
 		return
 	var saved := _cam_saved
 	_cam_saved = {}
+	_settling = true
 	var tw := create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tw.tween_property(cam, "zoom", saved["zoom"], ZOOM_TIME)
 	tw.tween_property(cam, "offset", saved["offset"], ZOOM_TIME)
@@ -179,7 +187,8 @@ func _zoom_out() -> void:
 		cam.limit_top = saved["limits"][1]
 		cam.limit_right = saved["limits"][2]
 		cam.limit_bottom = saved["limits"][3]
-		cam.position_smoothing_enabled = saved["smooth"])
+		cam.position_smoothing_enabled = saved["smooth"]
+		_settling = false)
 
 # ---------- the rest of the screen ----------
 
