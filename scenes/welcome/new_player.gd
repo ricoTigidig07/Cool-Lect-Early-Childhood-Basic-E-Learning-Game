@@ -44,6 +44,16 @@ func _ready() -> void:
 	_show_page(language_page)
 	username_label.text_changed.connect(_on_name_typed)
 	username_label.text_submitted.connect(func(_t): _on_play())
+	if PlayerProfile.replay_tutorial:
+		PlayerProfile.replay_tutorial = false
+		_replay_tutorial.call_deferred()
+
+## Settings > How to Play: only Banban's first meeting, the profile stays as it is.
+func _replay_tutorial() -> void:
+	_show_page(tutorial_page)
+	tutorial_page.start()
+	var practice: bool = await tutorial_page.done
+	get_tree().change_scene_to_file(PRACTICE_YARD if practice else MAIN_MENU)
 
 ## Phones: the on-screen keyboard covers the bottom of the screen,
 ## so slide the name page up until the name box sits just above it.

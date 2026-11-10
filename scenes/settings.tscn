@@ -412,6 +412,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "English"
 
+[node name="HowToPlayButton" type="Button" parent="Card/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "How to Play"
+
 [node name="HSeparator" type="HSeparator" parent="Card/MarginContainer/VBoxContainer"]
 layout_mode = 2
 

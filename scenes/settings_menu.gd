@@ -9,6 +9,7 @@ extends Control
 ## Everything is saved on this device.
 
 const MAIN_MENU := "res://scenes/main_menu.tscn"
+const NEW_PLAYER := "res://scenes/welcome/NewPlayer.tscn"
 const STEPS := 5
 const RESET_HOLD_TIME := 3.0
 const RING_FRAMES := 37
@@ -35,6 +36,7 @@ const RESET_WORD := "RESET"
 @onready var sound_pips: HBoxContainer = box.get_node("SoundRow/Pips")
 @onready var hints_button: Button = box.get_node("HintsRow/Toggle")
 @onready var language_button: Button = box.get_node("LanguageRow/Toggle")
+@onready var how_to_play_button: Button = box.get_node("HowToPlayButton")
 @onready var reset_button: Button = box.get_node("ResetRow/ResetButton")
 @onready var reset_ring: TextureRect = box.get_node("ResetRow/Ring")
 @onready var reset_window: Control = $ResetWindow
@@ -62,6 +64,7 @@ func _ready() -> void:
 	language_button.pressed.connect(func():   # English -> Tagalog -> Bisaya -> English
 		Lang.set_language(Lang.next_code())
 		_refresh())
+	how_to_play_button.pressed.connect(_on_how_to_play)
 	reset_button.button_down.connect(_on_reset_down)
 	reset_button.button_up.connect(_cancel_hold)
 	reset_input.text_changed.connect(_on_reset_text_changed)
@@ -71,6 +74,12 @@ func _ready() -> void:
 	reset_window.visible = false
 	_refresh()
 	anim.play("open")
+
+## How to Play: Banban's first meeting again (the same talk a new player gets),
+## then the practice yard or back to the main menu. The profile is not changed.
+func _on_how_to_play() -> void:
+	PlayerProfile.replay_tutorial = true
+	get_tree().change_scene_to_file(NEW_PLAYER)
 
 # ---------- volume (saved by AudioManager) ----------
 

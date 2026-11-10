@@ -15,6 +15,9 @@ var username: String = ""
 ## The practice yard was started but not finished (the app closed, or the player went
 ## back to the menu): the main menu asks if they want to continue it.
 var practice_pending := false
+## Settings > How to Play: NewPlayer.tscn skips the language, age and name pages and
+## goes straight to Banban's first meeting (not saved, only for that one visit).
+var replay_tutorial := false
 
 func _ready() -> void:
 	load_profile()
