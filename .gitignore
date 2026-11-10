@@ -23,3 +23,8 @@ Claude outputs/
 # Web export (upload the zip to itch.io)
 web_build/
 web_build.zip
+
+# Web export files in the project root (export to web_build/ instead)
+/index.*
+# APK signature file made by the Android export
+*.idsig
